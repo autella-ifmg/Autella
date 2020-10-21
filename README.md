@@ -1,8 +1,11 @@
 # TCC
 Instituto Federal de Minas Gerais – Campus Ouro Branco
+
 Curso: Técnico Integrado em Informática
-Disciplina: Tópicos em Desenvolvimento de Software
-Professor orientador: Carlos Eduardo Paulino Silva (saulo.cabral@ifmg.edu.br)
+
+Disciplina: Projeto de Software II
+
+Professor orientador: Carlos Eduardo Paulino Silva (carlos.paulino@ifmg.edu.br)
 
 Aluno 1: João Gabriel Alves Júnior (GabrielJunior42566@gmail.com)
 
