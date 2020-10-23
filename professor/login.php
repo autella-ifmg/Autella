@@ -5,15 +5,28 @@ if (isset($_POST['inputSubmit'])) {
     $email = $_POST['inputEmail'];
     $password = $_POST['inputPassword'];
 
-    $sql = "SELECT * FROM professor WHERE email='$email' AND password='$password'";
+    $email = mysqli_real_escape_string($connection, $email);
+    $password = mysqli_real_escape_string($connection, $password);
+
+    // See if email exists in database
+    $sql = "SELECT * FROM professor WHERE email='$email'";
     $result = mysqli_query($connection, $sql);
 
     if (mysqli_num_rows($result) != 0) {
-        $array = mysqli_fetch_array($result);
-        $_SESSION['userData'] = $array;
-        //$message = "Olá " . $array['nome'];
+        // Check if email and password match
+        $sql = "SELECT * FROM professor WHERE email='$email' AND password='$password'";
+        $result = mysqli_query($connection, $sql);
+
+        if (mysqli_num_rows($result) != 0) {
+            $array = mysqli_fetch_array($result);
+            $_SESSION['userData'] = $array;
+        } else {
+            $message = "Senha incorreta!";
+            //$message = "Erro: " . $sql . "<br>" . $connection->error;
+        }
     } else {
-        $message = "Erro: " . $sql . "<br>" . $connection->error;
+        $message = "Email não cadastrado!";
+        //$message = "Erro: " . $sql . "<br>" . $connection->error;
     }
     $connection->close();
 

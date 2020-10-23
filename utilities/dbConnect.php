@@ -18,5 +18,4 @@ if ($connection->connect_error) {
 }
 
 session_start();
-echo $message;
-//$_SESSION['message'] = $message;
+$_SESSION['message'] = $message;
