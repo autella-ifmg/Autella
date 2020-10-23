@@ -1,6 +1,7 @@
 Navbar
++Link para /questoes/create.php
 -Colocar rótulos adequados
--Link para /questoes/create.php
+
 
 Criar questão
 -Colocar a funcionalidade de inserir imagem pra funcionar
@@ -9,14 +10,14 @@ Criar questão
 
 Login / Cadastro
 +Redirecionar da homepage para outras páginas quando cadastrado
--Ao criar conta, inserir imagem padrao
++Ao criar conta, inserir imagem padrao
++Inserir coisas do usuário (imagem e opções de usuário) na navbar
 -Redimensionar todas imagens de perfil para 256x256
 -Esqueci a senha
 -Email de verificação de criação de contas
 -Limpar e fazer verificação de variáveis
 -Criptografia de senhas
 -Impedir criação de contas com o mesmo email
--Inserir coisas do usuário (imagem e opções de usuário) na navbar
 -Tirar senha do $_SESSION['userData'] -> implicações no professor/update.php
 -verificar se o arquivo enviado pelo usuario é uma imagem
 
@@ -29,4 +30,4 @@ Geral
 
 
 Views
-Página de apresentação, tanto para visitantes quanto para usuarios
+-Página de apresentação, tanto para visitantes quanto para usuarios
