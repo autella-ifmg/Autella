@@ -117,6 +117,9 @@ require_once 'utilities/sessionMessage.php';
 
     <script src="bootstrap/jquery-3.5.1.js"></script>
     <script src="bootstrap/bootstrap.bundle.js"></script>
+    <script>
+        $('.toast').toast('show');
+    </script>
 </body>
 
 </html>

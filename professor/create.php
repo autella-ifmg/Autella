@@ -6,17 +6,17 @@ if (isset($_POST['inputSubmit'])) {
     $name = $_POST['inputName'];
     $password = $_POST['inputPassword'];
 
-    $sql = "INSERT INTO professor (email, nome, senha) VALUES 
+    $sql = "INSERT INTO professor (email, name, password) VALUES 
     ('$email', '$name', '$password');";
 
     if ($connection->query($sql) === TRUE) {
-        $mensagem = "Conta criada com sucesso!";
+        $message = "Conta criada com sucesso!";
     } else {
-        $mensagem = "Erro: " . $sql . "<br>" . $connection->error;
+        $message = "Erro: " . $sql . "<br>" . $connection->error;
     }
     $connection->close();
 
-    $_SESSION['mensagem'] = $mensagem;
+    $_SESSION['message'] = $message;
 
     header("Location: ../index.php");
 }

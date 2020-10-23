@@ -5,7 +5,7 @@ if (isset($_POST['inputSubmit'])) {
     $email = $_POST['inputEmail'];
     $password = $_POST['inputPassword'];
 
-    $sql = "SELECT * FROM professor WHERE email='$email' AND senha='$password'";
+    $sql = "SELECT * FROM professor WHERE email='$email' AND password='$password'";
     $result = mysqli_query($connection, $sql);
 
     if (mysqli_num_rows($result) != 0) {
