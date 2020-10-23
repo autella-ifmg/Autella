@@ -18,6 +18,7 @@ Login / Cadastro
 -Impedir criação de contas com o mesmo email
 -Inserir coisas do usuário (imagem e opções de usuário) na navbar
 -Tirar senha do $_SESSION['userData'] -> implicações no professor/update.php
+-verificar se o arquivo enviado pelo usuario é uma imagem
 
 
 
