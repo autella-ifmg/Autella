@@ -20,4 +20,4 @@ Login / Cadastro
 
 Geral
 -Arrumar possíveis baguncinhas que o usuario pode fazer na hora de usar o site (catch's)
--die() // garante que nada abaixo será executado
+-die() // Garante que nada abaixo será executado
