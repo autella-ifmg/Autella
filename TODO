@@ -1,12 +1,23 @@
-Dar vida à setinha
+Navbar
+-Colocar rótulos adequados
 
-Redirecionar da homepage para outras páginas quando cadastrado
-Redimensionar todas imagens de perfil para 256x256
+Criar questão
+-Colocar a funcionalidade de inserir imagem pra funcionar
+-Adicionar circuluzinhos em volta das letras das alternativas, pra ficar igual na hora de imprimir
 
-Esqueci a senha
-Email de verificação de criação de contas
-Limpar e fazer verificação de variáveis
-Criptografia de senhas
-Impedir criação de contas com o mesmo email
 
-Arrumar possíveis baguncinhas que o usuario pode fazer na hora de usar o site (catch's)
+Login / Cadastro
+-Redirecionar da homepage para outras páginas quando cadastrado
+-Redimensionar todas imagens de perfil para 256x256
+-Esqueci a senha
+-Email de verificação de criação de contas
+-Limpar e fazer verificação de variáveis
+-Criptografia de senhas
+-Impedir criação de contas com o mesmo email
+-Inserir coisas do usuário (imagem e opções de usuário) na navbar
+
+
+
+Geral
+-Arrumar possíveis baguncinhas que o usuario pode fazer na hora de usar o site (catch's)
+-die() // garante que nada abaixo será executado
