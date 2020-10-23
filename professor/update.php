@@ -10,6 +10,10 @@ if (isset($_POST['inputSubmit'])) {
     $image = file_get_contents($image);
     $image = mysqli_escape_string($connection, $image);
 
+    if ($image == "") {
+        $image = mysqli_escape_string($connection, $_SESSION['userData']['picture']);
+    }
+
     if ($oldPassword == $_SESSION['userData']['password']) {
         if ($newPassword == "") {
             $newPassword = $oldPassword;
@@ -21,13 +25,23 @@ if (isset($_POST['inputSubmit'])) {
         } else {
             $message = "Erro: " . $sql . "<br>" . $connection->error;
         }
+
+        // Check if email and password match
+        $sql = "SELECT * FROM professor WHERE email='$email' AND password='$newPassword'";
+        $result = mysqli_query($connection, $sql);
+
+        if (mysqli_num_rows($result) != 0) {
+            $array = mysqli_fetch_array($result);
+            $_SESSION['userData'] = $array;
+        } else {
+            $message = "Senha incorreta!";
+            //$message = "Erro: " . $sql . "<br>" . $connection->error;
+        }
+
         $connection->close();
-
-        $_SESSION['message'] = $message;
-
-        header("Location: ../utilities/logout.php");
     } else {
-        echo "Senha atual incorreta!";
+        $message = "Senha atual incorreta!";
     }
+    $_SESSION['message'] = $message;
+    header("Location: /autella.com/index.php");
 }
-?>
