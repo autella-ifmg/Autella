@@ -8,6 +8,7 @@ Criar questão
 
 Login / Cadastro
 +Redirecionar da homepage para outras páginas quando cadastrado
+-Ao criar conta, inserir imagem padrao
 -Redimensionar todas imagens de perfil para 256x256
 -Esqueci a senha
 -Email de verificação de criação de contas
@@ -23,3 +24,7 @@ Geral
 -Arrumar possíveis baguncinhas que o usuario pode fazer na hora de usar o site (catch's)
 -Segurança das demais abas (caso um usuário não cadastrado tente acessar uma página proibida)
 -die() // Garante que nada abaixo será executado
+
+
+Views
+Página de apresentação, tanto para visitantes quanto para usuarios

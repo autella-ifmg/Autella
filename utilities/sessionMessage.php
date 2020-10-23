@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['message'])) {
   echo '
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" style="position: absolute; top: 0; right: 0">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" style="position: absolute; top: 80px; right: 0">
       <div class="toast-header">
         <!-- <img src="..." class="rounded mr-2" alt="..."> -->
         <strong class="mr-auto">Autella</strong>

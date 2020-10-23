@@ -12,7 +12,7 @@ require_once 'utilities/sessionMessage.php';
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
 </head>
 
-<body class="h-100 w-100 d-flex align-items-center justify-content-around">
+<body class="h-100">
     <?php
     if (isset($_SESSION['userData'])) {
         require_once 'views/homepageUser.php';
