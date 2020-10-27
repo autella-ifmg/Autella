@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/autella.com/utilities/dbConnect.php';
+require_once '../../utilities/dbConnect.php';
 if (isset($_POST['inputSubmit'])) {
     $email = $_POST['inputEmail'];
     $name = $_POST['inputName'];
@@ -43,7 +43,7 @@ if (isset($_POST['inputSubmit'])) {
         $message = "Senha atual incorreta!";
     }
     $_SESSION['message'] = $message;
-    header("Location: /autella.com/index.php");
+    header("Location: ../../index.php");
 }
 ?>
 

@@ -11,7 +11,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
+
   <style>
     body {
       background-color: white;
@@ -21,8 +22,9 @@
 
 <body>
   <!-- Barra de navegação e verificação de login-->
-  <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/autella.com/utilities/userVerify.php';
-  require_once $_SERVER['DOCUMENT_ROOT'] . 'autella.com/utilities/navbar.php' ?>
+  <?php session_start();
+  require_once '../../utilities/userVerify.php';
+  require_once '../../utilities/navbar.php' ?>
 
   <br>
   <br>
