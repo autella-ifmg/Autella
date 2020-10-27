@@ -1,7 +1,8 @@
 ## Login / Cadastro
 - [X] Redirecionar da homepage para outras páginas quando cadastrado
 - [X] Ao criar conta, inserir imagem padrao
-- [ ] Inserir coisas do usuário (imagem e opções de usuário) na navbar
+- [X] Inserir coisas do usuário (imagem e opções de usuário) na navbar
+- [X] Alterar modal's para arquivos próprios
 - [ ] Redimensionar todas imagens de perfil para 256x256
 - [ ] Esqueci a senha
 - [ ] Email de verificação de criação de contas
@@ -9,10 +10,9 @@
 - [ ] Criptografia de senhas
 - [ ] Impedir criação de contas com o mesmo email
 - [ ] Tirar senha do $_SESSION['userData'] -> implicações no professor/update.php
-- [ ] verificar se o arquivo enviado pelo usuario é uma imagem
-- [ ] excluir conta
+- [ ] Verificar se o arquivo enviado pelo usuario é uma imagem
+- [ ] Excluir conta
 - [ ] Arrumar possíveis baguncinhas que o usuario pode fazer na hora de usar o site (catch's)
-- [ ] Alterar modal's para arquivos próprios
 - [ ] Transformar toast's em modal's
 
 ### Criação de conta
