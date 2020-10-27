@@ -7,7 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/autella.com/questao/create.php">Criar questão</a>
+                <a class="nav-link" href="questao/create.php">Criar questão</a>
+            </li>
+            <li>
+            <a class="nav-link" href="ProvaSimples\createSimpleTest">Prova Simples</a>
             </li>
         </ul>
 
@@ -22,7 +25,7 @@
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="/autella.com/utilities/logout.php">Logout</a>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalEditarConta">Alterar dados</a>
+                        <a class="dropdown-item" href="/Autella.com/index.php" data-toggle="modal" data-target="#modalEditarConta">Alterar dados</a>
                     </div>
                 </div>
             </li>
