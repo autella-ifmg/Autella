@@ -16,7 +16,7 @@
     Alterar modal's para arquivos próprios
     Transformar toast's em modal's
 
->      Criação de conta
+      Criação de conta
     Caixa de confirmar senha
     Dropdown de "Área"
     Dropdown de "Disciplina"
