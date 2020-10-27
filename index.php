@@ -16,14 +16,14 @@
     <?php
     require_once 'utilities/sessionMessage.php';
     if (isset($_SESSION['userData'])) {
-        require_once 'views/homepageUser.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] .'/autella.com/views/homepageUser.php';
     } else {
-        require_once 'views/homepageGuest.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] .'/autella.com/views/homepageGuest.php';
     }
     ?>
 
-    <script src="bootstrap/jquery-3.5.1.js"></script>
-    <script src="bootstrap/bootstrap.bundle.js"></script>
+    <script src="/autella.com/libraries/bootstrap/jquery-3.5.1.js"></script>
+    <script src="/autella.com/libraries/bootstrap/bootstrap.bundle.js"></script>
     <script>
         $('.toast').toast('show');
     </script>

@@ -9,7 +9,9 @@
 </head>
 
 <body>
-    <?php session_start(); require_once '../utilities/userVerify.php'; require_once '../utilities/navbar.php' ?>
+    <?php session_start();
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/autella.com/utilities/userVerify.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/autella.com/utilities/navbar.php' ?>
 
     <div class="container mt-4">
         <div id="toolbar-container"></div>
@@ -28,9 +30,9 @@
         </div>
     </div>
 
-    <script src="../bootstrap/jquery-3.5.1.js"></script>
-    <script src="../bootstrap/bootstrap.bundle.js"></script>
-    <script src="../ckeditor5/ckeditor.js"></script>
+    <script src="/autella.com/libraries/bootstrap/jquery-3.5.1.js"></script>
+    <script src="/autella.com/libraries/bootstrap/bootstrap.bundle.js"></script>
+    <script src="/autella.com/libraries/ckeditor5/ckeditor.js"></script>
 
     <script>
         DecoupledEditor
