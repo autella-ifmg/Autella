@@ -3,6 +3,7 @@
 - [X] Ao criar conta, inserir imagem padrao
 - [X] Inserir coisas do usuário (imagem e opções de usuário) na navbar
 - [X] Alterar modal's para arquivos próprios
+- [ ] Deixar telas bonitinhas (/professor/update.php & /professor/create.php)
 - [ ] Redimensionar todas imagens de perfil para 256x256
 - [ ] Esqueci a senha
 - [ ] Email de verificação de criação de contas
