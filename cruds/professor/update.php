@@ -1,5 +1,5 @@
 <?php
-require_once '../utilities/dbConnect.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/autella.com/utilities/dbConnect.php';
 if (isset($_POST['inputSubmit'])) {
     $email = $_POST['inputEmail'];
     $name = $_POST['inputName'];
@@ -45,3 +45,50 @@ if (isset($_POST['inputSubmit'])) {
     $_SESSION['message'] = $message;
     header("Location: /autella.com/index.php");
 }
+?>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autella | Editar Conta</title>
+</head>
+
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="inputNome">Nome</label>
+            <input type="text" class="form-control" id="inputName" name="inputName" value="<?php echo $_SESSION['userData']['name'] ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" name="inputEmail" value="<?php echo $_SESSION['userData']['email']; ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="inputOldPassword">Senha atual</label>
+            <input type="password" class="form-control" id="inputOldPassword" name="inputOldPassword">
+        </div>
+
+        <div class="form-group">
+            <label for="inputNewPassword">Nova Senha</label>
+            <input type="password" class="form-control" id="inputNewPassword" name="inputNewPassword">
+        </div>
+
+        <div class="form-group">
+            <label for="inputImage">Imagem de perfil</label>
+            <input type="file" class="form-control" id="inputImage" name="inputImage">
+        </div>
+
+        <input type="submit" class="btn btn-primary" name="inputSubmit" value="Alterar dados">
+    </form>
+</body>
+
+</html>

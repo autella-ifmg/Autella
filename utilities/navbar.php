@@ -25,7 +25,7 @@
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="/autella.com/utilities/logout.php">Logout</a>
-                        <a class="dropdown-item" href="/Autella.com/index.php" data-toggle="modal" data-target="#modalEditarConta">Alterar dados</a>
+                        <a class="dropdown-item" href="/autella.com/cruds/professor/update.php">Alterar dados</a>
                     </div>
                 </div>
             </li>
