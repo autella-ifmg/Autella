@@ -1,11 +1,11 @@
 <?php
 if (isset($_POST['inputSubmit'])) {
-    require_once '../utilities/dbConnect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/autella.com/utilities/dbConnect.php';
 
     $email = $_POST['inputEmail'];
     $name = $_POST['inputName'];
     $password = $_POST['inputPassword'];
-    
+
     // C:\wamp64\tmp\php9799.tmp
     // $image = '/autella.com/images/userDefault.jpg';
     $image = 'C:\wamp64\www\autella.com\images\userDefault.jpg';
@@ -24,6 +24,38 @@ if (isset($_POST['inputSubmit'])) {
 
     $_SESSION['message'] = $message;
 
-    header("Location: ../index.php");
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/autella.com/utilities/logout.php';
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autella | Criar conta</title>
+</head>
+
+<body>
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="inputName">Nome</label>
+            <input type="text" class="form-control" id="inputName" name="inputName">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" name="inputEmail">
+        </div>
+
+        <div class="form-group">
+            <label for="inputPassword">Senha</label>
+            <input type="password" class="form-control" id="inputPassword" name="inputPassword">
+        </div>
+
+        <input type="submit" class="btn btn-success" name="inputSubmit" value="Criar conta">
+    </form>
+</body>
+
+</html>

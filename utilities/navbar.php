@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/autella.com/cruds/questao/create.php">Criar questão</a>
+                <a class="nav-link" href="cruds/questao/create.php">Criar questão</a>
             </li>
             <li>
-            <a class="nav-link" href="/autella.com/cruds/provaSimples/create.php">Prova Simples</a>
+                <a class="nav-link" href="cruds/provaSimples/create.php">Prova Simples</a>
             </li>
         </ul>
 
@@ -20,12 +20,12 @@
 
 
                 <div class="dropdown">
-                    <a data-toggle="dropdown" class="nav-link" href=""><?php echo $_SESSION['userData']['name']; ?>&nbsp <img src="/autella.com/bootstrap/bootstrap-icons-1.0.0/caret-down-fill.svg" alt=""></a>
+                    <a data-toggle="dropdown" class="nav-link" href=""><?php echo $_SESSION['userData']['name']; ?>&nbsp <img src="http://autella.com/libraries/bootstrap/bootstrap-icons-1.0.0/caret-down-fill.svg" alt=""></a>
 
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="/autella.com/utilities/logout.php">Logout</a>
-                        <a class="dropdown-item" href="/autella.com/cruds/professor/update.php">Alterar dados</a>
+                        <a class="dropdown-item" href="utilities/logout.php">Logout</a>
+                        <a class="dropdown-item" href="cruds/professor/update.php">Alterar dados</a>
                     </div>
                 </div>
             </li>

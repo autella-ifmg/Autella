@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autella | Criar questão</title>
-    <link rel="stylesheet" href="../bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
 </head>
 
 <body>
     <?php session_start();
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/autella.com/utilities/userVerify.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/autella.com/utilities/navbar.php' ?>
+    require_once '../../utilities/userVerify.php';
+    require_once '../../utilities/navbar.php' ?>
 
     <div class="container mt-4">
         <div id="toolbar-container"></div>
@@ -30,9 +30,9 @@
         </div>
     </div>
 
-    <script src="/autella.com/libraries/bootstrap/jquery-3.5.1.js"></script>
-    <script src="/autella.com/libraries/bootstrap/bootstrap.bundle.js"></script>
-    <script src="/autella.com/libraries/ckeditor5/ckeditor.js"></script>
+    <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
+    <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
+    <script src="../../libraries/ckeditor5/ckeditor.js"></script>
 
     <script>
         DecoupledEditor

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 
-<!-- <html> -->
 <html class="h-100 w-100">
 
 <head>
@@ -10,20 +9,18 @@
     <title>Autella</title>
 </head>
 
-<!-- <body> -->
-
 <body class="h-100">
     <?php
     require_once 'utilities/sessionMessage.php';
     if (isset($_SESSION['userData'])) {
-        require_once $_SERVER['DOCUMENT_ROOT'] .'/autella.com/views/homepageUser.php';
-    } else {
-        require_once $_SERVER['DOCUMENT_ROOT'] .'/autella.com/views/homepageGuest.php';
+        require_once 'utilities/navbar.php';
+    } else {   
+        require_once $_SERVER['DOCUMENT_ROOT'] .'/views/homepageGuest.php';
     }
     ?>
 
-    <script src="/autella.com/libraries/bootstrap/jquery-3.5.1.js"></script>
-    <script src="/autella.com/libraries/bootstrap/bootstrap.bundle.js"></script>
+    <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
+    <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
     <script>
         $('.toast').toast('show');
     </script>

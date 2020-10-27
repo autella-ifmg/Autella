@@ -1,1 +1,0 @@
-<?php require_once 'utilities/navbar.php' ?>

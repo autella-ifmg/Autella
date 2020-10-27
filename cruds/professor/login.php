@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['inputSubmit'])) {
-    require_once '../utilities/dbConnect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
 
     $email = $_POST['inputEmail'];
     $password = $_POST['inputPassword'];
@@ -31,7 +31,5 @@ if (isset($_POST['inputSubmit'])) {
     $connection->close();
 
     $_SESSION['message'] = $message;
-
-    header("Location: ../index.php");
+    header('Location: ../../index.php');
 }
-?>
