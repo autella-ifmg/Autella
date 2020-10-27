@@ -9,7 +9,7 @@
     -Criptografia de senhas
     -Impedir criação de contas com o mesmo email
     -Tirar senha do $_SESSION['userData'] -> implicações no professor/update.php
-    -verificar se o arquivo enviado pelo usuario é uma imagem
+    - [ ] verificar se o arquivo enviado pelo usuario é uma imagem
     -excluir conta
     -Arrumar possíveis baguncinhas que o usuario pode fazer na hora de usar o site (catch's)
 
