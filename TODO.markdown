@@ -1,5 +1,5 @@
 ## Login / Cadastro
-    +Redirecionar da homepage para outras páginas quando cadastrado
+- [ ] Redirecionar da homepage para outras páginas quando cadastrado
     +Ao criar conta, inserir imagem padrao
     +Inserir coisas do usuário (imagem e opções de usuário) na navbar
     -Redimensionar todas imagens de perfil para 256x256
