@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Autella</a>
+    <a class="navbar-brand" href="/index.php">Autella</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="cruds/questao/create.php">Criar questão</a>
+                <a class="nav-link" href="/cruds/questao/create.php">Criar questão</a>
             </li>
             <li>
-                <a class="nav-link" href="cruds/provaSimples/create.php">Prova Simples</a>
+                <a class="nav-link" href="/cruds/provaSimples/create.php">Prova Simples</a>
             </li>
         </ul>
 
@@ -24,8 +24,8 @@
 
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="utilities/logout.php">Logout</a>
-                        <a class="dropdown-item" href="cruds/professor/update.php">Alterar dados</a>
+                        <a class="dropdown-item" href="/utilities/logout.php">Logout</a>
+                        <a class="dropdown-item" href="/cruds/professor/update.php">Alterar dados</a>
                     </div>
                 </div>
             </li>
