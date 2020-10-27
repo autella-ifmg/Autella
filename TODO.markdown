@@ -1,4 +1,4 @@
-##Login / Cadastro
+## Login / Cadastro
     +Redirecionar da homepage para outras páginas quando cadastrado
     +Ao criar conta, inserir imagem padrao
     +Inserir coisas do usuário (imagem e opções de usuário) na navbar
@@ -23,15 +23,15 @@
     Botão de cancelar
 
 
-##Geral
+## Geral
     -Segurança das demais abas (caso um usuário não cadastrado tente acessar uma página proibida)
     -die() // Garante que nada abaixo será executado
 
 
-##Views
+## Views
     -Página de apresentação, tanto para visitantes quanto para usuarios
 
-##Observações
+## Observações
     1 coordenador por escola
     professores dessa escola são subordinados a esse coordenador
     coordenadores tem página de gerenciamento dos professores                                               
