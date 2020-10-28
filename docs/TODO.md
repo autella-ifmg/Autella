@@ -13,7 +13,8 @@
 	- [ ] Fazer campos de "Área" e "Disciplina" na página de criar conta funcionarem
 	- [ ] Fazer campos de "Área" e "Disciplina" na página de visualizar conta funcionarem
 
-
+- [ ] Tela de visualizar todos os usuários
+- [ ] Tela de desativar conta
 - [ ] Validação de campos 
 - [ ] Redimensionar todas imagens de perfil para 256x256
 - [ ] Esqueci a senha
@@ -23,7 +24,6 @@
 - [ ] Impedir criação de contas com o mesmo email
 - [ ] Tirar senha do $_SESSION['userData'] -> implicações no professor/update.php
 - [ ] Verificar se o arquivo enviado pelo usuario é uma imagem
-- [ ] Excluir conta
 - [ ] Arrumar possíveis baguncinhas que o usuario pode fazer na hora de usar o site (catch's)
 
 
