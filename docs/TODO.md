@@ -17,7 +17,7 @@
 - [ ] Verificar se o arquivo enviado pelo usuario é uma imagem
 - [ ] Excluir conta
 - [ ] Arrumar possíveis baguncinhas que o usuario pode fazer na hora de usar o site (catch's)
-- [ ] Transformar toast's em modal's
+
 
 ### Criação de conta
 - [ ] Caixa de confirmar senha
@@ -27,6 +27,7 @@
 
 
 ## Geral
+- [X] Transformar toast's em modal's
 - [ ] Segurança das demais abas (caso um usuário não cadastrado tente acessar uma página proibida)
 die() // Garante que nada abaixo será executado
 

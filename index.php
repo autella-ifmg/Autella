@@ -24,7 +24,12 @@
     <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
     <script>
-        $('.toast').toast('show');
+        $(window).on('load', function() {
+            $('#messageModal').modal('show');
+            setTimeout(function() {
+                $('#messageModal').modal('hide');
+            }, 1500);
+        });
     </script>
 </body>
 
