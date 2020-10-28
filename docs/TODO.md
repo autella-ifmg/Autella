@@ -6,10 +6,10 @@
 - [X] Embelezar /professor/create.php
 
 ### Próxima entrega
-- [ ] Alterar e embelezar /professor/update.php
-- [ ] Pegar "Área" do banco de dados
-- [ ] Pegar "Disciplina" do banco de dados
-- [ ] Tela de visualizar dados
+	- [ ] Alterar e embelezar /professor/update.php
+	- [ ] Pegar "Área" do banco de dados
+	- [ ] Pegar "Disciplina" do banco de dados
+	- [ ] Tela de visualizar dados
 
 - [ ] Validação de campos 
 - [ ] Redimensionar todas imagens de perfil para 256x256
