@@ -47,12 +47,8 @@ if (isset($_POST['inputSubmit'])) {
 }
 ?>
 
-
-
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="w-100 h-100">
 
 <head>
     <meta charset="UTF-8">
@@ -61,35 +57,51 @@ if (isset($_POST['inputSubmit'])) {
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
 </head>
 
-<body>
-    <form action="" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="inputNome">Nome</label>
-            <input type="text" class="form-control" id="inputName" name="inputName" value="<?php echo $_SESSION['userData']['name'] ?>">
-        </div>
+<body class="w-100 h-100">
+    <div class="container w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+        <h1>Autella | Editar conta</h1>
 
-        <div class="form-group">
-            <label for="inputEmail">Email</label>
-            <input type="email" class="form-control" id="inputEmail" name="inputEmail" value="<?php echo $_SESSION['userData']['email']; ?>">
-        </div>
+        <form action="" method="post" enctype="multipart/form-data" class="d-flex flex-row w-75">
+            <div class="w-100">
+                <div class="form-group">
+                    <label for="inputNome">Nome</label>
+                    <input type="text" class="form-control" id="inputName" name="inputName" value="<?php echo $_SESSION['userData']['name'] ?>">
+                </div>
 
-        <div class="form-group">
-            <label for="inputOldPassword">Senha atual</label>
-            <input type="password" class="form-control" id="inputOldPassword" name="inputOldPassword">
-        </div>
+                <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" name="inputEmail" value="<?php echo $_SESSION['userData']['email']; ?>">
+                </div>
 
-        <div class="form-group">
-            <label for="inputNewPassword">Nova Senha</label>
-            <input type="password" class="form-control" id="inputNewPassword" name="inputNewPassword">
-        </div>
+                <div class="form-group">
+                    <label for="inputOldPassword">Senha atual</label>
+                    <input type="password" class="form-control" id="inputOldPassword" name="inputOldPassword">
+                </div>
 
-        <div class="form-group">
-            <label for="inputImage">Imagem de perfil</label>
-            <input type="file" class="form-control" id="inputImage" name="inputImage">
-        </div>
+                <div class="form-group">
+                    <label for="inputNewPassword">Nova Senha</label>
+                    <input type="password" class="form-control" id="inputNewPassword" name="inputNewPassword">
+                </div>
 
-        <input type="submit" class="btn btn-primary" name="inputSubmit" value="Alterar dados">
-    </form>
+                <div class="form-group">
+                    <label for="inputConfirmPassword">Confirmar nova senha</label>
+                    <input type="password" class="form-control" id="inputConfirmPassword" name="inputConfirmPassword">
+                </div>
+
+                <div class="d-flex flex-row justify-content-between">
+                    <a class="btn btn-danger" href="../../index.php">Cancelar</a>
+                    <input type="submit" class="btn btn-primary" name="inputSubmit" value="Alterar dados">
+                </div>
+            </div>
+
+            <div class="form-group mt-5 ml-5 d-flex flex-column">
+                <img form-control" style="width: 256px; height: 256px" src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['userData']['picture']); ?>" />
+                <input class="ml-3 mt-3" type="file" id="inputImage" name="inputImage">
+            </div>
+        </form>
+    </div>
+
+    <a class="btn btn-danger m-3" style="position: absolute; bottom: 0; right:0; "href="">Desativar Conta</a>
 
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
