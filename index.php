@@ -4,7 +4,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    
     <link rel="stylesheet" href="/libraries/bootstrap/bootstrap.css">
     <title>Autella</title>
 </head>
@@ -14,8 +15,8 @@
     require_once 'utilities/sessionMessage.php';
     if (isset($_SESSION['userData'])) {
         require_once 'utilities/navbar.php';
-    } else {   
-        require_once $_SERVER['DOCUMENT_ROOT'] .'/views/homepageGuest.php';
+    } else {
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/homepageGuest.php';
     }
     ?>
 
