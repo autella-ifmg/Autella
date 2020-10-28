@@ -4,8 +4,13 @@
 - [X] Inserir coisas do usuário (imagem e opções de usuário) na navbar
 - [X] Alterar modal's para arquivos próprios
 - [X] Embelezar /professor/create.php
-- [ ] Embelezar /professor/update.php
-- [ ] Pegar "Área" e "Disciplina" do banco de dados
+
+### Próxima entrega
+- [ ] Alterar e embelezar /professor/update.php
+- [ ] Pegar "Área" do banco de dados
+- [ ] Pegar "Disciplina" do banco de dados
+- [ ] Tela de visualizar dados
+
 - [ ] Validação de campos 
 - [ ] Redimensionar todas imagens de perfil para 256x256
 - [ ] Esqueci a senha
@@ -20,10 +25,10 @@
 
 
 ### Criação de conta
-- [ ] Caixa de confirmar senha
-- [ ] Dropdown de "Área"
-- [ ] Dropdown de "Disciplina"
-- [ ] Botão de cancelar
+- [X] Caixa de confirmar senha
+- [X] Dropdown de "Área"
+- [X] Dropdown de "Disciplina"
+- [X] Botão de cancelar
 
 
 ## Geral
