@@ -5,11 +5,13 @@
 - [X] Alterar modal's para arquivos próprios
 - [X] Embelezar /professor/create.php
 - [X] Alterar e embelezar /professor/update.php
+- [X] Tela de visualizar dados
 
 ### Próxima entrega (Não feito)
-	- [ ] Tela de visualizar dados
-	- [ ] Pegar "Área" do banco de dados
-	- [ ] Pegar "Disciplina" do banco de dados
+	- [ ] Criar tabela "Área" no banco de dados
+	- [ ] Criar tabela "Disciplina" no banco de dados
+	- [ ] Fazer campos de "Área" e "Disciplina" na página de criar conta funcionarem
+	- [ ] Fazer campos de "Área" e "Disciplina" na página de visualizar conta funcionarem
 
 
 - [ ] Validação de campos 
