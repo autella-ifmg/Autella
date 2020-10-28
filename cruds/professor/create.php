@@ -1,6 +1,7 @@
 <?php
 if (isset($_POST['inputSubmit'])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/autella.com/utilities/dbConnect.php';
+    require_once '../../utilities/dbConnect.php';
+    
 
     $email = $_POST['inputEmail'];
     $name = $_POST['inputName'];
@@ -24,12 +25,12 @@ if (isset($_POST['inputSubmit'])) {
 
     $_SESSION['message'] = $message;
 
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/autella.com/utilities/logout.php';
+    header('Location: ../../index.php');
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="w-100 h-100">
 
 <head>
     <meta charset="UTF-8">
@@ -38,25 +39,63 @@ if (isset($_POST['inputSubmit'])) {
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
 </head>
 
-<body>
-    <form action="" method="post">
-        <div class="form-group">
-            <label for="inputName">Nome</label>
-            <input type="text" class="form-control" id="inputName" name="inputName">
-        </div>
+<body class="w-100 h-100">
+    <div class="container w-100 h-100 d-flex flex-column align-items-center justify-content-center">
 
-        <div class="form-group">
-            <label for="inputEmail">Email</label>
-            <input type="email" class="form-control" id="inputEmail" name="inputEmail">
-        </div>
+        <h1>Autella | Criar conta</h1>
 
-        <div class="form-group">
-            <label for="inputPassword">Senha</label>
-            <input type="password" class="form-control" id="inputPassword" name="inputPassword">
-        </div>
+        <form action="" method="post" class="w-50 mt-5">
+            <div class="form-group">
+                <label for="inputName">Nome</label>
+                <input type="text" class="form-control" id="inputName" name="inputName">
+            </div>
 
-        <input type="submit" class="btn btn-success" name="inputSubmit" value="Criar conta">
-    </form>
+            <div class="form-group">
+                <label for="inputEmail">Email</label>
+                <input type="email" class="form-control" id="inputEmail" name="inputEmail">
+            </div>
+
+            <div class="form-group">
+                <label for="inputPassword">Nova senha</label>
+                <input type="password" class="form-control" id="inputPassword" name="inputPassword">
+            </div>
+
+            <div class="form-group">
+                <label for="inputConfirmPassword">Confirmar nova senha</label>
+                <input type="password" class="form-control" id="inputConfirmPassword" name="inputConfirmPassword">
+            </div>
+
+            <div class="d-flex justify-content-between mb-5">
+                <div class="dropdown dropright">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Área
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+
+
+                <div class="dropdown dropleft">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Disciplina
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-5">
+                <a class="btn btn-danger  btn-lg" href="../../index.php">Cancelar</a>
+                <input type="submit" class="btn btn-success btn-lg" name="inputSubmit" value="Criar conta">
+            </div>
+        </form>
+    </div>
 
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
