@@ -12,11 +12,14 @@ if (isset($_GET['id'])) {
         $array = mysqli_fetch_array($result);
         $_SESSION['otherProfileData'] = $array;
     } else {
-        $message = "Senha incorreta!";
-        //$message = "Erro: " . $sql . "<br>" . $connection->error;
+        echo '<h1>Erro: Perfil selecionado inexistente!</h1>';
+        die();
     }
 
     $connection->close();
+} else {
+    echo '<h1>Erro: Nenhum perfil foi selecionado!</h1>';
+    die();
 }
 ?>
 
@@ -26,7 +29,7 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autella | Editar Conta</title>
+    <title>Autella | Visualizar Conta</title>
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
 </head>
 
@@ -61,6 +64,11 @@ if (isset($_GET['id'])) {
 
                 <div class="d-flex flex-row justify-content-around">
                     <a class="btn btn-primary w-25" href="../../index.php">Voltar</a>
+
+                    <?php if($_GET['id'] == $_SESSION['userData']['id']){
+                        echo'<a class="btn btn-primary w-25" href="update.php">Editar dados</a>';
+                    }
+                    ?>
                 </div>
             </div>
 
