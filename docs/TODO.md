@@ -1,7 +1,7 @@
 ## Login / Cadastro
 - [X] Redirecionar da homepage para outras páginas quando cadastrado
-- [X] Ao criar conta, inserir imagem padrao
-- [X] Inserir coisas do usuário (imagem e opções de usuário) na navbar
+- [X] Ao criar conta, inserir imagem padrão
+- [X] Inserir imagem e opções de usuário na navbar
 - [X] Alterar modal's para arquivos próprios
 - [X] Embelezar /professor/create.php
 - [X] Alterar e embelezar /professor/update.php
