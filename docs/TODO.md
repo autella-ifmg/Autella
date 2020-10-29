@@ -13,14 +13,11 @@
 - [X] Criar tabela "Área" no banco de dados
 - [X] Criar tabela "Disciplina" no banco de dados
 - [X] Fazer campos de "Área" e "Disciplina" na página de criar conta funcionarem
-		- [X] Listar as áreas no banco de dados no dropdown
-		- [X] Deixar os valores dos dropdowns acessíveis ao $_POST
-		- [X] Pegar valores dos dropdowns para inserir na criação da conta
-		- [X] Exibir somente disciplinas correspondentes à "Área" selecionada
-
-### Próxima entrega (Não feito)
-	- [ ] Fazer campos de "Área" e "Disciplina" na página de visualizar conta funcionarem
-
+- [X] Listar as áreas no banco de dados no dropdown
+- [X] Deixar os valores dos dropdowns acessíveis ao $_POST
+- [X] Pegar valores dos dropdowns para inserir na criação da conta
+- [X] Exibir somente disciplinas correspondentes à "Área" selecionada
+- [X] Fazer campos de "Área" e "Disciplina" na página de visualizar conta funcionarem
 - [ ] Distinguir login/cadastro de professor/coordenador
 - [ ] Tela de visualizar todos os usuários
 - [ ] Tela de desativar conta
