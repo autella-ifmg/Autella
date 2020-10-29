@@ -7,7 +7,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "laura_erica_local";
+$dbname = "db_autella_local";
 
 $connection = new mysqli($servername, $username, $password, $dbname);
 
@@ -17,5 +17,7 @@ if ($connection->connect_error) {
     $message = "Connected successfully";
 }
 
-session_start();
+if(!isset($_SESSION)){
+    session_start();
+}
 $_SESSION['message'] = $message;

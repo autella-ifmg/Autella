@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['inputSubmit'])) {
     require_once '../../utilities/dbConnect.php';
-    
+
 
     $email = $_POST['inputEmail'];
     $name = $_POST['inputName'];
@@ -27,6 +27,8 @@ if (isset($_POST['inputSubmit'])) {
 
     header('Location: ../../index.php');
 }
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
 ?>
 
 <!DOCTYPE html>
@@ -71,9 +73,9 @@ if (isset($_POST['inputSubmit'])) {
                         Área
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <?php
+                        fieldNamesToDropdownItems();
+                        ?>
                     </div>
                 </div>
 
@@ -83,9 +85,9 @@ if (isset($_POST['inputSubmit'])) {
                         Disciplina
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <?php
+                        disciplineNamesToDropdownItems();
+                        ?>
                     </div>
                 </div>
             </div>
@@ -99,6 +101,12 @@ if (isset($_POST['inputSubmit'])) {
 
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
+    <script>
+        $(".dropdown-menu a").click(function() {
+            $(this).parents(".dropdown").find('.btn').html(' ' + $(this).text() + ' ');
+            $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+        });
+    </script>
 </body>
 
 </html>
