@@ -15,6 +15,7 @@
 
 ### Próxima entrega (Não feito)
 	- [ ] Fazer campos de "Área" e "Disciplina" na página de criar conta funcionarem
+		- [ ] Listar as áreas no banco de dados no dropdown
 	- [ ] Fazer campos de "Área" e "Disciplina" na página de visualizar conta funcionarem
 
 - [ ] Distinguir login/cadastro de professor/coordenador
