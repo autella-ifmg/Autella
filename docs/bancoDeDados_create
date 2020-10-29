@@ -1,21 +1,10 @@
 CREATE DATABASE `db_autella_local` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
-
-CREATE TABLE `professor` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(64) NOT NULL,
-  `name` varchar(64) NOT NULL,
-  `password` varchar(64) NOT NULL,
-  `picture` longblob,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
 CREATE TABLE `field` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 CREATE TABLE `discipline` (
@@ -23,5 +12,16 @@ CREATE TABLE `discipline` (
   `id_field` int NOT NULL,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_field` (`id_field`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  FOREIGN KEY (`id_field`) REFERENCES `field`(id)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `professor` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(64) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `id_discipline` int,
+  `picture` longblob,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`id_discipline`) REFERENCES `discipline`(id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
