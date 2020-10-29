@@ -29,6 +29,8 @@ if (isset($_POST['inputSubmit'])) {
 }
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
+
+$id_field = 1;
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +43,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
 </head>
 
-<body class="w-100 h-100">
+<body class="w-100 h-100" onload="updateDisciplines()">
     <div class="container w-100 h-100 d-flex flex-column align-items-center justify-content-center">
 
         <h1>Autella | Criar conta</h1>
@@ -68,15 +70,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
             </div>
 
             <div class="d-flex justify-content-between mb-5">
-                <select class="dropdown-toggle btn border" name="inputFieldId">
+                <select onchange="updateDisciplines()" class="dropdown-toggle btn border" id="fieldList">
                     <?php
                     fieldNamesToDropdownItems();
                     ?>
                 </select>
 
-                <select class="dropdown-toggle btn border" name="inputDisciplineId">
+                <select class="dropdown-toggle btn border" name="inputDisciplineId" id="disciplineList">
                     <?php
-                    disciplineNamesToDropdownItems();
+                    //disciplineNamesToDropdownItems();
                     ?>
                 </select>
             </div>
@@ -95,6 +97,31 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
             $(this).parents(".dropdown").find('.btn').html(' ' + $(this).text() + ' ');
             $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
         });
+
+        function updateDisciplines() {
+            var id_field = document.getElementById("fieldList");
+            var id_field = id_field.value;
+
+            var container = document.getElementById("disciplineList");
+            container.innerHTML = "";
+
+            <?php
+            $php_array = selectDisciplines();
+            $js_array = json_encode($php_array);
+            echo "var allDisciplines = " . $js_array . ";\n";
+            ?>
+
+            for (let i = 0; i < allDisciplines.length; i++) {
+                if (allDisciplines[i][1] == id_field) {
+                    var op = document.createElement("option");
+                    var node = document.createTextNode(allDisciplines[i][2]);
+                    op.appendChild(node);
+                    op.setAttribute("value", allDisciplines[i][0]);
+
+                    container.appendChild(op);
+                }
+            }
+        };
     </script>
 </body>
 
