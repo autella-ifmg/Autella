@@ -6,6 +6,10 @@
 - [X] Embelezar /professor/create.php
 - [X] Alterar e embelezar /professor/update.php
 - [X] Tela de visualizar dados
+- [X] Caixa de confirmar senha
+- [X] Dropdown de "Área"
+- [X] Dropdown de "Disciplina"
+- [X] Botão de cancelar
 
 ### Próxima entrega (Não feito)
 	- [ ] Criar tabela "Área" no banco de dados
@@ -13,6 +17,7 @@
 	- [ ] Fazer campos de "Área" e "Disciplina" na página de criar conta funcionarem
 	- [ ] Fazer campos de "Área" e "Disciplina" na página de visualizar conta funcionarem
 
+- [ ] Distinguir login/cadastro de professor/coordenador
 - [ ] Tela de visualizar todos os usuários
 - [ ] Tela de desativar conta
 - [ ] Validação de campos 
@@ -27,23 +32,23 @@
 - [ ] Arrumar possíveis baguncinhas que o usuario pode fazer na hora de usar o site (catch's)
 
 
-### Criação de conta
-- [X] Caixa de confirmar senha
-- [X] Dropdown de "Área"
-- [X] Dropdown de "Disciplina"
-- [X] Botão de cancelar
 
 
 ## Geral
 - [X] Transformar toast's em modal's
-- [ ] Segurança das demais abas (caso um usuário não cadastrado tente acessar uma página proibida)
-die() // Garante que nada abaixo será executado
+- [ ] Tela de apresentação do site (Tela inicial)
+- [ ] Carousel de usuários (visualizar professores e coordenadores; mexe sozinho)
+- [ ] Carousel de opiniões (mexe sozinho)
+- [ ] Sobre nós
+- [ ] Segurança das demais abas (caso um usuário não cadastrado tente acessar uma página proibida; die() // Garante que nada abaixo será executado)
 
+## Possíveis novas funções
+	Sistema de mensagens (tipo do moddle)
+	Painel de controle do coordenador
 
-## Views
-- [ ] Página de apresentação para visitantes e usuários
 
 ## Observações
 	1 coordenador por escola
 	professores dessa escola são subordinados a esse coordenador
 	coordenadores tem página de gerenciamento dos professores                                               
+	use die() se não achou $_GET
