@@ -1,13 +1,13 @@
 CREATE DATABASE `db_autella_local` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
-CREATE TABLE `field` (
+CREATE TABLE `db_autella_local`.`field` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-CREATE TABLE `discipline` (
+CREATE TABLE `db_autella_local`.`discipline` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_field` int NOT NULL,
   `name` varchar(64) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE `discipline` (
   FOREIGN KEY (`id_field`) REFERENCES `field`(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `professor` (
+CREATE TABLE `db_autella_local`.`professor` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(64) NOT NULL,
   `name` varchar(64) NOT NULL,
