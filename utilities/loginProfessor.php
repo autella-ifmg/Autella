@@ -1,47 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Autella | Login</title>
-</head>
-
-<body>
     <div class="container h-100 d-flex align-items-center">
-        <div class="d-flex justify-content-around">
+        <div class="row justify-content-around w-100">
 
-            <div class="col-4">
+            <div class="col-0 col-md-5 d-none d-lg-block">
                 <h1 class="text-success display-4 font-weight-bold">Autella</h1>
                 <h3>Crie provas e questões para a sala de aula com Autella</h3>
             </div>
 
-            <div class="card py-3 col-4">
-                <form action="" method="post">
-                    <div class="form-group">
-                        <label for="inputEmail">Email</label>
-                        <input type="email" class="form-control" id="inputEmail" name="inputEmail">
-                    </div>
+            <div class="d-flex flex-column col-12 col-md-8 col-lg-5 align-items-center">
+                <div class="card p-3 w-100">
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label for="inputEmail">Email</label>
+                            <input type="email" class="form-control" id="inputEmail" name="inputEmail">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="inputSenha">Senha</label>
-                        <input type="password" class="form-control" id="inputPassword" name="inputPassword">
+                        <div class="form-group">
+                            <label for="inputSenha">Senha</label>
+                            <input type="password" class="form-control" id="inputPassword" name="inputPassword">
+                        </div>
+                        <input type="submit" class="btn btn-success w-100" name="inputSubmit" value="Entrar">
+                    </form>
+                    <a class="text-center my-3">Esqueceu a senha?</a>
+                    <hr class="my-0">
+                    <div class="w-100 text-center mt-4">
+                        <a class="btn btn-success w-50" href="../cruds/professor/create.php">Criar nova conta</a>
                     </div>
-                    <input type="submit" class="btn btn-success w-100" name="inputSubmit" value="Entrar">
-                </form>
-                <a class="text-center my-3">Esqueceu a senha?</a>
-                <hr class="my-0">
-                <div class="w-100 text-center mt-4">
-                    <a class="btn btn-success w-50" href="../cruds/professor/create.php">Criar nova conta</a>
                 </div>
+                <a class="mt-3" href="utilities/loginCoordenador.php">Você é um coordenador? Clique aqui!</a>
             </div>
+
         </div>
     </div>
-</body>
 
-
-
-</html>
 
 <?php
 if (isset($_POST['inputSubmit'])) {

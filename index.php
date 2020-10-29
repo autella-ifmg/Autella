@@ -17,7 +17,7 @@
     if (isset($_SESSION['userData'])) {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/navbar.php';
     } else {
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/login.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/loginProfessor.php';
     }
     ?>
 
