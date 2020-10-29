@@ -10,10 +10,10 @@
 - [X] Dropdown de "Área"
 - [X] Dropdown de "Disciplina"
 - [X] Botão de cancelar
+- [X] Criar tabela "Área" no banco de dados
+- [X] Criar tabela "Disciplina" no banco de dados
 
 ### Próxima entrega (Não feito)
-	- [ ] Criar tabela "Área" no banco de dados
-	- [ ] Criar tabela "Disciplina" no banco de dados
 	- [ ] Fazer campos de "Área" e "Disciplina" na página de criar conta funcionarem
 	- [ ] Fazer campos de "Área" e "Disciplina" na página de visualizar conta funcionarem
 
