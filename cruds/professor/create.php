@@ -2,10 +2,10 @@
 if (isset($_POST['inputSubmit'])) {
     require_once '../../utilities/dbConnect.php';
 
-
     $email = $_POST['inputEmail'];
     $name = $_POST['inputName'];
     $password = $_POST['inputPassword'];
+    $id_discipline = $_POST['inputDisciplineId'];
 
     // C:\wamp64\tmp\php9799.tmp
     // $image = '/autella.com/images/userDefault.jpg';
@@ -13,8 +13,8 @@ if (isset($_POST['inputSubmit'])) {
     $image = file_get_contents($image);
     $image = mysqli_escape_string($connection, $image);
 
-    $sql = "INSERT INTO professor (email, name, password, picture) VALUES 
-    ('$email', '$name', '$password', '$image');";
+    $sql = "INSERT INTO professor (email, name, password, picture, id_discipline) VALUES 
+    ('$email', '$name', '$password', '$image', '$id_discipline');";
 
     if ($connection->query($sql) === TRUE) {
         $message = "Conta criada com sucesso!";
@@ -68,32 +68,21 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
             </div>
 
             <div class="d-flex justify-content-between mb-5">
-                <div class="dropdown dropright">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Área
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <?php
-                        fieldNamesToDropdownItems();
-                        ?>
-                    </div>
-                </div>
+                <select class="dropdown-toggle btn border" name="inputFieldId">
+                    <?php
+                    fieldNamesToDropdownItems();
+                    ?>
+                </select>
 
-
-                <div class="dropdown dropleft">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Disciplina
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <?php
-                        disciplineNamesToDropdownItems();
-                        ?>
-                    </div>
-                </div>
+                <select class="dropdown-toggle btn border" name="inputDisciplineId">
+                    <?php
+                    disciplineNamesToDropdownItems();
+                    ?>
+                </select>
             </div>
 
             <div class="d-flex justify-content-between pt-5">
-                <a class="btn btn-danger  btn-lg" href="../../index.php">Cancelar</a>
+                <a class="btn btn-danger btn-lg" href="../../index.php">Cancelar</a>
                 <input type="submit" class="btn btn-success btn-lg" name="inputSubmit" value="Criar conta">
             </div>
         </form>

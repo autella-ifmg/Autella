@@ -29,7 +29,7 @@ function fieldNamesToDropdownItems()
     $array = selectFields();
 
     for ($i = 0; $i < count($array); $i++) {
-        echo '<a class="dropdown-item">' . $array[$i][1] . '</a>';
+        echo '<option value="'. $array[$i][0] .'" class="dropdown-item">' . $array[$i][1] . '</option>';
     }
 }
 
@@ -63,6 +63,6 @@ function disciplineNamesToDropdownItems()
     $array = selectDisciplines();
 
     for ($i = 0; $i < count($array); $i++) {
-        echo '<a class="dropdown-item">' . $array[$i][2] . '</a>';
+        echo '<option value="'. $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
     }
 }

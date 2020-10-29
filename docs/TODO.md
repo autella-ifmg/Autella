@@ -16,7 +16,9 @@
 ### Próxima entrega (Não feito)
 	- [ ] Fazer campos de "Área" e "Disciplina" na página de criar conta funcionarem
 		- [X] Listar as áreas no banco de dados no dropdown
-		- [ ] Pegar valores dos dropdowns para inserir na criação da conta
+		- [X] Deixar os valores dos dropdowns acessíveis ao $_POST
+		- [X] Pegar valores dos dropdowns para inserir na criação da conta
+		- [ ] Exibir somente disciplinas correspondentes à "Área" selecionada
 	- [ ] Fazer campos de "Área" e "Disciplina" na página de visualizar conta funcionarem
 
 - [ ] Distinguir login/cadastro de professor/coordenador
