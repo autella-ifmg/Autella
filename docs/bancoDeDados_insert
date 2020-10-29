@@ -1,0 +1,19 @@
+INSERT INTO `db_autella_local`.`field` (`id`, `name`) VALUES ('1', 'Ciências Humanas e suas Tecnologias');
+INSERT INTO `db_autella_local`.`field` (`id`, `name`) VALUES ('2', 'Ciências da Natureza e suas Tecnologias');
+INSERT INTO `db_autella_local`.`field` (`id`, `name`) VALUES ('3', 'Linguagens, Códigos e suas Tecnologias');
+INSERT INTO `db_autella_local`.`field` (`id`, `name`) VALUES ('4', 'Matemática e suas Tecnologias');
+
+INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('1', '1', 'História');
+INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('2', '1', 'Geografia');
+INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('3', '1', 'Filosofia');
+INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('4', '1', 'Sociologia');
+INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('5', '2', 'Química');
+INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('6', '2', 'Física');
+INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('7', '2', 'Biologia');
+INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('8', '3', 'Língua Portuguesa');
+INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('9', '3', 'Literatura');
+INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('10', '3', 'Inglês');
+INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('11', '3', 'Espanhol');
+INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('12', '3', 'Artes');
+INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('13', '3', 'Educação Física');
+INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('14', '4', 'Matemática');
