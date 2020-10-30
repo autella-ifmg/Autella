@@ -23,8 +23,7 @@
 <body>
   <!-- Barra de navegação e verificação de login-->
   <?php session_start();
-  require_once '../../utilities/userVerify.php';
-  require_once '../../utilities/navbar.php' ?>
+  require_once '../../views/navbar.php' ?>
 
   <br>
   <br>

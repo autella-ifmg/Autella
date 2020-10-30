@@ -10,8 +10,7 @@
 
 <body>
     <?php session_start();
-    require_once '../../utilities/userVerify.php';
-    require_once '../../utilities/navbar.php' ?>
+    require_once '../../views/navbar.php' ?>
 
     <div class="container mt-4">
         <div id="toolbar-container"></div>
