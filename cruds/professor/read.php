@@ -1,10 +1,16 @@
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+if (!isset($_SESSION['userData'])) {
+    header("Location: ../../views/403.php");
+    die();
+}
 require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    //$sql = "SELECT * FROM professor WHERE id='$id'";
     $sql = "SELECT professor.name, professor.email, field.name, discipline.name, professor.picture FROM db_autella_local.discipline JOIN db_autella_local.field ON discipline.id_field = field.id JOIN db_autella_local.professor ON professor.id_discipline = discipline.id AND professor.id = '" . $id . "';";
     $result = mysqli_query($connection, $sql);
 
@@ -12,17 +18,20 @@ if (isset($_GET['id'])) {
         $array = mysqli_fetch_array($result);
         $_SESSION['otherProfileData'] = $array;
     } else {
-        echo '<h1>Erro: Perfil selecionado inexistente!</h1>';
-        die();
+        header("Location: ../../views/404.php");
+    die();
     }
 
     $connection->close();
 } else {
-    echo '<h1>Erro: Nenhum perfil foi selecionado!</h1>';
+    header("Location: ../../views/404.php");
     die();
 }
 ?>
 
+<!DOCTYPE html>
+
+<html class="h-100 w-100">
 <!DOCTYPE html>
 
 <html class="h-100 w-100">
@@ -39,10 +48,15 @@ if (isset($_GET['id'])) {
 
 <body class="h-100 w-100">
     <div class="container w-100 h-100 d-flex flex-column justify-content-center align-items-center">
-        <h1>Autella | Visualizar conta</h1>
+        <h1 class="mb-5">Autella | Visualizar conta</h1>
 
-        <form action="" method="post" enctype="multipart/form-data" class="d-flex flex-row w-75">
-            <div class="w-100">
+        <form action="" method="post" enctype="multipart/form-data" class="row w-75 justify-content-around align-items-center">
+
+            <div class="form-group d-flex flex-column col-12 col-md-5 w-100 h-75 p-0">
+                <img class="w-100 h-100" src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['otherProfileData'][4]); ?>" />
+            </div>
+
+            <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label>Nome</label>
                     <input readonly type="text" class="form-control" value="<?php echo $_SESSION['otherProfileData'][0] ?>">
@@ -55,31 +69,26 @@ if (isset($_GET['id'])) {
 
                 <div class="form-group">
                     <label for="inputEmail">Área</label>
-                    <input readonly type="email" class="form-control" value="<?php echo $_SESSION['otherProfileData'][2];
-                                                                                ?>">
+                    <input readonly type="email" class="form-control" value="<?php echo $_SESSION['otherProfileData'][2]; ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="inputEmail">Disciplina</label>
-                    <input readonly type="email" class="form-control" value="<?php echo $_SESSION['otherProfileData'][3];
-                                                                                ?>">
+                    <input readonly type="email" class="form-control" value="<?php echo $_SESSION['otherProfileData'][3]; ?>">
                 </div>
 
 
-                <div class="d-flex flex-row justify-content-around">
-                    <a class="btn btn-primary w-25" href="../../index.php">Voltar</a>
+                <div class="row justify-content-around">
+                    <a class="btn btn-primary col-4" href="../../index.php">Voltar</a>
 
                     <?php if ($_GET['id'] == $_SESSION['userData']['id']) {
-                        echo '<a class="btn btn-primary w-25" href="update.php">Editar dados</a>';
+                        echo '<a class="btn btn-primary col-4" href="update.php">Editar dados</a>';
                     }
                     ?>
                 </div>
             </div>
-
-            <div class="form-group mt-3 ml-5 d-flex flex-column">
-                <img form-control" style="width: 256px; height: 256px" src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['otherProfileData'][4]); ?>" />
-            </div>
         </form>
+
     </div>
 
 
@@ -88,5 +97,4 @@ if (isset($_GET['id'])) {
 </body>
 
 </html>
-
 <?php unset($_SESSION['otherProfileData']); ?>

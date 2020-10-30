@@ -31,6 +31,7 @@
 - [ ] Tirar senha do $_SESSION['userData'] -> implicações no professor/update.php
 - [ ] Verificar se o arquivo enviado pelo usuario é uma imagem
 - [ ] Arrumar possíveis baguncinhas que o usuario pode fazer na hora de usar o site (catch's)
+- [ ] Preview da imagem a ser atualizada no /professor/update.php
 
 
 

@@ -6,27 +6,27 @@ if (isset($_POST['inputSubmit'])) {
     $oldPassword = $_POST['inputOldPassword'];
     $newPassword = $_POST['inputNewPassword'];
 
-    $image = $_FILES['inputImage']['tmp_name'];
-    $image = file_get_contents($image);
-    $image = mysqli_escape_string($connection, $image);
+    $picture = $_FILES['inputImage']['tmp_name'];
+    $picture = file_get_contents($picture);
+    $picture = mysqli_escape_string($connection, $picture);
 
-    if ($image == "") {
-        $image = mysqli_escape_string($connection, $_SESSION['userData']['picture']);
+    if ($picture == "") {
+        $picture = mysqli_escape_string($connection, $_SESSION['userData']['picture']);
+    }
+    if ($newPassword == "") {
+        $newPassword = $oldPassword;
     }
 
     if ($oldPassword == $_SESSION['userData']['password']) {
-        if ($newPassword == "") {
-            $newPassword = $oldPassword;
-        }
-        $sql = "UPDATE professor SET email='$email', name='$name', password='$newPassword', picture='$image' WHERE id=" . $_SESSION['userData']['id'];
+        $sql = "UPDATE professor SET email='$email', name='$name', password='$newPassword', picture='$picture' WHERE id=" . $_SESSION['userData']['id'];
 
         if ($connection->query($sql) === TRUE) {
             $message = "Dados alterados!";
         } else {
-            $message = "Erro: " . $sql . "<br>" . $connection->error;
+            $message = "Error: " . $sql . "<br>" . $connection->error;
         }
 
-        // Check if email and password match
+        // Login
         $sql = "SELECT * FROM professor WHERE email='$email' AND password='$newPassword'";
         $result = mysqli_query($connection, $sql);
 
@@ -42,27 +42,42 @@ if (isset($_POST['inputSubmit'])) {
     } else {
         $message = "Senha atual incorreta!";
     }
-    $_SESSION['message'] = $message;
+    array_push($_SESSION['debug'], $message);
+
     header("Location: ../../index.php");
 }
 ?>
 
+
+
+
 <!DOCTYPE html>
-<html lang="en" class="w-100 h-100">
+
+<html class="h-100 w-100">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autella | Editar Conta</title>
-    <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="/libraries/bootstrap/bootstrap.css">
+    <title>Autella</title>
+    <?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
+    ?>
 </head>
 
-<body class="w-100 h-100">
+<body class="h-100 w-100">
     <div class="container w-100 h-100 d-flex flex-column justify-content-center align-items-center">
-        <h1>Autella | Editar conta</h1>
+        <h1 class="mb-5">Autella | Editar conta</h1>
 
-        <form action="" method="post" enctype="multipart/form-data" class="d-flex flex-row w-75">
-            <div class="w-100">
+        <form action="" method="post" enctype="multipart/form-data" class="row w-75 justify-content-around align-items-center">
+
+            <div class="form-group d-flex flex-column col-12 col-md-5 w-100 h-75 p-0">
+                <img class="w-100 h-100" src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['userData']['picture']); ?>" />
+                <label class="position-absolute m-0 p-0 border" style="bottom:0; right:0" for="inputImage"><img class="p-2" style="width:64px; background-color: white;" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/upload.svg" alt=""></label>
+                <input class="d-none" type="file" id="inputImage" name="inputImage">
+            </div>
+
+            <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label for="inputNome">Nome</label>
                     <input type="text" class="form-control" id="inputName" name="inputName" value="<?php echo $_SESSION['userData']['name'] ?>">
@@ -79,7 +94,7 @@ if (isset($_POST['inputSubmit'])) {
                 </div>
 
                 <div class="form-group">
-                    <label for="inputNewPassword">Nova Senha</label>
+                    <label for="inputNewPassword">Nova senha</label>
                     <input type="password" class="form-control" id="inputNewPassword" name="inputNewPassword">
                 </div>
 
@@ -93,18 +108,13 @@ if (isset($_POST['inputSubmit'])) {
                     <input type="submit" class="btn btn-primary" name="inputSubmit" value="Alterar dados">
                 </div>
             </div>
-
-            <div class="form-group mt-5 ml-5 d-flex flex-column">
-                <img form-control" style="width: 256px; height: 256px" src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['userData']['picture']); ?>" />
-                <input class="ml-3 mt-3" type="file" id="inputImage" name="inputImage">
-            </div>
         </form>
+
     </div>
 
-    <a class="btn btn-danger m-3" style="position: absolute; bottom: 0; right:0; "href="">Desativar Conta</a>
 
-    <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
-    <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
+    <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
+    <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
 </body>
 
 </html>
