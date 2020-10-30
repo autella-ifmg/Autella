@@ -49,8 +49,11 @@ if (isset($_POST['inputSubmit'])) {
 </head>
 
 <body class="h-100 w-100 row align-items-center justify-content-center">
-    <div class="w-50">
-        <h1 class="text-center mb-5">Autella | Criar conta</h1>
+    <div class="col-12 ml-4
+                col-sm-10
+                col-lg-8
+                col-xl-6">
+        <h1 class="text-center mb-3 mb-sm-5">Autella <span class="d-none d-sm-inline">| Criar conta</span></h1>
 
         <form action="" method="post">
             <div class="form-group">
@@ -73,19 +76,19 @@ if (isset($_POST['inputSubmit'])) {
                 <input type="password" class="form-control" id="inputConfirmPassword" name="inputConfirmPassword">
             </div>
 
-            <div class="d-flex justify-content-between mb-5">
-                <select onchange="updateDisciplines()" class="dropdown-toggle btn border" id="fieldList">
+            <div class="row justify-content-between mb-0 mb-sm-5 mx-1">
+                <select onchange="updateDisciplines()" class="dropdown-toggle btn border col-12 col-sm-6" id="fieldList">
                     <?php
                     fieldNamesToDropdownItems();
                     ?>
                 </select>
 
-                <select class="dropdown-toggle btn border" name="inputDisciplineId" id="disciplineList">
+                <select class="dropdown-toggle btn border col-12 mt-3 col-sm-3 mt-sm-0" name="inputDisciplineId" id="disciplineList">
 
                 </select>
             </div>
 
-            <div class="d-flex justify-content-between pt-5">
+            <div class="d-flex justify-content-between pt-4 pt-sm-5">
                 <a class="btn btn-danger btn-lg" href="../../index.php">Cancelar</a>
                 <input type="submit" class="btn btn-success btn-lg" name="inputSubmit" value="Criar conta">
             </div>
