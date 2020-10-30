@@ -4,20 +4,26 @@
 //$password = "autella2020";
 //$dbname = "laura_erica";
 
-$servername = "localhost";
+$host = "localhost";
 $username = "root";
 $password = "";
 $dbname = "db_autella_local";
 
-$connection = new mysqli($servername, $username, $password, $dbname);
+$connection = new mysqli($host, $username, $password, $dbname);
 
+// DEBUG
 if ($connection->connect_error) {
-    $message = "Connection failed: " . $connection->connect_error;
+    $message = "Connection failure: $connection->connect_error";
 } else {
-    $message = "Connected successfully";
+    $message = 'Connection successful!';
 }
 
 if(!isset($_SESSION)){
     session_start();
 }
-$_SESSION['message'] = $message;
+if(!isset($_SESSION['debug'])){
+    $_SESSION['debug'] = [];
+}
+array_push($_SESSION['debug'], $message);
+
+
