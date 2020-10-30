@@ -24,16 +24,20 @@ if (isset($_GET['id'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en" class="w-100 h-100">
+
+<html class="h-100 w-100">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autella | Visualizar Conta</title>
-    <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="/libraries/bootstrap/bootstrap.css">
+    <title>Autella</title>
+    <?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
+    ?>
 </head>
 
-<body class="w-100 h-100">
+<body class="h-100 w-100">
     <div class="container w-100 h-100 d-flex flex-column justify-content-center align-items-center">
         <h1>Autella | Visualizar conta</h1>
 
@@ -65,8 +69,8 @@ if (isset($_GET['id'])) {
                 <div class="d-flex flex-row justify-content-around">
                     <a class="btn btn-primary w-25" href="../../index.php">Voltar</a>
 
-                    <?php if($_GET['id'] == $_SESSION['userData']['id']){
-                        echo'<a class="btn btn-primary w-25" href="update.php">Editar dados</a>';
+                    <?php if ($_GET['id'] == $_SESSION['userData']['id']) {
+                        echo '<a class="btn btn-primary w-25" href="update.php">Editar dados</a>';
                     }
                     ?>
                 </div>
@@ -78,8 +82,9 @@ if (isset($_GET['id'])) {
         </form>
     </div>
 
-    <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
-    <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
+
+    <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
+    <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
 </body>
 
 </html>
