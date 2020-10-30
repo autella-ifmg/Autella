@@ -1,12 +1,17 @@
-## Login / Cadastro
+## Após Login
 - [X] Redirecionar da homepage para outras páginas quando cadastrado
-- [X] Ao criar conta, inserir imagem padrão
 - [X] Inserir imagem e opções de usuário na navbar
-- [X] Alterar modal's para arquivos próprios
-- [X] Embelezar /professor/create.php
 - [X] Alterar e embelezar /professor/update.php
 - [X] Tela de visualizar dados
-- [X] Caixa de confirmar senha
+- [ ] 3 Verificar se o arquivo enviado pelo usuario é uma imagem
+- [ ] 4 Desativar conta
+- [ ] 5 Redimensionar imagens de perfil
+- [ ] 6 Preview da imagem a ser atualizada no /professor/update.php
+
+
+## Cadastro
+- [X] Alterar modal's para arquivos próprios
+- [X] Ao criar conta, inserir imagem padrão
 - [X] Dropdown de "Área"
 - [X] Dropdown de "Disciplina"
 - [X] Botão de cancelar
@@ -18,22 +23,11 @@
 - [X] Pegar valores dos dropdowns para inserir na criação da conta
 - [X] Exibir somente disciplinas correspondentes à "Área" selecionada
 - [X] Fazer campos de "Área" e "Disciplina" na página de visualizar conta funcionarem
-- [ ] Distinguir login/cadastro de professor/coordenador
-- [ ] Tela de visualizar todos os usuários
-- [ ] Tela de desativar conta
-- [ ] Validação de campos 
-- [ ] Redimensionar todas imagens de perfil para 256x256
-- [ ] Esqueci a senha
-- [ ] Email de verificação de criação de contas
-- [ ] Limpar e fazer verificação de variáveis
-- [ ] Criptografia de senhas
-- [ ] Impedir criação de contas com o mesmo email
-- [ ] Tirar senha do $_SESSION['userData'] -> implicações no professor/update.php
-- [ ] Verificar se o arquivo enviado pelo usuario é uma imagem
-- [ ] Arrumar possíveis baguncinhas que o usuario pode fazer na hora de usar o site (catch's)
-- [ ] Preview da imagem a ser atualizada no /professor/update.php
-
-
+- [X] Caixa de confirmar senha
+- [X] Embelezar /professor/create.php
+- [ ] 1 Impedir criação de contas com o mesmo email
+- [ ] 2 Distinguir login/cadastro de professor/coordenador
+- [ ] 7 Email de verificação de criação de contas
 
 
 ## Geral
@@ -44,13 +38,22 @@
 - [ ] Sobre nós
 - [ ] Segurança das demais abas (caso um usuário não cadastrado tente acessar uma página proibida; die() // Garante que nada abaixo será executado)
 
-## Possíveis novas funções
-	Sistema de mensagens (tipo do moddle)
-	Painel de controle do coordenador
-
+## Segurança
+- [ ] Tirar senha do $_SESSION['userData'] -> implicações no professor/update.php
+- [ ] Criptografia de senhas
+- [ ] Validação de campos 
+- [ ] Limpar e fazer verificação de variáveis
 
 ## Observações
 	1 coordenador por escola
 	professores dessa escola são subordinados a esse coordenador
 	coordenadores tem página de gerenciamento dos professores                                               
 	use die() se não achou $_GET
+
+## Possíveis novas funções
+Sistema de mensagens (tipo do moddle)
+Painel de controle do coordenador
+Email de verificação de criação de contas
+Esqueci a senha
+Diferenciação da tabela de funcões: professor e coordenador
+Mudar Gerar PDF do Nicholas para o João
