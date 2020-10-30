@@ -18,12 +18,11 @@ if ($connection->connect_error) {
     $message = 'Connection successful!';
 }
 
-if(!isset($_SESSION)){
+
+if (!isset($_SESSION)) {
     session_start();
 }
-if(!isset($_SESSION['debug'])){
+if (!isset($_SESSION['debug'])) {
     $_SESSION['debug'] = [];
 }
 array_push($_SESSION['debug'], $message);
-
-
