@@ -31,7 +31,6 @@
 - [X] Impedir contas com o mesmo email
 - [X] Pegar cargo do banco de dados
 - [X] Distinguir login/cadastro de professor/coordenador
-- [ ] Email de verificação de criação de contas
 - [ ] Selecionar instituição (e criar uma nova caso seja um coordenador)
 - [ ] Responsividade dropdown's
 
@@ -61,11 +60,12 @@
 	use die() se não achou $_GET
 
 ## Possíveis novas funções
-Sistema de mensagens (tipo do moddle)
-Painel de controle do coordenador
-	Desativar e alterar subordinados
-	Transferência de cargo
-Email de verificação de criação de contas
-Esqueci a senha
-Diferenciação da tabela de funcões: professor e coordenador
-Mudar Gerar PDF do Nicholas para o João
+* Sistema de mensagens (tipo do moddle)
+* Painel de controle do coordenador
+	** Desativar e alterar subordinados
+	** Transferência de cargo
+* Email de verificação de criação de contas
+* Esqueci a senha
+* Diferenciação da tabela de funcões: professor e coordenador
+* Mudar Gerar PDF do Nicholas para o João
+* Email de verificação de criação de contas
