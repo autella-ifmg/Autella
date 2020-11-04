@@ -3,10 +3,10 @@
 - [X] Inserir imagem e opções de usuário na navbar
 - [X] Alterar e embelezar /professor/update.php
 - [X] Tela de visualizar dados
-- [ ] 3 Verificar se o arquivo enviado pelo usuario é uma imagem
-- [ ] 4 Desativar conta
-- [ ] 5 Redimensionar imagens de perfil
-- [ ] 6 Preview da imagem a ser atualizada no /professor/update.php
+- [X] Preview da imagem a ser atualizada no /professor/update.php
+- [ ] Verificar se o arquivo enviado pelo usuario é uma imagem
+- [ ] Desativar conta
+
 
 
 ## Cadastro
@@ -25,9 +25,9 @@
 - [X] Fazer campos de "Área" e "Disciplina" na página de visualizar conta funcionarem
 - [X] Caixa de confirmar senha
 - [X] Embelezar /professor/create.php
-- [ ] 1 Impedir criação de contas com o mesmo email
-- [ ] 2 Distinguir login/cadastro de professor/coordenador
-- [ ] 7 Email de verificação de criação de contas
+- [ ] Impedir criação de contas com o mesmo email
+- [ ] Distinguir login/cadastro de professor/coordenador
+- [ ] Email de verificação de criação de contas
 
 
 ## Geral
