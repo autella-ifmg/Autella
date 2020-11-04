@@ -99,9 +99,9 @@ if (isset($_POST['inputSubmit'])) {
                 </select>
 
                 <select class="dropdown-toggle btn border col-12 mt-3 col-sm-3 mt-sm-0" name="inputRoleId" id="rolesList">
-                    <option value="0">Coordenador</option>
-                    <option value="1">Professor titular</option>
-                    <option value="2">Professor substituto</option>
+                    <?php
+                    roleNamesToDropdownItems();
+                    ?>
                 </select>
             </div>
 

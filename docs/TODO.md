@@ -29,6 +29,7 @@
 - [X] Embelezar /professor/create.php
 - [X] Verificação de campos ao criar conta
 - [X] Impedir contas com o mesmo email
+- [ ] Pegar cargo do banco de dados
 - [ ] Distinguir login/cadastro de professor/coordenador
 - [ ] Email de verificação de criação de contas
 
