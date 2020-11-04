@@ -5,7 +5,7 @@
 - [X] Tela de visualizar dados
 - [X] Preview da imagem a ser atualizada no /professor/update.php
 - [X] Permitir apenas o envio de imagens no atualizar perfil
-- [ ] Verificação de campos ao modificar dados
+- [X] Verificação de campos ao modificar dados
 - [ ] Desativar conta
 
 
@@ -26,10 +26,11 @@
 - [X] Fazer campos de "Área" e "Disciplina" na página de visualizar conta funcionarem
 - [X] Caixa de confirmar senha
 - [X] Embelezar /professor/create.php
+- [X] Verificação de campos ao criar conta
 - [ ] Impedir criação de contas com o mesmo email
 - [ ] Distinguir login/cadastro de professor/coordenador
 - [ ] Email de verificação de criação de contas
-- [ ] Verificação de campos ao criar conta
+
 
 
 ## Geral

@@ -55,7 +55,7 @@ if (isset($_POST['inputSubmit'])) {
                 col-xl-6">
         <h1 class="text-center mb-3 mb-sm-5">Autella <span class="d-none d-sm-inline">| Criar conta</span></h1>
 
-        <form action="" method="post">
+        <form action="" method="post" onsubmit="return validateForm()">
             <div class="form-group">
                 <label>Nome</label>
                 <input type="text" class="form-control" id="inputName" name="inputName">
@@ -129,6 +129,18 @@ if (isset($_POST['inputSubmit'])) {
         };
 
         document.addEventListener('DOMContentLoaded', updateDisciplines(), false);
+    </script>
+
+    <script>
+        function validateForm() {
+            for(let i = 0; i < document.forms[0].length; i++){
+                if(document.forms[0][i].value == ""){
+                    alert("Todos os campos devem ser preenchidos!");
+                    return false;
+                }
+            }
+            return true;
+        }
     </script>
 </body>
 
