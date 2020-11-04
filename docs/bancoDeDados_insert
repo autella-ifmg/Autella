@@ -21,3 +21,6 @@ INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('
 INSERT INTO `db_autella_local`.`role` (`id`, `name`) VALUES ('0', 'Coordenador');
 INSERT INTO `db_autella_local`.`role` (`id`, `name`) VALUES ('1', 'Professor Titular');
 INSERT INTO `db_autella_local`.`role` (`id`, `name`) VALUES ('2', 'Professor Substituto');
+INSERT INTO `db_autella_local`.`role` (`id`, `name`) VALUES ('3', 'Professor Visitante');
+
+
