@@ -4,7 +4,7 @@
 - [X] Alterar e embelezar /professor/update.php
 - [X] Tela de visualizar dados
 - [X] Preview da imagem a ser atualizada no /professor/update.php
-- [ ] Verificar se o arquivo enviado pelo usuario é uma imagem
+- [X] Permitir apenas o envio de imagens no atualizar perfil
 - [ ] Verificação de campos ao modificar dados
 - [ ] Desativar conta
 

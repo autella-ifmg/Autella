@@ -74,7 +74,7 @@ if (isset($_POST['inputSubmit'])) {
             <div class="col-12 col-sm-10 col-md-5" style="max-height: 30rem">
                 <img id="userPicture" class="w-100 h-100" src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['userData']['picture']); ?>" />
                 <label class="position-absolute m-0 p-0 pr-3" style="bottom:0; right:0" for="inputImage"><img class="p-2" style="width:64px; background-color: white;" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/upload.svg" alt=""></label>
-                <input class="d-none" type="file" id="inputImage" name="inputImage">
+                <input class="d-none" type="file" id="inputImage" name="inputImage"  accept="image/*">
             </div>
 
             <div class="col-12 col-sm-10 col-md-5 mt-3">
