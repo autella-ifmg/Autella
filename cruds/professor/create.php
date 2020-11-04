@@ -4,29 +4,39 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
 if (isset($_POST['inputSubmit'])) {
     require_once '../../utilities/dbConnect.php';
 
-    $email = $_POST['inputEmail'];
-    $name = $_POST['inputName'];
-    $password = $_POST['inputPassword'];
-    $id_discipline = $_POST['inputDisciplineId'];
+    $email = mysqli_escape_string($connection, $_POST['inputEmail']);
+    $name = mysqli_escape_string($connection, $_POST['inputName']);
+    $password = mysqli_escape_string($connection, $_POST['inputPassword']);
+    $id_discipline = mysqli_escape_string($connection, $_POST['inputDisciplineId']);
 
     // $image = '/autella.com/images/userDefault.jpg';
     $image = 'C:\wamp64\www\autella.com\images\userDefault.jpg';
     $image = file_get_contents($image);
     $image = mysqli_escape_string($connection, $image);
 
-    $sql = "INSERT INTO professor (email, name, password, picture, id_discipline) VALUES 
-    ('$email', '$name', '$password', '$image', '$id_discipline');";
+    $sql = "SELECT id from professor WHERE email='$email';";
+    $result = mysqli_query($connection, $sql);
 
-    if ($connection->query($sql) === TRUE) {
-        $message = "Conta criada com sucesso!";
+    if (mysqli_num_rows($result) != 0) {
+        $message = "Email já está cadastrado no sistema!";
     } else {
-        $message = "Erro: " . $sql . "<br>" . $connection->error;
+        $sql = "INSERT INTO professor (email, name, password, picture, id_discipline) VALUES 
+                ('$email', '$name', '$password', '$image', '$id_discipline');";
+
+        if ($connection->query($sql) === TRUE) {
+            $message = "Conta criada com sucesso!";
+        } else {
+            $message = "Erro: " . $sql . "<br>" . $connection->error;
+        }
     }
+
+
+
     $connection->close();
 
     array_push($_SESSION['debug'], $message);
 
-    header('Location: ../../index.php');
+    ('Location: ../../index.php');
 }
 ?>
 
@@ -133,8 +143,8 @@ if (isset($_POST['inputSubmit'])) {
 
     <script>
         function validateForm() {
-            for(let i = 0; i < document.forms[0].length; i++){
-                if(document.forms[0][i].value == ""){
+            for (let i = 0; i < document.forms[0].length; i++) {
+                if (document.forms[0][i].value == "") {
                     alert("Todos os campos devem ser preenchidos!");
                     return false;
                 }

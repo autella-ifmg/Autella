@@ -6,6 +6,7 @@
 - [X] Preview da imagem a ser atualizada no /professor/update.php
 - [X] Permitir apenas o envio de imagens no atualizar perfil
 - [X] Verificação de campos ao modificar dados
+- [X] Impedir contas com o mesmo email
 - [ ] Desativar conta
 
 
@@ -27,7 +28,7 @@
 - [X] Caixa de confirmar senha
 - [X] Embelezar /professor/create.php
 - [X] Verificação de campos ao criar conta
-- [ ] Impedir criação de contas com o mesmo email
+- [X] Impedir contas com o mesmo email
 - [ ] Distinguir login/cadastro de professor/coordenador
 - [ ] Email de verificação de criação de contas
 
@@ -40,6 +41,7 @@
 - [ ] Carousel de opiniões (mexe sozinho)
 - [ ] Sobre nós
 - [ ] Segurança das demais abas (caso um usuário não cadastrado tente acessar uma página proibida; die() // Garante que nada abaixo será executado)
+- [ ] Exibir ao usuário informações importantes do console
 
 ## Segurança
 - [ ] Tirar senha do $_SESSION['userData'] -> implicações no professor/update.php
