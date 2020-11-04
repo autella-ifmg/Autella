@@ -11,9 +11,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $sql = "SELECT professor.name, professor.email, field.name, discipline.name, professor.picture FROM db_autella_local.discipline JOIN db_autella_local.field ON discipline.id_field = field.id JOIN db_autella_local.professor ON professor.id_discipline = discipline.id AND professor.id = '" . $id . "';";
+    $sql = "SELECT professor.name, professor.email, field.name, discipline.name, professor.picture , role.name FROM db_autella_local.discipline JOIN db_autella_local.field ON discipline.id_field = field.id JOIN db_autella_local.professor ON professor.id_discipline = discipline.id JOIN role ON professor.id_role = role.id AND professor.id = '$id';";
     $result = mysqli_query($connection, $sql);
-
     if (mysqli_num_rows($result) != 0) {
         $array = mysqli_fetch_array($result);
         $_SESSION['otherProfileData'] = $array;
@@ -58,18 +57,23 @@ if (isset($_GET['id'])) {
                 </div>
 
                 <div class="form-group">
-                    <label for="inputEmail">Email</label>
+                    <label>Email</label>
                     <input readonly type="email" class="form-control" value="<?php echo $_SESSION['otherProfileData'][1]; ?>">
                 </div>
 
                 <div class="form-group">
-                    <label for="inputEmail">Área</label>
+                    <label>Área</label>
                     <input readonly type="email" class="form-control" value="<?php echo $_SESSION['otherProfileData'][2]; ?>">
                 </div>
 
                 <div class="form-group">
-                    <label for="inputEmail">Disciplina</label>
+                    <label>Disciplina</label>
                     <input readonly type="email" class="form-control" value="<?php echo $_SESSION['otherProfileData'][3]; ?>">
+                </div>
+
+                <div class="form-group">
+                    <label>Cargo</label>
+                    <input readonly type="email" class="form-control" value="<?php echo $_SESSION['otherProfileData'][5]; ?>">
                 </div>
 
 

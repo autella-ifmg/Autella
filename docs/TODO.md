@@ -29,14 +29,15 @@
 - [X] Embelezar /professor/create.php
 - [X] Verificação de campos ao criar conta
 - [X] Impedir contas com o mesmo email
-- [ ] Pegar cargo do banco de dados
-- [ ] Distinguir login/cadastro de professor/coordenador
+- [X] Pegar cargo do banco de dados
+- [X] Distinguir login/cadastro de professor/coordenador
 - [ ] Email de verificação de criação de contas
 
 
 
 ## Geral
 - [X] Transformar toast's em modal's
+- [ ] Alterar funcionalidades da Navbar dependendo do cargo
 - [ ] Tela de apresentação do site (Tela inicial)
 - [ ] Carousel de usuários (visualizar professores e coordenadores; mexe sozinho)
 - [ ] Carousel de opiniões (mexe sozinho)
