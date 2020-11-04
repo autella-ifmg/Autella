@@ -17,37 +17,32 @@ if (isset($_POST['inputSubmit'])) {
         $newPassword = $oldPassword;
     }
 
-    $sql = "SELECT id from professor WHERE email='$email';";
-    $result = mysqli_query($connection, $sql);
 
-    if (mysqli_num_rows($result) != 0) {
-        $message = "Email já está cadastrado no sistema!";
-    } else {
 
-        if ($oldPassword == $_SESSION['userData']['password']) {
-            $sql = "UPDATE professor SET email='$email', name='$name', password='$newPassword', picture='$picture' WHERE id=" . $_SESSION['userData']['id'];
+    if ($oldPassword == $_SESSION['userData']['password']) {
+        $sql = "UPDATE professor SET email='$email', name='$name', password='$newPassword', picture='$picture' WHERE id=" . $_SESSION['userData']['id'];
 
-            if ($connection->query($sql) === TRUE) {
-                $message = "Dados alterados!";
-            } else {
-                $message = "Error: " . $sql . "<br>" . $connection->error;
-            }
-
-            // Login
-            $sql = "SELECT * FROM professor WHERE email='$email' AND password='$newPassword'";
-            $result = mysqli_query($connection, $sql);
-
-            if (mysqli_num_rows($result) != 0) {
-                $array = mysqli_fetch_array($result);
-                $_SESSION['userData'] = $array;
-            } else {
-                $message = "Senha incorreta!";
-                //$message = "Erro: " . $sql . "<br>" . $connection->error;
-            }
+        if ($connection->query($sql) === TRUE) {
+            $message = "Dados alterados!";
         } else {
-            $message = "Senha atual incorreta!";
+            $message = "Error: " . $sql . "<br>" . $connection->error;
         }
+
+        // Login
+        $sql = "SELECT * FROM professor WHERE email='$email' AND password='$newPassword'";
+        $result = mysqli_query($connection, $sql);
+
+        if (mysqli_num_rows($result) != 0) {
+            $array = mysqli_fetch_array($result);
+            $_SESSION['userData'] = $array;
+        } else {
+            $message = "Senha incorreta!";
+            //$message = "Erro: " . $sql . "<br>" . $connection->error;
+        }
+    } else {
+        $message = "Senha atual incorreta!";
     }
+
     $connection->close();
     array_push($_SESSION['debug'], $message);
 

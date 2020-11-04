@@ -8,6 +8,7 @@ if (isset($_POST['inputSubmit'])) {
     $name = mysqli_escape_string($connection, $_POST['inputName']);
     $password = mysqli_escape_string($connection, $_POST['inputPassword']);
     $id_discipline = mysqli_escape_string($connection, $_POST['inputDisciplineId']);
+    $id_role = mysqli_escape_string($connection, $_POST['inputRoleId']);
 
     // $image = '/autella.com/images/userDefault.jpg';
     $image = 'C:\wamp64\www\autella.com\images\userDefault.jpg';
@@ -20,8 +21,8 @@ if (isset($_POST['inputSubmit'])) {
     if (mysqli_num_rows($result) != 0) {
         $message = "Email já está cadastrado no sistema!";
     } else {
-        $sql = "INSERT INTO professor (email, name, password, picture, id_discipline) VALUES 
-                ('$email', '$name', '$password', '$image', '$id_discipline');";
+        $sql = "INSERT INTO professor (email, name, password, picture, id_discipline, id_role) VALUES 
+                ('$email', '$name', '$password', '$image', '$id_discipline', '$id_role');";
 
         if ($connection->query($sql) === TRUE) {
             $message = "Conta criada com sucesso!";
@@ -33,10 +34,10 @@ if (isset($_POST['inputSubmit'])) {
 
 
     $connection->close();
-
+    echo $message;
     array_push($_SESSION['debug'], $message);
 
-    ('Location: ../../index.php');
+    header('Location: ../../index.php');
 }
 ?>
 
@@ -95,6 +96,12 @@ if (isset($_POST['inputSubmit'])) {
 
                 <select class="dropdown-toggle btn border col-12 mt-3 col-sm-3 mt-sm-0" name="inputDisciplineId" id="disciplineList">
 
+                </select>
+
+                <select class="dropdown-toggle btn border col-12 mt-3 col-sm-3 mt-sm-0" name="inputRoleId" id="rolesList">
+                    <option value="0">Coordenador</option>
+                    <option value="1">Professor titular</option>
+                    <option value="2">Professor substituto</option>
                 </select>
             </div>
 

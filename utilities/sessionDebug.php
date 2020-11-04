@@ -3,16 +3,21 @@ if (!isset($_SESSION)) {
     session_start();
 }
 if (isset($_SESSION['debug'])) {
-    echo '<script>';
-    echo '        console.log("';
+    $scr = "";
+    $scr .= '<script charset="UTF-8">';
+    $scr .= 'console.log("';
 
     for ($i = 0; $i < count($_SESSION['debug']); $i++) {
+        ;
         if ($i < 10) {
-            echo '0';
+            $scr . '0';
         }
-        echo $i . ' -> ' . $_SESSION['debug'][$i] . '\n';
+        $scr .=  $i . ' -> ' . $_SESSION['debug'][$i] . '\n';
     }
+    $scr .= '");';
+    $scr .=  '</script>';
+    
+    echo $scr;
+} 
 
-    echo '                        ")';
-    echo '</script>';
-}
+// Se der erro, faça logout
