@@ -17,3 +17,7 @@ INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('
 INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('12', '3', 'Artes');
 INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('13', '3', 'Educação Física');
 INSERT INTO `db_autella_local`.`discipline` (`id`, `id_field`, `name`) VALUES ('14', '4', 'Matemática');
+
+INSERT INTO `db_autella_local`.`role` (`id`, `name`) VALUES ('0', 'Coordenador');
+INSERT INTO `db_autella_local`.`role` (`id`, `name`) VALUES ('1', 'Professor Titular');
+INSERT INTO `db_autella_local`.`role` (`id`, `name`) VALUES ('2', 'Professor Substituto');
