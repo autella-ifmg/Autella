@@ -5,6 +5,7 @@
 - [X] Tela de visualizar dados
 - [X] Preview da imagem a ser atualizada no /professor/update.php
 - [ ] Verificar se o arquivo enviado pelo usuario é uma imagem
+- [ ] Verificação de campos ao modificar dados
 - [ ] Desativar conta
 
 
@@ -28,6 +29,7 @@
 - [ ] Impedir criação de contas com o mesmo email
 - [ ] Distinguir login/cadastro de professor/coordenador
 - [ ] Email de verificação de criação de contas
+- [ ] Verificação de campos ao criar conta
 
 
 ## Geral
