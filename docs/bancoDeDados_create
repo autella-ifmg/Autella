@@ -15,13 +15,21 @@ CREATE TABLE `db_autella_local`.`discipline` (
   FOREIGN KEY (`id_field`) REFERENCES `field`(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `db_autella_local`.`role` (
+	`id` int NOT NULL,
+    `name` varchar(64) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `db_autella_local`.`professor` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(64) NOT NULL,
   `name` varchar(64) NOT NULL,
   `password` varchar(64) NOT NULL,
   `id_discipline` int,
+  `id_role` int NOT NULL,
   `picture` longblob,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`id_discipline`) REFERENCES `discipline`(id)
+  FOREIGN KEY (`id_discipline`) REFERENCES `discipline`(id),
+  FOREIGN KEY (`id_role`) REFERENCES `role`(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
