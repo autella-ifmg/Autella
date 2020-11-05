@@ -110,39 +110,6 @@ if (isset($_POST['inputSubmit'])) {
 
     <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
-    <script>
-        $(".dropdown-menu a").click(function() {
-            $(this).parents(".dropdown").find('.btn').html(' ' + $(this).text() + ' ');
-            $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-        });
-
-        function updateDisciplines() {
-            var id_field = document.getElementById("fieldList");
-            var id_field = id_field.value;
-
-            var container = document.getElementById("disciplineList");
-            container.innerHTML = "";
-
-            <?php
-            $php_array = selectDisciplines();
-            $js_array = json_encode($php_array);
-            echo "var allDisciplines = " . $js_array . ";\n";
-            ?>
-
-            for (let i = 0; i < allDisciplines.length; i++) {
-                if (allDisciplines[i][1] == id_field) {
-                    var option = document.createElement("option");
-                    var node = document.createTextNode(allDisciplines[i][2]);
-                    option.appendChild(node);
-                    option.setAttribute("value", allDisciplines[i][0]);
-
-                    container.appendChild(option);
-                }
-            }
-        };
-
-        document.addEventListener('DOMContentLoaded', updateDisciplines(), false);
-    </script>
 </body>
 
 </html>

@@ -132,15 +132,6 @@ if (isset($_POST['inputSubmit'])) {
             readURL(this);
         });
     </script>
-    <script>
-        function validateForm() {
-            if (document.forms[0]["inputOldPassword"].value == "") {
-                alert("A senha atual deve ser preenchida!");
-                return false;
-            }
-            return true;
-        }
-    </script>
 </body>
 
 </html>
