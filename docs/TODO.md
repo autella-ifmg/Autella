@@ -39,6 +39,9 @@
 ## Instituição
 - [ ] Campo CEP
 - [ ] Campo email institucional
+- [ ] Transformar campo de estado em dropdown
+- [ ] Transformar campo de cidade em dropdown
+- [ ] Impedir criação de instituições iguais
 
 
 

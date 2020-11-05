@@ -90,7 +90,7 @@ if (isset($_POST['inputSubmit'])) {
             </div>
 
             <div class="row justify-content-between mb-0 mb-sm-3 mx-1">
-                <div class="col-12 mt-3 col-sm-6 mt-sm-0 row">
+                <div class="col-12 mt-3 col-sm-8 mt-sm-0 row">
                     <label class="col-12 pl-0">Área:</label>
                     <select onchange="updateDisciplines()" class="dropdown-toggle btn border col-12" id="fieldList">
                         <?php
@@ -108,11 +108,15 @@ if (isset($_POST['inputSubmit'])) {
             </div>
 
             <div class="row justify-content-between mb-0 mb-sm-5 mx-1">
-                <div class="col-12 mt-3 col-sm-6 mt-sm-0 row">
+                <div class="col-12 col-sm-8 mt-3  mt-sm-0 row">
                     <label class="col-12 pl-0">Instituição:</label>
-                    <select class="dropdown-toggle btn border col-12" name="inputInstitutionId" id="rolesList">
+                    <select class="dropdown-toggle btn border col-10" name="inputInstitutionId" id="rolesList">
                         <?php institutionNamesToDropdownItems() ?>
                     </select>
+                    <a class="col-2 p-0 pl-4" data-toggle="tooltip" data-placement="bottom" title="Cadastrar instituição" href="../institution/create.php">
+
+                        <img src="../../libraries/bootstrap/bootstrap-icons-1.0.0/plus-circle.svg" width="40" height="40" />
+                    </a>
                 </div>
 
 
