@@ -51,7 +51,8 @@
 - [ ] Tirar senha do $_SESSION['userData'] -> implicações no professor/update.php
 - [ ] Criptografia de senhas
 - [ ] Validação de campos 
-- [ ] Limpar e fazer verificação de variáveis
+- [ ] Limpar variáveis
+- [ ] Verificação de variáveis
 
 ## Observações
 	1 coordenador por escola

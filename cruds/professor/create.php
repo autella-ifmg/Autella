@@ -88,25 +88,46 @@ if (isset($_POST['inputSubmit'])) {
                 <input type="password" class="form-control" id="inputConfirmPassword" name="inputConfirmPassword" required>
             </div>
 
-            <div class="row justify-content-between mb-0 mb-sm-5 mx-1">
-                <select onchange="updateDisciplines()" class="dropdown-toggle btn border col-12 col-sm-6" id="fieldList">
-                    <?php
-                    fieldNamesToDropdownItems();
-                    ?>
-                </select>
+            <div class="row justify-content-between mb-0 mb-sm-3 mx-1">
+                <div class="col-12 mt-3 col-sm-6 mt-sm-0 row">
+                    <label class="col-12 pl-0">Área:</label>
+                    <select onchange="updateDisciplines()" class="dropdown-toggle btn border col-12" id="fieldList">
+                        <?php
+                        fieldNamesToDropdownItems();
+                        ?>
+                    </select>
+                </div>
 
-                <select class="dropdown-toggle btn border col-12 mt-3 col-sm-3 mt-sm-0" name="inputDisciplineId" id="disciplineList">
+                <div class="col-12 mt-3 col-sm-3 mt-sm-0 row">
+                    <label class="col-12 pl-0">Disciplina:</label>
+                    <select class="dropdown-toggle btn border col-12" name="inputDisciplineId" id="disciplineList">
 
-                </select>
-
-                <select class="dropdown-toggle btn border col-12 mt-3 col-sm-3 mt-sm-0" name="inputRoleId" id="rolesList">
-                    <?php
-                    roleNamesToDropdownItems();
-                    ?>
-                </select>
+                    </select>
+                </div>
             </div>
 
-            <div class="d-flex justify-content-between pt-4 pt-sm-5">
+            <div class="row justify-content-between mb-0 mb-sm-5 mx-1">
+                <div class="col-12 mt-3 col-sm-6 mt-sm-0 row">
+                    <label class="col-12 pl-0">Instituição:</label>
+                    <select class="dropdown-toggle btn border col-12" name="inputRoleId" id="rolesList">
+                        <option value="">IFMG - Campus Ouro Branco</option>
+                    </select>
+                </div>
+
+
+
+                <div class="col-12 mt-3 col-sm-3 mt-sm-0 row">
+                    <label class="col-12 pl-0">Cargo:</label>
+                    <select class="dropdown-toggle btn border col-12" name="inputRoleId" id="rolesList">
+                        <?php
+                        roleNamesToDropdownItems();
+                        ?>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="d-flex justify-content-between pt-4 pt-sm-0">
                 <a class="btn btn-danger btn-lg" href="../../index.php">Cancelar</a>
                 <input type="submit" class="btn btn-success btn-lg" name="inputSubmit" value="Criar conta">
             </div>
@@ -160,7 +181,7 @@ if (isset($_POST['inputSubmit'])) {
             return true;
         }
     </script>
-    
+
 </body>
 
 </html>
