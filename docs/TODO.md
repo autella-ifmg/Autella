@@ -31,7 +31,8 @@
 - [X] Impedir contas com o mesmo email
 - [X] Pegar cargo do banco de dados
 - [X] Distinguir login/cadastro de professor/coordenador
-- [ ] Email de verificação de criação de contas
+- [ ] Selecionar instituição (e criar uma nova caso seja um coordenador)
+- [ ] Responsividade dropdown's
 
 
 
@@ -44,6 +45,7 @@
 - [ ] Sobre nós
 - [ ] Segurança das demais abas (caso um usuário não cadastrado tente acessar uma página proibida; die() // Garante que nada abaixo será executado)
 - [ ] Exibir ao usuário informações importantes do console
+- [ ] Tabela de instituição (coordenador é responsável por administrar a página da instituição)
 
 ## Segurança
 - [ ] Tirar senha do $_SESSION['userData'] -> implicações no professor/update.php
@@ -58,11 +60,12 @@
 	use die() se não achou $_GET
 
 ## Possíveis novas funções
-Sistema de mensagens (tipo do moddle)
-Painel de controle do coordenador
-	Desativar e alterar subordinados
-	Transferência de cargo
-Email de verificação de criação de contas
-Esqueci a senha
-Diferenciação da tabela de funcões: professor e coordenador
-Mudar Gerar PDF do Nicholas para o João
+* Sistema de mensagens (tipo do moddle)
+* Painel de controle do coordenador
+	** Desativar e alterar subordinados
+	** Transferência de cargo
+* Email de verificação de criação de contas
+* Esqueci a senha
+* Diferenciação da tabela de funcões: professor e coordenador
+* Mudar Gerar PDF do Nicholas para o João
+* Email de verificação de criação de contas
