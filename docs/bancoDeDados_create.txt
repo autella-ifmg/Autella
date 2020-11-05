@@ -15,6 +15,20 @@ CREATE TABLE `db_autella_local`.`discipline` (
   FOREIGN KEY (`id_field`) REFERENCES `field`(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `db_autella_local`.`institution` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `full_name` varchar(64) NOT NULL,
+  `abbreviation` varchar(64) NOT NULL,
+  `phone` varchar(64) NOT NULL,
+  `number` varchar(64) NOT NULL,
+  `street` varchar(64) NOT NULL,
+  `neighborhood` varchar(64) NOT NULL,
+  `city` varchar(64) NOT NULL,
+  `state` varchar(64) NOT NULL,
+  `picture` longblob,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `db_autella_local`.`role` (
 	`id` int NOT NULL,
     `name` varchar(64) NOT NULL,
@@ -28,8 +42,10 @@ CREATE TABLE `db_autella_local`.`professor` (
   `password` varchar(64) NOT NULL,
   `id_discipline` int,
   `id_role` int NOT NULL,
+  `id_institution` int,
   `picture` longblob,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`id_discipline`) REFERENCES `discipline`(id),
-  FOREIGN KEY (`id_role`) REFERENCES `role`(id)
+  FOREIGN KEY (`id_role`) REFERENCES `role`(id),
+  FOREIGN KEY (`id_institution`) REFERENCES `institution`(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

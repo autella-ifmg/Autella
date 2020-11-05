@@ -9,6 +9,7 @@ if (isset($_POST['inputSubmit'])) {
     $password = mysqli_escape_string($connection, $_POST['inputPassword']);
     $id_discipline = mysqli_escape_string($connection, $_POST['inputDisciplineId']);
     $id_role = mysqli_escape_string($connection, $_POST['inputRoleId']);
+    $id_institution = mysqli_escape_string($connection, $_POST['inputInstitutionId']);
 
     // $image = '/autella.com/images/userDefault.jpg';
     $image = 'C:\wamp64\www\autella.com\images\userDefault.jpg';
@@ -21,8 +22,8 @@ if (isset($_POST['inputSubmit'])) {
     if (mysqli_num_rows($result) != 0) {
         $message = "Email já está cadastrado no sistema!";
     } else {
-        $sql = "INSERT INTO professor (email, name, password, picture, id_discipline, id_role) VALUES 
-                ('$email', '$name', '$password', '$image', '$id_discipline', '$id_role');";
+        $sql = "INSERT INTO professor (email, name, password, picture, id_discipline, id_role, id_institution) VALUES 
+                ('$email', '$name', '$password', '$image', '$id_discipline', '$id_role', '$id_institution');";
 
         if ($connection->query($sql) === TRUE) {
             $message = "Conta criada com sucesso!";
@@ -109,8 +110,8 @@ if (isset($_POST['inputSubmit'])) {
             <div class="row justify-content-between mb-0 mb-sm-5 mx-1">
                 <div class="col-12 mt-3 col-sm-6 mt-sm-0 row">
                     <label class="col-12 pl-0">Instituição:</label>
-                    <select class="dropdown-toggle btn border col-12" name="inputRoleId" id="rolesList">
-                        <option value="">IFMG - Campus Ouro Branco</option>
+                    <select class="dropdown-toggle btn border col-12" name="inputInstitutionId" id="rolesList">
+                        <?php institutionNamesToDropdownItems() ?>
                     </select>
                 </div>
 

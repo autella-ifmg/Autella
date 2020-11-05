@@ -23,4 +23,8 @@ INSERT INTO `db_autella_local`.`role` (`id`, `name`) VALUES ('1', 'Professor Tit
 INSERT INTO `db_autella_local`.`role` (`id`, `name`) VALUES ('2', 'Professor Substituto');
 INSERT INTO `db_autella_local`.`role` (`id`, `name`) VALUES ('3', 'Professor Visitante');
 
+INSERT INTO `db_autella_local`.`institution` (`id`, `full_name`, `abbreviation`, `phone`, `number`, `street`, `neighborhood`, `city`, `state`) VALUES ('1', 'Escola Municipal Professor Doriol Beato', 'Doriol', '(31) 3769-2587', '610', 'Rua Senador Milton Campos', 'Angêlica', 'Conselheiro Lafaiete', 'Minas Gerais');
+INSERT INTO `db_autella_local`.`institution` (`id`, `full_name`, `abbreviation`, `phone`, `number`, `street`, `neighborhood`, `city`, `state`) VALUES ('2', 'Instituto Federal de Minas Gerais - Campus Ouro Branco', 'IFMG-OB', '(31) 3938-1200', '90', 'Rua Afonso Sardinha', 'Pioneiros', 'Ouro Branco', 'Minas Gerais');
+
+
 

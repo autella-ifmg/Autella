@@ -31,8 +31,10 @@
 - [X] Impedir contas com o mesmo email
 - [X] Pegar cargo do banco de dados
 - [X] Distinguir login/cadastro de professor/coordenador
-- [ ] Selecionar instituição (e criar uma nova caso seja um coordenador)
-- [ ] Responsividade dropdown's
+- [X] Selecionar instituição
+- [X] Responsividade dropdown's
+- [ ] Criar nova instituição
+- [ ] Impedir mais de um coordenador por instituição
 
 
 
