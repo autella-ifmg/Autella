@@ -51,7 +51,7 @@
                     </div>
                 </div>
 
-                <a class="mt-3 d-block text-center" href="loginCoordenador.php">Você é um coordenador? Clique aqui!</a>
+                <!-- <a class="mt-3 d-block text-center" href="loginCoordenador.php">Você é um coordenador? Clique aqui!</a> -->
             </div>
 
         </div>

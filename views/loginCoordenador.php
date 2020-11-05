@@ -1,1 +1,0 @@
-<h4>No modo coordenador você tem mais recursos para gerenciar sua instituição!</h4>

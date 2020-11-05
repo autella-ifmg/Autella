@@ -56,6 +56,7 @@ if (isset($_POST['inputSubmit'])) {
     <title>Autella</title>
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
     ?>
 </head>
 
@@ -66,25 +67,25 @@ if (isset($_POST['inputSubmit'])) {
                 col-xl-6">
         <h1 class="text-center mb-3 mb-sm-5">Autella <span class="d-none d-sm-inline">| Criar conta</span></h1>
 
-        <form action="" method="post" onsubmit="return validateForm()">
+        <form method="post" novalidate class="needs-validation">
             <div class="form-group">
                 <label>Nome</label>
-                <input type="text" class="form-control" id="inputName" name="inputName">
+                <input type="text" class="form-control" id="inputName" name="inputName" required>
             </div>
 
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" id="inputEmail" name="inputEmail">
+                <input type="email" class="form-control" id="inputEmail" name="inputEmail" required>
             </div>
 
             <div class="form-group">
                 <label>Nova senha</label>
-                <input type="password" class="form-control" id="inputPassword" name="inputPassword">
+                <input type="password" class="form-control" id="inputPassword" name="inputPassword" required>
             </div>
 
             <div class="form-group">
                 <label>Confirmar nova senha</label>
-                <input type="password" class="form-control" id="inputConfirmPassword" name="inputConfirmPassword">
+                <input type="password" class="form-control" id="inputConfirmPassword" name="inputConfirmPassword" required>
             </div>
 
             <div class="row justify-content-between mb-0 mb-sm-5 mx-1">
@@ -159,6 +160,7 @@ if (isset($_POST['inputSubmit'])) {
             return true;
         }
     </script>
+    
 </body>
 
 </html>

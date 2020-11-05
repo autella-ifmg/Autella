@@ -64,6 +64,7 @@ if (isset($_POST['inputSubmit'])) {
     <title>Autella</title>
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
     ?>
 </head>
 
@@ -71,7 +72,7 @@ if (isset($_POST['inputSubmit'])) {
     <div class="container w-100 align-items-center">
         <h1 class="text-center" style="margin: 8% 0">Autella | Editar conta</h1>
 
-        <form action="" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" class="row justify-content-around">
+        <form method="post" enctype="multipart/form-data" class="row justify-content-around needs-validation" novalidate>
 
             <div class="col-12 col-sm-10 col-md-5" style="max-height: 30rem">
                 <img id="userPicture" class="w-100 h-100" src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['userData']['picture']); ?>" />
@@ -82,17 +83,17 @@ if (isset($_POST['inputSubmit'])) {
             <div class="col-12 col-sm-10 col-md-5 mt-3">
                 <div class="form-group">
                     <label for="inputNome">Nome</label>
-                    <input type="text" class="form-control" id="inputName" name="inputName" value="<?php echo $_SESSION['userData']['name'] ?>">
+                    <input type="text" class="form-control" id="inputName" name="inputName" value="<?php echo $_SESSION['userData']['name'] ?>" required>
                 </div>
 
                 <div class="form-group">
                     <label for="inputEmail">Email</label>
-                    <input type="email" class="form-control" id="inputEmail" name="inputEmail" value="<?php echo $_SESSION['userData']['email']; ?>">
+                    <input type="email" class="form-control" id="inputEmail" name="inputEmail" value="<?php echo $_SESSION['userData']['email']; ?>" required>
                 </div>
 
                 <div class="form-group">
                     <label for="inputOldPassword">Senha atual</label>
-                    <input type="password" class="form-control" id="inputOldPassword" name="inputOldPassword">
+                    <input type="password" class="form-control" id="inputOldPassword" name="inputOldPassword" required>
                 </div>
 
                 <div class="form-group">
