@@ -33,7 +33,7 @@
 - [X] Distinguir login/cadastro de professor/coordenador
 - [X] Selecionar instituição
 - [X] Responsividade dropdown's
-- [ ] Criar nova instituição
+- [ ] Institution CRUD
 - [ ] Impedir mais de um coordenador por instituição
 
 
