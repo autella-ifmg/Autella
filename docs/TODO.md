@@ -36,6 +36,10 @@
 - [ ] Institution CRUD
 - [ ] Impedir mais de um coordenador por instituição
 
+## Instituição
+- [ ] Campo CEP
+- [ ] Campo email institucional
+
 
 
 ## Geral
@@ -72,3 +76,4 @@
 * Diferenciação da tabela de funcões: professor e coordenador
 * Mudar Gerar PDF do Nicholas para o João
 * Email de verificação de criação de contas
+* Crud da instituição

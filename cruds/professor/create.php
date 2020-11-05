@@ -170,19 +170,6 @@ if (isset($_POST['inputSubmit'])) {
 
         document.addEventListener('DOMContentLoaded', updateDisciplines(), false);
     </script>
-
-    <script>
-        function validateForm() {
-            for (let i = 0; i < document.forms[0].length; i++) {
-                if (document.forms[0][i].value == "") {
-                    alert("Todos os campos devem ser preenchidos!");
-                    return false;
-                }
-            }
-            return true;
-        }
-    </script>
-
 </body>
 
 </html>
