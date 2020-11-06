@@ -70,7 +70,7 @@ if (isset($_POST['inputSubmit'])) {
 
 <body class="w-100">
     <div class="container w-100 align-items-center">
-        <h1 class="text-center" style="margin: 8% 0">Autella | Editar conta</h1>
+        <h1 class="text-center" style="margin: 8% 0">Autella | Alterar conta</h1>
 
         <form method="post" enctype="multipart/form-data" class="row justify-content-around needs-validation" novalidate>
 
@@ -108,7 +108,7 @@ if (isset($_POST['inputSubmit'])) {
 
                 <div class="d-flex flex-row justify-content-between">
                     <a class="btn btn-danger" href="../../index.php">Cancelar</a>
-                    <input type="submit" class="btn btn-primary" name="inputSubmit" value="Alterar dados">
+                    <input type="submit" class="btn btn-success" name="inputSubmit" value="Alterar">
                 </div>
             </div>
         </form>
