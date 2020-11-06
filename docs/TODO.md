@@ -78,3 +78,5 @@
 * Esqueci a senha
 * Mudar Gerar PDF do Nicholas para o João
 * Crud da instituição
+* Versionamento de questões (tipo o do GitHub)
+* Versionamento de provas (tipo o do GitHub)
