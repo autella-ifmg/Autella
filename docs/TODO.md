@@ -72,11 +72,9 @@
 ## Possíveis novas funções
 * Sistema de mensagens (tipo do moddle)
 * Painel de controle do coordenador
-	** Desativar e alterar subordinados
-	** Transferência de cargo
+	* Desativar e alterar subordinados
+	* Transferência de cargo
 * Email de verificação de criação de contas
 * Esqueci a senha
-* Diferenciação da tabela de funcões: professor e coordenador
 * Mudar Gerar PDF do Nicholas para o João
-* Email de verificação de criação de contas
 * Crud da instituição
