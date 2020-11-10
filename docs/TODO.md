@@ -2,12 +2,15 @@
 - [X] Redirecionar da homepage para outras páginas quando cadastrado
 - [X] Inserir imagem e opções de usuário na navbar
 - [X] Alterar e embelezar /professor/update.php
-- [X] Tela de visualizar dados
 - [X] Preview da imagem a ser atualizada no /professor/update.php
 - [X] Permitir apenas o envio de imagens no atualizar perfil
 - [X] Verificação de campos ao modificar dados
 - [X] Impedir contas com o mesmo email
-- [ ] Desativar conta
+- [X] User create
+- [X] User read
+- [X] User update
+- [ ] User delete
+- [ ] Mudar no banco de dados de "professor" para "user"
 
 
 
@@ -33,8 +36,12 @@
 - [X] Distinguir login/cadastro de professor/coordenador
 - [X] Selecionar instituição
 - [X] Responsividade dropdown's
-- [ ] Institution CRUD
+- [X] Institution create
+- [X] Institution read
+- [X] Institution update
+- [ ] Institution delete
 - [ ] Impedir mais de um coordenador por instituição
+- [ ] Dar a opção de "Sou professor" na hora do cadastro, para coordenadores que não são professores -> perguntar para o kdú se isso existe
 
 ## Instituição
 - [ ] Campo CEP

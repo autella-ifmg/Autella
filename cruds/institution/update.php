@@ -61,7 +61,7 @@ if (isset($_POST['inputSubmit'])) {
                 col-sm-10
                 col-lg-8
                 col-xl-6">
-        <h1 class="text-center mb-3 mb-sm-5">Autella <span class="d-none d-sm-inline">| Alterar dados da instituição</span></h1>
+        <h1 class="text-center mb-3 mt-5 mb-sm-5">Autella <span class="d-none d-sm-inline">| Alterar dados da instituição</span></h1>
 
         <form method="post" novalidate class="needs-validation row">
             <div class="form-group col-12 ">
@@ -113,7 +113,7 @@ if (isset($_POST['inputSubmit'])) {
 
 
 
-            <div class="d-flex justify-content-between pt-4 pt-sm-0 w-100 mx-3">
+            <div class="d-flex justify-content-between pt-4 pt-sm-0 w-100 mx-3 mb-5">
                 <a class="btn btn-danger btn-lg" href="../../index.php">Cancelar</a>
                 <input type="submit" class="btn btn-success btn-lg" name="inputSubmit" value="Alterar dados">
             </div>
