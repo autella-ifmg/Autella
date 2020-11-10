@@ -50,8 +50,6 @@
                         <a class="btn btn-success w-50" href="../cruds/professor/create.php">Criar nova conta</a>
                     </div>
                 </div>
-
-                <!-- <a class="mt-3 d-block text-center" href="loginCoordenador.php">Você é um coordenador? Clique aqui!</a> -->
             </div>
 
         </div>
@@ -95,9 +93,22 @@ if (isset($_POST['inputSubmit'])) {
         $message = "Email do not exists in our database!";
         //$message = "Error: " . $sql . "<br>" . $connection->error;
     }
-    $connection->close();
-
     array_push($_SESSION['debug'], $message);
+
+    $sql = 'SELECT * FROM institution WHERE id=' . $_SESSION['userData']['id_institution'];
+    $result = mysqli_query($connection, $sql);
+
+    if (mysqli_num_rows($result) != 0) {
+        $array = mysqli_fetch_array($result);
+        $_SESSION['userInstitutionData'] = $array;
+        $message = "Instituição encontrada!";
+    } else {
+        $message = "Instituição não encontrada!";
+        $message = "Error: " . $sql . $connection->error;
+    }
+    array_push($_SESSION['debug'], $message);
+
+    $connection->close();
     header('Location: ../index.php');
 }
 ?>

@@ -39,6 +39,20 @@ if (isset($_POST['inputSubmit'])) {
             $message = "Senha incorreta!";
             //$message = "Erro: " . $sql . "<br>" . $connection->error;
         }
+        array_push($_SESSION['debug'], $message);
+
+        $sql = 'SELECT * FROM institution WHERE id=' . $_SESSION['userData']['id_institution'];
+
+        $result = mysqli_query($connection, $sql);
+        if (mysqli_num_rows($result) != 0) {
+            $array = mysqli_fetch_array($result);
+            $_SESSION['userInstitutionData'] = $array;
+            $message = "Instituição encontrada!";
+        } else {
+            $message = "Instituição não encontrada!";
+            //$message = "Error: " . $sql . "<br>" . $connection->error;
+        }
+        array_push($_SESSION['debug'], $message);
     } else {
         $message = "Senha atual incorreta!";
     }
