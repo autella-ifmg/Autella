@@ -56,41 +56,41 @@ if (isset($_GET['id'])) {
         <div novalidate class="needs-validation row">
             <div class="form-group col-12 ">
                 <label>Nome completo:</label>
-                <input readonly type="text" class="form-control" id="" name="inputFullName" value="<?php echo $_SESSION['otherInstitutionData']['full_name'] ?>" required>
+                <input readonly type="text" class="form-control"  name="inputFullName" value="<?php echo $_SESSION['otherInstitutionData']['full_name'] ?>" required>
             </div>
             <div class="form-group col-12 col-md-6 ">
                 <label>Abreviação:</label>
-                <input readonly type="text" class="form-control" id="" name="inputAbbreviation" value="<?php echo $_SESSION['otherInstitutionData']['abbreviation'] ?>" required>
+                <input readonly type="text" class="form-control"  name="inputAbbreviation" value="<?php echo $_SESSION['otherInstitutionData']['abbreviation'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Telefone:</label>
-                <input readonly type="text" class="form-control" id="" name="inputPhone" value="<?php echo $_SESSION['otherInstitutionData']['phone'] ?>" required>
+                <input readonly type="text" class="form-control"  name="inputPhone" value="<?php echo $_SESSION['otherInstitutionData']['phone'] ?>" required>
             </div>
 
             <div class="form-group col-12">
                 <label>Rua:</label>
-                <input readonly type="text" class="form-control" id="" name="inputStreet" value="<?php echo $_SESSION['otherInstitutionData']['street'] ?>" required>
+                <input readonly type="text" class="form-control"  name="inputStreet" value="<?php echo $_SESSION['otherInstitutionData']['street'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Número:</label>
-                <input readonly type="text" class="form-control" id="" name="inputNumber" value="<?php echo $_SESSION['otherInstitutionData']['number'] ?>" required>
+                <input readonly type="text" class="form-control"  name="inputNumber" value="<?php echo $_SESSION['otherInstitutionData']['number'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Bairro:</label>
-                <input readonly type="text" class="form-control" id="" name="inputNeighborhood" value="<?php echo $_SESSION['otherInstitutionData']['neighborhood'] ?>" required>
+                <input readonly type="text" class="form-control"  name="inputNeighborhood" value="<?php echo $_SESSION['otherInstitutionData']['neighborhood'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Cidade:</label>
-                <input readonly type="text" class="form-control" id="" name="inputCity" value="<?php echo $_SESSION['otherInstitutionData']['city'] ?>" required>
+                <input readonly type="text" class="form-control"  name="inputCity" value="<?php echo $_SESSION['otherInstitutionData']['city'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Estado:</label>
-                <input readonly type="text" class="form-control" id="" name="inputState" value="<?php echo $_SESSION['otherInstitutionData']['state'] ?>" required>
+                <input readonly type="text" class="form-control"  name="inputState" value="<?php echo $_SESSION['otherInstitutionData']['state'] ?>" required>
             </div>
 
             <div class="w-100 px-3 mb-5" style="min-height: 40rem; max-height: 100rem; position:relative">
@@ -98,12 +98,11 @@ if (isset($_GET['id'])) {
             </div>
 
 
-
             <div class="d-flex justify-content-around pt-4 pt-sm-0 w-100 mx-3 mb-5">
                 <a class="btn btn-danger btn-lg" href="../../index.php">Voltar</a>
 
                 <?php if ($_GET['id'] == $_SESSION['userData']['id_institution'] && $_SESSION['userData']['id_role'] == 0) {
-                    echo '<a class="btn btn-success btn-lg">Alterar dados</a>';
+                    echo '<a class="btn btn-success btn-lg" href="update.php" >Alterar dados</a>';
                 }
                 ?>
             </div>

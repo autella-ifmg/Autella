@@ -76,6 +76,7 @@
 	professores dessa escola são subordinados a esse coordenador
 	coordenadores tem página de gerenciamento dos professores                                               
 	use die() se não achou $_GET
+	enctype="multipart/form-data" -> atributo necessário em <form> caso envolva envio de imagens
 
 ## Possíveis novas funções
 * Sistema de mensagens (tipo do moddle)

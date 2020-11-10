@@ -18,7 +18,8 @@ if (isset($_POST['inputSubmit'])) {
     $picture = mysqli_escape_string($connection, $picture);
 
     if ($picture == "") {
-        $picture = mysqli_escape_string($connection, $_SESSION['userData']['picture']);
+        array_push($_SESSION['debug'], "Imagem da instituição vazia!");
+        $picture = mysqli_escape_string($connection, $_SESSION['userInstitutionData']['picture']);
     }
 
 
@@ -32,10 +33,22 @@ if (isset($_POST['inputSubmit'])) {
         $message = "Error: " . $sql . "<br>" . $connection->error;
     }
 
-    $connection->close();
-    echo $message;
     array_push($_SESSION['debug'], $message);
 
+    $sql = 'SELECT * FROM institution WHERE id=' . $_SESSION['userData']['id_institution'];
+    $result = mysqli_query($connection, $sql);
+
+    if (mysqli_num_rows($result) != 0) {
+        $array = mysqli_fetch_array($result);
+        $_SESSION['userInstitutionData'] = $array;
+        $message = "Instituição encontrada!";
+    } else {
+        $message = "Instituição não encontrada!";
+        $message = "Error: " . $sql . $connection->error;
+    }
+    array_push($_SESSION['debug'], $message);
+
+    $connection->close();
     header('Location: ../../index.php');
 }
 ?>
@@ -63,49 +76,47 @@ if (isset($_POST['inputSubmit'])) {
                 col-xl-6">
         <h1 class="text-center mb-3 mt-5 mb-sm-5">Autella <span class="d-none d-sm-inline">| Alterar dados da instituição</span></h1>
 
-        <form method="post" novalidate class="needs-validation row">
+        <form method="POST" novalidate class="needs-validation row" enctype="multipart/form-data">
             <div class="form-group col-12 ">
                 <label>Nome completo:</label>
-                <input type="text" class="form-control" id="" name="inputFullName" value="<?php echo $_SESSION['userInstitutionData']['full_name'] ?>" required>
+                <input type="text" class="form-control"  name="inputFullName" value="<?php echo $_SESSION['userInstitutionData']['full_name'] ?>" required>
             </div>
             <div class="form-group col-12 col-md-6 ">
                 <label>Abreviação:</label>
-                <input type="text" class="form-control" id="" name="inputAbbreviation" value="<?php echo $_SESSION['userInstitutionData']['abbreviation'] ?>" required>
+                <input type="text" class="form-control"  name="inputAbbreviation" value="<?php echo $_SESSION['userInstitutionData']['abbreviation'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Telefone:</label>
-                <input type="text" class="form-control" id="" name="inputPhone" value="<?php echo $_SESSION['userInstitutionData']['phone'] ?>" required>
+                <input type="text" class="form-control"  name="inputPhone" value="<?php echo $_SESSION['userInstitutionData']['phone'] ?>" required>
             </div>
 
             <div class="form-group col-12">
                 <label>Rua:</label>
-                <input type="text" class="form-control" id="" name="inputStreet" value="<?php echo $_SESSION['userInstitutionData']['street'] ?>" required>
+                <input type="text" class="form-control"  name="inputStreet" value="<?php echo $_SESSION['userInstitutionData']['street'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Número:</label>
-                <input type="text" class="form-control" id="" name="inputNumber" value="<?php echo $_SESSION['userInstitutionData']['number'] ?>" required>
+                <input type="text" class="form-control"  name="inputNumber" value="<?php echo $_SESSION['userInstitutionData']['number'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Bairro:</label>
-                <input type="text" class="form-control" id="" name="inputNeighborhood" value="<?php echo $_SESSION['userInstitutionData']['neighborhood'] ?>" required>
+                <input type="text" class="form-control"  name="inputNeighborhood" value="<?php echo $_SESSION['userInstitutionData']['neighborhood'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Cidade:</label>
-                <input type="text" class="form-control" id="" name="inputCity" value="<?php echo $_SESSION['userInstitutionData']['city'] ?>" required>
+                <input type="text" class="form-control"  name="inputCity" value="<?php echo $_SESSION['userInstitutionData']['city'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Estado:</label>
-                <input type="text" class="form-control" id="" name="inputState" value="<?php echo $_SESSION['userInstitutionData']['state'] ?>" required>
+                <input type="text" class="form-control"  name="inputState" value="<?php echo $_SESSION['userInstitutionData']['state'] ?>" required>
             </div>
 
             <div class="w-100 px-3 mb-5" style="min-height: 10rem; max-height: 30rem; position:relative">
-                <!-- <img id="institutionPicture" class="w-100 h-100" src="data:image/jpeg;base64,<?php //echo base64_encode($institutionImage); 
-                                                                                                    ?>" /> -->
                 <img id="institutionPicture" class="w-100 h-100" src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['userInstitutionData']['picture']); ?>" />
                 <label class="position-absolute m-0 p-0 mr-3 border" style="bottom:0; right:0" for="inputImage"><img class="p-2" style="width:64px; background-color: white;" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/upload.svg" alt=""></label>
                 <input class="d-none" type="file" id="inputImage" name="inputImage" accept="image/*">
