@@ -9,14 +9,13 @@ if (isset($_POST['inputSubmit'])) {
     $id_role = mysqli_escape_string($connection, $_POST['inputRoleId']);
     $id_institution = mysqli_escape_string($connection, $_POST['inputInstitutionId']);
 
-    // $image = '/autella.com/images/userDefault.jpg';
     $image = 'C:\wamp64\www\autella.com\images\userDefault.jpg';
     $image = file_get_contents($image);
     $image = mysqli_escape_string($connection, $image);
 
-    $sql = "SELECT id from professor WHERE email='$email';";
-    $result = mysqli_query($connection, $sql);
 
+    $sql = "SELECT id FROM professor WHERE email='$email';";
+    $result = mysqli_query($connection, $sql);
     if (mysqli_num_rows($result) != 0) {
         $message = "Email já está cadastrado no sistema!";
     } else {
@@ -26,16 +25,13 @@ if (isset($_POST['inputSubmit'])) {
         if ($connection->query($sql) === TRUE) {
             $message = "Conta criada com sucesso!";
         } else {
-            $message = "Erro: " . $sql . "<br>" . $connection->error;
+            $message = "Erro na criação da conta!";
+            //$message = "Error: " . $sql . "<br>" . $connection->error;
         }
     }
-
-
-
     $connection->close();
-    echo $message;
-    array_push($_SESSION['debug'], $message);
 
+
+    array_push($_SESSION['debug'], $message);
     header('Location: ../../index.php');
 }
-?>

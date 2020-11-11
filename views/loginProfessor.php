@@ -84,7 +84,7 @@ if (isset($_POST['inputSubmit'])) {
         if (mysqli_num_rows($result) != 0) {
             $array = mysqli_fetch_array($result);
             $_SESSION['userData'] = $array;
-            $message = "Login successful!";
+            $message = "Login bem sucedido!";
         } else {
             $message = "Incorrect password!";
             //$message = "Error: " . $sql . "<br>" . $connection->error;
@@ -104,7 +104,7 @@ if (isset($_POST['inputSubmit'])) {
         $message = "Instituição encontrada!";
     } else {
         $message = "Instituição não encontrada!";
-        $message = "Error: " . $sql . $connection->error;
+        //$message = "Errorr: " . $sql . $connection->error;
     }
     array_push($_SESSION['debug'], $message);
 

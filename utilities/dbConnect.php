@@ -1,5 +1,5 @@
 <?php
-//$servername = "200.18.128.52";
+//$host = "200.18.128.52";
 //$username = "autella";
 //$password = "autella2020";
 //$dbname = "laura_erica";
@@ -15,7 +15,7 @@ $connection = new mysqli($host, $username, $password, $dbname);
 if ($connection->connect_error) {
     $message = "Connection failure: $connection->connect_error";
 } else {
-    $message = 'Connection successful!';
+    //$message = 'Connection successful!';
 }
 
 
@@ -25,4 +25,6 @@ if (!isset($_SESSION)) {
 if (!isset($_SESSION['debug'])) {
     $_SESSION['debug'] = [];
 }
-array_push($_SESSION['debug'], $message);
+if ($message != "") {
+    array_push($_SESSION['debug'], $message);
+}
