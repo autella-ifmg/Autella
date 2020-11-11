@@ -36,14 +36,6 @@
 
 - [ ] Delete
 
-## Database
-
-- [X] Criar tabela "Área" no banco de dados
-- [X] Criar tabela "Disciplina" no banco de dado
-- [ ] Mudar de "professor" para "user"
-- [ ] professor -> coluna de "último acesso em"
-- [ ] professor -> coluna de status ("online", "offline", "conta desativada")
-
 
 ## Institution
 - [X] Create
@@ -65,6 +57,16 @@
 	- [ ] Campo email institucional
 	- [ ] Impedir instituições iguais
 - [ ] Delete
+
+
+## Database
+
+- [X] Criar tabela "Área" no banco de dados
+- [X] Criar tabela "Disciplina" no banco de dado
+- [ ] Mudar de "professor" para "user"
+- [ ] professor -> coluna de "último acesso em"
+- [ ] professor -> coluna de status ("online", "offline", "conta desativada")
+- [ ] substituir 'picture' por 'image' no user e institution
 
 
 ## Geral
