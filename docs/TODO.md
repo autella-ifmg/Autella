@@ -1,17 +1,26 @@
+## User
+- [ ] Mudar no banco de dados de "professor" para "user"
+- [ ] User create
+	- [ ] Verificação de campos
+		- [X] Vazios
+		- [ ] Campo de confirmar senha
+		- [X] Impedir contas com o mesmo email
+	
+- [X] User read
+- [ ] User update
+	- [X] Alterar e embelezar
+	- [X] Permitir apenas o envio de imagens
+	- [X] Preview da imagem
+	- [ ] Verificação de campos
+		- [X] Vazios
+		- [ ] Campo de confirmar senha
+		- [ ] Impedir contas com o mesmo email
+- [ ] User delete
+
+
 ## Após Login
 - [X] Redirecionar da homepage para outras páginas quando cadastrado
 - [X] Inserir imagem e opções de usuário na navbar
-- [X] Alterar e embelezar /professor/update.php
-- [X] Preview da imagem a ser atualizada no /professor/update.php
-- [X] Permitir apenas o envio de imagens no atualizar perfil
-- [X] Verificação de campos ao modificar dados
-- [X] Impedir contas com o mesmo email
-- [X] User create
-- [X] User read
-- [X] User update
-- [ ] User delete
-- [ ] Mudar no banco de dados de "professor" para "user"
-- [ ] Confirmação de senhas com js
 
 
 
