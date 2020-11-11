@@ -1,5 +1,4 @@
 ## User
-- [ ] Mudar no banco de dados de "professor" para "user"
 - [ ] Create
 	- [X] Alterar modal para arquivos próprios
 	- [X] Ao criar conta, inserir imagem padrão	
@@ -37,14 +36,18 @@
 
 - [ ] Delete
 
-## Banco de dados
+## Database
 
 - [X] Criar tabela "Área" no banco de dados
 - [X] Criar tabela "Disciplina" no banco de dado
+- [ ] Mudar de "professor" para "user"
+- [ ] professor -> coluna de "último acesso em"
+- [ ] professor -> coluna de status ("online", "offline", "conta desativada")
 
 
 ## Institution
 - [X] Create
+	- [ ] Foto -> Banner
 	- [ ] Dar a opção de "Sou professor" na hora do cadastro, para coordenadores que não são professores -> perguntar para o kdú se isso existe
 	- [ ] Transformar campo de estado em dropdown
 	- [ ] Transformar campo de cidade em dropdown	
@@ -52,8 +55,10 @@
 	- [ ] Campo email institucional
 	- [ ] Impedir instituições iguais	
 - [X] Read
+	- [ ] Foto -> Banner
 - [X] Update
 	- [X] Apenas o coordenador da instituição pode alterar seus dados
+	- [ ] Foto -> Banner
 	- [ ] Transformar campo de estado em dropdown
 	- [ ] Transformar campo de cidade em dropdown
 	- [ ] Campo CEP
@@ -68,6 +73,7 @@
 - [ ] Alterar funcionalidades da Navbar dependendo do cargo
 - [ ] Tela de apresentação do site (Tela inicial)
 - [ ] Carousel de usuários (visualizar professores e coordenadores; mexe sozinho)
+- [ ] Carousel de instituições
 - [ ] Carousel de opiniões (mexe sozinho)
 - [ ] Sobre nós
 - [ ] Segurança das demais abas (caso um usuário não cadastrado tente acessar uma página proibida; die() // Garante que nada abaixo será executado)
