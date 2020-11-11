@@ -25,6 +25,6 @@ if (!isset($_SESSION)) {
 if (!isset($_SESSION['debug'])) {
     $_SESSION['debug'] = [];
 }
-if ($message != "") {
+if (isset($message)) {
     array_push($_SESSION['debug'], $message);
 }
