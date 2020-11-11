@@ -13,7 +13,6 @@ if (isset($_POST['inputSubmit'])) {
     $image = file_get_contents($image);
     $image = mysqli_escape_string($connection, $image);
 
-
     $sql = "SELECT id FROM professor WHERE email='$email';";
     $result = mysqli_query($connection, $sql);
     if (mysqli_num_rows($result) != 0) {

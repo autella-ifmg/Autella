@@ -1,5 +1,6 @@
 <?php
 require_once '../../utilities/dbConnect.php';
+
 if (isset($_POST['inputSubmit'])) {
     $email = mysqli_escape_string($connection, $_POST['inputEmail']);
     $name = mysqli_escape_string($connection, $_POST['inputName']);
@@ -7,8 +8,9 @@ if (isset($_POST['inputSubmit'])) {
     $newPassword = mysqli_escape_string($connection, $_POST['inputNewPassword']);
 
     $image = $_FILES['inputImage']['tmp_name'];
-    $image = file_get_contents($image);
-    $image = mysqli_escape_string($connection, $image);
+    require_once '../../utilities/imageUpload.php';
+    uploadProfileImage($image);
+
 
     if ($image == "") {
         $image = mysqli_escape_string($connection, $_SESSION['userData']['picture']);
