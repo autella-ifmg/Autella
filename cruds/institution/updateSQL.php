@@ -30,11 +30,13 @@ if (isset($_POST['inputSubmit'])) {
     if ($connection->query($sql) === TRUE) {
         $message = "Instituição alterada com sucesso!";
     } else {
-        $message = "Error: " . $sql . "<br>" . $connection->error;
+        $message = "Erro ao alterar a instituição!";
+        // $message = "Error: " . $sql . "<br>" . $connection->error;
     }
 
     array_push($_SESSION['debug'], $message);
 
+    // Atualizar dados da instituição
     $sql = 'SELECT * FROM institution WHERE id=' . $_SESSION['userData']['id_institution'];
     $result = mysqli_query($connection, $sql);
 
@@ -44,8 +46,9 @@ if (isset($_POST['inputSubmit'])) {
         $message = "Instituição encontrada!";
     } else {
         $message = "Instituição não encontrada!";
-        $message = "Error: " . $sql . $connection->error;
+        //$message = "Error: " . $sql . $connection->error;
     }
+
     array_push($_SESSION['debug'], $message);
 
     $connection->close();
