@@ -24,8 +24,8 @@
 
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="/cruds/professor/read.php?id=<?php echo $_SESSION['userData']['id']; ?>">Sua conta</a>
-                        <a class="dropdown-item" href="/cruds/institution/read.php?id=<?php echo $_SESSION['userData']['id_institution'] ?>">Sua instituição</a>
+                        <a class="dropdown-item" href="/cruds/professor/readGUI.php?id=<?php echo $_SESSION['userData']['id']; ?>">Sua conta</a>
+                        <a class="dropdown-item" href="/cruds/institution/readGUI.php?id=<?php echo $_SESSION['userData']['id_institution'] ?>">Sua instituição</a>
                         <a class="dropdown-item" href="/utilities/logout.php">Logout</a>
 
                     </div>
