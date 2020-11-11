@@ -86,7 +86,7 @@ if (isset($_POST['inputSubmit'])) {
             $_SESSION['userData'] = $array;
             $message = "Login bem sucedido!";
         } else {
-            $message = "Incorrect password!";
+            $message = "Senha incorreta!";
             //$message = "Error: " . $sql . "<br>" . $connection->error;
         }
     } else {
@@ -104,7 +104,7 @@ if (isset($_POST['inputSubmit'])) {
         $message = "Instituição encontrada!";
     } else {
         $message = "Instituição não encontrada!";
-        //$message = "Errorr: " . $sql . $connection->error;
+        //$message = "Error: " . $sql . $connection->error;
     }
     array_push($_SESSION['debug'], $message);
 

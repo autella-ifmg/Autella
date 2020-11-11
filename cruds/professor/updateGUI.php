@@ -1,72 +1,3 @@
-<?php
-require_once '../../utilities/dbConnect.php';
-if (isset($_POST['inputSubmit'])) {
-    $email = $_POST['inputEmail'];
-    $name = $_POST['inputName'];
-    $oldPassword = $_POST['inputOldPassword'];
-    $newPassword = $_POST['inputNewPassword'];
-
-    $picture = $_FILES['inputImage']['tmp_name'];
-    $picture = file_get_contents($picture);
-    $picture = mysqli_escape_string($connection, $picture);
-
-    if ($picture == "") {
-        $picture = mysqli_escape_string($connection, $_SESSION['userData']['picture']);
-    }
-    if ($newPassword == "") {
-        $newPassword = $oldPassword;
-    }
-
-
-
-    if ($oldPassword == $_SESSION['userData']['password']) {
-        $sql = "UPDATE professor SET email='$email', name='$name', password='$newPassword', picture='$picture' WHERE id=" . $_SESSION['userData']['id'];
-
-        if ($connection->query($sql) === TRUE) {
-            $message = "Dados alterados!";
-        } else {
-            $message = "Error: " . $sql . "<br>" . $connection->error;
-        }
-
-        // Login
-        $sql = "SELECT * FROM professor WHERE email='$email' AND password='$newPassword'";
-        $result = mysqli_query($connection, $sql);
-
-        if (mysqli_num_rows($result) != 0) {
-            $array = mysqli_fetch_array($result);
-            $_SESSION['userData'] = $array;
-        } else {
-            $message = "Senha incorreta!";
-            //$message = "Erro: " . $sql . "<br>" . $connection->error;
-        }
-        array_push($_SESSION['debug'], $message);
-
-        $sql = 'SELECT * FROM institution WHERE id=' . $_SESSION['userData']['id_institution'];
-
-        $result = mysqli_query($connection, $sql);
-        if (mysqli_num_rows($result) != 0) {
-            $array = mysqli_fetch_array($result);
-            $_SESSION['userInstitutionData'] = $array;
-            $message = "Instituição encontrada!";
-        } else {
-            $message = "Instituição não encontrada!";
-            //$message = "Error: " . $sql . "<br>" . $connection->error;
-        }
-        array_push($_SESSION['debug'], $message);
-    } else {
-        $message = "Senha atual incorreta!";
-    }
-
-    $connection->close();
-    array_push($_SESSION['debug'], $message);
-
-    header("Location: ../../index.php");
-}
-?>
-
-
-
-
 <!DOCTYPE html>
 
 <html class="w-100">
@@ -86,8 +17,7 @@ if (isset($_POST['inputSubmit'])) {
     <div class="container w-100 align-items-center">
         <h1 class="text-center" style="margin: 8% 0">Autella | Alterar conta</h1>
 
-        <form method="post" enctype="multipart/form-data" class="row justify-content-around needs-validation" novalidate>
-
+        <form action="updateSQL.php" method="POST" enctype="multipart/form-data" class="row justify-content-around needs-validation" novalidate>
             <div class="col-12 col-sm-10 col-md-5" style="max-height: 30rem">
                 <img id="userPicture" class="w-100 h-100" src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['userData']['picture']); ?>" />
                 <label class="position-absolute m-0 p-0 pr-3" style="bottom:0; right:0" for="inputImage"><img class="p-2" style="width:64px; background-color: white;" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/upload.svg" alt=""></label>
@@ -95,34 +25,24 @@ if (isset($_POST['inputSubmit'])) {
             </div>
 
             <div class="col-12 col-sm-10 col-md-5 mt-3">
-                <div class="form-group">
-                    <label for="inputNome">Nome</label>
-                    <input type="text" class="form-control" id="inputName" name="inputName" value="<?php echo $_SESSION['userData']['name'] ?>" required>
-                </div>
+                <label>Nome</label>
+                <input type="text" class="form-control mb-3" name="inputName" value="<?php echo $_SESSION['userData']['name'] ?>" required>
 
-                <div class="form-group">
-                    <label for="inputEmail">Email</label>
-                    <input type="email" class="form-control" id="inputEmail" name="inputEmail" value="<?php echo $_SESSION['userData']['email']; ?>" required>
-                </div>
+                <label>Email</label>
+                <input type="email" class="form-control mb-3" name="inputEmail" value="<?php echo $_SESSION['userData']['email']; ?>" required>
 
-                <div class="form-group">
-                    <label for="inputOldPassword">Senha atual</label>
-                    <input type="password" class="form-control" id="inputOldPassword" name="inputOldPassword" required>
-                </div>
+                <label>Senha atual</label>
+                <input type="password" class="form-control mb-3" name="inputOldPassword" required>
 
-                <div class="form-group">
-                    <label for="inputNewPassword">Nova senha</label>
-                    <input type="password" class="form-control" id="inputNewPassword" name="inputNewPassword">
-                </div>
+                <label>Nova senha</label>
+                <input type="password" class="form-control mb-3" name="inputNewPassword">
 
-                <div class="form-group">
-                    <label for="inputConfirmPassword">Confirmar nova senha</label>
-                    <input type="password" class="form-control" id="inputConfirmPassword" name="inputConfirmPassword">
-                </div>
+                <label>Confirmar nova senha</label>
+                <input type="password" class="form-control mb-3" name="inputConfirmPassword">
 
                 <div class="d-flex flex-row justify-content-between">
-                    <a class="btn btn-danger" href="../../index.php">Cancelar</a>
-                    <input type="submit" class="btn btn-success" name="inputSubmit" value="Alterar">
+                    <a class="btn btn-lg btn-danger" href="../../index.php">Cancelar</a>
+                    <input type="submit" class="btn btn-lg btn-success" name="inputSubmit" value="Alterar">
                 </div>
             </div>
         </form>
@@ -131,6 +51,8 @@ if (isset($_POST['inputSubmit'])) {
 
     <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- Preview da imagem -->
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {

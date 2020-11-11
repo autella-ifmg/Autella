@@ -42,7 +42,7 @@
                     <a class="btn btn-danger col-4" href="../../index.php">Voltar</a>
 
                     <?php if ($_GET['id'] == $_SESSION['userData']['id']) {
-                        echo '<a class="btn btn-success col-4" href="update.php">Alterar conta</a>';
+                        echo '<a class="btn btn-success col-4" href="updateGUI.php">Alterar conta</a>';
                     }
                     ?>
                 </div>

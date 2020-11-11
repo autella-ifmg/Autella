@@ -11,6 +11,7 @@
 - [X] User update
 - [ ] User delete
 - [ ] Mudar no banco de dados de "professor" para "user"
+- [ ] Confirmação de senhas com js
 
 
 
@@ -39,6 +40,7 @@
 - [X] Institution create
 - [X] Institution read
 - [X] Institution update
+- [ ] Confirmação de senhas com js
 - [ ] Institution delete
 - [ ] Impedir mais de um coordenador por instituição
 - [ ] Dar a opção de "Sou professor" na hora do cadastro, para coordenadores que não são professores -> perguntar para o kdú se isso existe
