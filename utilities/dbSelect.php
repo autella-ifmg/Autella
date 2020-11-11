@@ -12,14 +12,13 @@ function selectFields()
         while ($row = mysqli_fetch_row($result)) {
             array_push($array, $row);
         }
+        $message = "Áreas selecionadas com sucesso!";
     } else {
-        $message = "Erro: " . $sql . "<br>" . $connection->error;
+        $message = "Erro ao selecionar Áreas!";
+        // $message = "Error: " . $sql . "<br>" . $connection->error;
     }
 
-    // echo var_dump($array);
-    // echo $array[0][1];
-
-    $_SESSION['message'] = $message;
+    array_push($_SESSION['debug'], $message);
 
     return $array;
 }
@@ -49,14 +48,16 @@ function selectDisciplines()
         while ($row = mysqli_fetch_row($result)) {
             array_push($array, $row);
         }
+        $message = "Disciplinas selecionadas com sucesso!";
     } else {
-        $message = "Erro: " . $sql . "<br>" . $connection->error;
+        $message = "Erro ao selecionar disciplinas!";
+        //$message = "Erro: " . $sql . "<br>" . $connection->error;
     }
 
     // echo var_dump($array);
     // echo $array[0][1];
 
-    $_SESSION['message'] = $message;
+    array_push($_SESSION['debug'], $message);
     $connection->close();
 
     return $array;
@@ -74,14 +75,13 @@ function selectRoles()
         while ($row = mysqli_fetch_row($result)) {
             array_push($array, $row);
         }
+        $message = "Cargos selecionados com sucesso!";
     } else {
-        $message = "Erro: " . $sql . "<br>" . $connection->error;
+        $message = "Erro ao selecionar cargos!";
+        // $message = "Error: " . $sql . "<br>" . $connection->error;
     }
 
-    // echo var_dump($array);
-    // echo $array[0][1];
-
-    $_SESSION['message'] = $message;
+    array_push($_SESSION['debug'], $message);
 
     return $array;
 }
@@ -111,14 +111,13 @@ function selectInstitutions()
         while ($row = mysqli_fetch_row($result)) {
             array_push($array, $row);
         }
+        $message = "Instituições selecionadas com sucesso!";
     } else {
-        $message = "Erro: " . $sql . "<br>" . $connection->error;
+        $message = "Erro ao selecionar instituições!";
+        // $message = "Error: " . $sql . "<br>" . $connection->error;
     }
 
-    // echo var_dump($array);
-    // echo $array[0][1];
-
-    $_SESSION['message'] = $message;
+    array_push($_SESSION['debug'], $message);
 
     return $array;
 }

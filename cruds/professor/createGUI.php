@@ -1,3 +1,5 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php'; ?>
+
 <!DOCTYPE html>
 
 <html class="h-100 w-100">
@@ -10,7 +12,6 @@
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
     ?>
 </head>
 
@@ -52,7 +53,7 @@
             <div class="row justify-content-between mb-0 mx-1    mb-sm-5">
                 <div class="col-12 mt-3    col-sm-8 mt-sm-0     row">
                     <label class="col-12 pl-0">Instituição</label>
-                    <select class="dropdown-toggle btn border col-10" name="inputInstitutionId" id="rolesList">
+                    <select class="dropdown-toggle btn border col-10" name="inputInstitutionId">
                         <?php institutionNamesToDropdownItems() ?>
                     </select>
                     <a class="col-2 p-0 pl-4" data-toggle="tooltip" data-placement="bottom" title="Cadastrar instituição" href="../institution/createGUI.php">
@@ -77,6 +78,9 @@
 
     <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
+    <?php
+            $php_array = selectDisciplines();
+            ?>
     <script>
         // Quando trocar a área, exibir apenas as disciplinas correspondentes a ela
         function updateDisciplines() {
