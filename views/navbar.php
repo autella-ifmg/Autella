@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </li>
-            <img class="rounded-circle" style="width: 64px; height: 64px" src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['userData']['picture']); ?>" />
+            <img class="rounded-circle" style="width: 64px; height: 64px" src="/images/users/<?php echo $_SESSION['userData']['id'] ?>.jpeg" />
         </ul>
     </div>
 </nav>

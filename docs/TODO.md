@@ -1,7 +1,6 @@
 ## User
 - [ ] Create
 	- [X] Alterar modal para arquivos próprios
-	- [X] Ao criar conta, inserir imagem padrão	
 	- [X] Dropdown de "Área"
 	- [X] Dropdown de "Disciplina"
 	- [X] Botão de cancelar
@@ -14,6 +13,7 @@
 	- [X] Selecionar instituição
 	- [X] Caixa de confirmar senha
 	- [ ] Impedir mais de um coordenador por instituição
+	- [ ] Ao criar conta, inserir imagem padrão	
 	- [ ] Verificação de campos
 		- [X] Vazios
 		- [ ] Campo de confirmar senha
@@ -63,11 +63,11 @@
 
 - [X] Criar tabela "Área" no banco de dados
 - [X] Criar tabela "Disciplina" no banco de dado
+- [ ] Eliminar coluna de "picture" do usuário
+- [ ] Eliminar coluna de "picture" da instituição
 - [ ] Mudar de "professor" para "user"
 - [ ] professor -> coluna de "último acesso em"
 - [ ] professor -> coluna de status ("online", "offline", "conta desativada")
-- [ ] substituir 'picture' por 'image' no user e institution
-
 
 ## Geral
 - [X] Redirecionar da homepage para outras páginas quando cadastrado
