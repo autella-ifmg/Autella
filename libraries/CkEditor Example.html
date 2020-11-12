@@ -17,7 +17,7 @@
     <form action="" id="formao">
         <div id="editor">
             <p>This is the initial editor content.</p>
-            
+
         </div>
         <input type="button" value="Salvar" id="submit">
     </form>
@@ -38,18 +38,17 @@
             let editorData = document.querySelector('#editor').children;
 
             let string = "";
-            for(let i = 0; i < editorData.length; i++){
+            for (let i = 0; i < editorData.length; i++) {
                 string += editorData[i].outerHTML;
-                string +="\n";
+                string += "\n";
             }
             // console.log(string);
 
-
             var invisibleInput = document.createElement("input");
-            invisibleInput.setAttribute("style", "display: none");
+            //invisibleInput.setAttribute("style", "display: none");
             invisibleInput.setAttribute("type", "text");
             invisibleInput.setAttribute("value", string);
-		// adicionar name para pegar no $_POST
+            invisibleInput.setAttribute("name", "conteudoDoEditor");
 
             var formulario = document.getElementById("#formao");
             formao.appendChild(invisibleInput);
