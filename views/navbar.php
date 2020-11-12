@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </li>
-            <img class="rounded-circle" style="width: 64px; height: 64px" src="/images/users/<?php echo $_SESSION['userData']['id'] ?>.jpeg" />
+            <img class="rounded-circle" style="width: 64px; height: 64px" src="/images/users/<?php echo $_SESSION['userData']['id'] ?>.jpeg" <?php echo '?' . time() ?> />
         </ul>
     </div>
 </nav>

@@ -19,7 +19,7 @@
 
         <div class="row justify-content-around">
             <div class="col-12 col-sm-10 col-md-5" style="max-height: 30rem">
-                <img class="w-100 h-100" src="/images/users/<?php echo $otherProfileId ?>.jpeg" />
+                <img class="w-100 h-100" src="<?php echo $otherProfileImage ?>" />
             </div>
 
             <div class="col-12 col-sm-10 col-md-5 mt-3">

@@ -7,7 +7,7 @@ if (!isset($_SESSION['userData'])) {
 } else if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $sql = "SELECT professor.name, professor.email, field.name, discipline.name, professor.picture , role.name, professor.id 
+    $sql = "SELECT professor.name, professor.email, field.name, discipline.name, role.name, professor.id 
     FROM discipline 
     JOIN field ON discipline.id_field = field.id 
     JOIN professor ON professor.id_discipline = discipline.id 
@@ -19,13 +19,14 @@ if (!isset($_SESSION['userData'])) {
         $array = mysqli_fetch_array($result);
         $_SESSION['otherProfileData'] = $array;
 
-        $otherProfileImage = $array[4];
+        
         $otherProfileName = $array[0];
         $otherProfileEmail = $array[1];
         $otherProfileField = $array[2];
         $otherProfileDiscipline = $array[3];
-        $otherProfileRole = $array[5];
-        $otherProfileId = $array[6];
+        $otherProfileRole = $array[4];
+        $otherProfileId = $array[5];
+        $otherProfileImage = '/images/users/' . $otherProfileId . '.jpeg?' . time();
     } else {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/404.php';
         die();
