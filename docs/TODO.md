@@ -13,12 +13,12 @@
 	- [X] Selecionar instituição
 	- [X] Caixa de confirmar senha
 	- [X] Usar CropperJS na atualização da imagem
-	- [ ] Impedir mais de um coordenador por instituição
 	- [ ] Ao criar conta, inserir imagem padrão	
 	- [ ] Verificação de campos
 		- [X] Vazios
 		- [ ] Campo de confirmar senha
 		- [X] Impedir contas com o mesmo email
+		- [ ] Impedir mais de um coordenador por instituição
 	- [ ] Mudar de "professor" para "user"
 	
 - [ ] Update
@@ -28,12 +28,11 @@
 	- [X] Permitir apenas o envio de imagens
 	- [X] Preview da imagem
 	- [ ] Usar CropperJS na atualização da imagem
-	- [ ] Ao criar conta, inserir imagem padrão	
-	- [ ] Impedir mais de um coordenador por instituição
 	- [ ] Verificação de campos
 		- [X] Vazios
 		- [ ] Campo de confirmar senha
 		- [ ] Impedir contas com o mesmo email
+		- [ ] Impedir mais de um coordenador por instituição
 
 - [X] Read
 	- [X] Fazer campos de "Área" e "Disciplina" funcionarem
@@ -87,7 +86,7 @@
 - [ ] Tabela de instituição (coordenador é responsável por administrar a página da instituição)
 
 ## Segurança
-- [ ] Tirar senha do $_SESSION['userData'] -> implicações no professor/update.php
+- [ ] Tirar senha do $_SESSION['userData'] -> implicações no professor/updateSQL.php
 - [ ] Criptografia de senhas
 
 ## Observações
