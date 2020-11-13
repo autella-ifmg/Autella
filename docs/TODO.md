@@ -19,7 +19,7 @@
 		- [ ] Campo de confirmar senha
 		- [X] Impedir contas com o mesmo email
 		- [ ] Impedir mais de um coordenador por instituição
-	- [ ] Mudar de "professor" para "user"
+	- [X] Mudar de "professor" para "user"
 	
 - [ ] Update
 	- [X] Alterar modal para arquivos próprios
@@ -66,7 +66,7 @@
 
 - [X] Criar tabela "Área" no banco de dados
 - [X] Criar tabela "Disciplina" no banco de dados
-- [ ] Mudar de "professor" para "user"
+- [X] Mudar de "professor" para "user"
 - [X] Eliminar coluna de "picture" do usuário
 - [ ] Eliminar coluna de "picture" da instituição
 - [ ] professor -> coluna de "último acesso em"

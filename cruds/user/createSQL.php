@@ -9,12 +9,12 @@ if (isset($_POST['inputSubmit'])) {
     $id_role = mysqli_escape_string($connection, $_POST['inputRoleId']);
     $id_institution = mysqli_escape_string($connection, $_POST['inputInstitutionId']);
 
-    $sql = "SELECT id FROM professor WHERE email='$email';";
+    $sql = "SELECT id FROM user WHERE email='$email';";
     $result = mysqli_query($connection, $sql);
     if (mysqli_num_rows($result) != 0) {
         $message = "Email já está cadastrado no sistema!";
     } else {
-        $sql = "INSERT INTO professor (email, name, password, id_discipline, id_role, id_institution) VALUES 
+        $sql = "INSERT INTO user (email, name, password, id_discipline, id_role, id_institution) VALUES 
                 ('$email', '$name', '$password', '$id_discipline', '$id_role', '$id_institution');";
 
         if ($connection->query($sql) === TRUE) {

@@ -10,12 +10,12 @@ if (isset($_POST['inputSubmit'])) {
     $password = mysqli_real_escape_string($connection, $_POST['inputPassword']);
 
     // See if email exists in database
-    $sql = "SELECT * FROM professor WHERE email='$email'";
+    $sql = "SELECT * FROM user WHERE email='$email'";
     $result = mysqli_query($connection, $sql);
 
     if (mysqli_num_rows($result) != 0) {
         // Check if email and password match
-        $sql = "SELECT * FROM professor WHERE email='$email' AND password='$password'";
+        $sql = "SELECT * FROM user WHERE email='$email' AND password='$password'";
         $result = mysqli_query($connection, $sql);
 
         if (mysqli_num_rows($result) != 0) {

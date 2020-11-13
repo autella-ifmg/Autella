@@ -20,7 +20,7 @@ if (isset($_POST['inputSubmit'])) {
     }
 
     if ($oldPassword == $_SESSION['userData']['password']) {
-        $sql = "UPDATE professor SET email='$email', name='$name', password='$newPassword', picture='$image' 
+        $sql = "UPDATE user SET email='$email', name='$name', password='$newPassword', picture='$image' 
                 WHERE id=" . $_SESSION['userData']['id'];
 
         if ($connection->query($sql) === TRUE) {
@@ -32,7 +32,7 @@ if (isset($_POST['inputSubmit'])) {
 
 
         // Login
-        $sql = "SELECT * FROM professor WHERE email='$email' AND password='$newPassword'";
+        $sql = "SELECT * FROM user WHERE email='$email' AND password='$newPassword'";
         $result = mysqli_query($connection, $sql);
 
         if (mysqli_num_rows($result) != 0) {

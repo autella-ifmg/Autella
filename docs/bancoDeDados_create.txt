@@ -35,7 +35,7 @@ CREATE TABLE `db_autella_local`.`role` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `db_autella_local`.`professor` (
+CREATE TABLE `db_autella_local`.`user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(64) NOT NULL,
   `name` varchar(64) NOT NULL,
@@ -60,10 +60,10 @@ CREATE TABLE `db_autella_local`.`subject`(
 CREATE TABLE `db_autella_local`.`question`(
 	`id` INT NOT NULL AUTO_INCREMENT,
     `id_subject` INT,
-	`id_professor` INT,
+	`id_user` INT,
     `enunciate` TEXT,
     `correctAnswer` varchar(64),
     PRIMARY KEY (`id`),
     FOREIGN KEY (`id_subject`) REFERENCES `subject`(`id`),
-    FOREIGN KEY (`id_professor`) REFERENCES `professor`(`id`)    
+    FOREIGN KEY (`id_user`) REFERENCES `user`(`id`)    
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

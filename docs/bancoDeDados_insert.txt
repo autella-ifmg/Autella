@@ -37,19 +37,19 @@ INSERT INTO `db_autella_local`.`institution` (`id`, `full_name`, `abbreviation`,
 
 
 
-INSERT INTO `db_autella_local`.`professor` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
+INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
 VALUES ('adilson.ribeiro@ifmg.edu.br', 'Adilson Ribeiro de Oliveira', 'adilson', '8', '1', '2');
 
-INSERT INTO `db_autella_local`.`professor` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
+INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
 VALUES ('aurelio.ferreira@ifmg.edu.br', 'Aurélio Alves Ferreira', 'aurelio', '3', '1', '2');
 
-INSERT INTO `db_autella_local`.`professor` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
+INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
 VALUES ('lawrence.andrade@ifmg.edu.br', 'Lawrence de Andrade Magalhães Gomes', 'lawrence', '2', '0', '2');
 
-INSERT INTO `db_autella_local`.`professor` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
+INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
 VALUES ('aline.presot@ifmg.edu.br', 'Aline Alves Presot', 'aline', '1', '3', '2');
 
-INSERT INTO `db_autella_local`.`professor` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
+INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
 VALUES ('rui.mauricio@ifmg.edu.br', 'Rui Evangelista Maurício', 'rui', '2', '2', '2');
 
 

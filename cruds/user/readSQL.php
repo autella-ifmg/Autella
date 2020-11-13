@@ -7,12 +7,12 @@ if (!isset($_SESSION['userData'])) {
 } else if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $sql = "SELECT professor.name, professor.email, field.name, discipline.name, role.name, professor.id 
+    $sql = "SELECT user.name, user.email, field.name, discipline.name, role.name, user.id 
     FROM discipline 
     JOIN field ON discipline.id_field = field.id 
-    JOIN professor ON professor.id_discipline = discipline.id 
-    JOIN role ON professor.id_role = role.id 
-    AND professor.id = '$id';";
+    JOIN user ON user.id_discipline = discipline.id 
+    JOIN role ON user.id_role = role.id 
+    AND user.id = '$id';";
 
     $result = mysqli_query($connection, $sql);
     if (mysqli_num_rows($result) != 0) {
