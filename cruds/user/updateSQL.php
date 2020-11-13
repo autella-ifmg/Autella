@@ -5,7 +5,7 @@ if (isset($_POST['inputSubmit'])) {
     $email = mysqli_escape_string($connection, $_POST['inputEmail']);
     $name = mysqli_escape_string($connection, $_POST['inputName']);
     $oldPassword = mysqli_escape_string($connection, $_POST['inputOldPassword']);
-    $newPassword = mysqli_escape_string($connection, $_POST['inputNewPassword']);
+    $newPassword = mysqli_escape_string($connection, $_POST['inputPassword']);
 
     // Image upload before CropperJS
     // $image = $_FILES['inputImage']['tmp_name'];

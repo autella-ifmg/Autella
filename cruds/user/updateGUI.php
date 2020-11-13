@@ -40,10 +40,10 @@
                 <input type="password" class="form-control mb-3" name="inputOldPassword" required>
 
                 <label>Nova senha</label>
-                <input type="password" class="form-control mb-3" name="inputNewPassword">
+                <input type="password" class="form-control mb-3" name="inputPassword" id="inputPassword">
 
                 <label>Confirmar nova senha</label>
-                <input type="password" class="form-control mb-3" name="inputConfirmPassword">
+                <input type="password" class="form-control mb-3" name="inputConfirmPassword" id="inputConfirmPassword">
 
                 <div class="d-flex flex-row justify-content-between">
                     <a class="btn btn-lg btn-danger" href="../../index.php">Cancelar</a>

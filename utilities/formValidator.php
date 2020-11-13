@@ -10,13 +10,37 @@ echo "
         // Loop over them and prevent submission
         var validation = Array.prototype.filter.call(forms, function(form) {
             form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
+                if (checarSenhas() === false) {
                     event.preventDefault();
                     event.stopPropagation();
-                }
-                form.classList.add('was-validated');
+                } else {
+                    // Bootstrap verification
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    
+                    form.classList.add('was-validated');
+                }   
             }, false);
         });
     }, false);
 })();
-</script>";
+
+
+
+// Verify if inputPassword and inputConfirmPassword match
+function checarSenhas() {
+    let p1 = document.querySelector('#inputPassword');
+    let p2 = document.querySelector('#inputConfirmPassword');
+
+    if(p1.value == p2.value){
+        return true;
+    } else {
+        p1.classList.add('is-invalid');
+        p2.classList.add('is-invalid');
+        return false;
+    }
+}
+</script>
+";

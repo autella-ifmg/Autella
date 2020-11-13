@@ -16,7 +16,7 @@
 	- [ ] Ao criar conta, inserir imagem padrão	
 	- [ ] Verificação de campos
 		- [X] Vazios
-		- [ ] Campo de confirmar senha
+		- [X] Campo de confirmar senha
 		- [X] Impedir contas com o mesmo email
 		- [ ] Impedir mais de um coordenador por instituição
 	- [X] Mudar de "professor" para "user"
@@ -27,10 +27,10 @@
 	- [X] Alterar e embelezar
 	- [X] Permitir apenas o envio de imagens
 	- [X] Preview da imagem
-	- [ ] Usar CropperJS na atualização da imagem
+	- [X] Usar CropperJS
 	- [ ] Verificação de campos
 		- [X] Vazios
-		- [ ] Campo de confirmar senha
+		- [X] Campo de confirmar senha
 		- [ ] Impedir contas com o mesmo email
 		- [ ] Impedir mais de um coordenador por instituição
 
@@ -52,6 +52,7 @@
 - [X] Read
 	- [ ] Foto -> Banner
 - [X] Update
+	- [ ] Usar CropperJS
 	- [X] Apenas o coordenador da instituição pode alterar seus dados
 	- [ ] Foto -> Banner
 	- [ ] Transformar campo de estado em dropdown

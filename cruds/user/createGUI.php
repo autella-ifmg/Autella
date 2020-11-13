@@ -28,10 +28,11 @@
             <input type="email" class="form-control mb-3" name="inputEmail" required>
 
             <label>Nova senha</label>
-            <input type="password" class="form-control mb-3" name="inputPassword" required>
+            <input type="password" class="form-control mb-3" id="inputPassword" name="inputPassword" required>
+            
 
             <label>Confirmar nova senha</label>
-            <input type="password" class="form-control mb-3" name="inputConfirmPassword" required>
+            <input type="password" class="form-control mb-3" id="inputConfirmPassword" name="inputConfirmPassword" required>
 
 
             <div class="row justify-content-between mb-0 mx-1    mb-sm-3">
@@ -78,9 +79,6 @@
 
     <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
-    <?php
-            $php_array = selectDisciplines();
-            ?>
     <script>
         // Quando trocar a área, exibir apenas as disciplinas correspondentes a ela
         function updateDisciplines() {
@@ -111,6 +109,8 @@
         // Quando o documento estiver carregado, executar o método updateDisciplines()
         document.addEventListener('DOMContentLoaded', updateDisciplines(), false);
     </script>
+
+
 </body>
 
 </html>
