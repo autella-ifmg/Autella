@@ -43,7 +43,6 @@ CREATE TABLE `db_autella_local`.`professor` (
   `id_discipline` int,
   `id_role` int NOT NULL,
   `id_institution` int,
-  `picture` longblob,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`id_discipline`) REFERENCES `discipline`(id),
   FOREIGN KEY (`id_role`) REFERENCES `role`(id),
