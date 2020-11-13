@@ -10,5 +10,4 @@ if (isset($_POST['image'])) {
 	$data = base64_decode($data);
 	$image_name = 'upload/' . time() . '.png';
 	file_put_contents($image_name, $data);
-	echo $image_name;
 }
