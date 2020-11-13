@@ -12,12 +12,14 @@
 	- [X] Pegar cargo do banco de dados
 	- [X] Selecionar instituição
 	- [X] Caixa de confirmar senha
+	- [X] Usar CropperJS na atualização da imagem
 	- [ ] Impedir mais de um coordenador por instituição
 	- [ ] Ao criar conta, inserir imagem padrão	
 	- [ ] Verificação de campos
 		- [X] Vazios
 		- [ ] Campo de confirmar senha
 		- [X] Impedir contas com o mesmo email
+	- [ ] Mudar de "professor" para "user"
 	
 - [ ] Update
 	- [X] Alterar modal para arquivos próprios
@@ -25,6 +27,8 @@
 	- [X] Alterar e embelezar
 	- [X] Permitir apenas o envio de imagens
 	- [X] Preview da imagem
+	- [ ] Usar CropperJS na atualização da imagem
+	- [ ] Ao criar conta, inserir imagem padrão	
 	- [ ] Impedir mais de um coordenador por instituição
 	- [ ] Verificação de campos
 		- [X] Vazios
@@ -62,10 +66,10 @@
 ## Database
 
 - [X] Criar tabela "Área" no banco de dados
-- [X] Criar tabela "Disciplina" no banco de dado
-- [ ] Eliminar coluna de "picture" do usuário
-- [ ] Eliminar coluna de "picture" da instituição
+- [X] Criar tabela "Disciplina" no banco de dados
 - [ ] Mudar de "professor" para "user"
+- [X] Eliminar coluna de "picture" do usuário
+- [ ] Eliminar coluna de "picture" da instituição
 - [ ] professor -> coluna de "último acesso em"
 - [ ] professor -> coluna de status ("online", "offline", "conta desativada")
 
