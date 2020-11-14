@@ -102,6 +102,12 @@
 	* Quando as imagens não estiverem atualizando, pode ser que o navegador esteja guardando-as em cache.
 	Para evitar isso, faça o seguinte: adicione "?1222259157.415" no final do src da imagem, onde "1222259157.415" é o horário do servidor. Ex.: <img src="picture.jpg?1222259157.415" alt="">
 	A função de tempo no php é "time()", então ficaria <img src="/images/users/2.jpeg<?php echo '?' . time() ?>" />
+	*index.php com 403 em todas as pastas para evitar acessos indevidos
+	*if($_Session['userData']['status'] == 2){
+		$otherProfileName = 'Conta desativada';
+	} else {
+		$otherProfileName = array['name'];
+	}
 
 
 ## Possíveis novas funções
