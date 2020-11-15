@@ -55,3 +55,10 @@ VALUES ('rui.mauricio@ifmg.edu.br', 'Rui Evangelista Maurício', 'rui', '2', '2'
 
 
 
+INSERT INTO `db_autella_local`.`subject` (`id`, `id_discipline`, `name`) VALUES ('1', '1', 'Revolução Russa');
+INSERT INTO `db_autella_local`.`subject` (`id`, `id_discipline`, `name`) VALUES ('2', '1', 'Cultura Africana');
+INSERT INTO `db_autella_local`.`subject` (`id`, `id_discipline`, `name`) VALUES ('3', '1', 'Europa destruindo o mundo');
+
+
+
+

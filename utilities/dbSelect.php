@@ -63,6 +63,20 @@ function selectDisciplines()
     return $array;
 }
 
+function disciplineNameToUpdate($id_discipline)
+{
+    $array = selectDisciplines();
+
+    //var_dump($array);
+
+    for ($i = 0; $i < count($array); $i++) {
+
+        if ($array[$i][0] == $id_discipline) {
+            return $array[$i][2] . " - ";
+        }
+    }
+}
+
 function selectRoles()
 {
     require $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
@@ -133,4 +147,79 @@ function institutionNamesToDropdownItems()
             echo '<option value="'. $array[$i][0] .'" class="dropdown-item">' . $array[$i][1] . '</option>';
         }
     }
+}
+
+function selectSubjects()
+{
+    require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
+
+    $sql = "SELECT * FROM subject;";
+    $result = mysqli_query($connection, $sql);
+    $array = [];
+
+    if (mysqli_num_rows($result) != 0) {
+        while ($row = mysqli_fetch_array($result)) {
+            array_push($array, $row);
+        }
+        $message = "Matérias selecionadas com sucesso!";
+    } else {
+        $message = "Erro ao selecionar matérias!";
+        //$message = "Erro: " . $sql . "<br>" . $connection->error;
+    }
+
+    // echo var_dump($array);
+    // echo $array[0][1];
+
+    array_push($_SESSION['debug'], $message);
+
+    return $array;
+}
+
+function subjectNamesToDropdownItems($id_discipline)
+{
+    $array = selectSubjects();
+
+    for ($i = 0; $i < count($array); $i++) {
+
+        if ($array[$i][1] = $id_discipline) {
+            echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" type="checkbox" class="dropdown-item" value="' . $array[$i][0] . '">' . $array[$i][2] . '</option>';
+        }
+    }
+}
+
+function subjectNamesToUpdate($id_subject)
+{
+    $array = selectSubjects();
+
+    for ($i = 0; $i < count($array); $i++) {
+        if ($array[$i][0] == $id_subject) {
+            return $array[$i][2];
+        }
+    }
+}
+
+function selectUserQuestions($id_user)
+{
+    require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
+
+    $sql = "SELECT * FROM question WHERE id_user = '$id_user';";
+    $result = mysqli_query($connection, $sql);
+    $array = [];
+
+    if (mysqli_num_rows($result) != 0) {
+        while ($row = mysqli_fetch_array($result)) {
+            array_push($array, $row);
+        }
+        $message = "Questões selecionadas com sucesso!";
+    } else {
+        $message = "Erro ao selecionar questões!";
+        //$message = "Erro: " . $sql . "<br>" . $connection->error;
+    }
+
+    // echo var_dump($array);
+    // echo $array[0][1];
+
+    array_push($_SESSION['debug'], $message);
+
+    return $array;
 }
