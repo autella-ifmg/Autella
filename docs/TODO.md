@@ -62,6 +62,21 @@
 	- [ ] Impedir instituições iguais
 - [ ] Delete
 
+## Question
+- [ ] Create
+	- [ ] Permitir a seleção de mais de uma matéria
+ 	- [ ] Travar o selectAC enquanto o selectQA ainda não tiver sido preenchido
+- [ ] Update
+	- [ ] Exibir mais de uma matéria
+	- [ ] Edições na janela de visualização
+	- [ ] Alterar id quando as disciplinas mudarem
+	- [ ] Executar HTML dentro do CKEditor
+	- [ ] Adicionar ícone para permitir edição
+	- [ ] Adicionar paginação
+	- [ ] Adicionar filtros de pesquisa
+	- [ ] Exibir dificuldade da questão
+- [ ] Help
+	- [ ] Adicionar seções de ajuda
 
 ## Database
 

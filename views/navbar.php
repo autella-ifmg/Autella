@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/cruds/questao/create.php">Criar questão</a>
+                <a class="nav-link" href="/cruds/questao/createGUI.php">Criar questão</a>
             </li>
             <li>
                 <a class="nav-link" href="/cruds/provaSimples/create.php">Prova Simples</a>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </li>
-            <img class="rounded-circle" style="width: 64px; height: 64px" src="/images/users/<?php echo $_SESSION['userData']['id'] ?>.jpeg<?php echo '?' . time() ?>"  />
+            <img class="rounded-circle" style="width: 64px; height: 64px" src="/images/users/<?php echo $_SESSION['userData']['id'] ?>.jpeg<?php echo '?' . time() ?>" />
         </ul>
     </div>
 </nav>

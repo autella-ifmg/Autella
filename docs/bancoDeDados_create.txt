@@ -61,11 +61,14 @@ CREATE TABLE `db_autella_local`.`question`(
 	`id` INT NOT NULL AUTO_INCREMENT,
   `date` DATETIME,
   `id_user` INT,
+  `id_discipline` INT,
   `id_subject` INT,
-  `dificulty' INT,
+  `dificulty` INT,
   `enunciate` TEXT,
   `correctAnswer` varchar(64),
+  `correctAnswerEnunciate` TEXT,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`id_subject`) REFERENCES `subject`(`id`),
-  FOREIGN KEY (`id_user`) REFERENCES `user`(`id`)    
+  FOREIGN KEY (`id_user`) REFERENCES `user`(`id`),
+  FOREIGN KEY (`id_discipline`) REFERENCES `discipline`(`id`),
+  FOREIGN KEY (`id_subject`) REFERENCES `subject`(`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

@@ -28,10 +28,10 @@ function fieldNamesToDropdownItems()
     $array = selectFields();
 
     for ($i = 0; $i < count($array); $i++) {
-        if($i == 0){
-            echo '<option selected="selected" value="'. $array[$i][0] .'" class="dropdown-item">' . $array[$i][1] . '</option>';
+        if ($i == 0) {
+            echo '<option selected="selected" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
         } else {
-            echo '<option value="'. $array[$i][0] .'" class="dropdown-item">' . $array[$i][1] . '</option>';
+            echo '<option value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
         }
     }
 }
@@ -105,10 +105,10 @@ function roleNamesToDropdownItems()
     $array = selectRoles();
 
     for ($i = 0; $i < count($array); $i++) {
-        if($i == 0){
-            echo '<option selected="selected" value="'. $array[$i][0] .'" class="dropdown-item">' . $array[$i][1] . '</option>';
+        if ($i == 0) {
+            echo '<option selected="selected" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
         } else {
-            echo '<option value="'. $array[$i][0] .'" class="dropdown-item">' . $array[$i][1] . '</option>';
+            echo '<option value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
         }
     }
 }
@@ -141,10 +141,10 @@ function institutionNamesToDropdownItems()
     $array = selectInstitutions();
 
     for ($i = 0; $i < count($array); $i++) {
-        if($i == 0){
-            echo '<option selected="selected" value="'. $array[$i][0] .'" class="dropdown-item">' . $array[$i][1] . '</option>';
+        if ($i == 0) {
+            echo '<option selected="selected" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
         } else {
-            echo '<option value="'. $array[$i][0] .'" class="dropdown-item">' . $array[$i][1] . '</option>';
+            echo '<option value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
         }
     }
 }
@@ -180,8 +180,7 @@ function subjectNamesToDropdownItems($id_discipline)
     $array = selectSubjects();
 
     for ($i = 0; $i < count($array); $i++) {
-
-        if ($array[$i][1] = $id_discipline) {
+        if ($array[$i][1] == $id_discipline) {
             echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" type="checkbox" class="dropdown-item" value="' . $array[$i][0] . '">' . $array[$i][2] . '</option>';
         }
     }
@@ -198,11 +197,11 @@ function subjectNamesToUpdate($id_subject)
     }
 }
 
-function selectUserQuestions($id_user)
+function selectDisciplineQuestions($id_discipline)
 {
     require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
 
-    $sql = "SELECT * FROM question WHERE id_user = '$id_user';";
+    $sql = "SELECT * FROM question WHERE id_discipline = '$id_discipline';";
     $result = mysqli_query($connection, $sql);
     $array = [];
 
@@ -222,4 +221,15 @@ function selectUserQuestions($id_user)
     array_push($_SESSION['debug'], $message);
 
     return $array;
+}
+
+function selectRowsQuantTableQuestion($id_discipline)
+{
+    require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
+
+    $sql = "SELECT * from question WHERE id_discipline = '$id_discipline';";
+    $result = mysqli_query($connection, $sql);
+    $rowsQuant = mysqli_num_rows($result);
+
+    return $rowsQuant;
 }

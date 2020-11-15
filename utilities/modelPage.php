@@ -13,9 +13,6 @@
 </head>
 
 <body class="h-100 w-100">
-
-
-
     <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
 </body>

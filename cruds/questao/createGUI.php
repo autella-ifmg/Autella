@@ -1,68 +1,3 @@
-<?php
-//Inicia a sessão.
-session_start();
-
-//Inclui as funções presentes no arquivo dbSelect.
-require_once "../../utilities/dbSelect.php";
-
-//Função que remove conteúdos indejados dos inputs.
-function securityCheck($input)
-{
-    global $connection;
-
-    $aux = mysqli_escape_string($connection, $input);
-
-    $aux = htmlspecialchars($aux);
-
-    return $aux;
-}
-
-$id_user = $_SESSION["userData"]["id"];
-$id_discipline = $_SESSION["userData"]["id_discipline"];
-
-if (isset($_POST["inputSubmit"])) {
-    //Inclui a conexão com o banco de dados.
-    require_once "../../utilities/dbConnect.php";
-
-    date_default_timezone_set("America/Sao_Paulo");
-    $date = date("Y-m-d H:i:s");
-    $id_subject = securityCheck($_POST["subjects"]);
-    $dificulty = securityCheck($_POST["dificulty"]);
-    $enunciate = securityCheck($_POST["enunciate"]);
-    $correctAnswer = securityCheck($_POST["correctAnswer"]);
-
-    $alternativesQuant = securityCheck($_POST["alternativesQuant"]);
-    $answersEnunciate = "";
-    for ($i = 0; $i < $alternativesQuant; $i++) {
-        $answersEnunciate .= "<br>" . securityCheck($_POST["question$i"]);
-    }
-    $enunciate .= "<br>" . $answersEnunciate;
-
-    $sql = "INSERT INTO question (date, id_user, id_subject, dificulty, enunciate, correctAnswer) VALUES ('$date', '$id_user', '$id_subject', '$dificulty', '$enunciate', '$correctAnswer');";
-
-    if ($connection->query($sql) === TRUE) {
-        $message = "Questão criada com sucesso!";
-    } else {
-        $message = "Erro: " . $sql . "<br>" . $connection->error;
-    }
-
-    $connection->close();
-    echo $message;
-    array_push($_SESSION['debug'], $message);
-
-    var_dump($_POST);
-    echo $date . "<br>";
-    echo $id_subject . "<br>";
-    echo $dificulty . "<br>";
-    echo $id_user . "<br>";
-    echo $enunciate . "<br>";
-    echo $correctAnswer . "<br>";
-
-    //echo $alternativesQuant . "<br>";
-    //echo $answersEnunciate;
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,6 +6,15 @@ if (isset($_POST["inputSubmit"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autella | Criar questão</title>
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
+    <?php
+    //Inclui as funções presentes no arquivo dbSelect.
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
+
+    //Obtém o id da disciplina correspondente ao usuário que está logado no momento.
+    $id_discipline = $_SESSION["userData"]["id_discipline"];
+    ?>
 </head>
 
 <body>
@@ -81,7 +25,7 @@ if (isset($_POST["inputSubmit"])) {
     <h1 class="text-center">Autella | Crie sua questão</h1>
 
     <!--Formulário-->
-    <form id="questionForm" method="post">
+    <form id="questionsForm" action="createSQL.php" method="post">
         <!--Seção dos selects-->
         <section>
             <!--Segundo título-->
@@ -89,7 +33,6 @@ if (isset($_POST["inputSubmit"])) {
 
             <!--Select das matérias-->
             <div class="form-group">
-                <input type="hidden" id="id">
                 <label for="subjects">Matéria:</label>
                 <select name="subjects" id="subjects" class="dropdown-toggle" autofocus required>
                     <option></option>
@@ -113,7 +56,7 @@ if (isset($_POST["inputSubmit"])) {
             <!--Select do número de alternativas-->
             <div class="form-group">
                 <label for="alternativesQuant">Número de alternativas:</label>
-                <select name="alternativesQuant" id="alternativesQuant" class="btn btn-primary dropdown-toggle" onchange="updateCorrectAnswer_EnunciateFields()" required>
+                <select name="alternativesQuant" id="alternativesQuant" class="btn btn-primary dropdown-toggle" onchange="updateCorrectAnswerField_AlternativesField()" required>
                     <option></option>
                     <option value=4>4</option>
                     <option value=5>5</option>
@@ -149,7 +92,7 @@ if (isset($_POST["inputSubmit"])) {
             <!--Botão para cancelar-->
             <a href="../../views/home.php" type="button" class="btn btn-danger ml-0 mr-1">Cancelar</a>
             <!--Botão para listar questões-->
-            <a href="update.php" type="button" class="btn btn-primary ml-0 mr-1">Visualizar questões</a>
+            <a href="updateGUI.php" type="button" class="btn btn-primary ml-1 mr-0 ml-0 mr-1">Visualizar questões</a>
             <!--Botão para adicionar-->
             <button name="inputSubmit" id="inputSubmit" type="submit" class="btn btn-success ml-1 mr-0">Adicionar</button>
         </section>
@@ -184,11 +127,11 @@ if (isset($_POST["inputSubmit"])) {
     </section>
 
     <script>
-        //Função get() para realizar a conexão CKEditor-MySQL.
+        //Função para realizar a conexão CKEditor-MySQL.
         document.querySelector('#inputSubmit').addEventListener('click', () => {
-            let editorData = document.querySelector('#editor').children;
+            var editorData = document.querySelector('#editor').children;
 
-            let string = "";
+            var string = "";
             for (let i = 0; i < editorData.length; i++) {
                 string += editorData[i].outerHTML;
                 string += "\n";
@@ -200,11 +143,10 @@ if (isset($_POST["inputSubmit"])) {
             invisibleInput.setAttribute("value", string);
             invisibleInput.setAttribute("style", "display: none");
 
-            var form = document.getElementById("#questionForm");
-            questionForm.appendChild(invisibleInput);
+            var form = document.getElementById("#questionsForm");
+            questionsForm.appendChild(invisibleInput);
         });
 
-        //Função para gerar o select correctAnswer.
         /* perguntar pro nics -onchange
         $(".dropdown-menu a").click(function() {
             $(this).parents(".dropdown").find('.btn').html(' ' + $(this).text() + ' ');
@@ -213,8 +155,8 @@ if (isset($_POST["inputSubmit"])) {
     
         document.addEventListener('DOMContentLoaded', updateDisciplines(), false);
         */
-
-        function updateCorrectAnswer_EnunciateFields() {
+        //Função para gerar o select correctAnswer e o campo de texto das alternativas.
+        function updateCorrectAnswerField_AlternativesField() {
             var alternativesQuant = document.getElementById("alternativesQuant");
             alternativesQuant = alternativesQuant.value;
 
@@ -231,6 +173,7 @@ if (isset($_POST["inputSubmit"])) {
 
             for (let i = 0; i < alternativesQuant; i++) {
                 let option = document.createElement("option");
+                option.setAttribute("name", alternatives[i]);
                 option.setAttribute("value", alternatives[i]);
                 option.setAttribute("label", alternatives[i]);
                 selectCorrectAnswer.appendChild(option);
@@ -241,7 +184,7 @@ if (isset($_POST["inputSubmit"])) {
                 alternatives_container.appendChild(div);
 
                 let img = document.createElement("img");
-                img.setAttribute("src", `../../images/alternatives/${i}.png`);
+                img.setAttribute("src", `../../images/alternatives/${alternatives[i]}.png`);
                 img.setAttribute("alt", alternatives[i]);
                 img.setAttribute("class", "rounded-circle mr-1 mb-3");
                 img.setAttribute("style", "background-color: powderblue;")
