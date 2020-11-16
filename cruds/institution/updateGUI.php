@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <link rel="stylesheet" href="/libraries/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="/libraries/cropperjs/cropper.css">
     <title>Autella</title>
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
@@ -69,11 +70,10 @@
             </div>
 
             <div class="w-100 px-3 mb-5" style="position:relative">
-                <img id="institutionPicture" style="width:100%; height:auto" src="../../images/institutions/<?php echo $_SESSION['userInstitutionData']['id']; ?>.jpeg" />
+                <img id="institutionPicture" style="width:100%; height:auto" src="../../images/institutions/<?php echo $_SESSION['userInstitutionData']['id']; ?>.jpeg<?php echo '?' . time() ?>" />
                 <label class="position-absolute m-0 p-0 mr-3 border" style="bottom:0; right:0" for="inputImage"><img class="p-2" style="width:64px; background-color: white;" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/upload.svg" alt=""></label>
-                <input class="d-none" type="file" id="inputImage" name="inputImage" accept="image/*">
+                <input class="d-none" type="file" id="inputImage" name="image" accept="image/*">
             </div>
-
 
 
             <div class="d-flex justify-content-between pt-4 pt-sm-0 w-100 mx-3 mb-5">
@@ -83,10 +83,114 @@
         </form>
     </div>
 
+    <!-- CropperJS Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Recorte a sua imagem</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="img-container">
+                        <div class="row w-100">
+                            <div class="col-12 col-md-7">
+                                <img class="w-100 h-100" src="" id="sample_image" />
+                            </div>
+                            <div class="col-md-4 mx-3 d-none   d-md-block">
+                                <div style="overflow: hidden; width: 160px; height: 160px;" class="border" id="cropperjspreview"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="crop" class="btn btn-success">Atualizar imagem</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
-    <!-- Preview da imagem -->
+    <script src="/libraries/cropperjs/cropper.js"></script>
+
+    <!-- CropperJS Script -->
     <script>
+        $(document).ready(function() {
+
+            var $modal = $('#modal');
+
+            var image = document.getElementById('sample_image');
+
+            var cropper;
+
+            $('#inputImage').change(function(event) {
+                var files = event.target.files;
+
+                var done = function(url) {
+                    image.src = url;
+                    $modal.modal('show');
+                };
+
+                if (files && files.length > 0) {
+                    reader = new FileReader();
+                    reader.onload = function(event) {
+                        done(reader.result);
+                    };
+                    reader.readAsDataURL(files[0]);
+                }
+            });
+
+            $modal.on('shown.bs.modal', function() {
+                cropper = new Cropper(image, {
+                    aspectRatio: 3 / 1,
+                    viewMode: 3,
+                    preview: "#cropperjspreview"
+                });
+            }).on('hidden.bs.modal', function() {
+                cropper.destroy();
+                cropper = null;
+            });
+
+            $('#crop').click(function() {
+                canvas = cropper.getCroppedCanvas({
+                    width: 720,
+                    height: 720
+                });
+
+                canvas.toBlob(function(blob) {
+                    url = URL.createObjectURL(blob);
+                    var reader = new FileReader();
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = function() {
+                        var base64data = reader.result;
+                        $.ajax({
+                            url: 'updateSQL.php',
+                            method: 'POST',
+                            data: {
+                                image: base64data
+                            },
+                            success: function(data) {
+                                $modal.modal('hide');
+
+                                // Preview da imagem com CropperJS
+                                // Adiciona 1 no final do src da imagem, porque o time() não funciona, porque o html faz cache até do time()
+                                // Poderia ser qualquer outra coisa no lugar do 1
+                                $('#institutionPicture').attr('src', $('#institutionPicture').attr('src') + 1);
+                            }
+                        });
+                    };
+                });
+            });
+
+        });
+    </script>
+
+    <!-- Preview da imagem antes do CropperJS-->
+    <!-- <script>
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -100,7 +204,7 @@
         $("#inputImage").change(function() {
             readURL(this);
         });
-    </script>
+    </script> -->
 </body>
 
 </html>

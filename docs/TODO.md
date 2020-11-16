@@ -52,22 +52,23 @@
 	- [ ] Transformar campo de estado em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
 	- [ ] Transformar campo de cidade em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
 
-- [ ] Read
+- [X] Read
 	- [X] Foto -> Banner
 	- [X] Campo CEP e email institucional
 		- [X] GUI
 		- [X] SQL
 
 - [ ] Update
-	- [ ] Usar CropperJS
+	- [X] Usar CropperJS
 	- [X] Foto -> Banner
 	- [X] Apenas o coordenador da instituição pode alterar seus dados
-	- [ ] Transformar campo de estado em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
-	- [ ] Transformar campo de cidade em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
-	- [ ] Impedir instituições iguais
 	- [X] Campo CEP e email institucional
 		- [X] GUI
 		- [X] SQL
+	- [ ] Transformar campo de estado em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
+	- [ ] Transformar campo de cidade em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
+	- [ ] Impedir instituições iguais
+	
 
 - [ ] Delete
 

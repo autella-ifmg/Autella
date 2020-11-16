@@ -70,7 +70,7 @@
             </div>
 
             <div class="w-100 px-3 mb-5" style="position:relative">
-                <img id="institutionPicture" style="max-width:100%; height: auto" src="../../images/institutions/<?php echo $array['id']; ?>.jpeg" />
+                <img id="institutionPicture" style="max-width:100%; height: auto" src="../../images/institutions/<?php echo $array['id']; ?>.jpeg<?php echo '?' . time() ?>" />
             </div>
 
 
