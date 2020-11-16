@@ -40,27 +40,32 @@
 
 
 ## Institution
-- [X] Create
+- [ ] Create
 	- [ ] Foto -> Banner
-	- [ ] Dar a opção de "Sou professor" na hora do cadastro, para coordenadores que não são professores -> perguntar para o kdú se isso existe
-	- [ ] Transformar campo de estado em dropdown
-	- [ ] Transformar campo de cidade em dropdown	
-	- [ ] Campo CEP
-	- [ ] Campo email institucional
+	- [ ] Campo CEP e email institucional
+		- [X] GUI
+		- [ ] SQL
 	- [ ] Impedir instituições iguais	
+	- [ ] Dar a opção de "Sou professor" na hora do cadastro, para coordenadores que não são professores -> perguntar para o kdú se isso existe
+	- [ ] Transformar campo de estado em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
+	- [ ] Transformar campo de cidade em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
 
-- [X] Read
+- [ ] Read
 	- [ ] Foto -> Banner
+	- [ ] Campo CEP e email institucional
+		- [X] GUI
+		- [ ] SQL
 
-- [X] Update
+- [ ] Update
 	- [ ] Usar CropperJS
 	- [X] Apenas o coordenador da instituição pode alterar seus dados
 	- [ ] Foto -> Banner
 	- [ ] Transformar campo de estado em dropdown
 	- [ ] Transformar campo de cidade em dropdown
-	- [ ] Campo CEP
-	- [ ] Campo email institucional
 	- [ ] Impedir instituições iguais
+	- [ ] Campo CEP e email institucional
+		- [X] GUI
+		- [ ] SQL
 
 - [ ] Delete
 

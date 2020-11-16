@@ -21,41 +21,51 @@
 
         <div class="row">
             <div class="form-group col-12 ">
-                <label>Nome completo:</label>
+                <label>Nome completo</label>
                 <input readonly type="text" class="form-control" name="inputFullName" value="<?php echo $array['full_name'] ?>">
             </div>
             <div class="form-group col-12 col-md-6 ">
-                <label>Abreviação:</label>
+                <label>Abreviação</label>
                 <input readonly type="text" class="form-control" name="inputAbbreviation" value="<?php echo $array['abbreviation'] ?>" >
             </div>
 
             <div class="form-group col-12 col-md-6 ">
-                <label>Telefone:</label>
+                <label>Telefone</label>
                 <input readonly type="text" class="form-control" name="inputPhone" value="<?php echo $array['phone'] ?>" >
             </div>
 
+            <div class="form-group col-12 col-md-6 ">
+                <label>Email institucional</label>
+                <input readonly type="text" class="form-control"  name="" value="" required>
+            </div>
+
+            <div class="form-group col-12 col-md-6 ">
+                <label>CEP</label>
+                <input readonly type="text" class="form-control"  name="" value="" required>
+            </div>
+
             <div class="form-group col-12">
-                <label>Rua:</label>
+                <label>Rua</label>
                 <input readonly type="text" class="form-control" name="inputStreet" value="<?php echo $array['street'] ?>" >
             </div>
 
             <div class="form-group col-12 col-md-6 ">
-                <label>Número:</label>
+                <label>Número</label>
                 <input readonly type="text" class="form-control" name="inputNumber" value="<?php echo $array['number'] ?>" >
             </div>
 
             <div class="form-group col-12 col-md-6 ">
-                <label>Bairro:</label>
+                <label>Bairro</label>
                 <input readonly type="text" class="form-control" name="inputNeighborhood" value="<?php echo $array['neighborhood'] ?>" >
             </div>
 
             <div class="form-group col-12 col-md-6 ">
-                <label>Cidade:</label>
+                <label>Cidade</label>
                 <input readonly type="text" class="form-control" name="inputCity" value="<?php echo $array['city'] ?>" >
             </div>
 
             <div class="form-group col-12 col-md-6 ">
-                <label>Estado:</label>
+                <label>Estado</label>
                 <input readonly type="text" class="form-control" name="inputState" value="<?php echo $array['state'] ?>" >
             </div>
 

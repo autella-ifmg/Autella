@@ -33,6 +33,16 @@
                 <input type="text" class="form-control" id="" name="inputPhone" required>
             </div>
 
+            <div class="form-group col-12 col-md-6 ">
+                <label>Email institucional</label>
+                <input type="text" class="form-control"  name="" value="" required>
+            </div>
+
+            <div class="form-group col-12 col-md-6 ">
+                <label>CEP</label>
+                <input type="text" class="form-control"  name="" value="" required>
+            </div>
+
             <div class="form-group col-12">
                 <label>Rua/Avenida</label>
                 <input type="text" class="form-control" id="" name="inputStreet" required>

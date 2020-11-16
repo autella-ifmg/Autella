@@ -22,6 +22,7 @@
                 <label>Nome completo</label>
                 <input type="text" class="form-control"  name="inputFullName" value="<?php echo $_SESSION['userInstitutionData']['full_name'] ?>" required>
             </div>
+
             <div class="form-group col-12 col-md-6 ">
                 <label>Abreviação</label>
                 <input type="text" class="form-control"  name="inputAbbreviation" value="<?php echo $_SESSION['userInstitutionData']['abbreviation'] ?>" required>
@@ -30,6 +31,16 @@
             <div class="form-group col-12 col-md-6 ">
                 <label>Telefone</label>
                 <input type="text" class="form-control"  name="inputPhone" value="<?php echo $_SESSION['userInstitutionData']['phone'] ?>" required>
+            </div>
+
+            <div class="form-group col-12 col-md-6 ">
+                <label>Email institucional</label>
+                <input type="text" class="form-control"  name="" value="" required>
+            </div>
+
+            <div class="form-group col-12 col-md-6 ">
+                <label>CEP</label>
+                <input type="text" class="form-control"  name="" value="" required>
             </div>
 
             <div class="form-group col-12">
