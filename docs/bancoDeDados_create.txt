@@ -20,6 +20,8 @@ CREATE TABLE `db_autella_local`.`institution` (
   `full_name` varchar(64) NOT NULL,
   `abbreviation` varchar(64) NOT NULL,
   `phone` varchar(64) NOT NULL,
+  `cep` varchar(64) NOT NULL,
+  `email` varchar(64) NOT NULL,
   `number` varchar(64) NOT NULL,
   `street` varchar(64) NOT NULL,
   `neighborhood` varchar(64) NOT NULL,

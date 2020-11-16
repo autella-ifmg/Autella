@@ -94,6 +94,7 @@
 - [X] Mudar de "professor" para "user"
 - [X] Eliminar coluna de "picture" do usuário
 - [X] Eliminar coluna de "picture" da instituição
+- [X] Criar coluna de CEP e email na instituição
 - [ ] professor -> coluna de "último acesso em"
 - [ ] professor -> coluna de status ("online", "offline", "conta desativada")
 
