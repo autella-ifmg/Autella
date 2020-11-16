@@ -47,8 +47,8 @@
 	- [X] Campo CEP e email institucional
 		- [X] GUI
 		- [X] SQL
-	- [ ] Impedir instituições iguais	
 
+	- [ ] Impedir instituições iguais -> perguntar kdú como fazer isso
 	- [ ] Dar a opção de "Sou professor" na hora do cadastro, para coordenadores que não são professores -> perguntar para o kdú se isso existe
 	- [ ] Transformar campo de estado em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
 	- [ ] Transformar campo de cidade em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
@@ -66,12 +66,13 @@
 	- [X] Campo CEP e email institucional
 		- [X] GUI
 		- [X] SQL
-	- [ ] Impedir instituições iguais
-	
+
+	- [ ] Impedir instituições iguais -> perguntar kdú como fazer isso
 	- [ ] Transformar campo de estado em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
 	- [ ] Transformar campo de cidade em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)	
 
 - [ ] Delete
+
 
 ## Question
 - [ ] Create
