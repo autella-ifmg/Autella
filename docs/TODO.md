@@ -62,8 +62,8 @@
 	- [ ] Usar CropperJS
 	- [X] Foto -> Banner
 	- [X] Apenas o coordenador da instituição pode alterar seus dados
-	- [ ] Transformar campo de estado em dropdown
-	- [ ] Transformar campo de cidade em dropdown
+	- [ ] Transformar campo de estado em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
+	- [ ] Transformar campo de cidade em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
 	- [ ] Impedir instituições iguais
 	- [ ] Campo CEP e email institucional
 		- [X] GUI
@@ -93,7 +93,7 @@
 - [X] Criar tabela "Disciplina" no banco de dados
 - [X] Mudar de "professor" para "user"
 - [X] Eliminar coluna de "picture" do usuário
-- [ ] Eliminar coluna de "picture" da instituição
+- [X] Eliminar coluna de "picture" da instituição
 - [ ] professor -> coluna de "último acesso em"
 - [ ] professor -> coluna de status ("online", "offline", "conta desativada")
 

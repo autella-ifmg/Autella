@@ -25,7 +25,6 @@ CREATE TABLE `db_autella_local`.`institution` (
   `neighborhood` varchar(64) NOT NULL,
   `city` varchar(64) NOT NULL,
   `state` varchar(64) NOT NULL,
-  `picture` longblob,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -71,4 +70,4 @@ CREATE TABLE `db_autella_local`.`question`(
   FOREIGN KEY (`id_user`) REFERENCES `user`(`id`),
   FOREIGN KEY (`id_discipline`) REFERENCES `discipline`(`id`),
   FOREIGN KEY (`id_subject`) REFERENCES `subject`(`id`)
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
