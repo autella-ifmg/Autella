@@ -41,7 +41,9 @@
 
 ## Institution
 - [ ] Create
-	- [ ] Foto -> Banner
+	- [ ] Ao criar instituição, inserir imagem padrão	
+		- [ ] Fazer imagem padrão
+		- [ ] Mudar o createSQL.php
 	- [ ] Campo CEP e email institucional
 		- [X] GUI
 		- [ ] SQL
@@ -58,8 +60,8 @@
 
 - [ ] Update
 	- [ ] Usar CropperJS
-	- [X] Apenas o coordenador da instituição pode alterar seus dados
 	- [ ] Foto -> Banner
+	- [X] Apenas o coordenador da instituição pode alterar seus dados
 	- [ ] Transformar campo de estado em dropdown
 	- [ ] Transformar campo de cidade em dropdown
 	- [ ] Impedir instituições iguais
