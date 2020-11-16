@@ -20,52 +20,52 @@
         <form action="createSQL.php" method="post" novalidate class="needs-validation row">
             <div class="form-group col-12 ">
                 <label>Nome completo</label>
-                <input type="text" class="form-control" id="" name="inputFullName" required>
+                <input type="text" class="form-control" name="inputFullName" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Abreviação</label>
-                <input type="text" class="form-control" id="" name="inputAbbreviation" required>
+                <input type="text" class="form-control" name="inputAbbreviation" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Telefone</label>
-                <input type="text" class="form-control" id="" name="inputPhone" required>
+                <input type="text" class="form-control" name="inputPhone" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Email institucional</label>
-                <input type="text" class="form-control"  name="" value="" required>
+                <input type="text" class="form-control" name="inputEmail" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>CEP</label>
-                <input type="text" class="form-control"  name="" value="" required>
+                <input type="text" class="form-control" name="inputCep" required>
             </div>
 
             <div class="form-group col-12">
                 <label>Rua/Avenida</label>
-                <input type="text" class="form-control" id="" name="inputStreet" required>
+                <input type="text" class="form-control" name="inputStreet" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Número</label>
-                <input type="text" class="form-control" id="" name="inputNumber" required>
+                <input type="text" class="form-control" name="inputNumber" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Bairro</label>
-                <input type="text" class="form-control" id="" name="inputNeighborhood" required>
+                <input type="text" class="form-control" name="inputNeighborhood" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Cidade</label>
-                <input type="text" class="form-control" id="" name="inputCity" required>
+                <input type="text" class="form-control" name="inputCity" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Estado</label>
-                <input type="text" class="form-control" id="" name="inputState" required>
+                <input type="text" class="form-control" name="inputState" required>
             </div>
 
 

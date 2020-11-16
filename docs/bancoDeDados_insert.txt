@@ -49,6 +49,8 @@ INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipli
 VALUES ('adilson.ribeiro@ifmg.edu.br', 'Adilson Ribeiro de Oliveira', 'adilson', '8', '1', '2');
 INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
 VALUES ('ces@gmail.com', 'César', '123', '1', '1', '1');
+INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
+VALUES ('therezinha@gmail.com', 'Dona Terezinha da Silva Matos', '123', '8', '0', '1');
 
 
 

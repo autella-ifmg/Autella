@@ -12,13 +12,15 @@ function selectFields()
         while ($row = mysqli_fetch_row($result)) {
             array_push($array, $row);
         }
-        $message = "Áreas selecionadas com sucesso!";
+        // $message = "Áreas selecionadas com sucesso!";
     } else {
         $message = "Erro ao selecionar Áreas!";
         // $message = "Error: " . $sql . "<br>" . $connection->error;
     }
 
-    array_push($_SESSION['debug'], $message);
+    if (isset($message)) {
+        array_push($_SESSION['debug'], $message);
+    }
 
     return $array;
 }
@@ -48,7 +50,7 @@ function selectDisciplines()
         while ($row = mysqli_fetch_row($result)) {
             array_push($array, $row);
         }
-        $message = "Disciplinas selecionadas com sucesso!";
+        //$message = "Disciplinas selecionadas com sucesso!";
     } else {
         $message = "Erro ao selecionar disciplinas!";
         //$message = "Erro: " . $sql . "<br>" . $connection->error;
@@ -57,7 +59,9 @@ function selectDisciplines()
     // echo var_dump($array);
     // echo $array[0][1];
 
-    array_push($_SESSION['debug'], $message);
+    if (isset($message)) {
+        array_push($_SESSION['debug'], $message);
+    }
     $connection->close();
 
     return $array;
@@ -89,13 +93,15 @@ function selectRoles()
         while ($row = mysqli_fetch_row($result)) {
             array_push($array, $row);
         }
-        $message = "Cargos selecionados com sucesso!";
+        // $message = "Cargos selecionados com sucesso!";
     } else {
         $message = "Erro ao selecionar cargos!";
         // $message = "Error: " . $sql . "<br>" . $connection->error;
     }
 
-    array_push($_SESSION['debug'], $message);
+    if (isset($message)) {
+        array_push($_SESSION['debug'], $message);
+    }
 
     return $array;
 }
@@ -125,13 +131,15 @@ function selectInstitutions()
         while ($row = mysqli_fetch_row($result)) {
             array_push($array, $row);
         }
-        $message = "Instituições selecionadas com sucesso!";
+        // $message = "Instituições selecionadas com sucesso!";
     } else {
         $message = "Erro ao selecionar instituições!";
         // $message = "Error: " . $sql . "<br>" . $connection->error;
     }
 
-    array_push($_SESSION['debug'], $message);
+    if (isset($message)) {
+        array_push($_SESSION['debug'], $message);
+    }
 
     return $array;
 }
@@ -161,7 +169,7 @@ function selectSubjects()
         while ($row = mysqli_fetch_array($result)) {
             array_push($array, $row);
         }
-        $message = "Matérias selecionadas com sucesso!";
+        // $message = "Matérias selecionadas com sucesso!";
     } else {
         $message = "Erro ao selecionar matérias!";
         //$message = "Erro: " . $sql . "<br>" . $connection->error;
@@ -170,7 +178,9 @@ function selectSubjects()
     // echo var_dump($array);
     // echo $array[0][1];
 
-    array_push($_SESSION['debug'], $message);
+    if (isset($message)) {
+        array_push($_SESSION['debug'], $message);
+    }
 
     return $array;
 }
@@ -209,7 +219,7 @@ function selectDisciplineQuestions($id_discipline)
         while ($row = mysqli_fetch_array($result)) {
             array_push($array, $row);
         }
-        $message = "Questões selecionadas com sucesso!";
+        // $message = "Questões selecionadas com sucesso!";
     } else {
         $message = "Erro ao selecionar questões!";
         //$message = "Erro: " . $sql . "<br>" . $connection->error;
@@ -218,7 +228,9 @@ function selectDisciplineQuestions($id_discipline)
     // echo var_dump($array);
     // echo $array[0][1];
 
-    array_push($_SESSION['debug'], $message);
+    if (isset($message)) {
+        array_push($_SESSION['debug'], $message);
+    }
 
     return $array;
 }

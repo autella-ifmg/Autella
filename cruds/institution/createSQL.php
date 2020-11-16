@@ -5,19 +5,21 @@ if (isset($_POST['inputSubmit'])) {
     $full_name = mysqli_escape_string($connection, $_POST['inputFullName']);
     $abbreviation = mysqli_escape_string($connection, $_POST['inputAbbreviation']);
     $phone = mysqli_escape_string($connection, $_POST['inputPhone']);
+    $email = mysqli_escape_string($connection, $_POST['inputEmail']);
+    $cep = mysqli_escape_string($connection, $_POST['inputCep']);
     $number = mysqli_escape_string($connection, $_POST['inputNumber']);
     $street = mysqli_escape_string($connection, $_POST['inputStreet']);
     $neighborhood = mysqli_escape_string($connection, $_POST['inputNeighborhood']);
     $city = mysqli_escape_string($connection, $_POST['inputCity']);
     $state = mysqli_escape_string($connection, $_POST['inputState']);
 
-    $image = 'C:\wamp64\www\autella.com\images\institutionDefault.jpg';
-    $image = file_get_contents($image);
-    $image = mysqli_escape_string($connection, $image);
+    // $image = 'C:\wamp64\www\autella.com\images\institutionDefault.jpg';
+    // $image = file_get_contents($image);
+    // $image = mysqli_escape_string($connection, $image);
 
 
-    $sql = "INSERT INTO institution (full_name, abbreviation, phone, number, street, neighborhood, city, state, picture) VALUES 
-                ('$full_name', '$abbreviation', '$phone', '$number', '$street', '$neighborhood', '$city', '$state', '$image');";
+    $sql = "INSERT INTO institution (full_name, abbreviation, phone, email, cep, number, street, neighborhood, city, state) VALUES 
+                ('$full_name', '$abbreviation', '$phone', '$email', '$cep', '$number', '$street', '$neighborhood', '$city', '$state');";
 
     if ($connection->query($sql) === TRUE) {
         $message = "Instituição criada com sucesso!";

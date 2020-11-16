@@ -46,8 +46,9 @@
 		- [X] Mudar o createSQL.php
 	- [X] Campo CEP e email institucional
 		- [X] GUI
-		- [ ] SQL
+		- [X] SQL
 	- [ ] Impedir instituições iguais	
+
 	- [ ] Dar a opção de "Sou professor" na hora do cadastro, para coordenadores que não são professores -> perguntar para o kdú se isso existe
 	- [ ] Transformar campo de estado em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
 	- [ ] Transformar campo de cidade em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
@@ -65,10 +66,10 @@
 	- [X] Campo CEP e email institucional
 		- [X] GUI
 		- [X] SQL
-	- [ ] Transformar campo de estado em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
-	- [ ] Transformar campo de cidade em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
 	- [ ] Impedir instituições iguais
 	
+	- [ ] Transformar campo de estado em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
+	- [ ] Transformar campo de cidade em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)	
 
 - [ ] Delete
 
