@@ -26,6 +26,12 @@ if (isset($_POST['inputSubmit'])) {
             if ($connection->query($sql) === TRUE) {
                 $message = "Conta criada com sucesso!";
                 $newUserId = $connection->insert_id;
+
+                // Adicionar imagem de perfil padrão
+                $path = "../../images/userDefault.jpg";
+                $data = file_get_contents($path);
+                $image_name = '../../images/users/' . $newUserId . '.jpeg';
+                file_put_contents($image_name, $data);
             } else {
                 $message = "Erro na criação da conta!";
                 //$message = "Error: " . $sql . "<br>" . $connection->error;
@@ -34,12 +40,6 @@ if (isset($_POST['inputSubmit'])) {
     }
     $connection->close();
 
-    // Adicionar imagem de perfil padrão
-    $path = "../../images/userDefault.jpg";
-    $data = file_get_contents($path);
-    $image_name = '../../images/users/' . $newUserId . '.jpeg';
-    file_put_contents($image_name, $data);
-    
 
     array_push($_SESSION['debug'], $message);
     header('Location: ../../index.php');

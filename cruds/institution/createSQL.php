@@ -21,6 +21,13 @@ if (isset($_POST['inputSubmit'])) {
 
     if ($connection->query($sql) === TRUE) {
         $message = "Instituição criada com sucesso!";
+        $newInstitutionId = $connection->insert_id;
+
+        // Adicionar imagem de perfil padrão
+        $path = "../../images/institutionDefault.jpeg";
+        $data = file_get_contents($path);
+        $image_name = '../../images/institutions/' . $newInstitutionId . '.jpeg';
+        file_put_contents($image_name, $data);
     } else {
         $message = "Erro na criação da instituição!";
         //$message = "Erro: " . $sql . "<br>" . $connection->error;
