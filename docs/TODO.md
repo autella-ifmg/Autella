@@ -13,13 +13,14 @@
 	- [X] Selecionar instituição
 	- [X] Caixa de confirmar senha
 	- [X] Usar CropperJS na atualização da imagem
-	- [ ] Ao criar conta, inserir imagem padrão	
-	- [ ] Verificação de campos
+	- [X] Mudar de "professor" para "user"
+	- [X] Verificação de campos
 		- [X] Vazios
 		- [X] Campo de confirmar senha
 		- [X] Impedir contas com o mesmo email
-		- [ ] Impedir mais de um coordenador por instituição
-	- [X] Mudar de "professor" para "user"
+		- [X] Impedir mais de um coordenador por instituição
+	- [ ] Ao criar conta, inserir imagem padrão	
+	
 	
 - [ ] Update
 	- [X] Alterar modal para arquivos próprios
