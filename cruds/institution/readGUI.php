@@ -69,8 +69,8 @@
                 <input readonly type="text" class="form-control" name="inputState" value="<?php echo $array['state'] ?>" >
             </div>
 
-            <div class="w-100 px-3 mb-5" style="min-height: 40rem; max-height: 100rem; position:relative">
-                <img id="institutionPicture" class="w-100 h-100" src="data:image/jpeg;base64,<?php echo base64_encode($array['picture']); ?>" />
+            <div class="w-100 px-3 mb-5" style="position:relative">
+                <img id="institutionPicture" style="max-width:100%; height: auto" src="../../images/institutions/<?php echo $array['id']; ?>.jpeg" />
             </div>
 
 

@@ -20,56 +20,56 @@
         <form action="updateSQL.php" method="POST" novalidate class="needs-validation row" enctype="multipart/form-data">
             <div class="form-group col-12 ">
                 <label>Nome completo</label>
-                <input type="text" class="form-control"  name="inputFullName" value="<?php echo $_SESSION['userInstitutionData']['full_name'] ?>" required>
+                <input type="text" class="form-control" name="inputFullName" value="<?php echo $_SESSION['userInstitutionData']['full_name'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Abreviação</label>
-                <input type="text" class="form-control"  name="inputAbbreviation" value="<?php echo $_SESSION['userInstitutionData']['abbreviation'] ?>" required>
+                <input type="text" class="form-control" name="inputAbbreviation" value="<?php echo $_SESSION['userInstitutionData']['abbreviation'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Telefone</label>
-                <input type="text" class="form-control"  name="inputPhone" value="<?php echo $_SESSION['userInstitutionData']['phone'] ?>" required>
+                <input type="text" class="form-control" name="inputPhone" value="<?php echo $_SESSION['userInstitutionData']['phone'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Email institucional</label>
-                <input type="text" class="form-control"  name="" value="" required>
+                <input type="text" class="form-control" name="" value="" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>CEP</label>
-                <input type="text" class="form-control"  name="" value="" required>
+                <input type="text" class="form-control" name="" value="" required>
             </div>
 
             <div class="form-group col-12">
-                <label>Rua</label>
-                <input type="text" class="form-control"  name="inputStreet" value="<?php echo $_SESSION['userInstitutionData']['street'] ?>" required>
+                <label>Rua/Avenida</label>
+                <input type="text" class="form-control" name="inputStreet" value="<?php echo $_SESSION['userInstitutionData']['street'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Número</label>
-                <input type="text" class="form-control"  name="inputNumber" value="<?php echo $_SESSION['userInstitutionData']['number'] ?>" required>
+                <input type="text" class="form-control" name="inputNumber" value="<?php echo $_SESSION['userInstitutionData']['number'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Bairro</label>
-                <input type="text" class="form-control"  name="inputNeighborhood" value="<?php echo $_SESSION['userInstitutionData']['neighborhood'] ?>" required>
+                <input type="text" class="form-control" name="inputNeighborhood" value="<?php echo $_SESSION['userInstitutionData']['neighborhood'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Cidade</label>
-                <input type="text" class="form-control"  name="inputCity" value="<?php echo $_SESSION['userInstitutionData']['city'] ?>" required>
+                <input type="text" class="form-control" name="inputCity" value="<?php echo $_SESSION['userInstitutionData']['city'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Estado</label>
-                <input type="text" class="form-control"  name="inputState" value="<?php echo $_SESSION['userInstitutionData']['state'] ?>" required>
+                <input type="text" class="form-control" name="inputState" value="<?php echo $_SESSION['userInstitutionData']['state'] ?>" required>
             </div>
 
-            <div class="w-100 px-3 mb-5" style="min-height: 10rem; max-height: 30rem; position:relative">
-                <img id="institutionPicture" class="w-100 h-100" src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['userInstitutionData']['picture']); ?>" />
+            <div class="w-100 px-3 mb-5" style="position:relative">
+                <img id="institutionPicture" style="width:100%; height:auto" src="../../images/institutions/<?php echo $_SESSION['userInstitutionData']['id']; ?>.jpeg" />
                 <label class="position-absolute m-0 p-0 mr-3 border" style="bottom:0; right:0" for="inputImage"><img class="p-2" style="width:64px; background-color: white;" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/upload.svg" alt=""></label>
                 <input class="d-none" type="file" id="inputImage" name="inputImage" accept="image/*">
             </div>
