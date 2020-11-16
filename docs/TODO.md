@@ -1,5 +1,5 @@
 ## User
-- [ ] Create
+- [X] Create
 	- [X] Alterar modal para arquivos próprios
 	- [X] Dropdown de "Área"
 	- [X] Dropdown de "Disciplina"
@@ -21,20 +21,17 @@
 		- [X] Impedir contas com o mesmo email
 		- [X] Impedir mais de um coordenador por instituição
 	
-	
-	
-- [ ] Update
+- [X] Update
 	- [X] Alterar modal para arquivos próprios
 	- [X] Caixa de confirmar senha
 	- [X] Alterar e embelezar
 	- [X] Permitir apenas o envio de imagens
 	- [X] Preview da imagem
 	- [X] Usar CropperJS
-	- [ ] Verificação de campos
+	- [X] Verificação de campos
 		- [X] Vazios
 		- [X] Campo de confirmar senha
-		- [ ] Impedir contas com o mesmo email
-		- [ ] Impedir mais de um coordenador por instituição
+		- [X] Impedir contas com o mesmo email
 
 - [X] Read
 	- [X] Fazer campos de "Área" e "Disciplina" funcionarem
@@ -51,8 +48,10 @@
 	- [ ] Campo CEP
 	- [ ] Campo email institucional
 	- [ ] Impedir instituições iguais	
+
 - [X] Read
 	- [ ] Foto -> Banner
+
 - [X] Update
 	- [ ] Usar CropperJS
 	- [X] Apenas o coordenador da instituição pode alterar seus dados
@@ -62,6 +61,7 @@
 	- [ ] Campo CEP
 	- [ ] Campo email institucional
 	- [ ] Impedir instituições iguais
+
 - [ ] Delete
 
 ## Question
