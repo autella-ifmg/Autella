@@ -35,12 +35,12 @@
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Email institucional</label>
-                <input type="text" class="form-control" name="" value="" required>
+                <input type="text" class="form-control"  name="inputEmail" value="<?php echo $_SESSION['userInstitutionData']['email'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>CEP</label>
-                <input type="text" class="form-control" name="" value="" required>
+                <input type="text" class="form-control"  name="inputCep" value="<?php echo $_SESSION['userInstitutionData']['cep'] ?>" required>
             </div>
 
             <div class="form-group col-12">

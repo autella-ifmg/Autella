@@ -44,7 +44,7 @@
 	- [X] Ao criar instituição, inserir imagem padrão
 		- [X] Fazer imagem padrão
 		- [X] Mudar o createSQL.php
-	- [ ] Campo CEP e email institucional
+	- [X] Campo CEP e email institucional
 		- [X] GUI
 		- [ ] SQL
 	- [ ] Impedir instituições iguais	
@@ -54,9 +54,9 @@
 
 - [ ] Read
 	- [X] Foto -> Banner
-	- [ ] Campo CEP e email institucional
+	- [X] Campo CEP e email institucional
 		- [X] GUI
-		- [ ] SQL
+		- [X] SQL
 
 - [ ] Update
 	- [ ] Usar CropperJS
@@ -65,9 +65,9 @@
 	- [ ] Transformar campo de estado em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
 	- [ ] Transformar campo de cidade em dropdown -> perguntar para o kdú se tem necessidade (criar tabelas no bd)
 	- [ ] Impedir instituições iguais
-	- [ ] Campo CEP e email institucional
+	- [X] Campo CEP e email institucional
 		- [X] GUI
-		- [ ] SQL
+		- [X] SQL
 
 - [ ] Delete
 

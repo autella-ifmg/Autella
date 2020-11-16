@@ -7,25 +7,19 @@ if (isset($_POST['inputSubmit'])) {
     $full_name = mysqli_escape_string($connection, $_POST['inputFullName']);
     $abbreviation = mysqli_escape_string($connection, $_POST['inputAbbreviation']);
     $phone = mysqli_escape_string($connection, $_POST['inputPhone']);
+    $email = mysqli_escape_string($connection, $_POST['inputEmail']);
+    $cep = mysqli_escape_string($connection, $_POST['inputCep']);
     $number = mysqli_escape_string($connection, $_POST['inputNumber']);
     $street = mysqli_escape_string($connection, $_POST['inputStreet']);
     $neighborhood = mysqli_escape_string($connection, $_POST['inputNeighborhood']);
     $city = mysqli_escape_string($connection, $_POST['inputCity']);
     $state = mysqli_escape_string($connection, $_POST['inputState']);
 
-    $picture = $_FILES['inputImage']['tmp_name'];
-    $picture = file_get_contents($picture);
-    $picture = mysqli_escape_string($connection, $picture);
-
-    if ($picture == "") {
-        array_push($_SESSION['debug'], "Imagem da instituição vazia!");
-        $picture = mysqli_escape_string($connection, $_SESSION['userInstitutionData']['picture']);
-    }
 
 
     $sql = "UPDATE institution SET full_name='$full_name', abbreviation='$abbreviation', 
-            phone='$phone', number='$number', street='$street', neighborhood='$neighborhood', 
-            city='$city', state='$state', picture='$picture' WHERE id=" . $_SESSION['userInstitutionData']['id'];
+            phone='$phone', email='$email', cep='$cep', number='$number', street='$street', neighborhood='$neighborhood', 
+            city='$city', state='$state'  WHERE id=" . $_SESSION['userInstitutionData']['id'];
 
     if ($connection->query($sql) === TRUE) {
         $message = "Instituição alterada com sucesso!";

@@ -36,12 +36,12 @@
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Email institucional</label>
-                <input readonly type="text" class="form-control"  name="" value="" required>
+                <input readonly type="text" class="form-control"  name="inputEmail" value="<?php echo $array['email'] ?>" required>
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>CEP</label>
-                <input readonly type="text" class="form-control"  name="" value="" required>
+                <input readonly type="text" class="form-control"  name="inputCep" value="<?php echo $array['cep'] ?>" required>
             </div>
 
             <div class="form-group col-12">
