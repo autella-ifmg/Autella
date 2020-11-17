@@ -10,7 +10,7 @@ require_once "../../../utilities/dbSelect.php";
 $id_user = $_SESSION["userData"]["id"];
 $id_discipline = $_SESSION["userData"]["id_discipline"];
 
-$array = selectUserQuestions($id_user);
+$array = selectDisciplineQuestions($id_user);
 var_dump($array);
 
 $sql = "SELECT * from question;";
@@ -127,7 +127,7 @@ function letterForNumber($correctAnswer)
                     <div id="correctAnswer" class="border border-dark border-top-0 mb-5">
                         <div class="d-flex flex-row justify-content-center mt-2">
                             <img src="../../../images/alternatives/' . letterForNumber($array[$i]["correctAnswer"]) . '.png" alt="A" class="rounded-circle mr-1 mb-3">
-                            <textarea name="question' . $array[$i]["correctAnswer"] . '" id="question' . $array[$i]["correctAnswer"] . '" cols="90" rows="3" class="ml-1 mb-3" readonly="true"></textarea>
+                            <textarea name="question' . $array[$i]["correctAnswer"] . '" id="editor" cols="90" rows="3" class="ml-1 mb-3" readonly="true"></textarea>
                         </div>
                     </div>';
             }

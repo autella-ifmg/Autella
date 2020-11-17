@@ -31,7 +31,7 @@
         <div class="d-flex flex-column">
             <div class="d-flex flex-row bd-highlight">
                 <div class="p-2 flex-fill bd-highlight border border-dark">Nº: 0</div>
-                <div class="p-2 flex-fill bd-highlight border border-dark border-left-0">0</div>
+                <div class="p-2 flex-fill bd-highlight border border-dark border-left-0">Fácil</div>
                 <div class="p-2 w-75 bd-highlight border border-dark border-left-0">Teste - Teste</div>
             </div>
 
@@ -42,10 +42,10 @@
 
             <div>
                 <div name="toolbar" id="toolbar-container" class="border border-dark border-top-0 border-bottom-0"></div>
-                <div name="editor" id="editor" style="height: 20rem; border: 1px solid black;">Teste </div>
-                <div class="d-flex justify-content-end mb-1 mr-1">
-                    <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg"  width="50" height="50"/>
-                </div>
+                <div name="editor" id="editor" class="w-100 border border-dark border-bottom-0" style="min-width: 60rem; max-width: 65rem;  min-height: 20rem; max-height: 20rem; resize: none;"></div>
+            </div>
+            <div class="d-flex justify-content-end border border-dark border-top-0">
+                <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" width="50" height="50" onclick="edit()"/>
             </div>
             <div id="correctAnswer" class="border border-dark border-top-0 mb-5">
                 <div class="d-flex flex-row justify-content-center mt-2">
@@ -55,12 +55,14 @@
             </div>
         </div>
     </section>
-
+    <!--
+    
+-->
     <section class="d-flex justify-content-center mt-3">
         <div class="d-flex flex-column">
             <div class="d-flex flex-row bd-highlight">
                 <div class="p-2 flex-fill bd-highlight border border-dark">Nº: 0</div>
-                <div class="p-2 flex-fill bd-highlight border border-dark border-left-0">0</div>
+                <div class="p-2 flex-fill bd-highlight border border-dark border-left-0">Fácil</div>
                 <div class="p-2 w-75 bd-highlight border border-dark border-left-0">Teste - Teste</div>
             </div>
 
@@ -108,7 +110,15 @@
 
 
                 if ($array[$i][2] == $id_user) {
-                    
+                    echo
+                        '<div name="toolbar' . $i . '" id="toolbar-container' . $i . '" class="border border-dark border-top-0 border-bottom-0" disabled></div>
+                        <div name="editor' . $i . '" id="editor' . $i . '" style="height: 20rem; border: 1px solid black;" onclick="editIcon()">' . $array[$i]["enunciate"] . '</div>
+                        <div id="correctAnswer" class="border border-dark border-top-0 mb-5">
+                            <div class="d-flex flex-row justify-content-center mt-2">
+                                <img src="../../../images/alternatives/' . $array[$i]["correctAnswer"] . '.png" alt="A" class="rounded-circle mr-1 mb-3" style="background-color: powderblue;" data-toggle="modal" data-target="#staticBackdrop">
+                                <textarea name="question' . $array[$i]["correctAnswer"] . '" id="question' . $array[$i]["correctAnswer"] . '" cols="90" rows="3" class="ml-1 mb-3" style="resize: none;" readonly="false"></textarea>
+                            </div>
+                        </div>';
                 } else {
                     echo
                         '<textarea name="enunciate" id="enunciate" cols="139" class="border border-dark border-top-0" style="height: 20rem; resize: none;" readonly="true">' . $array[$i]["enunciate"] . '</textarea>
@@ -152,17 +162,8 @@
 
     <!--Importação do CkEditor-->
     <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/decoupled-document/ckeditor.js"></script>
-    <!--
+
     <script>
-          echo
-                        '<div name="toolbar' . $i . '" id="toolbar-container' . $i . '" class="border border-dark border-top-0 border-bottom-0"></div>
-                        <div name="editor' . $i . '" id="editor' . $i . '" style="height: 20rem; border: 1px solid black;" onclick="editIcon()">' . $array[$i]["enunciate"] . '</div>
-                        <div id="correctAnswer" class="border border-dark border-top-0 mb-5">
-                            <div class="d-flex flex-row justify-content-center mt-2">
-                                <img src="../../../images/alternatives/' . $array[$i]["correctAnswer"] . '.png" alt="A" class="rounded-circle mr-1 mb-3" style="background-color: powderblue;" data-toggle="modal" data-target="#staticBackdrop">
-                                <textarea name="question' . $array[$i]["correctAnswer"] . '" id="question' . $array[$i]["correctAnswer"] . '" cols="90" rows="3" class="ml-1 mb-3" style="resize: none;" readonly="false"></textarea>
-                            </div>
-                        </div>';
         <?php
         for ($i = 0; $i < $rowsQuant; $i++) {
             if ($array[$i][2] == $id_user) {
@@ -180,11 +181,13 @@
             }
         }
         ?>
-    </script>-->
+    </script>
 
     <script>
         DecoupledEditor
-            .create(document.querySelector('#editor'))
+            .create(document.querySelector('#editor'), {
+                placeholder: 'Insira o enunciado...'
+            })
             .then(editor => {
                 const toolbarContainer = document.querySelector('#toolbar-container');
 
@@ -193,6 +196,12 @@
             .catch(error => {
                 console.error(error);
             });
+
+        function edit() {
+            console.log("teste")
+            editor = document.getElementById("editor");
+            editor.remove("readonly");
+        }
     </script>
 
 </body>

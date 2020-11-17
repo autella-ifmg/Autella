@@ -18,15 +18,18 @@
     //Obtém o id da disciplina correspondente ao usuário que está logado no momento.
     $id_discipline = $_SESSION["userData"]["id_discipline"];
 
+    $role = selectRoles();
+
     $array = selectDisciplineQuestions($id_discipline);
     //var_dump($array);
 
     $rowsQuant = selectRowsQuantTableQuestion($id_discipline);
     //var_dump($rowsQuant);
+
     ?>
 </head>
 
-<body>
+<body">
     <!--Inclui a navbar-->
     <?php require_once '../../views/navbar.php'; ?>
 
@@ -37,7 +40,19 @@
                 for ($i = 0; $i < $rowsQuant; $i++) {
                     $questionNumber = "Nº: " . ($i + 1);
 
-                    $id = "Questão " . $array[$i]["id"];
+                    $dificulty = $array[$i]["dificulty"];
+                    switch ($dificulty) {
+                        case 1:
+                            $dificulty = "Nível: Fácil";
+                            break;
+                        case 2:
+                            $dificulty = "Nível: Médio";
+                            break;
+                        default:
+                            $dificulty = "Nível: Difícil";
+                            break;
+                    }
+
 
                     $discipline_subject =  disciplineNameToUpdate($id_discipline) . subjectNamesToUpdate($array[$i]["id_subject"]);
 
@@ -51,8 +66,8 @@
 
                     echo '<div class="d-flex flex-row bd-highlight">
                         <div class="p-2 flex-fill bd-highlight border border-dark">' . $questionNumber . '</div>
-                        <div class="p-2 flex-fill bd-highlight border border-dark border-left-0">' . $id . '</div>
-                        <div class="p-2 w-75 bd-highlight border border-dark border-left-0">' . $discipline_subject . '</div>
+                        <div class="p-2 flex-fill bd-highlight border border-dark border-left-0">' . $dificulty . '</div>
+                        <input type="text" class="p-2 w-75 bd-highlight border border-dark border-left-0" value="' . $discipline_subject . '"></input>
                     </div>
 
                     <div class="d-flex flex-row">
@@ -65,16 +80,16 @@
                         <div name="editor' . $i . '" id="editor' . $i . '" style="height: 20rem; border: 1px solid black;">' . $enunciate . '</div>
                         <div id="correctAnswer" class="border border-dark border-top-0 mb-5">
                             <div class="d-flex flex-row justify-content-center mt-2">
-                                <img src="../../../images/alternatives/' . $correctAnswer . '.png" alt="A" class="bg-info rounded-circle mr-1 mb-3" data-toggle="modal" data-target="#staticBackdrop">
-                                <textarea name="question' . $correctAnswer . '" id="question' . $correctAnswer . '" cols="90" rows="3" class="ml-1 mb-3" style="resize: none;">' . $correctAnswerEnunciate . '</textarea>
+                                <img src="../../../images/alternatives/' . $correctAnswer . '.png" alt="' . $correctAnswer . '" class="bg-info rounded-circle mr-1 mb-3" data-toggle="modal" data-target="#staticBackdrop">
+                                <textarea name="question' . $correctAnswer . '" id="question' . $correctAnswer . '" cols="110" rows="3" class="ml-1 mb-3" style="resize: none;">' . $correctAnswerEnunciate . '</textarea>
                             </div>
                         </div>';
                     } else {
-                        echo '<textarea name="enunciate" id="enunciate" cols="139" class="border border-dark border-top-0" style="height: 20rem; resize: none; style="resize: none;" readonly="true">' . $enunciate . '</textarea>
+                        echo '<textarea name="txtEnunciate" id="txtEnunciate" cols="139" class="border border-dark border-top-0" style="height: 20rem; resize: none;" readonly>' . $enunciate . '</textarea>
                         <div id="correctAnswer" class="border border-dark border-top-0 mb-5">
                             <div class="d-flex flex-row justify-content-center mt-2">
-                                <img src="../../../images/alternatives/' . $correctAnswer . '.png" alt="A" class="rounded-circle mr-1 mb-3" style="background-color: powderblue;">
-                                <textarea cols="90" rows="3" class="ml-1 mb-3" style="resize: none;" readonly="true">' . $correctAnswerEnunciate . '</textarea>
+                                <img src="../../../images/alternatives/' . $correctAnswer . '.png" alt="' . $correctAnswer . '" class="bg-info rounded-circle mr-1 mb-3">
+                                <textarea cols="110" rows="3" class="ml-1 mb-3" style="resize: none;" readonly>' . $correctAnswerEnunciate . '</textarea>
                             </div>
                         </div>';
                     }
@@ -105,40 +120,12 @@
         </div>
     </div>
 
-    <!--Seção de ajuda-->
-    <section>
-        <!--Ícone-->
-        <div class="d-flex justify-content-end mb-3 mr-3">
-            <img src="../../libraries/bootstrap/bootstrap-icons-1.0.0/question-circle-fill.svg" width="40" height="40" data-toggle="modal" data-target="#help" />
-        </div>
-
-        <!--Modal que exibe as orientações de ajuda-->
-        <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="helpModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="helpModalLongTitle">help</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger">Sair</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!--Importações do Bootstrap-->
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
 
     <!--Importação do CkEditor-->
-    <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/decoupled-document/ckeditor.js"></script>
+    <script src="../../libraries/ckeditor5/ckeditor.js"></script>
     <script>
         <?php
         for ($i = 0; $i < $rowsQuant; $i++) {
@@ -149,6 +136,8 @@
                     const toolbarContainer = document.querySelector("#toolbar-container' . $i . '");
 
                     toolbarContainer.appendChild(editor.ui.view.toolbar.element);
+
+                    editor' . $i . '.isReadOnly = true;
                 })
                 .catch(error => {
                     console.error(error' . $i . ');
@@ -157,6 +146,6 @@
         }
         ?>
     </script>
-</body>
+    </body>
 
 </html>

@@ -73,22 +73,31 @@
 
 - [ ] Delete
 
-
 ## Question
 - [ ] Create
+	- [ ] Configurar coordenador
+	- [X] Travar o selectAC enquanto o selectQA ainda não tiver sido preenchido
+	- [ ] Fazer validação js para o enunciado da questão (required)
+	- [ ] Permitir que as alternativas também sejam formatadas
+	- [ ] Adicionar plugins
 	- [ ] Permitir a seleção de mais de uma matéria
- 	- [ ] Travar o selectAC enquanto o selectQA ainda não tiver sido preenchido
-- [ ] Update
-	- [ ] Exibir mais de uma matéria
-	- [ ] Edições na janela de visualização
-	- [ ] Alterar id quando as disciplinas mudarem
+	- [ ] Revisar opções da barra de ferramentas
+- [ ] Read
 	- [ ] Executar HTML dentro do CKEditor
-	- [ ] Adicionar ícone para permitir edição
+	- [X] Exibir dificuldade da questão
+	- [X] Adicionar ícone para permitir edição
+	- [ ] Configurar ícone de edição
+	- [ ] Transpor código SQL para readSQL.php
 	- [ ] Adicionar paginação
 	- [ ] Adicionar filtros de pesquisa
-	- [ ] Exibir dificuldade da questão
+	- [ ] Exibir mais de uma matéria
+	- [ ] Exibir em quais provas a questão está presente
+- [ ] Update
+	- [ ] Adicionar selects para dificuldade, matérias e inclusões
+	- [ ] Retirar o CKEDitor do modo readonly (enunciado) 
+	- [ ] Configurar o modal que altera a letra da alternativa correta
+	- [ ] Atualizar o textarea da alternativa correta
 - [ ] Help
-	- [ ] Adicionar seções de ajuda
 
 ## Database
 
