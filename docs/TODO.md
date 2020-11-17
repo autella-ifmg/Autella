@@ -107,8 +107,8 @@
 - [X] Eliminar coluna de "picture" do usuário
 - [X] Eliminar coluna de "picture" da instituição
 - [X] Criar coluna de CEP e email na instituição
-- [ ] professor -> coluna de "último acesso em"
-- [ ] professor -> coluna de status ("conta/instituição ativa", "conta/instituição inativa")
+- [ ] user -> coluna de "último acesso em"
+- [ ] user/institution -> coluna de status ("conta/instituição ativa", "conta/instituição inativa")
 
 ## Geral
 - [X] Redirecionar da homepage para outras páginas quando cadastrado
