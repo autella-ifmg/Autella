@@ -12,6 +12,10 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
 
+    //Obtém o id do cargo correspondente ao usuário que está logado no momento.
+    $id_role = $_SESSION["userData"]["id_role"];
+    //var_dump($id_role);
+
     //Obtém o id da disciplina correspondente ao usuário que está logado no momento.
     $id_discipline = $_SESSION["userData"]["id_discipline"];
     ?>
@@ -28,6 +32,16 @@
             <div class="d-flex flex-column">
                 <!--Selects-->
                 <div class="d-flex flex-row mb-2">
+                    <!--Select da disciplina-->
+                    <div class="w-25 mr-3">
+                        <label id="labelDisciplines" for="disciplines" class="text-muted mt-1 mr-2">Disciplina:</label>
+                        <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()" disabled>
+                            <option value=0></option>
+                            <?php
+                            disciplineNamesToDdIs_Read(0);
+                            ?>
+                        </select>
+                    </div>
                     <!--Select das matérias-->
                     <div class="w-25 mr-3">
                         <label for="subjects" class="mt-1 mr-2">Matéria:</label>
@@ -38,7 +52,6 @@
                             ?>
                         </select>
                     </div>
-
                     <!--Select da dificuldade-->
                     <div class="w-25 mr-3">
                         <label for="dificulty" class="mt-1 mr-2">Dificuldade:</label>
@@ -49,7 +62,6 @@
                             <option value="3">Difícil</option>
                         </select>
                     </div>
-
                     <!--Select do número de alternativas-->
                     <div class="w-25 mr-3">
                         <label for="alternativesQuant" class="mt-1 mr-2">Nº de alternativas:</label>
@@ -59,7 +71,6 @@
                             <option value=5>5</option>
                         </select>
                     </div>
-
                     <!--Select da alternativa correta-->
                     <div class="w-25">
                         <label for="correctAnswer" class="mt-1 mr-2">Alternativa correta:</label>
@@ -169,6 +180,60 @@
                 div.appendChild(textarea);
             }
         }
+
+        function updateSubjects() {
+            var selectDiscipline = document.getElementById("disciplines");
+            selectDiscipline = selectDiscipline.value;
+
+            var selectSubjects = document.getElementById("subjects");
+            selectSubjects.innerHTML = "";
+
+            var option = document.createElement("option");
+            selectSubjects.appendChild(option);
+
+            <?php
+            $php_array = selectSubjects();
+            $js_array = json_encode($php_array);
+            $js_var = json_encode($id_discipline);
+            echo "var subjects = " . $js_array . ";\n
+                  var id_discipline = " . $js_var . ";\n";
+            ?>
+
+
+            for (let i = 0; i < subjects.length; i++) {
+                if (subjects[i][1] == selectDiscipline) {
+                    let option = document.createElement("option");
+                    option.setAttribute("name", `${subjects[i][0]}`);
+                    option.setAttribute("id", `${subjects[i][0]}`);
+                    option.setAttribute("value", `${subjects[i][0]}`);
+                    option.setAttribute("label", `${subjects[i][2]}`);
+                    selectSubjects.appendChild(option);
+                } else if (selectDiscipline == 0) {
+                    if (subjects[i][1] == id_discipline) {
+                        let option = document.createElement("option");
+                        option.setAttribute("name", `${subjects[i][0]}`);
+                        option.setAttribute("id", `${subjects[i][0]}`);
+                        option.setAttribute("value", `${subjects[i][0]}`);
+                        option.setAttribute("label", `${subjects[i][2]}`);
+                        selectSubjects.appendChild(option);
+                    }
+                }
+            }
+
+        }
+
+        <?php
+        if ($id_role == 0) {
+            echo
+                'var label = document.getElementById("labelDisciplines");
+                var selectDiscipline = document.getElementById("disciplines");
+
+                label.removeAttribute("class");
+                label.setAttribute("class", "mt-1 mr-2");
+
+                selectDiscipline.removeAttribute("disabled");';
+        }
+        ?>
     </script>
 
     <!--Importações do Bootstrap-->

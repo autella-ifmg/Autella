@@ -75,7 +75,7 @@
 
 ## Question
 - [ ] Create
-	- [ ] Configurar coordenador
+	- [X] Configurar ações do coordenador
 	- [X] Travar o selectAC enquanto o selectQA ainda não tiver sido preenchido
 	- [ ] Fazer validação js para o enunciado da questão (required)
 	- [ ] Permitir que as alternativas também sejam formatadas
@@ -83,11 +83,12 @@
 	- [ ] Permitir a seleção de mais de uma matéria
 	- [ ] Revisar opções da barra de ferramentas
 - [ ] Read
+	- [ ] Configurar ações do coordenador
 	- [ ] Executar HTML dentro do CKEditor
 	- [X] Exibir dificuldade da questão
 	- [X] Adicionar ícone para permitir edição
 	- [ ] Configurar ícone de edição
-	- [ ] Transpor código SQL para readSQL.php
+	- [X] Criar funções de tratamento
 	- [ ] Adicionar paginação
 	- [ ] Adicionar filtros de pesquisa
 	- [ ] Exibir mais de uma matéria

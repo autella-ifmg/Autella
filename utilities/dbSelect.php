@@ -67,16 +67,17 @@ function selectDisciplines()
     return $array;
 }
 
-function disciplineNameToUpdate($id_discipline)
+function disciplineNamesToDdIs_Read($id_discipline)
 {
     $array = selectDisciplines();
-
     //var_dump($array);
 
     for ($i = 0; $i < count($array); $i++) {
 
         if ($array[$i][0] == $id_discipline) {
             return $array[$i][2] . " - ";
+        } elseif ($id_discipline == 0) {
+            echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
         }
     }
 }
@@ -191,12 +192,12 @@ function subjectNamesToDropdownItems($id_discipline)
 
     for ($i = 0; $i < count($array); $i++) {
         if ($array[$i][1] == $id_discipline) {
-            echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" type="checkbox" class="dropdown-item" value="' . $array[$i][0] . '">' . $array[$i][2] . '</option>';
+            echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" class="dropdown-item" value="' . $array[$i][0] . '">' . $array[$i][2] . '</option>';
         }
     }
 }
 
-function subjectNamesToUpdate($id_subject)
+function subjectNamesToRead($id_subject)
 {
     $array = selectSubjects();
 
@@ -207,11 +208,11 @@ function subjectNamesToUpdate($id_subject)
     }
 }
 
-function selectDisciplineQuestions($id_discipline)
+function selectQuestions()
 {
     require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
 
-    $sql = "SELECT * FROM question WHERE id_discipline = '$id_discipline';";
+    $sql = "SELECT * FROM question;";
     $result = mysqli_query($connection, $sql);
     $array = [];
 
@@ -235,6 +236,21 @@ function selectDisciplineQuestions($id_discipline)
     return $array;
 }
 
+function questionsDiscipline($id_discipline)
+{
+    $allQuestions = selectQuestions();
+    $array = [];
+
+    for ($i = 0; $i < count($allQuestions); $i++) {
+        if ($allQuestions[$i][3] == $id_discipline) {
+            $row = $allQuestions[$i];
+            array_push($array, $row);
+        }
+    }
+
+    return $array;
+}
+
 function selectRowsQuantTableQuestion($id_discipline)
 {
     require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
@@ -244,4 +260,5 @@ function selectRowsQuantTableQuestion($id_discipline)
     $rowsQuant = mysqli_num_rows($result);
 
     return $rowsQuant;
+}
 }

@@ -21,7 +21,13 @@ if (isset($_POST["inputSubmit"])) {
     date_default_timezone_set("America/Sao_Paulo");
     $date = date("Y-m-d H:i:s");
     $id_user = $_SESSION["userData"]["id"];
-    $id_discipline = $_SESSION["userData"]["id_discipline"];
+
+    if ($_SESSION["userData"]["id_role"] == 0) {
+    $id_discipline = securityCheck($_POST["disciplines"]);
+    } else {
+        $id_discipline = $_SESSION["userData"]["id_discipline"];
+    }
+
     $id_subject = securityCheck($_POST["subjects"]);
     $dificulty = securityCheck($_POST["dificulty"]);
     $enunciate = securityCheck($_POST["enunciate"]);

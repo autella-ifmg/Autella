@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>CKEditor 5 – Document editor</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/decoupled-document/ckeditor.js"></script>
+</head>
+
+<body>
+    <h1>Document editor</h1>
+
+    <!-- The toolbar will be rendered in this container. -->
+    <div id="toolbar-container"></div>
+
+    <!-- This container will become the editable. -->
+    <form action="" id="formao">
+        <div id="editor">
+            <p>This is the initial editor content.</p>
+
+        </div>
+        <input type="button" value="Salvar" id="submit">
+    </form>
+
+    <script>
+        DecoupledEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                const toolbarContainer = document.querySelector('#toolbar-container');
+
+                toolbarContainer.appendChild(editor.ui.view.toolbar.element);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        document.querySelector('#submit').addEventListener('click', () => {
+            let editorData = document.querySelector('#editor').children;
+
+            let string = "";
+            for (let i = 0; i < editorData.length; i++) {
+                string += editorData[i].outerHTML;
+                string += "\n";
+            }
+            // console.log(string);
+
+            var invisibleInput = document.createElement("input");
+            //invisibleInput.setAttribute("style", "display: none");
+            invisibleInput.setAttribute("type", "text");
+            invisibleInput.setAttribute("value", string);
+            invisibleInput.setAttribute("name", "conteudoDoEditor");
+
+            var formulario = document.getElementById("#formao");
+            formao.appendChild(invisibleInput);
+        });
+    </script>
+</body>
+
+</html>
