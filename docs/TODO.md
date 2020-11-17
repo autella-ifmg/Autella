@@ -108,7 +108,7 @@
 - [X] Eliminar coluna de "picture" da instituição
 - [X] Criar coluna de CEP e email na instituição
 - [ ] professor -> coluna de "último acesso em"
-- [ ] professor -> coluna de status ("online", "offline", "conta desativada")
+- [ ] professor -> coluna de status ("conta/instituição ativa", "conta/instituição inativa")
 
 ## Geral
 - [X] Redirecionar da homepage para outras páginas quando cadastrado
@@ -130,7 +130,9 @@
 ## Observações
 	1 coordenador por escola
 	professores dessa escola são subordinados a esse coordenador
-	coordenadores tem página de gerenciamento dos professores                                               
+	coordenadores tem página de gerenciamento dos professores
+	somente programadores podem criar instituições e coordenadores
+	somente coordenadores podem criar professores
 
 
 ## Dicas
