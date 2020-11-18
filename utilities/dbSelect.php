@@ -261,3 +261,12 @@ function selectRowsQuantTableQuestion($id_discipline)
 
     return $rowsQuant;
 }
+
+function idRoleToRoleName($id){
+    require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
+
+    $sql = "SELECT name from role WHERE id = '$id';";
+    $result = mysqli_query($connection, $sql);
+
+    return mysqli_fetch_array($result)[0];
+}
