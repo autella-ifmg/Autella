@@ -24,7 +24,7 @@
             <div class="col-12 col-sm-10 col-md-5" style="max-height: 30rem">
                 <img id="userPicture" class="w-100 h-100" src="/images/users/<?php echo $_SESSION['userData']['id'] ?>.jpeg<?php echo '?' . time() ?>" />
                 <!-- for="inputImage" -->
-                <label class="position-absolute m-0 p-0 pr-3" style="bottom:0; right:-1px" for="inputImage"><img class="p-2" style="width:64px; background-color: white;" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil.svg" alt=""></label>
+                <label class="position-absolute m-0 p-0 pr-3" style="bottom:0; right:-1px; cursor: pointer" for="inputImage"><img class="p-2" style="width:64px; background-color: white;" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil.svg" alt=""></label>
                 <!-- id="inputImage" name="inputImage" -->
                 <input class="d-none" type="file" id="inputImage" name="image" accept="image/*">
             </div>

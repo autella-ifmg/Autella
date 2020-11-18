@@ -33,14 +33,12 @@
                         <a class="dropdown-item" href="/cruds/user/readGUI.php?id=<?php echo $_SESSION['userData']['id']; ?>">Sua conta</a>
                         <a class="dropdown-item" href="/cruds/institution/readGUI.php?id=<?php echo $_SESSION['userData']['id_institution'] ?>">Sua instituição</a>
                         <a class="dropdown-item" href="/utilities/logout.php">Logout</a>
-
                     </div>
                 </div>
-
             </li>
 
             <li class="nav-item">
-            <a style="color: rgb(124, 124, 124)" class="nav-link"><?php echo $_SESSION['userData']['name']; ?>&nbsp </a>
+            <a style="color: rgb(124, 124, 124); font-weight: bold" class="nav-link"><?php echo $_SESSION['userData']['name']; ?>&nbsp </a>
                 <span style="font-size: 0.8rem; color: rgb(166, 166, 166)" class="nav-link pt-0">
                     <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
                     echo idRoleToRoleName($_SESSION['userData']['id_role']); ?>
