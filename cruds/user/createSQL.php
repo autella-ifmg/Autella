@@ -28,7 +28,7 @@ if (isset($_POST['inputSubmit'])) {
                 $newUserId = $connection->insert_id;
 
                 // Adicionar imagem de perfil padrão
-                $path = "../../images/userDefault.jpg";
+                $path = "../../images/userDefault.jpeg";
                 $data = file_get_contents($path);
                 $image_name = '../../images/users/' . $newUserId . '.jpeg';
                 file_put_contents($image_name, $data);
