@@ -77,7 +77,7 @@
             <div class="d-flex justify-content-around pt-4 pt-sm-0 w-100 mx-3 mb-5">
                 <a class="btn btn-danger btn-lg" href="../../index.php">Voltar</a>
 
-                <?php if ($_GET['id'] == $_SESSION['userData']['id_institution'] && $_SESSION['userData']['id_role'] == 0) {
+                <?php if ($_GET['id'] == $_SESSION['userData']['id_institution'] && $_SESSION['userData']['id_role'] == 1) {
                     echo '<a class="btn btn-success btn-lg" href="updateGUI.php" >Alterar dados</a>';
                 }
                 ?>

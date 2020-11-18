@@ -261,4 +261,3 @@ function selectRowsQuantTableQuestion($id_discipline)
 
     return $rowsQuant;
 }
-}
