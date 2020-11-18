@@ -24,27 +24,28 @@
 
 
         <ul class="navbar-nav ml-auto align-items-center">
-            <li class="nav-item pr-3"">
-                <div class="dropdown" style="cursor: pointer;">
-                    <img data-toggle="dropdown" class="rounded-circle d-inline-block" style="width: 64px; height: 64px" src="/images/users/<?php echo $_SESSION['userData']['id'] ?>.jpeg<?php echo '?' . time() ?>" />
-                    <img data-toggle="dropdown" src="http://autella.com/libraries/bootstrap/bootstrap-icons-1.0.0/chevron-down.svg" alt="">
 
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="/cruds/user/readGUI.php?id=<?php echo $_SESSION['userData']['id']; ?>">Sua conta</a>
-                        <a class="dropdown-item" href="/cruds/institution/readGUI.php?id=<?php echo $_SESSION['userData']['id_institution'] ?>">Sua instituição</a>
-                        <a class="dropdown-item" href="/utilities/logout.php">Logout</a>
-                    </div>
-                </div>
-            </li>
 
             <li class="nav-item">
-            <a style="color: rgb(124, 124, 124); font-weight: bold" class="nav-link"><?php echo $_SESSION['userData']['name']; ?>&nbsp </a>
-                <span style="font-size: 0.8rem; color: rgb(166, 166, 166)" class="nav-link pt-0">
+                <a style="color: rgb(124, 124, 124); font-weight: bold" class="nav-link"><?php echo $_SESSION['userData']['name']; ?>&nbsp </a>
+                <span style="text-align: right; font-size: 0.8rem; color: rgb(166, 166, 166)" class="nav-link pt-0">
                     <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
                     echo idRoleToRoleName($_SESSION['userData']['id_role']); ?>
                 </span>
             </li>
 
+            <li class="nav-item pr-3"">
+                <div class=" dropdown" style="cursor: pointer;">
+                <img data-toggle="dropdown" src="http://autella.com/libraries/bootstrap/bootstrap-icons-1.0.0/chevron-down.svg" alt="">
+                <img data-toggle="dropdown" class="rounded-circle d-inline-block" style="width: 64px; height: 64px" src="/images/users/<?php echo $_SESSION['userData']['id'] ?>.jpeg<?php echo '?' . time() ?>" />
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position: absolute; left: -4rem">
+                    <a class="dropdown-item" href="/cruds/user/readGUI.php?id=<?php echo $_SESSION['userData']['id']; ?>">Sua conta</a>
+                    <a class="dropdown-item" href="/cruds/institution/readGUI.php?id=<?php echo $_SESSION['userData']['id_institution'] ?>">Sua instituição</a>
+                    <a class="dropdown-item" href="/utilities/logout.php">Logout</a>
+                </div>
+
+            </li>
         </ul>
     </div>
 </nav>
