@@ -12,34 +12,26 @@
     ?>
 </head>
 
-<body class="h-100 w-100">
+<body class="h-100 w-100 d-flex flex-column">
     <header>
         <?php
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/navbar.php';
         ?>
     </header>
 
-    <main class="h-100">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark flex-column d-inline-block">
-            <a class="navbar-brand" href="/index.php">Autella</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/cruds/questao/createGUI.php">Criar questão</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="/cruds/provaSimples/create.php">Prova Simples</a>
-                    </li>
-                </ul>
-            </div>
+    <main class="d-flex flex-row align-items-center flex-grow-1">
+        <nav class="navbar navbar-light d-inline-block" style="width: 15%; height:90%">
+            <ul class="d-flex flex-column h-100 pl-0 text-center">
+                <a class="nav-link flex-grow-1 align-self-center" href="/cruds/controlPanel/userReadGUI.php">Usuários</a>
+                <a class="nav-link flex-grow-1" href="/cruds/controlPanel/userReadGUI.php">Questões</a>
+                <a class="nav-link flex-grow-1" href="/cruds/controlPanel/userReadGUI.php">Provas simples</a>
+                <a class="nav-link flex-grow-1" href="/cruds/controlPanel/userReadGUI.php">Provas globais</a>
+            </ul>
         </nav>
 
-        <div class="container d-inline-block">
-            <p>Conteúdo</p>
+
+        <div class="d-inline-block border" style="width: 80%; height:90%">
+            <h3 class="text-center col-12">Usuários</h3>
         </div>
     </main>
 
