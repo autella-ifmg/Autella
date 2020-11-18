@@ -32,6 +32,34 @@
 
         <div class="d-inline-block border" style="width: 80%; height:90%">
             <h3 class="text-center col-12">Usuários</h3>
+            <table class="table">
+                <thead class="thead-dark">
+                    <th scope="col">Código</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Área</th>
+                    <th scope="col">Disciplina</th>
+                    <th scope="col">Foto</th>
+                    <th scope="col">Ações</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" style="vertical-align: middle;">1241</th>
+                        <td style="vertical-align: middle;">Lawrence</td>
+                        <td style="vertical-align: middle;">lawrence@gmail.com</td>
+                        <td style="vertical-align: middle;">Ciências humanas</td>
+                        <td style="vertical-align: middle;">Geografia</td>
+                        <td style="vertical-align: middle;"><img data-toggle="dropdown" class="rounded-circle d-inline-block" style="width: 64px; height: 64px" src="/images/users/2.jpeg?1605727946"></td>
+                        <td class="d-flex flex-row justify-content-around">
+                            <a class="mt-3" href=""><img style="width: 32px" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/eye.svg" alt=""></a>
+                            <a class="mt-3" href=""><img style="width: 32px" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil.svg" alt=""></a>
+                            <a class="mt-3" href=""><img style="width: 32px" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/x-circle.svg" alt=""></a>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+
+            </table>
         </div>
     </main>
 
