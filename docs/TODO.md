@@ -105,6 +105,13 @@
 	- [ ] Atualizar o textarea da alternativa correta
 - [ ] Help
 
+## Painel de controle
+- [ ] Users
+	- [X] Tabela de visualização dos dados
+	- [X] Botão de visualizar funcionando
+	- [ ] Botão de editar funcionando
+	- [ ] Botão de excluir funcionando
+
 ## Database
 
 - [X] Criar tabela "Área" no banco de dados
