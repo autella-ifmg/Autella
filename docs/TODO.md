@@ -82,6 +82,11 @@
 	- [ ] Adicionar plugins
 	- [ ] Permitir a seleção de mais de uma matéria
 	- [ ] Revisar opções da barra de ferramentas
+	 
+	- [ ] Deixar valores dos dropdowns pre-selecionados
+	- [ ] Exibir caixinha de disciplina apenas caso seja o coordenador
+	- [ ] Remover securityCheck do questao/createSQL.php
+	- [ ] Impedir criação de enunciado vazio (verificação do CkEditor)
 - [ ] Read
 	- [ ] Configurar ações do coordenador
 	- [ ] Executar HTML dentro do CKEditor
@@ -128,6 +133,7 @@
 ## Segurança
 - [ ] Tirar senha do $_SESSION['userData'] -> implicações no professor/updateSQL.php
 - [ ] Criptografia de senhas
+- [ ] Desativar tags "<script>" e "<?php" do que o CkEditor retorna
 
 ## Observações
 	1 coordenador por escola
