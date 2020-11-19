@@ -5,9 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Autella</title>
+
     <link rel="stylesheet" href="/libraries/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="/libraries/cropperjs/cropper.css">
-    <title>Autella</title>
+    <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
+    <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
+    <script src="/libraries/cropperjs/cropper.js"></script>
+
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
@@ -18,55 +23,55 @@
     <div class="col-12 ml-4    col-sm-10    col-lg-8    col-xl-6">
         <h1 class="text-center mb-3 mt-5 mb-sm-5">Autella <span class="d-none d-sm-inline">| Alterar dados da instituição</span></h1>
 
-        <form action="updateSQL.php" method="POST" novalidate class="needs-validation row" enctype="multipart/form-data">
+        <form action="updateSQL.php" method="POST" novalidate class="needs-validation row">
             <div class="form-group col-12 ">
                 <label>Nome completo</label>
-                <input type="text" class="form-control" name="inputFullName" value="<?php echo $_SESSION['userInstitutionData']['full_name'] ?>" required>
+                <input required type="text" class="form-control" name="fullName" value="<?php echo $_SESSION['userInstitutionData']['full_name'] ?>">
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Abreviação</label>
-                <input type="text" class="form-control" name="inputAbbreviation" value="<?php echo $_SESSION['userInstitutionData']['abbreviation'] ?>" required>
+                <input required type="text" class="form-control" name="abbreviation" value="<?php echo $_SESSION['userInstitutionData']['abbreviation'] ?>">
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Telefone</label>
-                <input type="text" class="form-control" name="inputPhone" value="<?php echo $_SESSION['userInstitutionData']['phone'] ?>" required>
+                <input required type="text" class="form-control" name="phone" value="<?php echo $_SESSION['userInstitutionData']['phone'] ?>">
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Email institucional</label>
-                <input type="text" class="form-control"  name="inputEmail" value="<?php echo $_SESSION['userInstitutionData']['email'] ?>" required>
+                <input required type="text" class="form-control" name="email" value="<?php echo $_SESSION['userInstitutionData']['email'] ?>">
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>CEP</label>
-                <input type="text" class="form-control"  name="inputCep" value="<?php echo $_SESSION['userInstitutionData']['cep'] ?>" required>
+                <input required type="text" class="form-control" name="cep" value="<?php echo $_SESSION['userInstitutionData']['cep'] ?>">
             </div>
 
             <div class="form-group col-12">
                 <label>Rua/Avenida</label>
-                <input type="text" class="form-control" name="inputStreet" value="<?php echo $_SESSION['userInstitutionData']['street'] ?>" required>
+                <input required type="text" class="form-control" name="street" value="<?php echo $_SESSION['userInstitutionData']['street'] ?>">
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Número</label>
-                <input type="text" class="form-control" name="inputNumber" value="<?php echo $_SESSION['userInstitutionData']['number'] ?>" required>
+                <input required type="text" class="form-control" name="number" value="<?php echo $_SESSION['userInstitutionData']['number'] ?>">
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Bairro</label>
-                <input type="text" class="form-control" name="inputNeighborhood" value="<?php echo $_SESSION['userInstitutionData']['neighborhood'] ?>" required>
+                <input required type="text" class="form-control" name="neighborhood" value="<?php echo $_SESSION['userInstitutionData']['neighborhood'] ?>">
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Cidade</label>
-                <input type="text" class="form-control" name="inputCity" value="<?php echo $_SESSION['userInstitutionData']['city'] ?>" required>
+                <input required type="text" class="form-control" name="city" value="<?php echo $_SESSION['userInstitutionData']['city'] ?>">
             </div>
 
             <div class="form-group col-12 col-md-6 ">
                 <label>Estado</label>
-                <input type="text" class="form-control" name="inputState" value="<?php echo $_SESSION['userInstitutionData']['state'] ?>" required>
+                <input required type="text" class="form-control" name="state" value="<?php echo $_SESSION['userInstitutionData']['state'] ?>">
             </div>
 
             <div class="w-100 px-3 mb-5" style="position:relative">
@@ -78,11 +83,16 @@
 
             <div class="d-flex justify-content-between pt-4 pt-sm-0 w-100 mx-3 mb-5">
                 <a class="btn btn-danger btn-lg" href="../../index.php">Cancelar</a>
-                <input type="submit" class="btn btn-success btn-lg" name="inputSubmit" value="Alterar dados">
+                <input type="submit" class="btn btn-success btn-lg" name="submit" value="Alterar dados">
             </div>
         </form>
     </div>
 
+
+
+
+
+    <!-- CropperJS -->
     <!-- CropperJS Modal -->
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -97,7 +107,7 @@
                     <div class="img-container">
                         <div class="row w-100">
                             <div class="col-12 col-md-7">
-                                <img class="w-100 h-100" src="" id="sample_image" />
+                                <img class="w-100 h-100" id="sample_image" />
                             </div>
                             <div class="col-md-4 mx-3 d-none   d-md-block">
                                 <div style="overflow: hidden; width: 160px; height: 160px;" class="border" id="cropperjspreview"></div>
@@ -112,10 +122,6 @@
             </div>
         </div>
     </div>
-
-    <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
-    <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
-    <script src="/libraries/cropperjs/cropper.js"></script>
 
     <!-- CropperJS Script -->
     <script>
@@ -188,23 +194,6 @@
 
         });
     </script>
-
-    <!-- Preview da imagem antes do CropperJS-->
-    <!-- <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#institutionPicture').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $("#inputImage").change(function() {
-            readURL(this);
-        });
-    </script> -->
 </body>
 
 </html>
