@@ -31,8 +31,8 @@ echo "
 
 // Verify if inputPassword and inputConfirmPassword match
 function checarSenhas() {
-    let p1 = document.querySelector('#inputPassword');
-    let p2 = document.querySelector('#inputConfirmPassword');
+    let p1 = document.querySelector('#password');
+    let p2 = document.querySelector('#confirmPassword');
 
     if(p1.value == p2.value){
         return true;
