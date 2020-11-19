@@ -1,28 +1,34 @@
 <?php
-if (isset($_POST['inputSubmit'])) {
+if (isset($_POST['submit'])) {
     require_once '../../utilities/dbConnect.php';
 
-    $full_name = mysqli_escape_string($connection, $_POST['inputFullName']);
-    $abbreviation = mysqli_escape_string($connection, $_POST['inputAbbreviation']);
-    $phone = mysqli_escape_string($connection, $_POST['inputPhone']);
-    $email = mysqli_escape_string($connection, $_POST['inputEmail']);
-    $cep = mysqli_escape_string($connection, $_POST['inputCep']);
-    $number = mysqli_escape_string($connection, $_POST['inputNumber']);
-    $street = mysqli_escape_string($connection, $_POST['inputStreet']);
-    $neighborhood = mysqli_escape_string($connection, $_POST['inputNeighborhood']);
-    $city = mysqli_escape_string($connection, $_POST['inputCity']);
-    $state = mysqli_escape_string($connection, $_POST['inputState']);
+    function secure($data)
+    {
+        global $connection;
+        $data = mysqli_escape_string($connection, $data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
 
-    // $image = 'C:\wamp64\www\autella.com\images\institutionDefault.jpg';
-    // $image = file_get_contents($image);
-    // $image = mysqli_escape_string($connection, $image);
+    $full_name = secure($_POST['fullName']);
+    $abbreviation = secure($_POST['abbreviation']);
+    $phone = secure($_POST['phone']);
+    $email = secure($_POST['email']);
+    $cep = secure($_POST['cep']);
+    $number = secure($_POST['number']);
+    $street = secure($_POST['street']);
+    $neighborhood = secure($_POST['neighborhood']);
+    $city = secure($_POST['city']);
+    $state = secure($_POST['state']);
 
 
-    $sql = "INSERT INTO institution (full_name, abbreviation, phone, email, cep, number, street, neighborhood, city, state) VALUES 
-                ('$full_name', '$abbreviation', '$phone', '$email', '$cep', '$number', '$street', '$neighborhood', '$city', '$state');";
+    $sql = "INSERT INTO institution 
+            (full_name, abbreviation, phone, email, cep, number, street, neighborhood, city, state) 
+            VALUES 
+            ('$full_name', '$abbreviation', '$phone', '$email', '$cep', '$number', '$street', '$neighborhood', '$city', '$state');";
 
     if ($connection->query($sql) === TRUE) {
-        $message = "Instituição criada com sucesso!";
+        // array_push($_SESSION['debug'], "Instituição criada com sucesso!");
         $newInstitutionId = $connection->insert_id;
 
         // Adicionar imagem de perfil padrão
@@ -31,12 +37,10 @@ if (isset($_POST['inputSubmit'])) {
         $image_name = '../../images/institutions/' . $newInstitutionId . '.jpeg';
         file_put_contents($image_name, $data);
     } else {
-        $message = "Erro na criação da instituição!";
-        //$message = "Erro: " . $sql . "<br>" . $connection->error;
+        array_push($_SESSION['debug'], "Erro na criação da instituição!");
     }
-
     $connection->close();
-    array_push($_SESSION['debug'], $message);
+
 
     header('Location: ../../index.php');
 }

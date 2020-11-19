@@ -158,6 +158,7 @@
 		$otherProfileName = array['name'];
 	}
 	* This script tag should be included between the <head> tags in your HTML document.
+	*$connection->close();		após		require_once '../../utilities/dbConnect.php';
 
 
 ## Possíveis novas funções
