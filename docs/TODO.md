@@ -157,6 +157,7 @@
 	} else {
 		$otherProfileName = array['name'];
 	}
+	* This script tag should be included between the <head> tags in your HTML document.
 
 
 ## Possíveis novas funções

@@ -277,42 +277,40 @@ function selectUsers()
     require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
 
     $sql = "SELECT user.id, user.name, user.email, role.name, field.name, discipline.name FROM user 
-    JOIN discipline ON user.id_discipline = discipline.id
-    JOIN field ON field.id = discipline.id_field
-    JOIN role ON user.id_role = role.id
-    WHERE user.id_institution = " . $_SESSION['userData']['id_institution'];
-    $result = mysqli_query($connection, $sql);
+            JOIN discipline ON user.id_discipline = discipline.id
+            JOIN field ON field.id = discipline.id_field
+            JOIN role ON user.id_role = role.id
+            WHERE user.id_institution = " . $_SESSION['userData']['id_institution'];
 
+    $result = mysqli_query($connection, $sql);
 
     if (mysqli_num_rows($result) != 0) {
         while ($row = mysqli_fetch_array($result)) {
-            //array_push($_SESSION['debug'], $row);
-
             echo '
                 <tr>
-                    <th scope="row" style="vertical-align: middle;">'. $row[0] .'</th>
-                    <td style="vertical-align: middle;">'. $row[1] .'</td>
-                    <td style="vertical-align: middle;">'. $row[2] .'</td>
-                    <td style="vertical-align: middle;">'. $row[3] .'</td>
-                    <td style="vertical-align: middle;">'. $row[4] .'</td>
-                    <td style="vertical-align: middle;">'. $row[5] .'</td>
-                    <!-- <td style="vertical-align: middle;"><img data-toggle="dropdown" class="rounded-circle d-inline-block" style="width: 64px; height: 64px" src="/images/users/'. $row[0] .'.jpeg?1605727946"></td> -->
+                    <th style="vertical-align: middle;">' . $row[0] . '</th>
+                    <td style="vertical-align: middle;">' . $row[1] . '</td>
+                    <td style="vertical-align: middle;">' . $row[2] . '</td>
+                    <td style="vertical-align: middle;">' . $row[3] . '</td>
+                    <td style="vertical-align: middle;">' . $row[4] . '</td>
+                    <td style="vertical-align: middle;">' . $row[5] . '</td>
+                    
                     <td class="d-flex flex-row justify-content-around" style="min-width: 200px">
-                        <a class="mt-3" href="/cruds/user/readGUI.php?id='. $row[0] .'"><img style="width: 32px" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/eye.svg" alt=""></a>
-                        <a class="mt-3" href=""><img style="width: 32px" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil.svg" alt=""></a>
-                        <a class="mt-3" href=""><img style="width: 32px" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/x-circle.svg" alt=""></a>
+                        <a class="mt-2" href="/cruds/user/readGUI.php?id=' . $row[0] . '">
+                            <img style="width: 32px" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/eye.svg">
+                        </a>
+                        <a class="mt-2" href="">
+                            <img style="width: 32px" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil.svg">
+                        </a>
+                        <a class="mt-2" href="">
+                            <img style="width: 32px" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/x-circle.svg">
+                        </a>
                     </td>
                 </tr>
             ';
         }
-        $message = "Usuários selecionados com sucesso!";
+        array_push($_SESSION['debug'], 'Usuários selecionados com sucesso!');
     } else {
-        $message = "Erro ao selecionar usuários!";
-        //$message = "Error: " . $sql . "<br>" . $connection->error;
-    }
-
-
-    if (isset($message)) {
-        array_push($_SESSION['debug'], $message);
+        array_push($_SESSION['debug'], 'Erro ao selecionar usuários!');
     }
 }
