@@ -1,5 +1,3 @@
-<?php require_once 'readSQL.php' ?>
-
 <!DOCTYPE html>
 <html class="h-100 w-100">
 
@@ -12,7 +10,10 @@
     <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
 
-    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php'; ?>
+    <?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
+    require_once 'readSQL.php'
+    ?>
 </head>
 
 <body class="w-100">
@@ -44,7 +45,7 @@
                     <label>Disciplina</label>
                     <input readonly type="email" class="form-control" value="<?php echo $otherProfileDiscipline; ?>">
                 </div>
-                
+
                 <div class="form-group">
                     <label>Cargo</label>
                     <input readonly type="email" class="form-control" value="<?php echo $otherProfileRole; ?>">

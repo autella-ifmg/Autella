@@ -4,11 +4,11 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     $sql = "SELECT user.name, user.email, field.name, discipline.name, role.name, user.id 
-    FROM discipline 
-    JOIN field ON discipline.id_field = field.id 
-    JOIN user ON user.id_discipline = discipline.id 
-    JOIN role ON user.id_role = role.id 
-    AND user.id = '$id';";
+            FROM discipline 
+            JOIN field ON discipline.id_field = field.id 
+            JOIN user ON user.id_discipline = discipline.id 
+            JOIN role ON user.id_role = role.id 
+            AND user.id = '$id';";
 
     $result = mysqli_query($connection, $sql);
     if (mysqli_num_rows($result) != 0) {

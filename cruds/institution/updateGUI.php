@@ -80,7 +80,6 @@
                 <input class="d-none" type="file" id="inputImage" name="image" accept="image/*">
             </div>
 
-
             <div class="d-flex justify-content-between pt-4 pt-sm-0 w-100 mx-3 mb-5">
                 <a class="btn btn-danger btn-lg" href="../../index.php">Cancelar</a>
                 <input type="submit" class="btn btn-success btn-lg" name="submit" value="Alterar dados">

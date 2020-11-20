@@ -38,12 +38,10 @@
                 <input required type="password" class="form-control" id="password" name="password">
             </div>
 
-
             <div class="form-group">
                 <label>Confirmar nova senha</label>
                 <input required type="password" class="form-control" id="confirmPassword" name="confirmPassword">
             </div>
-
 
             <div class="row justify-content-between mb-0 mx-1 mb-sm-3">
                 <div class="col-12 mt-3 col-sm-8 mt-sm-0 row">
@@ -117,8 +115,6 @@
         // Quando o documento estiver carregado, executar o método updateDisciplines()
         document.addEventListener('DOMContentLoaded', updateDisciplines(), false);
     </script>
-
-
 </body>
 
 </html>

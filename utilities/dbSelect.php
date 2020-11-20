@@ -42,6 +42,7 @@ function selectDisciplines(){
     } else {
         array_push($_SESSION['debug'], "Erro ao selecionar disciplinas!");
     }
+    $connection->close();
 
     return $array;
 }
@@ -58,8 +59,6 @@ function disciplineNamesToDdIs_Read($id_discipline)
             echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
         }
     }
-
-    $connection->close();
 }
 
 

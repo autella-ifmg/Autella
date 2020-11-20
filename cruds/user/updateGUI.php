@@ -31,35 +31,35 @@
             </div>
 
             <div class="col-12 col-sm-10 col-md-5 mt-3">
-            <div class="form-group">
-                <label>Nome</label>
-                <input required type="text" class="form-control" name="name" value="<?php echo $_SESSION['userData']['name'] ?>">
-            </div>
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input required type="text" class="form-control" name="name" value="<?php echo $_SESSION['userData']['name'] ?>">
+                </div>
 
-            <div class="form-group">
-                <label>Email</label>
-                <input required type="email" class="form-control" name="email" value="<?php echo $_SESSION['userData']['email'] ?>">
-            </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input required type="email" class="form-control" name="email" value="<?php echo $_SESSION['userData']['email'] ?>">
+                </div>
 
-            <div class="form-group">
-                <label>Senha atual</label>
-                <input required type="password" class="form-control" name="oldPassword">
-            </div>
+                <div class="form-group">
+                    <label>Senha atual</label>
+                    <input required type="password" class="form-control" name="oldPassword">
+                </div>
 
-            <div class="form-group">
-                <label>Nova senha</label>
-                <input type="password" class="form-control" id="password" name="password">
-            </div>
+                <div class="form-group">
+                    <label>Nova senha</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
 
 
-            <div class="form-group">
-                <label>Confirmar nova senha</label>
-                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
-            </div>
+                <div class="form-group">
+                    <label>Confirmar nova senha</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+                </div>
 
                 <div class="d-flex flex-row justify-content-between">
                     <a class="btn btn-lg btn-danger" href="../../index.php">Cancelar</a>
-                    <input type="submit" class="btn btn-lg btn-success" name="inputSubmit" value="Alterar">
+                    <input type="submit" class="btn btn-lg btn-success" name="submit" value="Alterar">
                 </div>
             </div>
         </form>

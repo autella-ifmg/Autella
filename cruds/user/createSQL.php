@@ -26,14 +26,12 @@ if (isset($_POST['submit'])) {
     } else {
 
 
-
         // Impedir criação de mais de um coordenador por instituição
         $sql = "SELECT * FROM db_autella_local.user WHERE id_role='1' AND id_institution=$id_institution";
         $result = mysqli_query($connection, $sql);
         if (mysqli_num_rows($result) != 0 && $id_role == '1') {
             array_push($_SESSION['debug'], "Instituição já possui um coordenador!");
         } else {
-
             
 
             // Criar conta

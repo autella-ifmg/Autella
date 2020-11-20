@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['inputSubmit'])) {
+if (isset($_POST['submit'])) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
 
     function secure($data)
