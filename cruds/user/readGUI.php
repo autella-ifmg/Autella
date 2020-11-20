@@ -6,37 +6,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="/libraries/bootstrap/bootstrap.css">
     <title>Autella</title>
-    <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
-    ?>
+
+    <link rel="stylesheet" href="/libraries/bootstrap/bootstrap.css">
+    <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
+    <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
+
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php'; ?>
 </head>
 
 <body class="w-100">
     <div class="container w-100">
-        <h1 class="text-center" style="margin: 8% 0">Autella | Visualizar conta</h1>
+        <h1 class="text-center mb-3 mb-sm-5 mt-5">Autella <span class="d-none d-sm-inline">| Visualizar conta</span></h1>
 
         <div class="row justify-content-around">
             <div class="col-12 col-sm-10 col-md-5" style="max-height: 30rem">
-                <img class="w-100 h-100" src="<?php echo $otherProfileImage ?>" />
+                <img class="w-100" src="<?php echo $otherProfileImage ?>" />
             </div>
 
             <div class="col-12 col-sm-10 col-md-5 mt-3">
-                <label>Nome</label>
-                <input readonly type="text" class="form-control mb-3" value="<?php echo $otherProfileName ?>">
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input readonly type="text" class="form-control" value="<?php echo $otherProfileName ?>">
+                </div>
 
-                <label>Email</label>
-                <input readonly type="email" class="form-control mb-3" value="<?php echo $otherProfileEmail; ?>">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input readonly type="email" class="form-control" value="<?php echo $otherProfileEmail; ?>">
+                </div>
 
-                <label>Área</label>
-                <input readonly type="email" class="form-control mb-3" value="<?php echo $otherProfileField; ?>">
+                <div class="form-group">
+                    <label>Área</label>
+                    <input readonly type="email" class="form-control" value="<?php echo $otherProfileField; ?>">
+                </div>
 
-                <label>Disciplina</label>
-                <input readonly type="email" class="form-control mb-3" value="<?php echo $otherProfileDiscipline; ?>">
-
-                <label>Cargo</label>
-                <input readonly type="email" class="form-control mb-3" value="<?php echo $otherProfileRole; ?>">
+                <div class="form-group">
+                    <label>Disciplina</label>
+                    <input readonly type="email" class="form-control" value="<?php echo $otherProfileDiscipline; ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Cargo</label>
+                    <input readonly type="email" class="form-control" value="<?php echo $otherProfileRole; ?>">
+                </div>
 
                 <div class="row justify-content-around">
                     <a class="btn btn-danger col-4" href="../../index.php">Voltar</a>
@@ -49,9 +61,6 @@
             </div>
         </div>
     </div>
-
-    <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
-    <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
 </body>
 
 </html>

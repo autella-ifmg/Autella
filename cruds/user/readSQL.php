@@ -1,10 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
-
-if (!isset($_SESSION['userData'])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/views/403.php';
-    die();
-} else if (isset($_GET['id'])) {
+if (isset($_GET['id'])) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
     $id = $_GET['id'];
 
     $sql = "SELECT user.name, user.email, field.name, discipline.name, role.name, user.id 
@@ -17,9 +13,7 @@ if (!isset($_SESSION['userData'])) {
     $result = mysqli_query($connection, $sql);
     if (mysqli_num_rows($result) != 0) {
         $array = mysqli_fetch_array($result);
-        $_SESSION['otherProfileData'] = $array;
 
-        
         $otherProfileName = $array[0];
         $otherProfileEmail = $array[1];
         $otherProfileField = $array[2];
@@ -27,12 +21,12 @@ if (!isset($_SESSION['userData'])) {
         $otherProfileRole = $array[4];
         $otherProfileId = $array[5];
         $otherProfileImage = '/images/users/' . $otherProfileId . '.jpeg?' . time();
+
+        $connection->close();
     } else {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/404.php';
         die();
     }
-
-    $connection->close();
 } else {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/views/404.php';
     die();
