@@ -5,11 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="/libraries/bootstrap/bootstrap.css">
-
-    <link rel="stylesheet" href="/libraries/cropperjs/cropper.css">
-
     <title>Autella</title>
+
+    <link rel="stylesheet" href="/libraries/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="/libraries/cropperjs/cropper.css">
+    <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
+    <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
+    <script src="/libraries/cropperjs/cropper.js"></script>
+
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
@@ -20,30 +23,39 @@
     <div class="container w-100 align-items-center">
         <h1 class="text-center" style="margin: 8% 0">Autella | Alterar conta</h1>
 
-        <form action="updateSQL.php" method="POST" enctype="multipart/form-data" class="row justify-content-around needs-validation" novalidate>
+        <form action="updateSQL.php" method="POST" class="row justify-content-around needs-validation" novalidate>
             <div class="col-12 col-sm-10 col-md-5" style="max-height: 30rem">
-                <img id="userPicture" class="w-100 h-100" src="/images/users/<?php echo $_SESSION['userData']['id'] ?>.jpeg<?php echo '?' . time() ?>" />
-                <!-- for="inputImage" -->
-                <label class="position-absolute m-0 p-0 pr-3" style="bottom:0; right:-1px; cursor: pointer" for="inputImage"><img class="p-2" style="width:64px; background-color: white;" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil.svg" alt=""></label>
-                <!-- id="inputImage" name="inputImage" -->
+                <img id="userPicture" class="w-100" src="/images/users/<?php echo $_SESSION['userData']['id'] ?>.jpeg<?php echo '?' . time() ?>" />
+                <label class="position-absolute m-0 p-0 pr-3" style="bottom:2rem; right:-1px; cursor: pointer" for="inputImage"><img class="p-2" style="width:64px; background-color: white;" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil.svg" alt=""></label>
                 <input class="d-none" type="file" id="inputImage" name="image" accept="image/*">
             </div>
 
             <div class="col-12 col-sm-10 col-md-5 mt-3">
+            <div class="form-group">
                 <label>Nome</label>
-                <input type="text" class="form-control mb-3" name="inputName" value="<?php echo $_SESSION['userData']['name'] ?>" required>
+                <input required type="text" class="form-control" name="name" value="<?php echo $_SESSION['userData']['name'] ?>">
+            </div>
 
+            <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control mb-3" name="inputEmail" value="<?php echo $_SESSION['userData']['email']; ?>" required>
+                <input required type="email" class="form-control" name="email" value="<?php echo $_SESSION['userData']['email'] ?>">
+            </div>
 
+            <div class="form-group">
                 <label>Senha atual</label>
-                <input type="password" class="form-control mb-3" name="inputOldPassword" required>
+                <input required type="password" class="form-control" name="oldPassword">
+            </div>
 
+            <div class="form-group">
                 <label>Nova senha</label>
-                <input type="password" class="form-control mb-3" name="inputPassword" id="inputPassword">
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
 
+
+            <div class="form-group">
                 <label>Confirmar nova senha</label>
-                <input type="password" class="form-control mb-3" name="inputConfirmPassword" id="inputConfirmPassword">
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+            </div>
 
                 <div class="d-flex flex-row justify-content-between">
                     <a class="btn btn-lg btn-danger" href="../../index.php">Cancelar</a>
@@ -53,6 +65,11 @@
         </form>
     </div>
 
+
+
+
+
+    <!-- CropperJS -->
     <!-- CropperJS Modal -->
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -83,10 +100,6 @@
         </div>
     </div>
 
-
-    <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
-    <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
-    <script src="/libraries/cropperjs/cropper.js"></script>
 
     <!-- CropperJS Script -->
     <script>
@@ -159,25 +172,6 @@
 
         });
     </script>
-
-
-
-    <!-- Preview da imagem antes do CropperJS -->
-    <!-- <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#userPicture').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $("#inputImage").change(function() {
-            readURL(this);
-        });
-    </script> -->
 </body>
 
 </html>

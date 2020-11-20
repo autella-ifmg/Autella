@@ -23,7 +23,6 @@
         <h1 class="text-center mb-3 mb-sm-5">Autella <span class="d-none d-sm-inline">| Criar conta</span></h1>
 
         <form action="createSQL.php" method="POST" novalidate class="needs-validation">
-
             <div class="form-group">
                 <label>Nome</label>
                 <input required type="text" class="form-control" name="name">
