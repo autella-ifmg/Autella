@@ -133,6 +133,7 @@
 - [ ] Tirar senha do $_SESSION['userData'] -> implicações no professor/updateSQL.php
 - [ ] Criptografia de senhas
 - [ ] Desativar tags "<script>" e "<?php" do que o CkEditor retorna
+- [ ] Verificar, no início de cada página, as possibilidades de erro 403 ou 404
 
 ## Observações
 	1 coordenador por escola
