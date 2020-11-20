@@ -23,7 +23,6 @@
         <h1 class="text-center mb-3 mb-sm-5">Autella <span class="d-none d-sm-inline">| Criar conta</span></h1>
 
         <form action="createSQL.php" method="POST" novalidate class="needs-validation">
-
             <div class="form-group">
                 <label>Nome</label>
                 <input required type="text" class="form-control" name="name">
@@ -47,14 +46,14 @@
 
 
             <div class="row justify-content-between mb-0 mx-1 mb-sm-3">
-                <div class="col-12 mt-3    col-sm-8 mt-sm-0    row">
+                <div class="col-12 mt-3 col-sm-8 mt-sm-0 row">
                     <label class="col-12 pl-0">Área</label>
                     <select onchange="updateDisciplines()" class="btn border col-12" id="fieldList">
                         <?php fieldNamesToDropdownItems(); ?>
                     </select>
                 </div>
 
-                <div class="col-12 mt-3    col-sm-3 mt-sm-0    row">
+                <div class="col-12 mt-3 col-sm-3 mt-sm-0 row">
                     <label class="col-12 pl-0">Disciplina</label>
                     <select class="btn border col-12" name="disciplineId" id="disciplineList">
                         <!-- Preenchido com <script> -->
@@ -62,8 +61,8 @@
                 </div>
             </div>
 
-            <div class="row justify-content-between mb-0 mx-1    mb-sm-5">
-                <div class="col-12 mt-3    col-sm-8 mt-sm-0     row">
+            <div class="row justify-content-between mb-0 mx-1 mb-sm-5">
+                <div class="col-12 mt-3 col-sm-8 mt-sm-0  row">
                     <label class="col-12 pl-0">Instituição</label>
                     <select class="dropdown-toggle btn border col-10" name="institutionId">
                         <?php institutionNamesToDropdownItems() ?>
