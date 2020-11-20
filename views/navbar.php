@@ -24,8 +24,6 @@
 
 
         <ul class="navbar-nav ml-auto align-items-center">
-
-
             <li class="nav-item">
                 <a style="color: rgb(124, 124, 124); font-weight: bold" class="nav-link"><?php echo $_SESSION['userData']['name']; ?>&nbsp </a>
                 <span style="text-align: right; font-size: 0.8rem; color: rgb(166, 166, 166)" class="nav-link pt-0">

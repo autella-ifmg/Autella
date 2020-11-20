@@ -1,6 +1,6 @@
 <?php
 
-function selectFields()
+function fieldNamesToDropdownItems()
 {
     require $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
 
@@ -12,22 +12,10 @@ function selectFields()
         while ($row = mysqli_fetch_row($result)) {
             array_push($array, $row);
         }
-        // $message = "Áreas selecionadas com sucesso!";
+        //array_push($_SESSION['debug'], "Áreas selecionadas com sucesso!");
     } else {
-        $message = "Erro ao selecionar Áreas!";
-        // $message = "Error: " . $sql . "<br>" . $connection->error;
+        array_push($_SESSION['debug'], "Erro ao selecionar Áreas!");
     }
-
-    if (isset($message)) {
-        array_push($_SESSION['debug'], $message);
-    }
-
-    return $array;
-}
-
-function fieldNamesToDropdownItems()
-{
-    $array = selectFields();
 
     for ($i = 0; $i < count($array); $i++) {
         if ($i == 0) {
@@ -50,18 +38,11 @@ function selectDisciplines()
         while ($row = mysqli_fetch_row($result)) {
             array_push($array, $row);
         }
-        //$message = "Disciplinas selecionadas com sucesso!";
+        // array_push($_SESSION['debug'], "Disciplinas selecionadas com sucesso!");
     } else {
-        $message = "Erro ao selecionar disciplinas!";
-        //$message = "Erro: " . $sql . "<br>" . $connection->error;
+        array_push($_SESSION['debug'], "Erro ao selecionar disciplinas!");
     }
 
-    // echo var_dump($array);
-    // echo $array[0][1];
-
-    if (isset($message)) {
-        array_push($_SESSION['debug'], $message);
-    }
     $connection->close();
 
     return $array;
@@ -70,7 +51,6 @@ function selectDisciplines()
 function disciplineNamesToDdIs_Read($id_discipline)
 {
     $array = selectDisciplines();
-    //var_dump($array);
 
     for ($i = 0; $i < count($array); $i++) {
 
@@ -82,7 +62,8 @@ function disciplineNamesToDdIs_Read($id_discipline)
     }
 }
 
-function selectRoles()
+
+function roleNamesToDropdownItems()
 {
     require $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
 
@@ -94,22 +75,10 @@ function selectRoles()
         while ($row = mysqli_fetch_row($result)) {
             array_push($array, $row);
         }
-        // $message = "Cargos selecionados com sucesso!";
+        //array_push($_SESSION['debug'], "Cargos selecionados com sucesso!");
     } else {
-        $message = "Erro ao selecionar cargos!";
-        // $message = "Error: " . $sql . "<br>" . $connection->error;
+        array_push($_SESSION['debug'], "Erro ao selecionar cargos!");
     }
-
-    if (isset($message)) {
-        array_push($_SESSION['debug'], $message);
-    }
-
-    return $array;
-}
-
-function roleNamesToDropdownItems()
-{
-    $array = selectRoles();
 
     for ($i = 0; $i < count($array); $i++) {
         if ($i == 0) {
@@ -120,7 +89,7 @@ function roleNamesToDropdownItems()
     }
 }
 
-function selectInstitutions()
+function institutionNamesToDropdownItems()
 {
     require $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
 
@@ -132,22 +101,10 @@ function selectInstitutions()
         while ($row = mysqli_fetch_row($result)) {
             array_push($array, $row);
         }
-        // $message = "Instituições selecionadas com sucesso!";
+        // array_push($_SESSION['debug'], "Instituições selecionadas com sucesso!");
     } else {
-        $message = "Erro ao selecionar instituições!";
-        // $message = "Error: " . $sql . "<br>" . $connection->error;
+        array_push($_SESSION['debug'], "Erro ao selecionar instituições!");
     }
-
-    if (isset($message)) {
-        array_push($_SESSION['debug'], $message);
-    }
-
-    return $array;
-}
-
-function institutionNamesToDropdownItems()
-{
-    $array = selectInstitutions();
 
     for ($i = 0; $i < count($array); $i++) {
         if ($i == 0) {
@@ -170,17 +127,9 @@ function selectSubjects()
         while ($row = mysqli_fetch_array($result)) {
             array_push($array, $row);
         }
-        // $message = "Matérias selecionadas com sucesso!";
+        // array_push($_SESSION['debug'], "Matérias selecionadas com sucesso!");
     } else {
-        $message = "Erro ao selecionar matérias!";
-        //$message = "Erro: " . $sql . "<br>" . $connection->error;
-    }
-
-    // echo var_dump($array);
-    // echo $array[0][1];
-
-    if (isset($message)) {
-        array_push($_SESSION['debug'], $message);
+        array_push($_SESSION['debug'], "Erro ao selecionar matérias!");
     }
 
     return $array;
@@ -197,6 +146,7 @@ function subjectNamesToDropdownItems($id_discipline)
     }
 }
 
+// Essa função precisa? Se não precisar tem que juntar a função "selectSubjects" com a "subjectNamesToDropdownItems"
 function subjectNamesToRead($id_subject)
 {
     $array = selectSubjects();
@@ -220,17 +170,9 @@ function selectQuestions()
         while ($row = mysqli_fetch_array($result)) {
             array_push($array, $row);
         }
-        // $message = "Questões selecionadas com sucesso!";
+        // array_push($_SESSION['debug'], "Questões selecionadas com sucesso!");
     } else {
-        $message = "Erro ao selecionar questões!";
-        //$message = "Erro: " . $sql . "<br>" . $connection->error;
-    }
-
-    // echo var_dump($array);
-    // echo $array[0][1];
-
-    if (isset($message)) {
-        array_push($_SESSION['debug'], $message);
+        array_push($_SESSION['debug'], "Erro ao selecionar questões!");
     }
 
     return $array;
