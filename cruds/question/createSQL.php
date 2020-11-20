@@ -30,7 +30,7 @@ if (isset($_POST["inputSubmit"])) {
 
     $id_subject = securityCheck($_POST["subjects"]);
     $dificulty = securityCheck($_POST["dificulty"]);
-    $enunciate = securityCheck($_POST["enunciate"]);
+    $enunciate = $_POST["enunciate"];
     $correctAnswer = securityCheck($_POST["correctAnswer"]);
 
     //Obtém cada uma das alternativas e agrega elas no enunciado da questão.

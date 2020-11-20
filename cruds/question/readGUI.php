@@ -39,9 +39,9 @@
         <div class="d-flex flex-column">
             <div class="d-flex flex-row justify-content-center mb-2">
                 <!--Select das disciplinas-->
-                <div class="mr-3">
-                    <label id="labelDisciplines" for="disciplines" class="text-muted mt-1 mr-2">Disciplina:</label>
-                    <select name="disciplines" id="disciplines" class="form-control" disabled required>
+                <div id="container_selectDisciplines" class="mr-3" hidden>
+                    <label id="labelDisciplines" for="disciplines" class="mt-1 mr-2">Disciplina:</label>
+                    <select name="disciplines" id="disciplines" class="form-control" required>
                         <option value=0></option>
                         <?php
                         disciplineNamesToDdIs_Read(0);
@@ -73,7 +73,7 @@
                                     <div class="p-2 flex-fill bd-highlight border border-dark border-top-0 border-bottom-0">' . $date . '</div>
                                     <div class="p-2 w-75 bd-highlight border border-dark border-left-0 border-top-0 border-bottom-0">Inclusa em: Global1, Prova do César, Global3</div>';
 
-                            if ($id_role == 0) {
+                            if ($id_role == 1) {
                                 echo
                                     '<div class="p-2 flex-fill bd-highlight border border-dark border-left-0 border-top-0 border-bottom-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" width="25" height="25" onclick="edit()"/></div>';
                             } elseif ($array[$i][2] == $id_user) {
@@ -122,15 +122,11 @@
 
     <script>
         <?php
-        if ($id_role == 0) {
+        if ($id_role == 1) {
             echo
-                'var label = document.getElementById("labelDisciplines");
-                var selectDiscipline = document.getElementById("disciplines");
-
-                label.removeAttribute("class");
-                label.setAttribute("class", "mt-1 mr-2");
-
-                selectDiscipline.removeAttribute("disabled");';
+                'var div = document.getElementById("container_selectDisciplines");
+               
+                div.removeAttribute("hidden");';
         }
         ?>
     </script>

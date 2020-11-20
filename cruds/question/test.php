@@ -72,7 +72,7 @@
                         <div class="p-2 flex-fill bd-highlight border border-dark border-top-0 border-bottom-0">' . $date . '</div>
                         <div class="p-2 w-75 bd-highlight border border-dark border-left-0 border-top-0 border-bottom-0">Inclusa em: Global1, Prova do César, Global3</div>';
 
-                        if ($id_role == 0) {
+                        if ($id_role == 1) {
                             echo
                                 '<div class="p-2 flex-fill bd-highlight border border-dark border-left-0 border-top-0 border-bottom-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" width="25" height="25" onclick="edit()"/></div>';
                         } elseif ($array[$i][2] == $id_user) {
@@ -190,7 +190,7 @@
             var selectDiscipline = document.getElementById("disciplines").value;
             var req = this.createXMLHTTPObject();
             if (!req) return;
-            var url = 'http://autella.com/cruds/questao/readSQL.php?id_discipline = ' + selectDiscipline;
+            var url = 'http://autella.com/cruds/question/readSQL.php?id_discipline = ' + selectDiscipline;
             req.open('GET', url, true);
             req.onreadystatechange = function() {
                 if (req.readyState != 4) {
@@ -213,7 +213,7 @@
 
     <script>
         <?php
-        if ($id_role == 0) {
+        if ($id_role == 1) {
             echo
                 'var label = document.getElementById("labelDisciplines");
                 var selectDiscipline = document.getElementById("disciplines");

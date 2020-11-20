@@ -6,7 +6,7 @@ function dificultyTratament($dificulty)
             return $dificulty = "Nível: Fácil";
             break;
         case 2:
-            return $dificulty = "Nível: Médio";
+            return $dificulty = "Nível: Média";
             break;
         default:
             return $dificulty = "Nível: Difícil";

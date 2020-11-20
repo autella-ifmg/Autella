@@ -1,5 +1,5 @@
 <?php
-// require_once '../questao/getQuestions.php';
+// require_once '../question/getQuestions.php';
 // echo $row["id"]
 ?>
 

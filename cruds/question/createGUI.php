@@ -33,10 +33,9 @@
                 <!--Selects-->
                 <div class="d-flex flex-row mb-2">
                     <!--Select da disciplina-->
-                    <div class="w-25 mr-3">
-                        <label id="labelDisciplines" for="disciplines" class="text-muted mt-1 mr-2">Disciplina:</label>
-                        <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()" disabled>
-                            <option value=0></option>
+                    <div id="container_selectDisciplines" class="w-25 mr-3" hidden>
+                        <label id="labelDisciplines" for="disciplines" class="mt-1 mr-2">Disciplina:</label>
+                        <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()"> 
                             <?php
                             disciplineNamesToDdIs_Read(0);
                             ?>
@@ -46,7 +45,6 @@
                     <div class="w-25 mr-3">
                         <label for="subjects" class="mt-1 mr-2">Matéria:</label>
                         <select name="subjects" id="subjects" class="form-control" autofocus required>
-                            <option></option>
                             <?php
                             subjectNamesToDropdownItems($id_discipline);
                             ?>
@@ -56,9 +54,8 @@
                     <div class="w-25 mr-3">
                         <label for="dificulty" class="mt-1 mr-2">Dificuldade:</label>
                         <select name="dificulty" id="dificulty" class="form-control" required>
-                            <option></option>
                             <option value="1">Fácil</option>
-                            <option value="2">Médio</option>
+                            <option value="2">Média</option>
                             <option value="3">Difícil</option>
                         </select>
                     </div>
@@ -66,7 +63,7 @@
                     <div class="w-25 mr-3">
                         <label for="alternativesQuant" class="mt-1 mr-2">Nº de alternativas:</label>
                         <select name="alternativesQuant" id="alternativesQuant" class="form-control" onchange="updateCorrectAnswerField_AlternativesField()" required>
-                            <option></option>
+                            <option value=>Escolha...</option>
                             <option value=4>4</option>
                             <option value=5>5</option>
                         </select>
@@ -74,7 +71,13 @@
                     <!--Select da alternativa correta-->
                     <div class="w-25">
                         <label for="correctAnswer" class="mt-1 mr-2">Alternativa correta:</label>
-                        <select name="correctAnswer" id="correctAnswer" class="form-control" disabled required></select>
+                        <select name="correctAnswer" id="correctAnswer" class="form-control" disabled required>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option id="optionE" value="E">E</option>
+                        </select>
                     </div>
                 </div>
 
@@ -140,10 +143,16 @@
 
             var selectCorrectAnswer = document.getElementById("correctAnswer");
             selectCorrectAnswer.removeAttribute("disabled");
-            selectCorrectAnswer.innerHTML = "";
+            
+            var optionE = document.getElementById("optionE");
 
-            var option = document.createElement("option");
-            selectCorrectAnswer.appendChild(option);
+            if(alternativesQuant == 4) {
+                optionE.setAttribute("hidden", "true");
+            } else if(alternativesQuant == 5) {
+                optionE.removeAttribute("hidden");
+            } else {
+                selectCorrectAnswer.setAttribute("disabled", "true");
+            }
 
             var alternatives_container = document.getElementById("alternatives_container");
             alternatives_container.innerHTML = "";
@@ -151,12 +160,6 @@
             alternatives = ["A", "B", "C", "D", "E"];
 
             for (let i = 0; i < alternativesQuant; i++) {
-                let option = document.createElement("option");
-                option.setAttribute("name", alternatives[i]);
-                option.setAttribute("value", alternatives[i]);
-                option.setAttribute("label", alternatives[i]);
-                selectCorrectAnswer.appendChild(option);
-
                 let div = document.createElement("div");
                 div.setAttribute("id", "div_container");
                 div.setAttribute("class", "d-flex flex-row");
@@ -223,15 +226,11 @@
         }
 
         <?php
-        if ($id_role == 0) {
+        if ($id_role == 1) {
             echo
-                'var label = document.getElementById("labelDisciplines");
-                var selectDiscipline = document.getElementById("disciplines");
-
-                label.removeAttribute("class");
-                label.setAttribute("class", "mt-1 mr-2");
-
-                selectDiscipline.removeAttribute("disabled");';
+                'var div = document.getElementById("container_selectDisciplines");
+               
+                div.removeAttribute("hidden");';
         }
         ?>
     </script>

@@ -1,5 +1,5 @@
 <?php
-require_once '../questao/getQuestions.php';
+require_once '../question/getQuestions.php';
 
 ?>
 
@@ -41,7 +41,7 @@ require_once '../questao/getQuestions.php';
 
       if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            echo "<tr><td>" . $row["area"]. "</td><td>" . $row["professor"]. "</td><td>"  .$row["questao"]. "</td><td>"  .$row["materia"]."</tr>";
+            echo "<tr><td>" . $row["area"]. "</td><td>" . $row["professor"]. "</td><td>"  .$row["question"]. "</td><td>"  .$row["materia"]."</tr>";
         }
         
           
