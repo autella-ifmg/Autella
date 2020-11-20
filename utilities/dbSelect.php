@@ -24,9 +24,10 @@ function fieldNamesToDropdownItems()
             echo '<option value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
         }
     }
+    $connection->close();
 }
 
-function selectDisciplines()
+function disciplineNamesToDdIs_Read($id_discipline)
 {
     require $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
 
@@ -43,15 +44,6 @@ function selectDisciplines()
         array_push($_SESSION['debug'], "Erro ao selecionar disciplinas!");
     }
 
-    $connection->close();
-
-    return $array;
-}
-
-function disciplineNamesToDdIs_Read($id_discipline)
-{
-    $array = selectDisciplines();
-
     for ($i = 0; $i < count($array); $i++) {
 
         if ($array[$i][0] == $id_discipline) {
@@ -60,6 +52,8 @@ function disciplineNamesToDdIs_Read($id_discipline)
             echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
         }
     }
+
+    $connection->close();
 }
 
 
@@ -87,6 +81,8 @@ function roleNamesToDropdownItems()
             echo '<option value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
         }
     }
+
+    $connection->close();
 }
 
 function institutionNamesToDropdownItems()
@@ -113,6 +109,8 @@ function institutionNamesToDropdownItems()
             echo '<option value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
         }
     }
+
+    $connection->close();
 }
 
 function selectSubjects()
@@ -175,6 +173,7 @@ function selectQuestions()
         array_push($_SESSION['debug'], "Erro ao selecionar questões!");
     }
 
+    $connection->close();
     return $array;
 }
 
@@ -201,6 +200,7 @@ function selectRowsQuantTableQuestion($id_discipline)
     $result = mysqli_query($connection, $sql);
     $rowsQuant = mysqli_num_rows($result);
 
+    $connection->close();
     return $rowsQuant;
 }
 
@@ -211,6 +211,7 @@ function idRoleToRoleName($id)
     $sql = "SELECT name from role WHERE id = '$id';";
     $result = mysqli_query($connection, $sql);
 
+    $connection->close();
     return mysqli_fetch_array($result)[0];
 }
 
@@ -252,6 +253,7 @@ function selectUsers()
             ';
         }
         array_push($_SESSION['debug'], 'Usuários selecionados com sucesso!');
+        $connection->close();
     } else {
         array_push($_SESSION['debug'], 'Erro ao selecionar usuários!');
     }
