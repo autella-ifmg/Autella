@@ -27,8 +27,7 @@ function fieldNamesToDropdownItems()
     $connection->close();
 }
 
-function disciplineNamesToDdIs_Read($id_discipline)
-{
+function selectDisciplines(){
     require $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
 
     $sql = "SELECT * FROM discipline;";
@@ -43,6 +42,13 @@ function disciplineNamesToDdIs_Read($id_discipline)
     } else {
         array_push($_SESSION['debug'], "Erro ao selecionar disciplinas!");
     }
+
+    return $array;
+}
+
+function disciplineNamesToDdIs_Read($id_discipline)
+{
+    $array = selectDisciplines();
 
     for ($i = 0; $i < count($array); $i++) {
 
