@@ -13,6 +13,9 @@ echo "
                 if (checarSenhas() === false) {
                     event.preventDefault();
                     event.stopPropagation();
+                } else if (ckeditorIsEmpty() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
                 } else {
                     // Bootstrap verification
                     if (form.checkValidity() === false) {
@@ -27,8 +30,6 @@ echo "
     }, false);
 })();
 
-
-
 // Verify if inputPassword and inputConfirmPassword match
 function checarSenhas() {
     let p1 = document.querySelector('#password');
@@ -39,6 +40,19 @@ function checarSenhas() {
     } else {
         p1.classList.add('is-invalid');
         p2.classList.add('is-invalid');
+        return false;
+    }
+}
+
+// Verify if CKEditor is empty
+function ckeditorIsEmpty() {
+    let invisibleInput = document.getElementById('enunciate');
+    invisibleInput = invisibleInput.value;
+
+    if(!invisibleInput){
+        return true;
+    } else {
+        invisibleInput.classList.add('is-invalid');
         return false;
     }
 }

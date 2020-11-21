@@ -71,8 +71,8 @@
 	- [X] Configurar ações do coordenador
 	- [X] Exibir dropdown de disciplina apenas caso seja o coordenador
 	- [X] Deixar valores dos dropdowns pré-selecionados
-	- [ ] Fazer validação .js para o enunciado da questão (required)
 	- [X] Travar o dropdownAC enquanto o dropdownQA ainda não tiver sido preenchido
+	- [ ] Inserir validação required para o enunciado da questão
 	- [ ] Permitir que as alternativas também sejam formatadas
 	- [ ] Adicionar plugins
 	- [ ] Permitir a seleção de mais de uma matéria

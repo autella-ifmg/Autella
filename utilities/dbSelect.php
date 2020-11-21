@@ -27,7 +27,8 @@ function fieldNamesToDropdownItems()
     $connection->close();
 }
 
-function selectDisciplines(){
+function selectDisciplines()
+{
     require $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
 
     $sql = "SELECT * FROM discipline;";
@@ -47,16 +48,21 @@ function selectDisciplines(){
     return $array;
 }
 
-function disciplineNamesToDdIs_Read($id_discipline)
+function disciplineNames($id_discipline, $aux)
 {
+    //$aux == 0 -> select
+    //$aux == 1 -> read
     $array = selectDisciplines();
-
+    
     for ($i = 0; $i < count($array); $i++) {
-
-        if ($array[$i][0] == $id_discipline) {
+        if($aux == 0) {
+            if ($array[$i][0] == $id_discipline) {
+                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item" selected="selected">' . $array[$i][2] . '</option>';
+            } else {
+                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
+            }
+        } else if ($array[$i][0] == $id_discipline) {
             return $array[$i][2] . " - ";
-        } elseif ($id_discipline == 0) {
-            echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
         }
     }
 }
@@ -138,17 +144,6 @@ function selectSubjects()
     return $array;
 }
 
-function subjectNamesToDropdownItems($id_discipline)
-{
-    $array = selectSubjects();
-
-    for ($i = 0; $i < count($array); $i++) {
-        if ($array[$i][1] == $id_discipline) {
-            echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" class="dropdown-item" value="' . $array[$i][0] . '">' . $array[$i][2] . '</option>';
-        }
-    }
-}
-
 // Essa função precisa? Se não precisar tem que juntar a função "selectSubjects" com a "subjectNamesToDropdownItems"
 function subjectNamesToRead($id_subject)
 {
@@ -182,13 +177,13 @@ function selectQuestions()
     return $array;
 }
 
-function questionsDiscipline($id_discipline)
+function questionsDiscipline($id_user)
 {
     $allQuestions = selectQuestions();
     $array = [];
 
     for ($i = 0; $i < count($allQuestions); $i++) {
-        if ($allQuestions[$i][3] == $id_discipline) {
+        if ($allQuestions[$i][2] == $id_user) {
             $row = $allQuestions[$i];
             array_push($array, $row);
         }
@@ -201,12 +196,29 @@ function selectRowsQuantTableQuestion($id_discipline)
 {
     require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
 
-    $sql = "SELECT * from question WHERE id_discipline = '$id_discipline';";
-    $result = mysqli_query($connection, $sql);
-    $rowsQuant = mysqli_num_rows($result);
+    $arraySubjects = selectSubjects();
+    $array = [];
+
+    for ($i = 0; $i < count($arraySubjects); $i++) {
+        if ($arraySubjects[$i][1] == $id_discipline) {
+            $aux = $arraySubjects[$i][0];
+            $sql = "SELECT * from question WHERE id_subject = '$aux';";
+            $result = mysqli_query($connection, $sql);
+
+            if (mysqli_num_rows($result) != 0) {
+                while ($row = mysqli_fetch_array($result)) {
+                    array_push($array, $row);
+                }
+                // array_push($_SESSION['debug'], "Questões selecionadas com sucesso!");
+            } else {
+                array_push($_SESSION['debug'], "Erro ao selecionar questões!");
+            }
+            //$rowsQuant = mysqli_num_rows($result);
+        }
+    }
 
     $connection->close();
-    return $rowsQuant;
+    return count($array);
 }
 
 function idRoleToRoleName($id)

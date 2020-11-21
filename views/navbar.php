@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/cruds/question/createGUI.php">Criar questão</a>
+                <a class="nav-link" href="/cruds/question/readGUI.php">Visualizar questões</a>
             </li>
             <li>
                 <a class="nav-link" href="/cruds/provaSimples/create.php">Prova Simples</a>

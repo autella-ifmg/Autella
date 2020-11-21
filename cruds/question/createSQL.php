@@ -3,7 +3,7 @@
 session_start();
 
 //Função que remove conteúdos indejados dos inputs.
-function securityCheck($input)
+function secure($input)
 {
     global $connection;
 
@@ -14,7 +14,7 @@ function securityCheck($input)
     return $aux;
 }
 
-if (isset($_POST["inputSubmit"])) {
+if (isset($_POST["submit"])) {
     //Inclui a conexão com o banco de dados.
     require_once "../../utilities/dbConnect.php";
 
@@ -22,33 +22,22 @@ if (isset($_POST["inputSubmit"])) {
     $date = date("Y-m-d H:i:s");
     $id_user = $_SESSION["userData"]["id"];
 
-    if ($_SESSION["userData"]["id_role"] == 0) {
-    $id_discipline = securityCheck($_POST["disciplines"]);
-    } else {
-        $id_discipline = $_SESSION["userData"]["id_discipline"];
-    }
-
-    $id_subject = securityCheck($_POST["subjects"]);
-    $dificulty = securityCheck($_POST["dificulty"]);
+    $id_subject = secure($_POST["subjects"]);
+    $dificulty = secure($_POST["dificulty"]);
     $enunciate = $_POST["enunciate"];
-    $correctAnswer = securityCheck($_POST["correctAnswer"]);
+    $correctAnswer = secure($_POST["correctAnswer"]);
 
     //Obtém cada uma das alternativas e agrega elas no enunciado da questão.
-    $alternativesQuant = securityCheck($_POST["alternativesQuant"]);
+    $alternativesQuant = secure($_POST["alternativesQuant"]);
     $answersEnunciate = "";
     $letter = ["A", "B", "C", "D", "E"];
 
     for ($i = 0; $i < $alternativesQuant; $i++) {
-        $answersEnunciate .= "<br>" . "$letter[$i]) " . securityCheck($_POST["question$i"]);
-
-        $aux = strcmp("$correctAnswer", "$letter[$i]");
-        if ($aux == 0) {
-            $correctAnswerEnunciate = securityCheck($_POST["question$i"]);
-        }
+        $answersEnunciate .= "<br>" . "$letter[$i]) " . secure($_POST["question$i"]);
     }
-    $enunciate .= "<br>" . $answersEnunciate;
+    //$enunciate .= "<br>" . $answersEnunciate;
 
-    $sql = "INSERT INTO question (date, id_user, id_discipline, id_subject, dificulty, enunciate, correctAnswer, correctAnswerEnunciate) VALUES ('$date', '$id_user', '$id_discipline', '$id_subject', '$dificulty', '$enunciate', '$correctAnswer', '$correctAnswerEnunciate');";
+    $sql = "INSERT INTO question (date, id_user, id_subject, dificulty, enunciate, correctAnswer) VALUES ('$date', '$id_user', '$id_subject', '$dificulty', '$enunciate', '$correctAnswer');";
 
     if ($connection->query($sql) === TRUE) {
         $message = "Questão criada com sucesso!";

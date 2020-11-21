@@ -79,7 +79,3 @@ INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('8', 
 
 
 
-
-
-
-

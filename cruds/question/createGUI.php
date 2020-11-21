@@ -26,90 +26,85 @@
     <?php require_once '../../views/navbar.php'; ?>
 
     <!--Formulário-->
-    <form id="questionsForm" action="createSQL.php" method="post" data-toggle="validator">
+    <form id="questionsForm" action="createSQL.php" method="post" class="needs-validation"">
         <!--Seção principal-->
-        <section class="d-flex justify-content-center mt-3">
-            <div class="d-flex flex-column">
-                <!--Selects-->
-                <div class="d-flex flex-row mb-2">
-                    <!--Select da disciplina-->
-                    <div id="container_selectDisciplines" class="w-25 mr-3" hidden>
-                        <label id="labelDisciplines" for="disciplines" class="mt-1 mr-2">Disciplina:</label>
-                        <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()"> 
-                            <?php
-                            disciplineNamesToDdIs_Read(0);
-                            ?>
-                        </select>
-                    </div>
-                    <!--Select das matérias-->
-                    <div class="w-25 mr-3">
-                        <label for="subjects" class="mt-1 mr-2">Matéria:</label>
-                        <select name="subjects" id="subjects" class="form-control" autofocus required>
-                            <?php
-                            subjectNamesToDropdownItems($id_discipline);
-                            ?>
-                        </select>
-                    </div>
-                    <!--Select da dificuldade-->
-                    <div class="w-25 mr-3">
-                        <label for="dificulty" class="mt-1 mr-2">Dificuldade:</label>
-                        <select name="dificulty" id="dificulty" class="form-control" required>
-                            <option value="1">Fácil</option>
-                            <option value="2">Média</option>
-                            <option value="3">Difícil</option>
-                        </select>
-                    </div>
-                    <!--Select do número de alternativas-->
-                    <div class="w-25 mr-3">
-                        <label for="alternativesQuant" class="mt-1 mr-2">Nº de alternativas:</label>
-                        <select name="alternativesQuant" id="alternativesQuant" class="form-control" onchange="updateCorrectAnswerField_AlternativesField()" required>
-                            <option value=>Escolha...</option>
-                            <option value=4>4</option>
-                            <option value=5>5</option>
-                        </select>
-                    </div>
-                    <!--Select da alternativa correta-->
-                    <div class="w-25">
-                        <label for="correctAnswer" class="mt-1 mr-2">Alternativa correta:</label>
-                        <select name="correctAnswer" id="correctAnswer" class="form-control" disabled required>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                            <option id="optionE" value="E">E</option>
-                        </select>
-                    </div>
+        <section class=" d-flex justify-content-center mt-3">
+        <div class="d-flex flex-column">
+            <!--Selects-->
+            <div class="d-flex flex-row mb-2">
+                <!--Select da disciplina-->
+                <div id="container_selectDisciplines" class="w-25 mr-3" hidden>
+                    <label id="labelDisciplines" for="disciplines" class="mt-1 mr-2">Disciplina:</label>
+                    <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
+                        <?php
+                        disciplineNames($id_discipline, 0);
+                        ?>
+                    </select>
                 </div>
-
-                <!--Enunciado da questão-->
-                <div>
-                    <!--Barra de ferramentas-->
-                    <div name="toolbar" id="toolbar-container"></div>
-                    <!--Campo de texto-->
-                    <div name="editor" id="editor" style="min-width: 65rem; max-width: 65rem;  min-height: 20rem; max-height: 20rem; border: 1px solid gray;" required></div>
+                <!--Select das matérias-->
+                <div class="w-25 mr-3">
+                    <label for="subjects" class="mt-1 mr-2">Matéria:</label>
+                    <select name="subjects" id="subjects" class="form-control" autofocus required></select>
                 </div>
-
-                <!--Enunciados das alternativas-->
-                <div class="d-flex justify-content-center">
-                    <div id="alternatives_container" class="d-flex flex-column mt-3"></div>
+                <!--Select da dificuldade-->
+                <div class="w-25 mr-3">
+                    <label for="dificulty" class="mt-1 mr-2">Dificuldade:</label>
+                    <select name="dificulty" id="dificulty" class="form-control" required>
+                        <option value="1">Fácil</option>
+                        <option value="2">Média</option>
+                        <option value="3">Difícil</option>
+                    </select>
                 </div>
-
-                <!--Seção dos botões-->
-                <div class="d-flex flex-row justify-content-center mb-5">
-                    <!--Botão para cancelar-->
-                    <a href="../../views/home.php" type="button" class="w-25 btn btn-danger mr-2">Cancelar</a>
-                    <!--Botão para listar questões-->
-                    <a href="readGUI.php" type="button" class="w-50 btn btn-primary mr-2">Visualizar questões</a>
-                    <!--Botão para adicionar-->
-                    <button name="inputSubmit" id="inputSubmit" type="submit" class="w-25 btn btn-success">Adicionar</button>
+                <!--Select do número de alternativas-->
+                <div class="w-25 mr-3">
+                    <label for="alternativesQuant" class="mt-1 mr-2">Nº de alternativas:</label>
+                    <select name="alternativesQuant" id="alternativesQuant" class="form-control" onchange="updateCorrectAnswerField_AlternativesField()" required>
+                        <option value=>Escolha...</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                    </select>
+                </div>
+                <!--Select da alternativa correta-->
+                <div class="w-25">
+                    <label for="correctAnswer" class="mt-1 mr-2">Alternativa correta:</label>
+                    <select name="correctAnswer" id="correctAnswer" class="form-control" disabled required>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option id="optionE" value="E">E</option>
+                    </select>
                 </div>
             </div>
+
+            <!--Enunciado da questão-->
+            <div>
+                <!--Barra de ferramentas-->
+                <div name="toolbar" id="toolbar-container"></div>
+                <!--Campo de texto-->
+                <div name="editor" id="editor" style="min-width: 65rem; max-width: 65rem;  min-height: 20rem; max-height: 20rem; border: 1px solid gray;" required></div>
+                <p id="demo"></p>
+            </div>
+
+            <!--Enunciados das alternativas-->
+            <div class="d-flex justify-content-center">
+                <div id="alternatives_container" class="d-flex flex-column mt-3"></div>
+            </div>
+
+            <!--Seção dos botões-->
+            <div class="d-flex flex-row justify-content-center mb-5">
+                <!--Botão para cancelar-->
+                <a href="readGUI.php" type="button" class="w-25 btn btn-danger mr-2">Cancelar</a>
+                <!--Botão para adicionar-->
+                <button name="submit" id="submit" type="submit" class="w-25 btn btn-success">Adicionar</button>
+            </div>
+        </div>
         </section>
     </form>
 
     <script>
         //Função para realizar a conexão CKEditor-MySQL.
-        document.querySelector('#inputSubmit').addEventListener('click', () => {
+        document.querySelector('#submit').addEventListener('click', () => {
             var editorData = document.querySelector('#editor').children;
 
             var string = "";
@@ -120,6 +115,7 @@
 
             var invisibleInput = document.createElement("input");
             invisibleInput.setAttribute("name", "enunciate");
+            invisibleInput.setAttribute("id", "enunciate");
             invisibleInput.setAttribute("type", "text");
             invisibleInput.setAttribute("value", string);
             invisibleInput.setAttribute("style", "display: none");
@@ -128,14 +124,6 @@
             questionsForm.appendChild(invisibleInput);
         });
 
-        /* perguntar pro nics -onchange
-        $(".dropdown-menu a").click(function() {
-            $(this).parents(".dropdown").find('.btn').html(' ' + $(this).text() + ' ');
-            $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-        });
-    
-        document.addEventListener('DOMContentLoaded', updateDisciplines(), false);
-        */
         //Função para gerar o select correctAnswer e o campo de texto das alternativas.
         function updateCorrectAnswerField_AlternativesField() {
             var alternativesQuant = document.getElementById("alternativesQuant");
@@ -143,12 +131,12 @@
 
             var selectCorrectAnswer = document.getElementById("correctAnswer");
             selectCorrectAnswer.removeAttribute("disabled");
-            
+
             var optionE = document.getElementById("optionE");
 
-            if(alternativesQuant == 4) {
+            if (alternativesQuant == 4) {
                 optionE.setAttribute("hidden", "true");
-            } else if(alternativesQuant == 5) {
+            } else if (alternativesQuant == 5) {
                 optionE.removeAttribute("hidden");
             } else {
                 selectCorrectAnswer.setAttribute("disabled", "true");
@@ -191,9 +179,6 @@
             var selectSubjects = document.getElementById("subjects");
             selectSubjects.innerHTML = "";
 
-            var option = document.createElement("option");
-            selectSubjects.appendChild(option);
-
             <?php
             $php_array = selectSubjects();
             $js_array = json_encode($php_array);
@@ -202,20 +187,15 @@
                   var id_discipline = " . $js_var . ";\n";
             ?>
 
-
             for (let i = 0; i < subjects.length; i++) {
                 if (subjects[i][1] == selectDiscipline) {
                     let option = document.createElement("option");
-                    option.setAttribute("name", `${subjects[i][0]}`);
-                    option.setAttribute("id", `${subjects[i][0]}`);
                     option.setAttribute("value", `${subjects[i][0]}`);
                     option.setAttribute("label", `${subjects[i][2]}`);
                     selectSubjects.appendChild(option);
                 } else if (selectDiscipline == 0) {
                     if (subjects[i][1] == id_discipline) {
                         let option = document.createElement("option");
-                        option.setAttribute("name", `${subjects[i][0]}`);
-                        option.setAttribute("id", `${subjects[i][0]}`);
                         option.setAttribute("value", `${subjects[i][0]}`);
                         option.setAttribute("label", `${subjects[i][2]}`);
                         selectSubjects.appendChild(option);
@@ -223,8 +203,10 @@
                 }
             }
 
-        }
 
+        }
+        // Quando o documento estiver carregado, executar o método updateDisciplines()
+        document.addEventListener('DOMContentLoaded', updateSubjects(), false);
         <?php
         if ($id_role == 1) {
             echo
@@ -244,7 +226,8 @@
     <script>
         DecoupledEditor
             .create(document.querySelector('#editor'), {
-                placeholder: 'Insira o enunciado da questão...'
+                placeholder: 'Insira o enunciado da questão...',
+                required: true
             })
             .then(editor => {
                 const toolbarContainer = document.querySelector('#toolbar-container');
