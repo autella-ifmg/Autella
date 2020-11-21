@@ -56,15 +56,13 @@
 		- [X] GUI
 		- [X] SQL
 
-- [ ] Update
+- [X] Update
 	- [X] Usar CropperJS
 	- [X] Foto -> Banner
 	- [X] Apenas o coordenador da instituição pode alterar seus dados
 	- [X] Campo CEP e email institucional
 		- [X] GUI
 		- [X] SQL
-
-	- [ ] Impedir instituições iguais -> perguntar kdú como fazer isso
 
 - [ ] Delete
 
