@@ -1,15 +1,29 @@
 <?php
-session_start();
-
-function selectQuestions($id_discipline)
+function selectQuestionsTest($id_discipline, $current, $totalItems, $limit)
 {
     require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
 
-    $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user,
-            user.id_institution, subject.id_discipline, subject.name FROM question
+    //$totalItems = 5;
+    //$current = intval($_GET["test.php"]);
+    //$current = 0;
+    // var_dump($current);  . " LIMIT " . $current . ", " . $totalItems
+    //var_dump($_SESSION);
+
+    if ($limit) {
+        $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user,
+            user.id_institution, discipline.id, discipline.name, subject.name FROM question
             JOIN user ON question.id_user = user.id
-            JOIN subject ON question.id_subject = subject.id AND " . $id_discipline . " = subject.id_discipline
-            WHERE " . $_SESSION["userData"]["id_institution"] . " = user.id_institution"; 
+            JOIN discipline ON discipline.id = " . $id_discipline . "
+            JOIN subject ON question.id_subject = subject.id AND subject.id_discipline = " . $id_discipline . "
+            WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] . " LIMIT " . $current . ", " . $totalItems;
+    } else {
+        $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user,
+            user.id_institution, discipline.id, discipline.name, subject.name FROM question
+            JOIN user ON question.id_user = user.id
+            JOIN discipline ON discipline.id = " . $id_discipline . "
+            JOIN subject ON question.id_subject = subject.id AND subject.id_discipline = " . $id_discipline . "
+            WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"];
+    }
     $result = mysqli_query($connection, $sql);
     $array = [];
 
@@ -26,11 +40,15 @@ function selectQuestions($id_discipline)
     return $array;
 }
 
-$array = selectQuestions(2);
-var_dump($array);
+//$array = selectQuestions(2);
+//var_dump($array);
+//echo $array[0]["name"];
+//var_dump($_SESSION["userData"]);
 
-var_dump($_SESSION["userData"]);
-
+//" JOIN subject ON question.id_subject = subject.id AND subject.id_discipline = " . $id_discipline .
+//subject.id_discipline, subject.name
 // JOIN institution.id ON user.id_institution = institution.id
-
+//AND subject.id_discipline = " . $id_discipline .
+//question.id_subject = subject.id 
 //JOIN user ON question.id_user = user.id
+

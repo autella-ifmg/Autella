@@ -36,7 +36,7 @@
                 <div id="container_selectDisciplines" class="w-25 mr-3" hidden>
                     <label id="labelDisciplines" for="disciplines" class="mt-1 mr-2">Disciplina:</label>
                     <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
-                        <?php disciplineNames($id_discipline, 0); ?>
+                        <?php disciplineNames(); ?>
                     </select>
                 </div>
                 <!--Select das matérias-->

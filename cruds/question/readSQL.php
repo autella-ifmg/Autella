@@ -31,7 +31,7 @@ function data($array, $id_discipline, $id_role)
                 $questionNumber = "Nº: " . ($i + 1);
                 $dificulty = dificultyTratament($array[$i]["dificulty"]);
                 $correctAnswer = "Alternativa correta: " . $array[$i]["correctAnswer"];
-                $discipline_subject =  disciplineNames($id_discipline, 1) . $array[$i]["name"];
+                $discipline_subject =  $array[$i][8] . " - " . $array[$i]["name"];
                 $date = dateTratament($array[$i]["date"]);
                 $enunciate =  $array[$i]["enunciate"];
 

@@ -9,7 +9,7 @@
     <?php
     //Inicia a sessão.
     session_start();
-    //var_dump($_SESSION);
+
     require_once "../../utilities/dbSelect.php";
     require_once "readSQL.php";
     //Obtém o cargo do usuário que está logado no momento.
@@ -17,36 +17,26 @@
     //Obtém o id da disciplina correspondente ao usuário que está logado no momento.
     $id_discipline = $_SESSION["userData"]["id_discipline"];
     //var_dump($id_discipline);
-    
-    $array = selectQuestions($id_discipline);
+
+    //Total de itens por página
+    $totalItems = 5;
+    //Obtém a página atual
+    $current = intval($_GET["pag"]) * $totalItems;;
+    //var_dump($current);
+
+    $array = selectQuestions($id_discipline, $current, $totalItems, true);
     //var_dump($array);
-    //$rowsQuant = selectRowsQuantTableQuestion($id_discipline);
-    //var_dump($rowsQuant);
-    //Define o número de items por página.
-    $itemsQuant = 5;
+    $totalRows = count($aux = selectQuestions($id_discipline, 0, 0, false));
+    //var_dump($totalRows);
 
-    //$current = intval($_GET["readGUI"]);
-
-    //$pagsQuant = ceil($rowsQuant / $itemsQuant);
-
-    //$sql = "SELECT * FROM question WHERE id_user = '$id_user' LIMIT $current, $itemsQuant;";
-    //$result = mysqli_query($connection, $sql);
-    //$array = [];
-
-    //if (mysqli_num_rows($result) != 0) {
-        //while ($row = mysqli_fetch_row($result)) {
-            //array_push($array, $row);
-        //}
-        // array_push($_SESSION['debug'], "Disciplinas selecionadas com sucesso!");
-    //}
+    $totalPages = ceil($totalRows / $totalItems);
+    //var_dump($totalPages);
     ?>
 </head>
 
 <body>
     <!--Inclui a navbar-->
     <?php require_once '../../views/navbar.php'; ?>
-
-
 
     <section class="d-flex justify-content-center mt-3">
         <form method="post">
@@ -60,7 +50,7 @@
 
                         <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
                             <?php
-                            disciplineNames($id_discipline, 0);
+                            disciplineNames();
                             ?>
                         </select>
                     </div>
@@ -75,21 +65,30 @@
         </form>
     </section>
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Previous</a>
-            </li>
-            <?php
-            //for ($i = 0; $i < $pagsQuant; $i++) {
-           // }
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            <a class="page-link" href="readGUI.php?pag=0" aria-label="Anterior">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Anterior</span>
+            </a>
+        </li>
+        <?php for ($i = 0; $i < $totalPages; $i++) {
+            $style = "";
 
-            ?>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
-        </ul>
-    </nav>
+            if ($current == $i) {
+                $style = "active";
+            }
+        ?>
+            <li><a class="page-link <?php echo $style; ?>" href="readGUI.php?pag=<?php echo $i; ?>"><?php echo $i + 1; ?></a></li>
+        <?php } ?>
+        <li class="page-item">
+            <a class="page-link" href="readGUI.php?pag=<?php echo $totalPages - 1; ?>" aria-label="Próximo">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Próximo</span>
+            </a>
+        </li>
+    </ul>
+
 
     <script>
         <?php selectControl($id_role); ?>

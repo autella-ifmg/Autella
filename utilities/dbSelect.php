@@ -21,22 +21,15 @@ function selectDisciplines()
     return $array;
 }
 
-//$id_discipline é necessária para quando o coordenador for escolher quais questões ele irá exibir.
-function disciplineNames($id_discipline, $aux)
+function disciplineNames()
 {
-    //$aux == 0 -> select
-    //$aux == 1 -> read
     $array = selectDisciplines();
 
     for ($i = 0; $i < count($array); $i++) {
-        if ($aux == 0) {
-            if ($array[$i][0] == $id_discipline) {
-                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item" selected="selected">' . $array[$i][2] . '</option>';
-            } else {
-                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
-            }
-        } else if ($array[$i][0] == $id_discipline) {
-            return $array[$i][2] . " - ";
+        if ($array[$i][0] == $_SESSION["userData"]["id_discipline"]) {
+            echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item" selected="selected">' . $array[$i][2] . '</option>';
+        } else {
+            echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
         }
     }
 }
@@ -99,15 +92,25 @@ function institutionNamesToDropdownItems()
 }
 
 //question
-function selectQuestions($id_discipline)
+function selectQuestions($id_discipline, $current, $totalItems, $limit)
 {
     require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
 
-    $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user,
-            user.id_institution, subject.id_discipline, subject.name FROM question
+    if ($limit) {
+        $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user,
+            user.id_institution, discipline.id, discipline.name, subject.name FROM question
             JOIN user ON question.id_user = user.id
-            JOIN subject ON question.id_subject = subject.id AND " . $id_discipline . " = subject.id_discipline
-            WHERE " . $_SESSION["userData"]["id_institution"] . " = user.id_institution"; 
+            JOIN discipline ON discipline.id = " . $id_discipline . "
+            JOIN subject ON question.id_subject = subject.id AND subject.id_discipline = " . $id_discipline . "
+            WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] . " LIMIT " . $current . ", " . $totalItems;
+    } else {
+        $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user,
+            user.id_institution, discipline.id, discipline.name, subject.name FROM question
+            JOIN user ON question.id_user = user.id
+            JOIN discipline ON discipline.id = " . $id_discipline . "
+            JOIN subject ON question.id_subject = subject.id AND subject.id_discipline = " . $id_discipline . "
+            WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"];
+    }
     $result = mysqli_query($connection, $sql);
     $array = [];
 
