@@ -10,20 +10,17 @@
     //Inicia a sessão.
     session_start();
     //var_dump($_SESSION);
-
-    require_once "readSQL.php";
-
-    //Inclui as funções presentes no arquivo dbSelect.
     require_once "../../utilities/dbSelect.php";
-
+    require_once "readSQL.php";
     //Obtém o cargo do usuário que está logado no momento.
     $id_role = $_SESSION["userData"]["id_role"];
-
     //Obtém o id da disciplina correspondente ao usuário que está logado no momento.
     $id_discipline = $_SESSION["userData"]["id_discipline"];
     //var_dump($id_discipline);
-
-    $rowsQuant = selectRowsQuantTableQuestion($id_discipline);
+    
+    $array = selectQuestions($id_discipline);
+    //var_dump($array);
+    //$rowsQuant = selectRowsQuantTableQuestion($id_discipline);
     //var_dump($rowsQuant);
     //Define o número de items por página.
     $itemsQuant = 5;
@@ -73,7 +70,7 @@
 
                 </div>
 
-                <?php data($rowsQuant, $id_discipline, $id_role); ?>
+                <?php data($array, $id_discipline, $id_role); ?>
             </div>
         </form>
     </section>
@@ -105,7 +102,7 @@
     <!--Importação do CkEditor-->
     <script src="../../libraries/ckeditor5/ckeditor.js"></script>
     <script>
-        <?php imports($rowsQuant, $id_discipline); ?>
+        <?php imports($array, $id_discipline); ?>
     </script>
 </body>
 

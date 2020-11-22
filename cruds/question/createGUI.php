@@ -7,10 +7,10 @@
     <title>Autella | Criar questão</title>
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
     <?php
-    //Inclui as funções presentes no arquivo dbSelect.
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
+    require_once "createJS.php";
 
     //Obtém o id do cargo correspondente ao usuário que está logado no momento.
     $id_role = $_SESSION["userData"]["id_role"];
@@ -18,13 +18,13 @@
 
     //Obtém o id da disciplina correspondente ao usuário que está logado no momento.
     $id_discipline = $_SESSION["userData"]["id_discipline"];
+    //var_dump($id_discipline);
     ?>
 </head>
 
 <body>
     <!--Inclui a navbar-->
     <?php require_once '../../views/navbar.php'; ?>
-
     <!--Formulário-->
     <form id="questionsForm" action="createSQL.php" method="post" class="needs-validation"">
         <!--Seção principal-->
@@ -36,15 +36,15 @@
                 <div id="container_selectDisciplines" class="w-25 mr-3" hidden>
                     <label id="labelDisciplines" for="disciplines" class="mt-1 mr-2">Disciplina:</label>
                     <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
-                        <?php
-                        disciplineNames($id_discipline, 0);
-                        ?>
+                        <?php disciplineNames($id_discipline, 0); ?>
                     </select>
                 </div>
                 <!--Select das matérias-->
                 <div class="w-25 mr-3">
                     <label for="subjects" class="mt-1 mr-2">Matéria:</label>
-                    <select name="subjects" id="subjects" class="form-control" autofocus required></select>
+                    <select name="subjects" id="subjects" class="form-control" autofocus required>
+                        <!--updateSubjects-->
+                    </select>
                 </div>
                 <!--Select da dificuldade-->
                 <div class="w-25 mr-3">
@@ -58,7 +58,7 @@
                 <!--Select do número de alternativas-->
                 <div class="w-25 mr-3">
                     <label for="alternativesQuant" class="mt-1 mr-2">Nº de alternativas:</label>
-                    <select name="alternativesQuant" id="alternativesQuant" class="form-control" onchange="updateCorrectAnswerField_AlternativesField()" required>
+                    <select name="alternativesQuant" id="alternativesQuant" class="form-control" onchange="updateCorrectAnswerSelect_AlternativesField()" required>
                         <option value=>Escolha...</option>
                         <option value=4>4</option>
                         <option value=5>5</option>
@@ -83,7 +83,6 @@
                 <div name="toolbar" id="toolbar-container"></div>
                 <!--Campo de texto-->
                 <div name="editor" id="editor" style="min-width: 65rem; max-width: 65rem;  min-height: 20rem; max-height: 20rem; border: 1px solid gray;" required></div>
-                <p id="demo"></p>
             </div>
 
             <!--Enunciados das alternativas-->
@@ -103,75 +102,7 @@
     </form>
 
     <script>
-        //Função para realizar a conexão CKEditor-MySQL.
-        document.querySelector('#submit').addEventListener('click', () => {
-            var editorData = document.querySelector('#editor').children;
-
-            var string = "";
-            for (let i = 0; i < editorData.length; i++) {
-                string += editorData[i].outerHTML;
-                string += "\n";
-            }
-
-            var invisibleInput = document.createElement("input");
-            invisibleInput.setAttribute("name", "enunciate");
-            invisibleInput.setAttribute("id", "enunciate");
-            invisibleInput.setAttribute("type", "text");
-            invisibleInput.setAttribute("value", string);
-            invisibleInput.setAttribute("style", "display: none");
-
-            var form = document.getElementById("#questionsForm");
-            questionsForm.appendChild(invisibleInput);
-        });
-
-        //Função para gerar o select correctAnswer e o campo de texto das alternativas.
-        function updateCorrectAnswerField_AlternativesField() {
-            var alternativesQuant = document.getElementById("alternativesQuant");
-            alternativesQuant = alternativesQuant.value;
-
-            var selectCorrectAnswer = document.getElementById("correctAnswer");
-            selectCorrectAnswer.removeAttribute("disabled");
-
-            var optionE = document.getElementById("optionE");
-
-            if (alternativesQuant == 4) {
-                optionE.setAttribute("hidden", "true");
-            } else if (alternativesQuant == 5) {
-                optionE.removeAttribute("hidden");
-            } else {
-                selectCorrectAnswer.setAttribute("disabled", "true");
-            }
-
-            var alternatives_container = document.getElementById("alternatives_container");
-            alternatives_container.innerHTML = "";
-
-            alternatives = ["A", "B", "C", "D", "E"];
-
-            for (let i = 0; i < alternativesQuant; i++) {
-                let div = document.createElement("div");
-                div.setAttribute("id", "div_container");
-                div.setAttribute("class", "d-flex flex-row");
-                alternatives_container.appendChild(div);
-
-                let img = document.createElement("img");
-                img.setAttribute("src", `../../images/alternatives/${alternatives[i]}.png`);
-                img.setAttribute("alt", alternatives[i]);
-                img.setAttribute("class", "bg-info rounded-circle mr-1 mb-3");
-                div.appendChild(img);
-
-                let textarea = document.createElement("textarea");
-                textarea.setAttribute("name", `question${i}`);
-                textarea.setAttribute("id", `question${i}`);
-                textarea.setAttribute("cols", "120");
-                textarea.setAttribute("rows", "3");
-                textarea.setAttribute("class", "ml-1 mb-3");
-                textarea.setAttribute("style", "resize: none;");
-                textarea.setAttribute("placeholder", 'Insira o enunciado da alternativa...');
-                textarea.setAttribute("required", "true");
-                div.appendChild(textarea);
-            }
-        }
-
+        //Função para inserir as matérias no selectSubjects.
         function updateSubjects() {
             var selectDiscipline = document.getElementById("disciplines");
             selectDiscipline = selectDiscipline.value;
@@ -184,7 +115,7 @@
             $js_array = json_encode($php_array);
             $js_var = json_encode($id_discipline);
             echo "var subjects = " . $js_array . ";\n
-                  var id_discipline = " . $js_var . ";\n";
+                var id_discipline = " . $js_var . ";\n";
             ?>
 
             for (let i = 0; i < subjects.length; i++) {
@@ -202,17 +133,19 @@
                     }
                 }
             }
-
-
         }
-        // Quando o documento estiver carregado, executar o método updateDisciplines()
-        document.addEventListener('DOMContentLoaded', updateSubjects(), false);
+        //Quando o documento estiver carregado, executa o método updateSubjects().
+        document.addEventListener("DOMContentLoaded", updateSubjects(), false);
+        
+        <?php
+        updateCorrectAnswerSelect_AlternativesField();
+
+        invisibleInput();
+        ?>
+
         <?php
         if ($id_role == 1) {
-            echo
-                'var div = document.getElementById("container_selectDisciplines");
-               
-                div.removeAttribute("hidden");';
+            echo 'var div = document.getElementById("container_selectDisciplines");         div.removeAttribute("hidden");';
         }
         ?>
     </script>
@@ -226,8 +159,7 @@
     <script>
         DecoupledEditor
             .create(document.querySelector('#editor'), {
-                placeholder: 'Insira o enunciado da questão...',
-                required: true
+                placeholder: 'Insira o enunciado da questão...'
             })
             .then(editor => {
                 const toolbarContainer = document.querySelector('#toolbar-container');

@@ -1,5 +1,47 @@
 <?php
+//discipline
+function selectDisciplines()
+{
+    require $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
 
+    $sql = "SELECT * FROM discipline;";
+    $result = mysqli_query($connection, $sql);
+    $array = [];
+
+    if (mysqli_num_rows($result) != 0) {
+        while ($row = mysqli_fetch_row($result)) {
+            array_push($array, $row);
+        }
+        // array_push($_SESSION['debug'], "Disciplinas selecionadas com sucesso!");
+    } else {
+        array_push($_SESSION['debug'], "Erro ao selecionar disciplinas!");
+    }
+    $connection->close();
+
+    return $array;
+}
+
+//$id_discipline é necessária para quando o coordenador for escolher quais questões ele irá exibir.
+function disciplineNames($id_discipline, $aux)
+{
+    //$aux == 0 -> select
+    //$aux == 1 -> read
+    $array = selectDisciplines();
+
+    for ($i = 0; $i < count($array); $i++) {
+        if ($aux == 0) {
+            if ($array[$i][0] == $id_discipline) {
+                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item" selected="selected">' . $array[$i][2] . '</option>';
+            } else {
+                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
+            }
+        } else if ($array[$i][0] == $id_discipline) {
+            return $array[$i][2] . " - ";
+        }
+    }
+}
+
+//field
 function fieldNamesToDropdownItems()
 {
     require $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
@@ -27,11 +69,12 @@ function fieldNamesToDropdownItems()
     $connection->close();
 }
 
-function selectDisciplines()
+//institution
+function institutionNamesToDropdownItems()
 {
     require $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
 
-    $sql = "SELECT * FROM discipline;";
+    $sql = "SELECT * FROM institution;";
     $result = mysqli_query($connection, $sql);
     $array = [];
 
@@ -39,34 +82,59 @@ function selectDisciplines()
         while ($row = mysqli_fetch_row($result)) {
             array_push($array, $row);
         }
-        // array_push($_SESSION['debug'], "Disciplinas selecionadas com sucesso!");
+        // array_push($_SESSION['debug'], "Instituições selecionadas com sucesso!");
     } else {
-        array_push($_SESSION['debug'], "Erro ao selecionar disciplinas!");
+        array_push($_SESSION['debug'], "Erro ao selecionar instituições!");
     }
-    $connection->close();
 
+    for ($i = 0; $i < count($array); $i++) {
+        if ($i == 0) {
+            echo '<option selected="selected" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
+        } else {
+            echo '<option value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
+        }
+    }
+
+    $connection->close();
+}
+
+//question
+function selectQuestions($id_discipline)
+{
+    require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
+
+    $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user,
+            user.id_institution, subject.id_discipline, subject.name FROM question
+            JOIN user ON question.id_user = user.id
+            JOIN subject ON question.id_subject = subject.id AND " . $id_discipline . " = subject.id_discipline
+            WHERE " . $_SESSION["userData"]["id_institution"] . " = user.id_institution"; 
+    $result = mysqli_query($connection, $sql);
+    $array = [];
+
+    if (mysqli_num_rows($result) != 0) {
+        while ($row = mysqli_fetch_array($result)) {
+            array_push($array, $row);
+        }
+        // array_push($_SESSION['debug'], "Questões selecionadas com sucesso!");
+    } else {
+        array_push($_SESSION['debug'], "Erro ao selecionar questões!");
+    }
+
+    $connection->close();
     return $array;
 }
 
-function disciplineNames($id_discipline, $aux)
+//role
+function idRoleToRoleName($id)
 {
-    //$aux == 0 -> select
-    //$aux == 1 -> read
-    $array = selectDisciplines();
-    
-    for ($i = 0; $i < count($array); $i++) {
-        if($aux == 0) {
-            if ($array[$i][0] == $id_discipline) {
-                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item" selected="selected">' . $array[$i][2] . '</option>';
-            } else {
-                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
-            }
-        } else if ($array[$i][0] == $id_discipline) {
-            return $array[$i][2] . " - ";
-        }
-    }
-}
+    require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
 
+    $sql = "SELECT name from role WHERE id = '$id';";
+    $result = mysqli_query($connection, $sql);
+
+    $connection->close();
+    return mysqli_fetch_array($result)[0];
+}
 
 function roleNamesToDropdownItems()
 {
@@ -96,34 +164,7 @@ function roleNamesToDropdownItems()
     $connection->close();
 }
 
-function institutionNamesToDropdownItems()
-{
-    require $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
-
-    $sql = "SELECT * FROM institution;";
-    $result = mysqli_query($connection, $sql);
-    $array = [];
-
-    if (mysqli_num_rows($result) != 0) {
-        while ($row = mysqli_fetch_row($result)) {
-            array_push($array, $row);
-        }
-        // array_push($_SESSION['debug'], "Instituições selecionadas com sucesso!");
-    } else {
-        array_push($_SESSION['debug'], "Erro ao selecionar instituições!");
-    }
-
-    for ($i = 0; $i < count($array); $i++) {
-        if ($i == 0) {
-            echo '<option selected="selected" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
-        } else {
-            echo '<option value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
-        }
-    }
-
-    $connection->close();
-}
-
+//subject
 function selectSubjects()
 {
     require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
@@ -144,94 +185,7 @@ function selectSubjects()
     return $array;
 }
 
-// Essa função precisa? Se não precisar tem que juntar a função "selectSubjects" com a "subjectNamesToDropdownItems"
-function subjectNamesToRead($id_subject)
-{
-    $array = selectSubjects();
-
-    for ($i = 0; $i < count($array); $i++) {
-        if ($array[$i][0] == $id_subject) {
-            return $array[$i][2];
-        }
-    }
-}
-
-function selectQuestions()
-{
-    require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
-
-    $sql = "SELECT * FROM question;";
-    $result = mysqli_query($connection, $sql);
-    $array = [];
-
-    if (mysqli_num_rows($result) != 0) {
-        while ($row = mysqli_fetch_array($result)) {
-            array_push($array, $row);
-        }
-        // array_push($_SESSION['debug'], "Questões selecionadas com sucesso!");
-    } else {
-        array_push($_SESSION['debug'], "Erro ao selecionar questões!");
-    }
-
-    $connection->close();
-    return $array;
-}
-
-function questionsDiscipline($id_user)
-{
-    $allQuestions = selectQuestions();
-    $array = [];
-
-    for ($i = 0; $i < count($allQuestions); $i++) {
-        if ($allQuestions[$i][2] == $id_user) {
-            $row = $allQuestions[$i];
-            array_push($array, $row);
-        }
-    }
-
-    return $array;
-}
-
-function selectRowsQuantTableQuestion($id_discipline)
-{
-    require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
-
-    $arraySubjects = selectSubjects();
-    $array = [];
-
-    for ($i = 0; $i < count($arraySubjects); $i++) {
-        if ($arraySubjects[$i][1] == $id_discipline) {
-            $aux = $arraySubjects[$i][0];
-            $sql = "SELECT * from question WHERE id_subject = '$aux';";
-            $result = mysqli_query($connection, $sql);
-
-            if (mysqli_num_rows($result) != 0) {
-                while ($row = mysqli_fetch_array($result)) {
-                    array_push($array, $row);
-                }
-                // array_push($_SESSION['debug'], "Questões selecionadas com sucesso!");
-            } else {
-                array_push($_SESSION['debug'], "Erro ao selecionar questões!");
-            }
-            //$rowsQuant = mysqli_num_rows($result);
-        }
-    }
-
-    $connection->close();
-    return count($array);
-}
-
-function idRoleToRoleName($id)
-{
-    require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
-
-    $sql = "SELECT name from role WHERE id = '$id';";
-    $result = mysqli_query($connection, $sql);
-
-    $connection->close();
-    return mysqli_fetch_array($result)[0];
-}
-
+//user
 function selectUsers()
 {
     require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
