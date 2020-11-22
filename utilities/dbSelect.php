@@ -92,7 +92,7 @@ function institutionNamesToDropdownItems()
 }
 
 //question
-function selectQuestions($id_discipline, $current, $totalItems, $limit)
+function selectQuestions($id_discipline, $start, $end, $limit)
 {
     require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
 
@@ -102,7 +102,7 @@ function selectQuestions($id_discipline, $current, $totalItems, $limit)
             JOIN user ON question.id_user = user.id
             JOIN discipline ON discipline.id = " . $id_discipline . "
             JOIN subject ON question.id_subject = subject.id AND subject.id_discipline = " . $id_discipline . "
-            WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] . " LIMIT " . $current . ", " . $totalItems;
+            WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] . " LIMIT " . $start . ", " . $end;
     } else {
         $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user,
             user.id_institution, discipline.id, discipline.name, subject.name FROM question

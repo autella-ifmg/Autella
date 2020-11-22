@@ -10,7 +10,7 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
-    require_once "createJS.php";
+    require_once "createSQL.php";
 
     //Obtém o id do cargo correspondente ao usuário que está logado no momento.
     $id_role = $_SESSION["userData"]["id_role"];
@@ -143,11 +143,7 @@
         invisibleInput();
         ?>
 
-        <?php
-        if ($id_role == 1) {
-            echo 'var div = document.getElementById("container_selectDisciplines");         div.removeAttribute("hidden");';
-        }
-        ?>
+        selectControl($id_role);
     </script>
 
     <!--Importações do Bootstrap-->

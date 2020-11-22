@@ -1,13 +1,7 @@
 <?php
-function selectQuestionsTest($id_discipline, $current, $totalItems, $limit)
+function selectQuestionsTest($id_discipline, $start, $end, $limit)
 {
     require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
-
-    //$totalItems = 5;
-    //$current = intval($_GET["test.php"]);
-    //$current = 0;
-    // var_dump($current);  . " LIMIT " . $current . ", " . $totalItems
-    //var_dump($_SESSION);
 
     if ($limit) {
         $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user,
@@ -15,7 +9,7 @@ function selectQuestionsTest($id_discipline, $current, $totalItems, $limit)
             JOIN user ON question.id_user = user.id
             JOIN discipline ON discipline.id = " . $id_discipline . "
             JOIN subject ON question.id_subject = subject.id AND subject.id_discipline = " . $id_discipline . "
-            WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] . " LIMIT " . $current . ", " . $totalItems;
+            WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] . " LIMIT " . $start . ", " . $end;
     } else {
         $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user,
             user.id_institution, discipline.id, discipline.name, subject.name FROM question
