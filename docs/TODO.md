@@ -165,6 +165,7 @@
 * Crud da instituição
 * Versionamento de questões (tipo o do GitHub)
 * Versionamento de provas (tipo o do GitHub)
+* Comentário das questões
 * Painel de controle do coordenador
 	* Desativar e alterar subordinados
 	* Transferência de cargo
