@@ -83,7 +83,7 @@
 	- [X] Exibir dificuldade da questão
 	- [X] Adicionar ícone para permitir edição
 	- [X] Criar funções de tratamento
-	- [ ] Adicionar paginação
+	- [X] Adicionar paginação
 	- [ ] Adicionar filtros de pesquisa
 	- [ ] Exibir mais de uma matéria
 	- [ ] Exibir em quais provas a questão está presente

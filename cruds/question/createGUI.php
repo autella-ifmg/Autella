@@ -7,6 +7,9 @@
     <title>Autella | Criar questão</title>
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
     <?php
+    //Inicia a sessão.
+    session_start();
+
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
@@ -28,27 +31,27 @@
     <!--Formulário-->
     <form id="questionsForm" action="createSQL.php" method="post" class="needs-validation"">
         <!--Seção principal-->
-        <section class=" d-flex justify-content-center mt-3">
+        <section class=" d-flex justify-content-center mt-4">
         <div class="d-flex flex-column">
             <!--Selects-->
             <div class="d-flex flex-row mb-2">
                 <!--Select da disciplina-->
-                <div id="container_selectDisciplines" class="w-25 mr-3" hidden>
-                    <label id="labelDisciplines" for="disciplines" class="mt-1 mr-2">Disciplina:</label>
+                <div id="container_selectDisciplines" class="w-25 mt-1 mr-3" hidden>
+                    <label id="labelDisciplines" for="disciplines">Disciplina:</label>
                     <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
                         <?php disciplineNames(); ?>
                     </select>
                 </div>
                 <!--Select das matérias-->
-                <div class="w-25 mr-3">
-                    <label for="subjects" class="mt-1 mr-2">Matéria:</label>
+                <div class="w-25 mt-1 mr-3">
+                    <label for="subjects">Matéria:</label>
                     <select name="subjects" id="subjects" class="form-control" autofocus required>
                         <!--updateSubjects-->
                     </select>
                 </div>
                 <!--Select da dificuldade-->
-                <div class="w-25 mr-3">
-                    <label for="dificulty" class="mt-1 mr-2">Dificuldade:</label>
+                <div class="w-25 mt-1 mr-3">
+                    <label for="dificulty">Dificuldade:</label>
                     <select name="dificulty" id="dificulty" class="form-control" required>
                         <option value="1">Fácil</option>
                         <option value="2">Média</option>
@@ -56,8 +59,8 @@
                     </select>
                 </div>
                 <!--Select do número de alternativas-->
-                <div class="w-25 mr-3">
-                    <label for="alternativesQuant" class="mt-1 mr-2">Nº de alternativas:</label>
+                <div class="w-25 mt-1 mr-3">
+                    <label for="alternativesQuant">Nº de alternativas:</label>
                     <select name="alternativesQuant" id="alternativesQuant" class="form-control" onchange="updateCorrectAnswerSelect_AlternativesField()" required>
                         <option value=>Escolha...</option>
                         <option value=4>4</option>
@@ -65,8 +68,8 @@
                     </select>
                 </div>
                 <!--Select da alternativa correta-->
-                <div class="w-25">
-                    <label for="correctAnswer" class="mt-1 mr-2">Alternativa correta:</label>
+                <div class="w-25 mt-1">
+                    <label for="correctAnswer">Alternativa correta:</label>
                     <select name="correctAnswer" id="correctAnswer" class="form-control" disabled required>
                         <option value="A">A</option>
                         <option value="B">B</option>
@@ -136,14 +139,14 @@
         }
         //Quando o documento estiver carregado, executa o método updateSubjects().
         document.addEventListener("DOMContentLoaded", updateSubjects(), false);
-        
+
         <?php
         updateCorrectAnswerSelect_AlternativesField();
 
         invisibleInput();
-        ?>
 
         selectControl($id_role);
+        ?>
     </script>
 
     <!--Importações do Bootstrap-->

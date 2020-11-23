@@ -1,6 +1,4 @@
 <?php
-//Inicia a sessão.
-session_start();
 //Função que remove conteúdos indejados dos inputs.
 function secure($input)
 {

@@ -1,4 +1,14 @@
 <?php
+/*
+    $filter = [];
+    
+    $filter[0] = (isset($_GET["id_discipline"]));
+    $filter[1] = (isset($_GET["id_subject"]));
+    $filter[2] = (isset($_GET["dificulty"]));
+    //$filter[3] = (isset($_GET["date""]));
+}
+*/
+
 function dificultyTratament($dificulty)
 {
     switch ($dificulty) {
@@ -17,7 +27,7 @@ function dificultyTratament($dificulty)
 function dateTratament($date)
 {
     $date = strtotime($date);
-    return $date = "Data de criação: " . date("d/m/Y", $date);
+    return $date = "Criada em: " . date("d/m/Y", $date);
 }
 
 function data($array, $id_discipline, $id_role)
@@ -39,13 +49,13 @@ function data($array, $id_discipline, $id_role)
                 echo '<div class="d-flex flex-row bd-highlight">
                     <div class="p-2 flex-fill bd-highlight border border-dark">' . $questionNumber . '</div>
                     <div class="p-2 flex-fill bd-highlight border border-dark border-left-0">' . $dificulty . '</div>
-                    <div class="p-2 w-25 bd-highlight border border-dark border-left-0">' . $correctAnswer  . '</div>
+                    <div class="p-2 felx-fill bd-highlight border border-dark border-left-0">' . $date . '</div>
+                    <div class="p-2 flex-fill bd-highlight border border-dark border-left-0">' . $correctAnswer  . '</div>
                     <div class="p-2 w-50 bd-highlight border border-dark border-left-0">' . $discipline_subject . '</div>
                   </div>
 
                  <div class="d-flex flex-row">
-                    <div class="p-2 flex-fill bd-highlight border border-dark border-top-0">' . $date . '</div>
-                    <div class="p-2 w-75 bd-highlight border border-dark border-left-0 border-top-0">Inclusa em: Global1, Prova do César, Global3</div>';
+                    <div class="p-2 w-100 bd-highlight border border-dark border-top-0">Inclusa em: Global1, Prova do César, Global3</div>';
                 if ($id_role == 1) {
                     echo
                         '<div class="p-2 flex-fill bd-highlight border border-dark border-left-0 border-top-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" width="25" height="25" onclick="edit()"/></div>';

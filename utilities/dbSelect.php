@@ -96,21 +96,20 @@ function selectQuestions($id_discipline, $start, $end, $limit)
 {
     require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
 
-    if ($limit) {
-        $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user,
-            user.id_institution, discipline.id, discipline.name, subject.name FROM question
-            JOIN user ON question.id_user = user.id
-            JOIN discipline ON discipline.id = " . $id_discipline . "
-            JOIN subject ON question.id_subject = subject.id AND subject.id_discipline = " . $id_discipline . "
-            WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] . " LIMIT " . $start . ", " . $end;
+    $sql_complete = "";
+
+    if($limit) {
+        $sql_complete = " ORDER BY subject.name LIMIT $start, $end;";
     } else {
-        $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user,
+        $sql_complete = " ORDER BY subject.name;";
+    }
+
+    $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user,
             user.id_institution, discipline.id, discipline.name, subject.name FROM question
             JOIN user ON question.id_user = user.id
             JOIN discipline ON discipline.id = " . $id_discipline . "
             JOIN subject ON question.id_subject = subject.id AND subject.id_discipline = " . $id_discipline . "
-            WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"];
-    }
+            WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] . $sql_complete;
     $result = mysqli_query($connection, $sql);
     $array = [];
 
