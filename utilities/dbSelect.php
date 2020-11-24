@@ -92,24 +92,37 @@ function institutionNamesToDropdownItems()
 }
 
 //question
-function selectQuestions($id_discipline, $start, $end, $limit)
+function selectQuestions($limit, $start, $end, $filter)
 {
     require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
 
-    $sql_complete = "";
+    $sql_final = "";
 
-    if($limit) {
-        $sql_complete = " ORDER BY subject.name LIMIT $start, $end;";
+    if ($limit) {
+        $sql_final = " ORDER BY subject.name LIMIT $start, $end;";
     } else {
-        $sql_complete = " ORDER BY subject.name;";
+        $sql_final = " ORDER BY subject.name;";
+    }
+
+    if (empty($filter)) {
+        $id_discipline = $_SESSION["userData"]["id_discipline"];
+        $id_subject = "question.id_subject";
+        $dificulty = "";
+        $date = "";
+    } else {
+        $id_discipline = $filter[0] == null ? $_SESSION["userData"]["id_discipline"] : $filter[0];
+        $id_subject = $filter[1] == null ? "question.id_subject" : $filter[1];
+        $dificulty = $filter[2] == null ? "" : " AND question.dificulty = $filter[2]";
+        $date = $filter[3] == null ? "" : " AND question.date = $filter[3]";
     }
 
     $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user,
             user.id_institution, discipline.id, discipline.name, subject.name FROM question
-            JOIN user ON question.id_user = user.id
+            JOIN user ON user.id = question.id_user
             JOIN discipline ON discipline.id = " . $id_discipline . "
-            JOIN subject ON question.id_subject = subject.id AND subject.id_discipline = " . $id_discipline . "
-            WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] . $sql_complete;
+            JOIN subject ON subject.id = " . $id_subject . " AND subject.id_discipline = " . $id_discipline . " 
+            WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] . "
+            AND question.id_subject = " . $id_subject . $dificulty . $date . $sql_final;
     $result = mysqli_query($connection, $sql);
     $array = [];
 

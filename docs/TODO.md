@@ -78,13 +78,13 @@
 	- [ ] Permitir a seleção de mais de uma matéria
 	- [ ] Revisar opções da barra de ferramentas
 - [ ] Read
-	- [ ] Configurar ações do coordenador
+	- [X] Configurar ações do coordenador
 	- [X] Executar HTML dentro do CKEditor
 	- [X] Exibir dificuldade da questão
 	- [X] Adicionar ícone para permitir edição
 	- [X] Criar funções de tratamento
 	- [X] Adicionar paginação
-	- [ ] Adicionar filtros de pesquisa
+	- [X] Adicionar filtros de pesquisa (bug filtro date)
 	- [ ] Exibir mais de uma matéria
 	- [ ] Exibir em quais provas a questão está presente
 - [ ] Update

@@ -12,11 +12,10 @@ function secure($input)
 }
 
 if (isset($_POST["submit"])) {
-    //Inclui a conexão com o banco de dados.
     require_once "../../utilities/dbConnect.php";
 
     date_default_timezone_set("America/Sao_Paulo");
-    $date = date("Y-m-d H:i:s");
+    $date = date("Y-m-d");
     $id_user = $_SESSION["userData"]["id"];
     $id_subject = secure($_POST["subjects"]);
     $dificulty = secure($_POST["dificulty"]);
@@ -119,8 +118,8 @@ function invisibleInput()
             invisibleInput.setAttribute("value", string);
             invisibleInput.setAttribute("style", "display: none");
 
-            var form = document.getElementById("#questionsForm");
-            questionsForm.appendChild(invisibleInput);
+            var form = document.getElementById("#questionForm");
+            questionForm.appendChild(invisibleInput);
         });
     ';
 }
@@ -128,9 +127,9 @@ function invisibleInput()
 function selectControl($id_role)
 {
     if ($id_role == 1) {
-        echo
-            'var div = document.getElementById("container_selectDisciplines");
+        echo '
+             var div = document.getElementById("selectDiscipline_container");
            
-            div.removeAttribute("hidden");';
+             div.removeAttribute("hidden");';
     }
 }
