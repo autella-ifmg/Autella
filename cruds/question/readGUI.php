@@ -42,7 +42,7 @@
     $array = selectQuestions(true, $start, $end, $filter);
     //var_dump($array);
 
-    $totalRows = count($array);
+    $totalRows = count($array) + 1;
     //var_dump($totalRows);
 
     $totalPages = ceil($totalRows / $end);
@@ -99,7 +99,7 @@
                     <a href="createGUI.php" type="button" class="btn btn-primary w-25">Criar questão</a>
                 </div>
 
-                <?php data($array, $id_discipline, $id_role); ?>
+                <?php data($array, $id_role); ?>
             </div>
 
             <ul class="pagination justify-content-center">
@@ -193,7 +193,7 @@
     <!--Importações do CkEditor-->
     <script src="../../libraries/ckeditor5/ckeditor.js"></script>
     <script>
-        <?php imports($array, $id_discipline); ?>
+        <?php imports($array); ?>
     </script>
 </body>
 

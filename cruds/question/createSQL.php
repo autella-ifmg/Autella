@@ -88,7 +88,7 @@ function updateCorrectAnswerSelect_AlternativesField()
                 textarea.setAttribute("id", `question${i}`);
                 textarea.setAttribute("cols", "120");
                 textarea.setAttribute("rows", "3");
-                textarea.setAttribute("class", "ml-1 mb-3");
+                textarea.setAttribute("class", "ml-1 mb-3 rounded");
                 textarea.setAttribute("style", "resize: none;");
                 textarea.setAttribute("placeholder", "Insira o enunciado da alternativa...");
                 textarea.setAttribute("required", "true");
