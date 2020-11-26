@@ -49,7 +49,7 @@ function data($array, $id_role)
                 if ($id_role == 1) {
                     echo
                         '<div class="p-2 flex-fill bd-highlight border border-dark border-left-0 border-top-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" width="25" height="25" onclick="edit()"/></div>';
-                } elseif ($array[$i][5] == $id_user) {
+                } elseif ($array[$i]["id_user"] == $id_user) {
                     echo
                         '<div class="p-2 flex-fill bd-highlight border border-dark border-left-0 border-top-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" width="25" height="25" onclick="edit()"/></div>';
                 }

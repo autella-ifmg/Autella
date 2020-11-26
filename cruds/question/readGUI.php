@@ -42,7 +42,7 @@
     $array = selectQuestions(true, $start, $end, $filter);
     //var_dump($array);
 
-    $totalRows = count($array) + 1;
+    $totalRows = count($aux = selectQuestions(false, 0, 0, $filter));
     //var_dump($totalRows);
 
     $totalPages = ceil($totalRows / $end);
@@ -180,7 +180,7 @@
             date_filter = date_filter.value;
 
             var filter_btn = document.getElementById("filter");
-            filter_btn.setAttribute("href", `${url}filter=true&id_discipline=${discipline_filter}&id_subject=${subject_filter}&dificulty=${dificulty_filter}&date=${date_filter}`);
+            filter_btn.setAttribute("href", `${url}filter=true&id_discipline=${discipline_filter}&id_subject=${subject_filter}&dificulty=${dificulty_filter}&date=${date_filter}&`);
         }
 
         <?php selectControl($id_role); ?>

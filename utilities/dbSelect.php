@@ -96,12 +96,12 @@ function selectQuestions($limit, $start, $end, $filter)
 {
     require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
 
-    $sql_final = "";
+    $sql_limit = "";
 
     if ($limit) {
-        $sql_final = " ORDER BY subject.name LIMIT $start, $end;";
+        $sql_limit = " ORDER BY subject.name LIMIT $start, $end;";
     } else {
-        $sql_final = " ORDER BY subject.name;";
+        $sql_limit = " ORDER BY subject.name;";
     }
 
     if (empty($filter)) {
@@ -113,7 +113,7 @@ function selectQuestions($limit, $start, $end, $filter)
         $id_discipline = $filter[0] == null ? $_SESSION["userData"]["id_discipline"] : $filter[0];
         $id_subject = $filter[1] == null ? "question.id_subject" : $filter[1];
         $dificulty = $filter[2] == null ? "" : " AND question.dificulty = $filter[2]";
-        $date = $filter[3] == null ? "" : " AND question.date = $filter[3]";
+        $date = $filter[3] == null ? "" : " AND question.date = '$filter[3]'";
     }
 
     $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user,
@@ -122,7 +122,8 @@ function selectQuestions($limit, $start, $end, $filter)
             JOIN discipline ON discipline.id = " . $id_discipline . "
             JOIN subject ON subject.id = " . $id_subject . " AND subject.id_discipline = " . $id_discipline . " 
             WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] . "
-            AND question.id_subject = " . $id_subject . $dificulty . $date . $sql_final;
+            AND question.id_subject = " . $id_subject . $dificulty . $date . $sql_limit;
+    //echo $sql;
     $result = mysqli_query($connection, $sql);
     $array = [];
 

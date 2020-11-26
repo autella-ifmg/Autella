@@ -72,11 +72,12 @@
 	- [X] Exibir dropdown de disciplina apenas caso seja o coordenador
 	- [X] Deixar valores dos dropdowns pré-selecionados
 	- [X] Travar o dropdownAC enquanto o dropdownQA ainda não tiver sido preenchido
+	- [ ] Tratamento de inserção de apóstrofo
 	- [ ] Inserir validação required para o enunciado da questão
 	- [ ] Permitir que as alternativas também sejam formatadas
 	- [ ] Adicionar plugins
 	- [ ] Permitir a seleção de mais de uma matéria
-	- [ ] Revisar opções da barra de ferramentas
+	- [ ] Revisar as opções da barra de ferramentas
 - [ ] Read
 	- [X] Configurar ações do coordenador
 	- [X] Executar HTML dentro do CKEditor
@@ -84,7 +85,8 @@
 	- [X] Adicionar ícone para permitir edição
 	- [X] Criar funções de tratamento
 	- [X] Adicionar paginação
-	- [X] Adicionar filtros de pesquisa (bug filtro date)
+	- [X] Adicionar filtros de pesquisa
+	- [ ] Adicionar opção "Escolha..." no select disciplines
 	- [ ] Exibir mais de uma matéria
 	- [ ] Exibir em quais provas a questão está presente
 - [ ] Update
@@ -93,6 +95,8 @@
 	- [ ] Retirar o CKEDitor do modo readonly (enunciado) 
 	- [ ] Configurar o modal que altera a letra da alternativa correta
 	- [ ] Atualizar o textarea da alternativa correta
+- [ ] Delete
+	- [ ] Desabilitar questão
 - [ ] Help
 
 ## Painel de controle
