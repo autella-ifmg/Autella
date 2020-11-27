@@ -65,7 +65,7 @@
                     <div id="container_selectDisciplines" class="w-25 mt-1 mr-3" hidden>
                         <label for="disciplines">Disciplina:</label>
                         <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
-                            <?php disciplineNames(); ?>
+                            <?php disciplineNames(1); ?>
                         </select>
                     </div>
                     <!--filtro matéria-->

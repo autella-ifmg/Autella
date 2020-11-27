@@ -21,15 +21,23 @@ function selectDisciplines()
     return $array;
 }
 
-function disciplineNames()
+function disciplineNames($filter)
 {
     $array = selectDisciplines();
 
-    for ($i = 0; $i < count($array); $i++) {
-        if ($array[$i][0] == $_SESSION["userData"]["id_discipline"]) {
-            echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item" selected="selected">' . $array[$i][2] . '</option>';
+    for ($i = -1; $i < count($array); $i++) {
+        if ($filter == 0) {
+            if ($array[$i][0] == $_SESSION["userData"]["id_discipline"]) {
+                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item" selected="selected">' . $array[$i][2] . '</option>';
+            } else {
+                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
+            }
         } else {
-            echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
+            if ($i == -1) {
+                echo '<option name="-1" id="-1" value="-1" class="dropdown-item" selected="selected">Escolha...</option>';
+            } else {
+                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
+            }
         }
     }
 }
@@ -99,30 +107,40 @@ function selectQuestions($limit, $start, $end, $filter)
     $sql_limit = "";
 
     if ($limit) {
-        $sql_limit = " ORDER BY subject.name LIMIT $start, $end;";
-    } else {
-        $sql_limit = " ORDER BY subject.name;";
+        $sql_limit = " LIMIT $start, $end;";
     }
 
     if (empty($filter)) {
-        $id_discipline = $_SESSION["userData"]["id_discipline"];
+        $id_discipline = -1;
         $id_subject = "question.id_subject";
         $dificulty = "";
         $date = "";
     } else {
-        $id_discipline = $filter[0] == null ? $_SESSION["userData"]["id_discipline"] : $filter[0];
+        $id_discipline = $filter[0] == null ? -1 : $filter[0];
         $id_subject = $filter[1] == null ? "question.id_subject" : $filter[1];
         $dificulty = $filter[2] == null ? "" : " AND question.dificulty = $filter[2]";
         $date = $filter[3] == null ? "" : " AND question.date = '$filter[3]'";
     }
 
-    $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user,
-            user.id_institution, discipline.id, discipline.name, subject.name FROM question
-            JOIN user ON user.id = question.id_user
-            JOIN discipline ON discipline.id = " . $id_discipline . "
-            JOIN subject ON subject.id = " . $id_subject . " AND subject.id_discipline = " . $id_discipline . " 
+    if ($id_discipline == -1) {
+        $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user, user.id_institution,
+            discipline.id, discipline.name, subject.name FROM question 
+            JOIN user ON user.id = question.id_user 
+            JOIN discipline 
+            JOIN subject ON subject.id = question.id_subject 
             WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] . "
-            AND question.id_subject = " . $id_subject . $dificulty . $date . $sql_limit;
+            AND question.id_subject = question.id_subject AND discipline.id = subject.id_discipline "
+            . $dificulty . $date . "
+            ORDER BY discipline.name, subject.name " . $sql_limit;
+    } else {
+        $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, user.id_institution, 
+            question.id_user, discipline.id, discipline.name, subject.name FROM question
+            JOIN user ON user.id = question.id_user
+            JOIN discipline ON discipline.id =  $id_discipline
+            JOIN subject ON subject.id = $id_subject AND subject.id_discipline = $id_discipline 
+            WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] . "
+            AND question.id_subject = " . $id_subject . $dificulty . $date . " ORDER BY subject.name" . $sql_limit;
+    }
     //echo $sql;
     $result = mysqli_query($connection, $sql);
     $array = [];

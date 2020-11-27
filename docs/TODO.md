@@ -86,7 +86,7 @@
 	- [X] Criar funções de tratamento
 	- [X] Adicionar paginação
 	- [X] Adicionar filtros de pesquisa
-	- [ ] Adicionar opção "Escolha..." no select disciplines
+	- [X] Adicionar opção "Escolha..." no select disciplines
 	- [ ] Exibir mais de uma matéria
 	- [ ] Exibir em quais provas a questão está presente
 - [ ] Update
