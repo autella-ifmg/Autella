@@ -91,10 +91,10 @@
 	- [ ] Exibir em quais provas a questão está presente
 - [ ] Update
 	- [ ] Configurar ícone de edição
+	- [ ] Configurar ícone de arquivamento
+	- [ ] Configurar ícone de exclusão
 	- [ ] Adicionar dropdowns para dificuldade, matérias e inclusões
-	- [ ] Retirar o CKEDitor do modo readonly (enunciado) 
-	- [ ] Configurar o modal que altera a letra da alternativa correta
-	- [ ] Atualizar o textarea da alternativa correta
+	- [ ] Retirar o CKEDitor do modo readonly (enunciado)
 - [ ] Delete
 	- [ ] Desabilitar questão
 - [ ] Help

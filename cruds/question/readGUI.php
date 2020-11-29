@@ -70,8 +70,8 @@
                     </div>
                     <!--filtro matéria-->
                     <div class="w-25 mt-1 mr-3">
-                        <label for="subject">Matéria:</label>
-                        <select name="subject" id="subject" class="form-control">
+                        <label for="subjects">Matéria:</label>
+                        <select name="subjects" id="subjects" class="form-control">
                             <!--updateSubjects()-->
                         </select>
                     </div>
@@ -126,13 +126,35 @@
         </div>
     </section>
 
+    <!--Modal genérico-->
+    <div id="none" name="container" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="none" name="header" class="modal-title">none</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="p0">none</p>
+                    <p id="p1">none</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button id="none" name="button" type="button" class="btn btn-danger" onclick="none" data-dismiss="modal">Sim, tenho certeza</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         //Função para inserir as matérias no selectSubjects.
         function updateSubjects() {
             var selectDiscipline = document.getElementById("disciplines");
             selectDiscipline = selectDiscipline.value;
 
-            var selectSubject = document.getElementById("subject");
+            var selectSubject = document.getElementById("subjects");
             selectSubject.innerHTML = "";
 
             var option = document.createElement("option");
@@ -172,7 +194,7 @@
 
             var discipline_filter = document.getElementById("disciplines");
             discipline_filter = discipline_filter.value
-            var subject_filter = document.getElementById("subject");
+            var subject_filter = document.getElementById("subjects");
             subject_filter = subject_filter.value
             var dificulty_filter = document.getElementById("dificulty");
             dificulty_filter = dificulty_filter.value
@@ -181,6 +203,36 @@
 
             var filter_btn = document.getElementById("filter");
             filter_btn.setAttribute("href", `${url}filter=true&id_discipline=${discipline_filter}&id_subject=${subject_filter}&dificulty=${dificulty_filter}&date=${date_filter}&`);
+        }
+
+        //Especifica a ação do modal
+        function chooseAction(action, questionNumber) {
+            var modal = [
+                ["editModal", "editModalLabel", `Editar a <b>Questão - ${questionNumber}</b>?`, "Ao alterar essa questão, todas as provas simples e provas globais que a utilizam também serão alteradas.", `Você tem certeza que deseja fazer alguma modificação na <b>Questão - ${questionNumber}</b>?`, "editIcon", "editQuestion()"],
+                ["archiveModal", "archiveModalLabel", `Arquivar a <b>Questão - ${questionNumber}</b>?`, "Ao arquivar essa questão, ela não se perderá, mas, ficará indisponível em todas as provas simples e provas globais onde está inclusa.", `Você tem certeza que deseja arquivar a <b>Questão - ${questionNumber}</b>?`, "archiveIcon", "archiveQuestion()"],
+                ["deleteModal", "deleteModalLabel", `Deletar a <b>Questão - ${questionNumber}</b>?`, "Ao excluir essa questão, ela se perderá permanentemente e se tornará indisponível em todas as provas simples e provas globais onde está inclusa.", `Você tem certeza que deseja excluir a <b>Questão - ${questionNumber}</b>?`, "deleteIcon", "deleteQuestion()"]
+            ];
+
+            var container = document.getElementsByName("container")[0];
+            container.removeAttribute("id");
+            container.setAttribute("id", `${modal[action][0]}`);
+
+            var h5 = document.getElementsByName("header")[0];
+            h5.removeAttribute("id");
+            h5.setAttribute("id", `${modal[action][1]}`)
+            h5.innerHTML = `${modal[action][2]}`;
+
+            var p0 = document.getElementById("p0");
+            p0.innerHTML = `${modal[action][3]}`;
+
+            var p1 = document.getElementById("p1");
+            p1.innerHTML = `${modal[action][4]}`;
+
+            var button = document.getElementsByName("button")[0];
+            button.removeAttribute("id")
+            button.removeAttribute("onclick");
+            button.setAttribute("id", `${modal[action][5]}`);
+            button.setAttribute("onclick", `${modal[action][6]}`);
         }
 
         <?php selectControl($id_role); ?>
