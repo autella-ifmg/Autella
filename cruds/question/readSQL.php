@@ -69,13 +69,15 @@ function data($array, $id_role)
         echo '
                     <div class="d-flex flex-row bd-highlight">
                         <div class="p-2 w-25 bd-highlight border border-dark">Nº: </div>
-                        <div class="p-2 w-25 bd-highlight border border-dark border-left-0">Data de Criação: </div>
-                        <div class="p-2 flex-fill bd-highlight border border-dark border-left-0">Nível: </div>
-                        <div class="p-2 flex-fill bd-highlight border border-dark border-left-0">Alternativa correta: </div>
+                        <div class="p-2 w-25 bd-highlight border border-dark border-left-0">Disciplina:</div>
+                        <div class="p-2 flex-fill bd-highlight border border-dark border-left-0">Matéria:</div>
                     </div>
+
                     <div class="d-flex flex-row">
                         <div class="p-2 w-25 bd-highlight border border-dark border-top-0">Inclusa em: </div>
-                        <div class="p-2 flex-fill bd-highlight border border-dark border-left-0">Disciplina - Matéria</div>
+                        <div class="p-2 w-25 bd-highlight border border-dark border-left-0 border-top-0">Criada em: </div>
+                        <div class="p-2 flex-fill bd-highlight border border-dark border-left-0 border-top-0">Dificuldade: </div>
+                        <div class="p-2 flex-fill bd-highlight border border-dark border-left-0 border-top-0">Alternativa correta: </div>
                     </div>
 
                     <div name="editor" id="editor" class="border border-dark border-top-0 mb-3" style="min-width: 65rem; max-width: 65rem; min-height: 20rem; max-height: 20rem;"><p class="font-weight-bold text-center">Ainda não há questões correspondentes ao filtro utilizado. :/<p></div>';
