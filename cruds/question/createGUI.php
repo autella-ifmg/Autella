@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="w-100 h-100" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -7,17 +7,10 @@
     <title>Autella | Criar questão</title>
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
     <?php
-    session_start();
-
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
     require_once "createSQL.php";
-
-    $id_role = $_SESSION["userData"]["id_role"];
-    //var_dump($id_role);
-    $id_discipline = $_SESSION["userData"]["id_discipline"];
-    //var_dump($id_discipline);
     ?>
 </head>
 
@@ -28,21 +21,21 @@
         <section class="d-flex justify-content-center mt-4">
             <div class="d-flex flex-column">
                 <div class="d-flex flex-row mb-2">
-                    <!--select disciplina-->
+                    <!--Select disciplina-->
                     <div id="selectDiscipline_container" class="w-25 mt-1 mr-3" hidden>
                         <label for="disciplines">Disciplina:</label>
                         <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
                             <?php disciplineNames(0); ?>
                         </select>
                     </div>
-                    <!--select matérias-->
+                    <!--Select matérias-->
                     <div class="w-25 mt-1 mr-3">
                         <label for="subjects">Matéria:</label>
                         <select name="subjects" id="subjects" class="form-control" autofocus required>
                             <!--updateSubjects()-->
                         </select>
                     </div>
-                    <!--select dificuldade-->
+                    <!--Select dificuldade-->
                     <div class="w-25 mt-1 mr-3">
                         <label for="dificulty">Dificuldade:</label>
                         <select name="dificulty" id="dificulty" class="form-control" required>
@@ -51,7 +44,7 @@
                             <option value="3">Difícil</option>
                         </select>
                     </div>
-                    <!--select número de alternativas-->
+                    <!--Select número de alternativas-->
                     <div class="w-25 mt-1 mr-3">
                         <label for="alternativesQuant">Nº de alternativas:</label>
                         <select name="alternativesQuant" id="alternativesQuant" class="form-control" onchange="updateCorrectAnswerSelect_AlternativesField()" required>
@@ -60,7 +53,7 @@
                             <option value=5>5</option>
                         </select>
                     </div>
-                    <!--select alternativa correta-->
+                    <!--Select alternativa correta-->
                     <div class="w-25 mt-1">
                         <label for="correctAnswer">Alternativa correta:</label>
                         <select name="correctAnswer" id="correctAnswer" class="form-control" disabled required>
@@ -73,18 +66,18 @@
                     </div>
                 </div>
 
-                <!--enunciado da questão-->
+                <!--Enunciado da questão-->
                 <div>
                     <div name="toolbar" id="toolbar-container"></div>
-                    <div name="editor" id="editor" style="min-width: 65rem; max-width: 65rem; min-height: 20rem; max-height: 20rem; border: 1px solid gray;"></div>
+                    <div name="editor" id="editor" style="max-width: 65rem; min-height: 20rem; max-height: 20rem; border: 1px solid gray;"></div>
                 </div>
 
-                <!--enunciados das alternativas-->
+                <!--Alternativas-->
                 <div class="d-flex justify-content-center">
                     <div id="alternatives_container" class="d-flex flex-column mt-3"></div>
                 </div>
 
-                <!--botões-->
+                <!--Botões-->
                 <div class="d-flex flex-row justify-content-center mb-5">
                     <a href="readGUI.php" type="button" class="w-25 btn btn-danger mr-2">Cancelar</a>
                     <button name="submit" id="submit" type="submit" class="w-25 btn btn-success">Adicionar</button>
@@ -93,6 +86,7 @@
         </section>
     </form>
 
+    <!--Funções que unem .js e .php-->
     <script>
         //Função para inserir as matérias no selectSubject.
         function updateSubjects() {
@@ -105,9 +99,7 @@
             <?php
             $php_array = selectSubjects();
             $js_array = json_encode($php_array);
-            $js_var = json_encode($id_discipline);
-            echo "var subjects = " . $js_array . ";\n
-                  var id_discipline = " . $js_var . ";\n";
+            echo "var subjects = " . $js_array . ";\n";
             ?>
 
             for (let i = 0; i < subjects.length; i++) {
@@ -116,33 +108,101 @@
                     option.setAttribute("value", `${subjects[i][0]}`);
                     option.setAttribute("label", `${subjects[i][2]}`);
                     selectSubjects.appendChild(option);
-                } else if (selectDiscipline == 0) {
-                    if (subjects[i][1] == id_discipline) {
-                        let option = document.createElement("option");
-                        option.setAttribute("value", `${subjects[i][0]}`);
-                        option.setAttribute("label", `${subjects[i][2]}`);
-                        selectSubjects.appendChild(option);
-                    }
                 }
             }
         }
         //Quando o documento estiver carregado, executa o método updateSubjects().
         document.addEventListener("DOMContentLoaded", updateSubjects(), false);
 
+        //Função para atualizar o select correctAnswer e gerar o campo de texto das alternativas.
+        function updateCorrectAnswerSelect_AlternativesField() {
+            var alternativesQuant = document.getElementById("alternativesQuant");
+            alternativesQuant = alternativesQuant.value;
+
+            var selectCorrectAnswer = document.getElementById("correctAnswer");
+            selectCorrectAnswer.removeAttribute("disabled");
+
+            var optionE = document.getElementById("optionE");
+
+            if (alternativesQuant == 4) {
+                optionE.setAttribute("hidden", "true");
+            } else if (alternativesQuant == 5) {
+                optionE.removeAttribute("hidden");
+            } else {
+                selectCorrectAnswer.setAttribute("disabled", "true");
+            }
+
+            var alternatives_container = document.getElementById(
+                "alternatives_container"
+            );
+            alternatives_container.innerHTML = "";
+
+            alternatives = ["A", "B", "C", "D", "E"];
+
+            for (let i = 0; i < alternativesQuant; i++) {
+                let div = document.createElement("div");
+                div.setAttribute("id", "div_container");
+                div.setAttribute("class", "d-flex flex-row");
+                alternatives_container.appendChild(div);
+                let img = document.createElement("img");
+                img.setAttribute("src", `../../images/alternatives/${alternatives[i]}.png`);
+                img.setAttribute("alt", alternatives[i]);
+                img.setAttribute("class", "bg-info rounded-circle mr-1 mb-3");
+                div.appendChild(img);
+                let textarea = document.createElement("textarea");
+                textarea.setAttribute("name", `question${i}`);
+                textarea.setAttribute("id", `question${i}`);
+                textarea.setAttribute("cols", "120");
+                textarea.setAttribute("rows", "3");
+                textarea.setAttribute("class", "ml-1 mb-3 rounded");
+                textarea.setAttribute("style", "resize: none;");
+                textarea.setAttribute(
+                    "placeholder",
+                    "Insira o enunciado da alternativa..."
+                );
+                textarea.setAttribute("required", "true");
+                div.appendChild(textarea);
+            }
+        }
+
+        //Função para realizar a conexão CKEditor - MySQL.-
+        document.querySelector("#submit").addEventListener("click", () => {
+            var editorData = document.querySelector("#editor").children;
+
+            var string = "";
+            for (let i = 0; i < editorData.length; i++) {
+                string += editorData[i].outerHTML;
+                string += "\n";
+            }
+            var invisibleInput = document.createElement("input");
+            invisibleInput.setAttribute("name", "enunciate");
+            invisibleInput.setAttribute("id", "enunciate");
+            invisibleInput.setAttribute("type", "text");
+            invisibleInput.setAttribute("value", string);
+            invisibleInput.setAttribute("style", "display: none");
+            var form = document.getElementById("#questionForm");
+            questionForm.appendChild(invisibleInput);
+        });
+
+        //Verifica se um coordenador que está logado.
         <?php
-        updateCorrectAnswerSelect_AlternativesField();
-
-        invisibleInput();
-
-        selectControl($id_role);
+        if ($id_role == 1) {
+            echo '
+                 var div = document.getElementById("selectDiscipline_container");
+               
+                 div.removeAttribute("hidden");';
+        }
         ?>
     </script>
 
-    <!--Importações do Bootstrap-->
+    <!--Importação das funções .js-->
+    <script src="createJS.js"></script>
+
+    <!--Importação do Bootstrap-->
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
 
-    <!--Importações do CkEditor-->
+    <!--Importação do CkEditor-->
     <script src="../../libraries/ckeditor5/ckeditor.js"></script>
     <script>
         DecoupledEditor

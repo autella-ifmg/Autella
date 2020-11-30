@@ -1,4 +1,53 @@
 <?php
+ $id_role = $_SESSION["userData"]["id_role"];
+ //var_dump($id_role);
+ $id_discipline = $_SESSION["userData"]["id_discipline"];
+ //var_dump($id_discipline);
+
+ //Verifica quais filtros foram setados.
+ if (isset($_GET["filter"])) {
+     $filter = [];
+
+     $filter[0] = (isset($_GET["id_discipline"]) ? $_GET["id_discipline"] : null);
+     $filter[1] = (isset($_GET["id_subject"]) ? $_GET["id_subject"] : null);
+     $filter[2] = (isset($_GET["dificulty"]) ? $_GET["dificulty"] : null);
+     $filter[3] = (isset($_GET["date"]) ? $_GET["date"] : null);
+ } else if($id_role != 1){
+     $filter[0] = $id_discipline;
+     $filter[1] = null;
+     $filter[2] = null;
+     $filter[3] = null;
+ } else {
+    $filter = [];
+ }
+//var_dump($filter);
+
+ //Paginação - PHP
+ //Número da página atual
+ $current = intval(isset($_GET["pag"]) ? $_GET["pag"] : 1);
+ //var_dump($current);
+
+ //Total de itens por página.
+ $end = 5;
+
+ //Início da exibicação.
+ $start = ($end * $current) - $end;
+
+ $array = selectQuestions(true, $start, $end, $filter);
+ //var_dump($array);
+
+ //Total de linhas da tabela.
+ $totalRows = count($aux = selectQuestions(false, 0, 0, $filter));
+ //var_dump($totalRows);
+
+ //Total de páginas.
+ $totalPages = ceil($totalRows / $end);
+ //var_dump($totalPages);
+
+ //URL da página atual.
+ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'] . '?' . $_SERVER['QUERY_STRING'];
+ //echo $url;
+ 
 function dificultyTratament($dificulty)
 {
     switch ($dificulty) {
@@ -22,12 +71,13 @@ function dateTratament($date)
 
 function data($array, $id_role)
 {
+    global $start;
     $id_user = $_SESSION["userData"]["id"];
 
     if (!empty($array)) {
         if (count($array) > 0) {
             for ($i = 0; $i < count($array); $i++) {
-                $questionNumber = "Questão - " . ($i + 1);
+                $questionNumber = "Questão - " . ($start + ($i + 1));
                 $dificulty = dificultyTratament($array[$i]["dificulty"]);
                 $correctAnswer = "Alternativa correta: " . $array[$i]["correctAnswer"];
                 $discipline =  "Disciplina: " . $array[$i][8];
@@ -42,14 +92,16 @@ function data($array, $id_role)
                         <div class="p-2 flex-fill border border-dark border-left-0">' . $subject . '</div>';
                 if ($id_role == 1) {
                     echo '
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" alt="Editar" height="25" onclick="chooseAction(0, ' . ($i+1) . ')" data-toggle="modal" data-target="#editModal"/></div>';
+                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" alt="Editar" height="25" onclick="chooseAction(0, ' . ($i+1) . ')" data-toggle="modal" data-target="#editModal"/></div>
+                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Arquivar" height="25" onclick="chooseAction(1, ' . ($i+1) . ')" data-toggle="modal" data-target="#archiveModal"/></div>
+                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="chooseAction(2, ' . ($i+1) . ')" data-toggle="modal" data-target="#deleteModal"/></div>';
                 } elseif ($array[$i]["id_user"] == $id_user) {
                     echo '
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" alt="Editar" height="25" onclick="chooseAction(0, ' . ($i+1) . ')" data-toggle="modal" data-target="#editModal"/></div>';
-                }
-                echo '
+                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" alt="Editar" height="25" onclick="chooseAction(0, ' . ($i+1) . ')" data-toggle="modal" data-target="#editModal"/></div>
                         <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Arquivar" height="25" onclick="chooseAction(1, ' . ($i+1) . ')" data-toggle="modal" data-target="#archiveModal"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="chooseAction(2, ' . ($i+1) . ')" data-toggle="modal" data-target="#deleteModal"/></div>
+                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="chooseAction(2, ' . ($i+1) . ')" data-toggle="modal" data-target="#deleteModal"/></div>';
+                }
+                echo '    
                     </div>
 
                     <div class="d-flex flex-row bd-highlight">
@@ -104,17 +156,5 @@ function imports($array)
             
             ';
         }
-    }
-}
-
-function selectControl($id_role)
-{
-    if ($id_role == 1) {
-        echo '
-             var div = document.getElementById("container_selectDisciplines");
-           
-             div.removeAttribute("hidden");
-             
-             ';
     }
 }

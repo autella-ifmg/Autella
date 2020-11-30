@@ -25,7 +25,7 @@ function disciplineNames($filter)
 {
     $array = selectDisciplines();
 
-    for ($i = -1; $i < count($array); $i++) {
+    for ($i = 0; $i < count($array); $i++) {
         if ($filter == 0) {
             if ($array[$i][0] == $_SESSION["userData"]["id_discipline"]) {
                 echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item" selected="selected">' . $array[$i][2] . '</option>';
@@ -33,8 +33,8 @@ function disciplineNames($filter)
                 echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
             }
         } else {
-            if ($i == -1) {
-                echo '<option name="-1" id="-1" value="-1" class="dropdown-item" selected="selected">Escolha...</option>';
+            if (($i-1) == -1) {
+                echo '<option name="null" id="null" value="null" class="dropdown-item" selected="selected">Escolha...</option>';
             } else {
                 echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
             }
@@ -111,18 +111,18 @@ function selectQuestions($limit, $start, $end, $filter)
     }
 
     if (empty($filter)) {
-        $id_discipline = -1;
+        $id_discipline = "null";
         $id_subject = "question.id_subject";
         $dificulty = "";
         $date = "";
     } else {
-        $id_discipline = $filter[0] == null ? -1 : $filter[0];
+        $id_discipline = $filter[0] == null ? "null" : $filter[0];
         $id_subject = $filter[1] == null ? "question.id_subject" : $filter[1];
         $dificulty = $filter[2] == null ? "" : " AND question.dificulty = $filter[2]";
         $date = $filter[3] == null ? "" : " AND question.date = '$filter[3]'";
     }
 
-    if ($id_discipline == -1) {
+    if ($id_discipline == "null") {
         $sql = "SELECT question.id, question.date, question.dificulty, question.enunciate, question.correctAnswer, question.id_user, user.id_institution,
             discipline.id, discipline.name, subject.name FROM question 
             JOIN user ON user.id = question.id_user 
