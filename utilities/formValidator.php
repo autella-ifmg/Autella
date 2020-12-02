@@ -13,9 +13,6 @@ echo "
                 if (checarSenhas() === false) {
                     event.preventDefault();
                     event.stopPropagation();
-                } else if (ckeditorIsEmpty() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
                 } else {
                     // Bootstrap verification
                     if (form.checkValidity() === false) {
@@ -44,17 +41,22 @@ function checarSenhas() {
     }
 }
 
-// Verify if CKEditor is empty
+/* Verify if CKEditor is empty
 function ckeditorIsEmpty() {
     let invisibleInput = document.getElementById('enunciate');
     invisibleInput = invisibleInput.value;
 
-    if(!invisibleInput){
+    if(invisibleInput){
         return true;
     } else {
         invisibleInput.classList.add('is-invalid');
         return false;
     }
 }
+else if (ckeditorIsEmpty() === false) {
+    event.preventDefault();
+    event.stopPropagation();
+} 
+*/
 </script>
 ";

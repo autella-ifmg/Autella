@@ -1,30 +1,35 @@
 <!DOCTYPE html>
-<html class="w-100 h-100" lang="en">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autella | Criar questão</title>
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
+    <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
+    <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
+    <script src="../../libraries/ckeditor5/ckeditor.js"></script>
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
+    //require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php'; class="needs-validation"
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
-    require_once "createSQL.php";
+
+    $id_role = $_SESSION["userData"]["id_role"];
+    //var_dump($id_role);
     ?>
 </head>
 
-<body>
+<body onload="alternativesField()">
     <?php require_once '../../views/navbar.php'; ?>
 
-    <form id="questionForm" action="createSQL.php" method="post" class="needs-validation">
-        <section class="d-flex justify-content-center mt-4">
-            <div class="d-flex flex-column">
+    <section class="d-flex justify-content-center mt-4">
+        <div class="d-flex flex-column">
+            <form id="questionForm" action="createSQL.php" method="post">
                 <div class="d-flex flex-row mb-2">
                     <!--Select disciplina-->
                     <div id="selectDiscipline_container" class="w-25 mt-1 mr-3" hidden>
-                        <label for="disciplines">Disciplina:</label>
-                        <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
+                        <label for="discipline">Disciplina:</label>
+                        <select name="discipline" id="discipline" class="form-control" onchange="updateSubjects()">
                             <?php disciplineNames(0); ?>
                         </select>
                     </div>
@@ -39,32 +44,27 @@
                     <div class="w-25 mt-1 mr-3">
                         <label for="dificulty">Dificuldade:</label>
                         <select name="dificulty" id="dificulty" class="form-control" required>
+                            <option value="" disabled selected>Escolha...</option>
                             <option value="1">Fácil</option>
                             <option value="2">Média</option>
                             <option value="3">Difícil</option>
                         </select>
                     </div>
-                    <!--Select número de alternativas-->
-                    <div class="w-25 mt-1 mr-3">
-                        <label for="alternativesQuant">Nº de alternativas:</label>
-                        <select name="alternativesQuant" id="alternativesQuant" class="form-control" onchange="updateCorrectAnswerSelect_AlternativesField()" required>
-                            <option value=>Escolha...</option>
-                            <option value=4>4</option>
-                            <option value=5>5</option>
-                        </select>
-                    </div>
                     <!--Select alternativa correta-->
                     <div class="w-25 mt-1">
                         <label for="correctAnswer">Alternativa correta:</label>
-                        <select name="correctAnswer" id="correctAnswer" class="form-control" disabled required>
+                        <select name="correctAnswer" id="correctAnswer" class="form-control" required>
+                            <option value="" disabled selected>Escolha...</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
                             <option value="D">D</option>
-                            <option id="optionE" value="E">E</option>
+                            <option value="E">E</option>
                         </select>
                     </div>
                 </div>
+
+                <hr>
 
                 <!--Enunciado da questão-->
                 <div>
@@ -77,24 +77,31 @@
                     <div id="alternatives_container" class="d-flex flex-column mt-3"></div>
                 </div>
 
+                <hr>
+
                 <!--Botões-->
                 <div class="d-flex flex-row justify-content-center mb-5">
                     <a href="readGUI.php" type="button" class="w-25 btn btn-danger mr-2">Cancelar</a>
                     <button name="submit" id="submit" type="submit" class="w-25 btn btn-success">Adicionar</button>
                 </div>
-            </div>
-        </section>
-    </form>
+            </form>
+        </div>
+    </section>
 
-    <!--Funções que unem .js e .php-->
     <script>
-        //Função para inserir as matérias no selectSubject.
+        //Função para inserir as matérias no selectSubjects.
         function updateSubjects() {
-            var selectDiscipline = document.getElementById("disciplines");
+            var selectDiscipline = document.getElementById("discipline");
             selectDiscipline = selectDiscipline.value;
 
             var selectSubjects = document.getElementById("subjects");
             selectSubjects.innerHTML = "";
+
+            var option = document.createElement("option");
+            option.setAttribute("disabled", "disabled");
+            option.setAttribute("selected", "selected");
+            option.setAttribute("label", "Escolha...");
+            selectSubjects.appendChild(option);
 
             <?php
             $php_array = selectSubjects();
@@ -114,58 +121,37 @@
         //Quando o documento estiver carregado, executa o método updateSubjects().
         document.addEventListener("DOMContentLoaded", updateSubjects(), false);
 
-        //Função para atualizar o select correctAnswer e gerar o campo de texto das alternativas.
-        function updateCorrectAnswerSelect_AlternativesField() {
-            var alternativesQuant = document.getElementById("alternativesQuant");
-            alternativesQuant = alternativesQuant.value;
+        //Função para gerar os campos de texto das alternativas.
+        function alternativesField() {
+            var alternatives_container = document.getElementById("alternatives_container");
+            letters = ["A", "B", "C", "D", "E"];
 
-            var selectCorrectAnswer = document.getElementById("correctAnswer");
-            selectCorrectAnswer.removeAttribute("disabled");
-
-            var optionE = document.getElementById("optionE");
-
-            if (alternativesQuant == 4) {
-                optionE.setAttribute("hidden", "true");
-            } else if (alternativesQuant == 5) {
-                optionE.removeAttribute("hidden");
-            } else {
-                selectCorrectAnswer.setAttribute("disabled", "true");
-            }
-
-            var alternatives_container = document.getElementById(
-                "alternatives_container"
-            );
-            alternatives_container.innerHTML = "";
-
-            alternatives = ["A", "B", "C", "D", "E"];
-
-            for (let i = 0; i < alternativesQuant; i++) {
+            for (let i = 0; i < 5; i++) {
                 let div = document.createElement("div");
                 div.setAttribute("id", "div_container");
                 div.setAttribute("class", "d-flex flex-row");
                 alternatives_container.appendChild(div);
+
                 let img = document.createElement("img");
-                img.setAttribute("src", `../../images/alternatives/${alternatives[i]}.png`);
-                img.setAttribute("alt", alternatives[i]);
+                img.setAttribute("src", `../../images/alternatives/${letters[i]}.png`);
+                img.setAttribute("alt", letters[i]);
                 img.setAttribute("class", "bg-info rounded-circle mr-1 mb-3");
                 div.appendChild(img);
+
                 let textarea = document.createElement("textarea");
                 textarea.setAttribute("name", `question${i}`);
                 textarea.setAttribute("id", `question${i}`);
-                textarea.setAttribute("cols", "120");
+                textarea.setAttribute("cols", "125");
                 textarea.setAttribute("rows", "3");
                 textarea.setAttribute("class", "ml-1 mb-3 rounded");
                 textarea.setAttribute("style", "resize: none;");
-                textarea.setAttribute(
-                    "placeholder",
-                    "Insira o enunciado da alternativa..."
-                );
-                textarea.setAttribute("required", "true");
+                textarea.setAttribute("placeholder", "Insira o enunciado da alternativa...");
+                textarea.setAttribute("required", "required");
                 div.appendChild(textarea);
             }
         }
 
-        //Função para realizar a conexão CKEditor - MySQL.-
+        //Função para realizar a enviar o conteúdo do CKEDitor.
         document.querySelector("#submit").addEventListener("click", () => {
             var editorData = document.querySelector("#editor").children;
 
@@ -174,12 +160,14 @@
                 string += editorData[i].outerHTML;
                 string += "\n";
             }
+
             var invisibleInput = document.createElement("input");
             invisibleInput.setAttribute("name", "enunciate");
             invisibleInput.setAttribute("id", "enunciate");
             invisibleInput.setAttribute("type", "text");
             invisibleInput.setAttribute("value", string);
             invisibleInput.setAttribute("style", "display: none");
+
             var form = document.getElementById("#questionForm");
             questionForm.appendChild(invisibleInput);
         });
@@ -188,22 +176,13 @@
         <?php
         if ($id_role == 1) {
             echo '
-                 var div = document.getElementById("selectDiscipline_container");
-               
-                 div.removeAttribute("hidden");';
+        var div = document.getElementById("selectDiscipline_container");
+        div.removeAttribute("hidden");';
         }
         ?>
     </script>
 
-    <!--Importação das funções .js-->
-    <script src="createJS.js"></script>
-
-    <!--Importação do Bootstrap-->
-    <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
-    <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
-
-    <!--Importação do CkEditor-->
-    <script src="../../libraries/ckeditor5/ckeditor.js"></script>
+    <!--CKEditor-->
     <script>
         DecoupledEditor
             .create(document.querySelector('#editor'), {

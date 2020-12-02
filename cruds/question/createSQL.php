@@ -1,8 +1,7 @@
 <?php
-$id_role = $_SESSION["userData"]["id_role"];
-//var_dump($id_role);
-$id_discipline = $_SESSION["userData"]["id_discipline"];
-//var_dump($id_discipline);
+if (!isset($_SESSION)) {
+    session_start();
+}
 
 //Função que remove conteúdos indejados dos inputs.
 function secure($input)
@@ -22,22 +21,23 @@ if (isset($_POST["submit"])) {
     date_default_timezone_set("America/Sao_Paulo");
     $date = date("Y-m-d");
     $id_user = $_SESSION["userData"]["id"];
-    $id_subject = secure($_POST["subjects"]);
-    $dificulty = secure($_POST["dificulty"]);
+    $id_subject = $_POST["subjects"];
+    $dificulty = $_POST["dificulty"];
     $enunciate = $_POST["enunciate"];
-    $correctAnswer = secure($_POST["correctAnswer"]);
+    $correctAnswer = $_POST["correctAnswer"];
+    $status = 1;
 
     //Obtém cada uma das alternativas e agrega elas no enunciado da questão.
-    $alternativesQuant = secure($_POST["alternativesQuant"]);
     $answersEnunciate = "";
-    $letter = ["A", "B", "C", "D", "E"];
+    $letters = ["A", "B", "C", "D", "E"];
 
-    for ($i = 0; $i < $alternativesQuant; $i++) {
-        $answersEnunciate .= "<br>" . "$letter[$i]) " . secure($_POST["question$i"]);
+    for ($i = 0; $i < 5; $i++) {
+        $answersEnunciate .= "<br>" . "$letters[$i]) " . secure($_POST["question$i"]);
     }
+
     $enunciate .= "<br>" . $answersEnunciate;
 
-    $sql = "INSERT INTO question (date, id_user, id_subject, dificulty, enunciate, correctAnswer) VALUES ('$date', '$id_user', '$id_subject', '$dificulty', '$enunciate', '$correctAnswer');";
+    $sql = "INSERT INTO question (date, id_user, id_subject, dificulty, enunciate, correctAnswer, status) VALUES ('$date', '$id_user', '$id_subject', '$dificulty', '$enunciate', '$correctAnswer', '$status');";
 
     if ($connection->query($sql) === TRUE) {
         //array_push($_SESSION['debug'], "Questão criada com sucesso!");
