@@ -72,7 +72,9 @@
 	- [X] Exibir dropdown de disciplina apenas caso seja o coordenador
 	- [X] Deixar valores dos dropdowns pré-selecionados
 	- [X] Travar o dropdownAC enquanto o dropdownQA ainda não tiver sido preenchido
+	- [X] Remover select de número de alternativas
 	- [ ] Tratamento de inserção de apóstrofo
+	- [ ] Tratamento de inserção de imagem
 	- [ ] Inserir validação required para o enunciado da questão
 	- [ ] Permitir que as alternativas também sejam formatadas
 	- [ ] Adicionar plugins
@@ -87,16 +89,17 @@
 	- [X] Adicionar paginação
 	- [X] Adicionar filtros de pesquisa
 	- [X] Adicionar opção "Escolha..." no select disciplines
+	- [ ] Configurar o Toast de arquivamento de questão
+	- [ ] Configurar o Toast de exclusão de questão
 	- [ ] Exibir mais de uma matéria
 	- [ ] Exibir em quais provas a questão está presente
-- [ ] Update
-	- [ ] Configurar ícone de edição
-	- [ ] Configurar ícone de arquivamento
-	- [ ] Configurar ícone de exclusão
-	- [ ] Adicionar dropdowns para dificuldade, matérias e inclusões
-	- [ ] Retirar o CKEDitor do modo readonly (enunciado)
+- [X] Update
+	- [X] Remover select de número de alternativas
+- [ ] Archive
+	- [X] Arquivar questão
+	- [ ] Deslocar listagem de quetões arquivadas
+	- [ ] Desarquivar questões
 - [ ] Delete
-	- [ ] Desabilitar questão
 - [ ] Help
 
 ## Painel de controle
