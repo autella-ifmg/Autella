@@ -73,7 +73,7 @@
 	- [X] Deixar valores dos dropdowns pré-selecionados
 	- [X] Travar o dropdownAC enquanto o dropdownQA ainda não tiver sido preenchido
 	- [X] Remover select de número de alternativas
-	- [ ] Tratamento de inserção de apóstrofo
+	- [X] Tratamento de inserção de apóstrofo
 	- [ ] Tratamento de inserção de imagem
 	- [ ] Inserir validação required para o enunciado da questão
 	- [ ] Permitir que as alternativas também sejam formatadas
@@ -95,10 +95,10 @@
 	- [ ] Exibir em quais provas a questão está presente
 - [X] Update
 	- [X] Remover select de número de alternativas
-- [ ] Archive
+- [X] Archive
 	- [X] Arquivar questão
-	- [ ] Deslocar listagem de quetões arquivadas
-	- [ ] Desarquivar questões
+	- [X] Deslocar listagem de quetões arquivadas
+	- [X] Desarquivar questões
 - [ ] Delete
 - [ ] Help
 

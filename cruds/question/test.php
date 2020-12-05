@@ -31,7 +31,7 @@
                 <div class="p-2 w-25 border border-dark border-top-0">Inclusa em: Prova de Artes</div>
                 <div class="p-2 w-25 border border-dark border-left-0 border-top-0">Criada em: 24/11/2020</div>
                 <div class="p-2 w-25 border border-dark border-left-0 border-top-0">Dificuldade: Fácil</div>
-                <div class="p-2 w-25 border border-dark border-left-0 border-top-0">Alternativa correta: B</div> 
+                <div class="p-2 w-25 border border-dark border-left-0 border-top-0">Alternativa correta: B</div>
             </div>
 
             <div name="toolbar0" id="toolbar-container0" class="border border-dark border-top-0 border-bottom-0" disabled></div>
@@ -41,60 +41,62 @@
                 <p>Oswald de Andrade foi um dos principais autores da primeira fase do modernismo no Brasil. Na poesia acima, o escritor propõe:</p><br><br>A) a busca de uma identidade universal.<br>B) a valorização da linguagem coloquial brasileira.<br>C) uma crítica aos maus hábitos, como o tabagismo.<br>D) enfatizar a relação entre professor e aluno.<br>E) repensar o uso do português do Brasil.
             </div>
 
-            <div class="d-flex flex-row">
-                <div class="p-2 w-25  border border-dark">Questão - 1</div>
-                <div class="p-2 w-25  border border-dark border-left-0">Criada em: 24/11/2020</div>
-                <div class="p-2 flex-fill  border border-dark border-left-0">
-                    Dificuldade:
-                    <select name="dificulty" id="dificulty" required>
-                        <option value="1">Fácil</option>
-                        <option value="2">Média</option>
-                        <option value="3">Difícil</option>
-                    </select>
+            <div >
+                <div class="d-flex flex-row">
+                    <div class="p-2 w-25  border border-dark">Questão - 1</div>
+                    <div class="p-2 w-25  border border-dark border-left-0">Criada em: 24/11/2020</div>
+                    <div class="p-2 flex-fill  border border-dark border-left-0">
+                        Dificuldade:
+                        <select name="dificulty" id="dificulty" required>
+                            <option value="1">Fácil</option>
+                            <option value="2">Média</option>
+                            <option value="3">Difícil</option>
+                        </select>
+                    </div>
+                    <div id="containerTest" class="p-2 flex-fill  border border-dark border-left-0">
+                        Alternativa correta:
+                        <select name="correctAnswer" id="correctAnswer" required>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                        </select>
+                    </div>
+                    <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" height="25" data-toggle="modal" onclick="chooseAction(0)" data-target="#editModal" /></div>
+                    <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" height="25" data-toggle="modal" onclick="chooseAction(1)" data-target="#archiveModal" /></div>
+                    <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" height="25" data-toggle="modal" onclick="chooseAction(2)" data-target="#deleteModal" /></div>
                 </div>
-                <div class="p-2 flex-fill  border border-dark border-left-0">
-                    Alternativa correta:
-                    <select name="correctAnswer" id="correctAnswer" required>
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="E">E</option>
-                    </select>
-                </div>
-                <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" height="25" data-toggle="modal" onclick="chooseAction(0)" data-target="#editModal" /></div>
-                <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" height="25" data-toggle="modal" onclick="chooseAction(1)" data-target="#archiveModal" /></div>
-                <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" height="25" data-toggle="modal" onclick="chooseAction(2)" data-target="#deleteModal" /></div>
-            </div>
 
-            <div class="d-flex flex-row">
-                <div class="p-2 w-25 border border-dark border-top-0">
-                    Inclusa em:
-                    <select name="" id="">
-                        <option value="">Prova de Artes</option>
-                        <option value="">Prova Global I</option>
-                        <option value="">Prova Global II</option>
-                    </select>
+                <div class="d-flex flex-row" id="containerTest">
+                    <div class="p-2 w-25 border border-dark border-top-0">
+                        Inclusa em:
+                        <select name="" id="">
+                            <option value="">Prova de Artes</option>
+                            <option value="">Prova Global I</option>
+                            <option value="">Prova Global II</option>
+                        </select>
+                    </div>
+                    <div class="p-2 w-25 border border-dark border-left-0 border-top-0">
+                        Disciplina:
+                        <select name="disciplines" id="disciplines" onchange="updateSubjects()">
+                            <?php disciplineNames(0); ?>
+                        </select>
+                    </div>
+                    <div class="p-2 flex-fill border border-dark border-left-0 border-top-0">
+                        Matéria:
+                        <select name="subjects" id="subjects" required>
+                            <!--updateSubjects()-->
+                        </select>
+                    </div>
                 </div>
-                <div class="p-2 w-25 border border-dark border-left-0 border-top-0">
-                    Disciplina:
-                    <select name="disciplines" id="disciplines" onchange="updateSubjects()">
-                        <?php disciplineNames(0); ?>
-                    </select>
-                </div>
-                <div class="p-2 flex-fill border border-dark border-left-0 border-top-0">
-                    Matéria:
-                    <select name="subjects" id="subjects" required>
-                        <!--updateSubjects()-->
-                    </select>
-                </div>
-            </div>
 
-            <div name="toolbar1" id="toolbar-container1" class="border border-dark border-top-0 border-bottom-0" disabled></div>
-            <div name="editor1" id="editor1" class="border border-dark border-top-0 mb-3" style="min-width: 64rem; max-width: 64rem; min-height: 20rem; max-height: 20rem;">
-                <p>Dê-me um cigarro<br>Diz a gramática<br>Do professor e do aluno<br>E do mulato sabido<br>Mas o bom negro e o bom branco<br>Da Nação Brasileira<br>Dizem todos os dias<br>Deixa disso camarada<br>Me dá um cigarro.</p>
-                <p>(Pronominais, Oswald de Andrade)</p>
-                <p>Oswald de Andrade foi um dos principais autores da primeira fase do modernismo no Brasil. Na poesia acima, o escritor propõe:</p><br><br>A) a busca de uma identidade universal.<br>B) a valorização da linguagem coloquial brasileira.<br>C) uma crítica aos maus hábitos, como o tabagismo.<br>D) enfatizar a relação entre professor e aluno.<br>E) repensar o uso do português do Brasil.
+                <div name="toolbar1" id="toolbar-container1" class="border border-dark border-top-0 border-bottom-0" disabled></div>
+                <div name="editor1" id="editor1" class="border border-dark border-top-0 mb-3" style="min-width: 64rem; max-width: 64rem; min-height: 20rem; max-height: 20rem;">
+                    <p>Dê-me um cigarro<br>Diz a gramática<br>Do professor e do aluno<br>E do mulato sabido<br>Mas o bom negro e o bom branco<br>Da Nação Brasileira<br>Dizem todos os dias<br>Deixa disso camarada<br>Me dá um cigarro.</p>
+                    <p>(Pronominais, Oswald de Andrade)</p>
+                    <p>Oswald de Andrade foi um dos principais autores da primeira fase do modernismo no Brasil. Na poesia acima, o escritor propõe:</p><br><br>A) a busca de uma identidade universal.<br>B) a valorização da linguagem coloquial brasileira.<br>C) uma crítica aos maus hábitos, como o tabagismo.<br>D) enfatizar a relação entre professor e aluno.<br>E) repensar o uso do português do Brasil.
+                </div>
             </div>
         </div>
     </section>
@@ -187,16 +189,25 @@
 
         function editQuestion() {
             console.log("testeeeeeeeeeeee");
-           
-        }
-
-        function archiveQuestion() {
 
         }
 
-        function deleteQuestion() {
+        <?php
+        //$aux = 0;
+        //if($aux == 0) {
+        //    echo '
+        //var div = document.getElementById("containerTest");
 
+        //div.setAttribute("disabled");
+        //    ';
+        //}
+        ?>
+        var div = document.querySelector("#containerTest").children;
+
+        for(let i = 0; i < div.length; i++) {
+            div[i].setAttribute("disabled", "disabled");
         }
+       
     </script>
 
     <!--Importações do Bootstrap-->

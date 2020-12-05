@@ -88,7 +88,7 @@
                 <hr>
 
                 <!--Botões-->
-                <div class="d-flex flex-row justify-content-center mb-5">
+                <div class="d-flex flex-row justify-content-around mb-5">
                     <a href="readGUI.php" type="button" class="w-25 btn btn-danger mr-2">Cancelar</a>
                     <button name="submit" id="submit" type="submit" class="w-25 btn btn-success">Alterar</button>
                 </div>

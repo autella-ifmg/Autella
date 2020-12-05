@@ -25,7 +25,7 @@
     <section class="d-flex justify-content-center mt-4">
         <div class="d-flex flex-column">
             <form id="questionForm" action="createSQL.php" method="post">
-                <div class="d-flex flex-row mb-2">
+                <div class="d-flex flex-row mb-2 justify-content-between">
                     <!--Select disciplina-->
                     <div id="selectDiscipline_container" class="w-25 mt-1 mr-3" hidden>
                         <label for="discipline">Disciplina:</label>
@@ -80,7 +80,7 @@
                 <hr>
 
                 <!--Botões-->
-                <div class="d-flex flex-row justify-content-center mb-5">
+                <div class="d-flex flex-row justify-content-around mb-5">
                     <a href="readGUI.php" type="button" class="w-25 btn btn-danger mr-2">Cancelar</a>
                     <button name="submit" id="submit" type="submit" class="w-25 btn btn-success">Adicionar</button>
                 </div>

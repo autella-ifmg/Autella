@@ -37,12 +37,18 @@ if (isset($_POST["submit"])) {
     header('Location: readGUI.php');
 }
 
-if(isset($_POST['questionForArchive'])) {
+if(isset($_POST['question'])) {
     require_once "../../utilities/dbConnect.php";
 
-    $id_question = $_POST["questionForArchive"][0];
+    if($_POST["question"]["status"] == 0) {
+        $status = 1;
+    } else {
+        $status = 0;
+    }
+
+    $id_question = $_POST["question"][0];
     
-    $sql = "UPDATE question SET status = '0' WHERE id = '$id_question'";
+    $sql = "UPDATE question SET status = '$status' WHERE id = '$id_question'";
 
     if ($connection->query($sql) === TRUE) {
         //array_push($_SESSION['debug'], "Questão arquivada com sucesso!");

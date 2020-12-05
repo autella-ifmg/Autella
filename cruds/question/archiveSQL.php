@@ -92,19 +92,15 @@ function data($array, $id_role)
                     <div class="d-flex flex-row bd-highlight">
                         <div class="p-2 w-25 border border-dark">Questão - ' . $questionNumber . '</div>
                         <div class="p-2 w-25 border border-dark border-left-0">' . $discipline . '</div>
-                        <div class="p-2 flex-fill border border-dark border-left-0">' . $subject . '</div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/arrow-right-circle-fill.svg" alt="Mover" height="25" onclick="IDquestions(' . $i . ')"; /></div>';
+                        <div class="p-2 flex-fill border border-dark border-left-0">' . $subject . '</div>';
                 if ($id_role == 1) {
                     echo '
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" alt="Editar" height="25" onclick="chooseAction(0, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#editModal"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Arquivar" height="25" onclick="chooseAction(1, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#archiveModal"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="chooseAction(2, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/arrow-right-circle-fill.svg" alt="Mover" height="25" onclick="IDquestions(' . $i . ')"; /></div>';
+                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg" alt="Arquivar" height="25" onclick="chooseAction(0, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#unarchiveModal" data-toggle="tooltip" data-placement="bottom" title="Desarquivar questão"/></div>
+                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="chooseAction(1, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal" data-toggle="tooltip" data-placement="bottom" title="Excluir questão"/></div>';
                 } elseif ($array[$i]["id_user"] == $id_user) {
                     echo '
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" alt="Editar" height="25" onclick="chooseAction(0, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#editModal"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Arquivar" height="25" onclick="chooseAction(1, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#archiveModal"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="chooseAction(2, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal"/></div>';
+                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg" alt="Arquivar" height="25" onclick="chooseAction(0, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#unarchiveModal data-toggle="tooltip" data-placement="bottom" title="Desarquivar questão""/></div>
+                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="chooseAction(1, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal" data-toggle="tooltip" data-placement="bottom" title="Excluir questão"/></div>';
                 }
                 echo '    
                     </div>
@@ -118,7 +114,7 @@ function data($array, $id_role)
 
                     <div name="toolbar' . $i . '" id="toolbar-container' . $i . '" class="border border-dark border-top-0 border-bottom-0" disabled></div>
                     <div name="editor' . $i . '" id="editor' . $i . '" class="border border-dark border-top-0 mb-4" style="min-width: 64rem; max-width: 64rem; min-height: 20rem; max-height: 20rem;">' . $enunciate . '</div>
-                    
+                 
                     ';
             }
         }
@@ -161,16 +157,5 @@ function imports($array)
             
             ';
         }
-    }
-}
-
-function insertInDatabase($ids)
-{
-    $i = $ids[0];
-    require_once '../../utilities/dbConnect.php';
-    $id_user = $_SESSION["userData"]["id"];
-    $sql = "INSERT into Tests(id, id_subject, id_user, making_date, changing_date, name) VALUES ('$array[$i][]);');";
-    if ($connection->query($sql) === TRUE) {
-        array_push($_SESSION['debug'], "Conta criada com sucesso!");
     }
 }

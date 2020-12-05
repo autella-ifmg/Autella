@@ -11,7 +11,7 @@
     <script src="../../libraries/ckeditor5/ckeditor.js"></script>
     <?php
     require_once "../../utilities/dbSelect.php";
-    require_once "readSQL.php";
+    require_once "archiveSQL.php";
     ?>
 </head>
 
@@ -40,7 +40,7 @@
                 <div name="container_select" class="w-25 mt-1 mr-3">
                     <label for="dificulty">Dificuldade:</label>
                     <select name="dificulty" id="dificulty" class="form-control">
-                        <option value="" selected>Escolha...</option>
+                        <option value="" disabled selected>Escolha...</option>
                         <option value="1">Fácil</option>
                         <option value="2">Média</option>
                         <option value="3">Difícil</option>
@@ -53,15 +53,13 @@
                 </div>
                 <!--Questões arquivadas-->
                 <div class="w-auto mt-1">
-                    <a id="archive" onclick="filter(0, 0)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Questões arquivadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões arquivadas"> </a>
+                    <a id="unarchive" onclick="filter(1, 1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg" alt="Questões desarquivadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões desarquivadas"> </a>
                 </div>
             </div>
 
             <!--Botões-->
-            <div class="d-flex flex-row justify-content-between mb-3">
-                <a href="../../views/home.php" type="button" class="btn btn-primary w-25 mr-5">Voltar</a>
-                <a id="filter" type="button" class="btn btn-info w-25 mr-5" onclick="filter(1, 1)">Filtrar</a>
-                <a href="createGUI.php" type="button" class="btn btn-primary w-25">Criar questão</a>
+            <div class="d-flex flex-row justify-content-center mb-3">
+                <a id="filter" type="button" class="btn btn-info w-25" onclick="filter(0, 0)">Filtrar</a>
             </div>
 
             <!--Blocos de questões-->
@@ -142,6 +140,7 @@
             selectSubjects.innerHTML = "";
 
             var option = document.createElement("option");
+            option.setAttribute("disabled", "disabled");
             option.setAttribute("selected", "selected");
             option.setAttribute("label", "Escolha...");
             selectSubjects.appendChild(option);
@@ -165,7 +164,7 @@
         document.addEventListener("DOMContentLoaded", updateSubjects(), false);
 
         //Função que coleta o filtro desejado.
-        function filter(pag, archive_filter) {
+        function filter(pag, unarchive_filter) {
             var url;
 
             if (pag == 1) {
@@ -193,20 +192,36 @@
             var date_filter = document.getElementById("date");
             date_filter = date_filter.value;
 
-            filters = `${url}filter=true&id_discipline=${discipline_filter}&id_subject=${subject_filter}&dificulty=${dificulty_filter}&date=${date_filter}&status=${archive_filter}&`;
+            filters = `${url}filter=true&id_discipline=${discipline_filter}&id_subject=${subject_filter}&dificulty=${dificulty_filter}&date=${date_filter}&status=${unarchive_filter}&`;
 
             var filter_btn = document.getElementById("filter");
-            var archive_btn = document.getElementById("archive");
+            var unarchive_btn = document.getElementById("unarchive");
 
             filter_btn.setAttribute("href", filters);
-            archive_btn.setAttribute("href", filters);
+            unarchive_btn.setAttribute("href", filters);
+        }
+
+        function convertQuestionNumber(questionNumber) {
+            var position;
+            var str = questionNumber.toString();
+
+            if ((str.substr(-1)) > 5) {
+                position = Math.ceil(questionNumber % 5) - 1;
+            } else if ((str.substr(-1)) == 0) {
+                position = 4;
+            } else {
+                questionNumber -= 1;
+                str = questionNumber.toString();
+                position = Number.parseInt(str.substr(-1));
+            }
+
+            return position;
         }
 
         //Especifica a ação do modal
         function chooseAction(action, questionNumber) {
             var modal = [
-                ["editModal", "editModalLabel", `Editar a <b>Questão - ${questionNumber}</b>?`, "Ao alterar essa questão, todas as provas simples e provas globais que a utilizam também serão alteradas.", `Você tem certeza que deseja fazer alguma modificação na <b>Questão - ${questionNumber}</b>?`, "editButton", "editQuestion("],
-                ["archiveModal", "archiveModalLabel", `Arquivar a <b>Questão - ${questionNumber}</b>?`, "Ao arquivar essa questão, ela não se perderá, mas, ficará indisponível em todas as provas simples e provas globais onde está inclusa.", `Você tem certeza que deseja arquivar a <b>Questão - ${questionNumber}</b>?`, "archiveButton", "archiveQuestion("],
+                ["unarchiveModal", "unarchiveModalLabel", `Desarquivar a <b>Questão - ${questionNumber}</b>?`, "Ao desarquivar essa questão, ela ficará disponível em todas as provas simples e provas globais onde está inclusa.", `Você tem certeza que deseja desarquivar a <b>Questão - ${questionNumber}</b>?`, "unarchiveButton", "unarchiveQuestion("],
                 ["deleteModal", "deleteModalLabel", `Deletar a <b>Questão - ${questionNumber}</b>?`, "Ao excluir essa questão, ela se perderá permanentemente e se tornará indisponível em todas as provas simples e provas globais onde está inclusa.", `Você tem certeza que deseja excluir a <b>Questão - ${questionNumber}</b>?`, "deleteButton", "deleteQuestion("]
             ];
 
@@ -230,39 +245,13 @@
             button.removeAttribute("onclick");
             button.setAttribute("id", `${modal[action][5]}`);
             button.setAttribute("onclick", `${modal[action][6] + questionNumber})`);
-
-            if (action == 0) {
-                button.removeAttribute("data-dismiss");
-            }
         }
 
-        function convertQuestionNumber(questionNumber) {
-            var position;
-            var str = questionNumber.toString();
-
-            if ((str.substr(-1)) > 5) {
-                position = Math.ceil(questionNumber % 5) - 1;
-            } else if ((str.substr(-1)) == 0) {
-                position = 4;
-            } else {
-                questionNumber -= 1;
-                str = questionNumber.toString();
-                position = Number.parseInt(str.substr(-1));
-            }
-
-            return position;
-        }
-
-        function editQuestion(questionNumber) {
-            var button = document.getElementById("editButton");
-            button.setAttribute("href", `updateGUI.php?questionNumber=${questionNumber}`);
-        }
-
-        function archiveQuestion(questionNumber) {
+        function unarchiveQuestion(questionNumber) {
             var position = convertQuestionNumber(questionNumber);
 
             var question = questions[position];
-            //console.log(question);
+            //console.log(questionForUnarchive);
 
             $.ajax({
                 type: 'POST',
@@ -273,8 +262,7 @@
                 success: function(result) {
                     window.location.reload();
                     console.log(result);
-                    $('#toast').toast('show');
-                    $('#result').html(result).fadeIn();
+                    //$('#resultados').html(result).fadeIn();
                     //$(".toast").toast("show");
                 }
             });
@@ -301,7 +289,7 @@
         var container' . $i . ' = list[' . $i . '];
         container' . $i . '.removeAttribute("class", "w-25 mt-1 mr-3");
         container' . $i . '.setAttribute("class", "w-50 mt-1 mr-3");
-                ';
+            ';
             }
         }
 
@@ -315,7 +303,7 @@
             for ($i = 0; $i < 3; $i++) {
                 echo '
         var container' . $i . ' = list[' . $i . '];
-        $(container' . $i . ').find("*").prop("disabled", true);
+        $(container' . $i .').find("*").prop("disabled", true);
                 ';
             }
         }

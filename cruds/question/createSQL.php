@@ -23,7 +23,7 @@ if (isset($_POST["submit"])) {
     $id_user = $_SESSION["userData"]["id"];
     $id_subject = $_POST["subjects"];
     $dificulty = $_POST["dificulty"];
-    $enunciate = $_POST["enunciate"];
+    $enunciate = addslashes($_POST["enunciate"]);
     $correctAnswer = $_POST["correctAnswer"];
     $status = 1;
 

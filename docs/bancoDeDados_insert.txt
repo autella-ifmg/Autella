@@ -1,3 +1,5 @@
+utilidade pública: ALTER TABLE question AUTO_INCREMENT = 1;
+
 INSERT INTO `db_autella_local`.`field` (`name`) VALUES ('Ciências Humanas e suas Tecnologias');
 INSERT INTO `db_autella_local`.`field` (`name`) VALUES ('Ciências da Natureza e suas Tecnologias');
 INSERT INTO `db_autella_local`.`field` (`name`) VALUES ('Linguagens, Códigos e suas Tecnologias');
@@ -132,5 +134,3 @@ INSERT INTO `db_autella_local`.`question` (`date`, `id_user`, `id_subject`, `dif
 ('2020-11-23', 8, 3, 2, '<p data-placeholder=\"Insira o enunciado da questão...\">Durante o governo Médici, a luta armada foi esmagada.” Entre os exemplos que comprovam essa afirmativa, é INCORRETO elencar:</p><br><br>A) O fuzilamento do militante comunista Carlos Mariguella, em novembro de 1969, em São Paulo.<br>B) A perseguição e assassinato do militante guerrilheiro Carlos Lamarca, no sertão da Bahia.<br>C) O combate e desmantelamento da Guerrilha do Araguaia, no Estado do Pará, entre 1970 e 1974.<br>D) A desarticulação, em 1971, da célula comunista Vanguarda Negra, cujos líderes eram Uspinianos.', 'D', '1'),
 ('2020-11-25', 8, 1, 2, '<p>\"... derrotas na guerra, deserções, motins militares contra os superiores, greves nas fábricas, falta de gêneros alimentícios e combustíveis nas principais cidades, queda na produção, aviltamento dos salários, incapacidade governamental, desemprego e crescente miséria das massas.\"</p><p>O quadro descrito no texto conduziu à:</p><br><br>A) crescente insatisfação da burguesia russa em relação ao governo do Czar.<br>B) entrada da Rússia na I Grande Guerra.<br>C) rebelião Boxer na China em 1900.<br>D) Segunda Guerra Mundial em 1939.<br>E) Revolução Russa em 1917.', 'E', '1'),
 ('2020-11-24', 4, 10, 1, '<p data-placeholder=\"Insira o enunciado da questão...\">Ao longo da história econômica do Brasil, qual desses produtos agrícolas não fez parte de uma prática monocultora ou de elevado impacto estrutural no país?</p><br><br>A) Soja<br>B) Cana-de-açúcar<br>C) Café<br>D) Tabaco', 'D', '1');
-
-utilidade pública: ALTER TABLE question AUTO_INCREMENT = 1;
