@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
-    <script src="../../libraries/ckeditor5/ckeditor.js"></script>
+    <script src="../../libraries/ckeditor/ckeditor.js"></script>
     <?php
     require_once "../../utilities/dbSelect.php";
     require_once "archiveSQL.php";
@@ -117,6 +117,7 @@
     </div>
 
     <script>
+        //Array global com as questões que estão sendo exibidas.
         <?php
         $questions = json_encode($array);
         echo "questions = " . $questions . ";\n";
@@ -201,23 +202,6 @@
             unarchive_btn.setAttribute("href", filters);
         }
 
-        function convertQuestionNumber(questionNumber) {
-            var position;
-            var str = questionNumber.toString();
-
-            if ((str.substr(-1)) > 5) {
-                position = Math.ceil(questionNumber % 5) - 1;
-            } else if ((str.substr(-1)) == 0) {
-                position = 4;
-            } else {
-                questionNumber -= 1;
-                str = questionNumber.toString();
-                position = Number.parseInt(str.substr(-1));
-            }
-
-            return position;
-        }
-
         //Especifica a ação do modal
         function chooseAction(action, questionNumber) {
             var modal = [
@@ -247,6 +231,25 @@
             button.setAttribute("onclick", `${modal[action][6] + questionNumber})`);
         }
 
+        //Converte o número da questão para sua respectiva posição no array de exibição.
+        function convertQuestionNumber(questionNumber) {
+            var position;
+            var str = questionNumber.toString();
+
+            if ((str.substr(-1)) > 5) {
+                position = Math.ceil(questionNumber % 5) - 1;
+            } else if ((str.substr(-1)) == 0) {
+                position = 4;
+            } else {
+                questionNumber -= 1;
+                str = questionNumber.toString();
+                position = Number.parseInt(str.substr(-1));
+            }
+
+            return position;
+        }
+
+        //Desarquivar questão.
         function unarchiveQuestion(questionNumber) {
             var position = convertQuestionNumber(questionNumber);
 
@@ -268,6 +271,7 @@
             });
         }
 
+        //Deletar questão.
         function deleteQuestion(questionNumber) {
             var position = convertQuestionNumber(questionNumber);
 
@@ -275,6 +279,7 @@
         }
 
         <?php
+        //Verifica se é o coordernador que está logado.
         if ($id_role == 1) {
             echo '
         var div = document.getElementById("container_selectDiscipline");
@@ -293,6 +298,7 @@
             }
         }
 
+        //Verifica se há questões sendo exibidas.
         if (empty($array)) {
             echo '
         $("#container_selectDiscipline").find("*").prop("disabled", true);
@@ -303,7 +309,7 @@
             for ($i = 0; $i < 3; $i++) {
                 echo '
         var container' . $i . ' = list[' . $i . '];
-        $(container' . $i .').find("*").prop("disabled", true);
+        $(container' . $i . ').find("*").prop("disabled", true);
                 ';
             }
         }

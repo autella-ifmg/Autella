@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
-    <script src="../../libraries/ckeditor5/ckeditor.js"></script>
+    <script src="../../libraries/ckeditor/ckeditor.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <?php
     require_once "../../utilities/dbSelect.php";

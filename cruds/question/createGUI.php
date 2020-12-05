@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
-    <script src="../../libraries/ckeditor5/ckeditor.js"></script>
+    <script src="../../libraries/ckeditor/ckeditor.js"></script>
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
     //require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php'; class="needs-validation"
@@ -69,7 +69,7 @@
                 <!--Enunciado da questão-->
                 <div>
                     <div name="toolbar" id="toolbar-container"></div>
-                    <div name="editor" id="editor" style="max-width: 65rem; min-height: 20rem; max-height: 20rem; border: 1px solid gray;"></div>
+                    <div name="editor" id="editor" style="min-width:65rem; max-width: 65rem; min-height: 20rem; max-height: 20rem; border: 1px solid gray;"></div>
                 </div>
 
                 <!--Alternativas-->
@@ -87,6 +87,8 @@
             </form>
         </div>
     </section>
+
+   
 
     <script>
         //Função para inserir as matérias no selectSubjects.

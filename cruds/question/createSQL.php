@@ -6,13 +6,15 @@ if (!isset($_SESSION)) {
 //Função que remove conteúdos indejados dos inputs.
 function secure($input)
 {
-    global $connection;
+    //global $connection;
 
-    $aux = mysqli_escape_string($connection, $input);
+    $input = addslashes($input);
 
-    $aux = htmlspecialchars($aux);
+    //$input = mysqli_escape_string($connection, $input);
 
-    return $aux;
+    //$input = htmlspecialchars($aux);
+
+    return $input;
 }
 
 if (isset($_POST["submit"])) {
@@ -23,7 +25,7 @@ if (isset($_POST["submit"])) {
     $id_user = $_SESSION["userData"]["id"];
     $id_subject = $_POST["subjects"];
     $dificulty = $_POST["dificulty"];
-    $enunciate = addslashes($_POST["enunciate"]);
+    $enunciate = secure($_POST["enunciate"]);
     $correctAnswer = $_POST["correctAnswer"];
     $status = 1;
 

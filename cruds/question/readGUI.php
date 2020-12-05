@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
-    <script src="../../libraries/ckeditor5/ckeditor.js"></script>
+    <script src="../../libraries/ckeditor/ckeditor.js"></script>
     <?php
     require_once "../../utilities/dbSelect.php";
     require_once "readSQL.php";
@@ -119,6 +119,7 @@
     </div>
 
     <script>
+        //Array global com as questões que estão sendo exibidas.
         <?php
         $questions = json_encode($array);
         echo "questions = " . $questions . ";\n";
@@ -202,7 +203,7 @@
             archive_btn.setAttribute("href", filters);
         }
 
-        //Especifica a ação do modal
+        //Especifica a ação do modal.
         function chooseAction(action, questionNumber) {
             var modal = [
                 ["editModal", "editModalLabel", `Editar a <b>Questão - ${questionNumber}</b>?`, "Ao alterar essa questão, todas as provas simples e provas globais que a utilizam também serão alteradas.", `Você tem certeza que deseja fazer alguma modificação na <b>Questão - ${questionNumber}</b>?`, "editButton", "editQuestion("],
@@ -236,6 +237,7 @@
             }
         }
 
+        //Converte o número da questão para sua respectiva posição no array de exibição.
         function convertQuestionNumber(questionNumber) {
             var position;
             var str = questionNumber.toString();
@@ -253,11 +255,13 @@
             return position;
         }
 
+        //Editar questão.
         function editQuestion(questionNumber) {
             var button = document.getElementById("editButton");
             button.setAttribute("href", `updateGUI.php?questionNumber=${questionNumber}`);
         }
 
+        //Arquivar questão;
         function archiveQuestion(questionNumber) {
             var position = convertQuestionNumber(questionNumber);
 
@@ -280,6 +284,7 @@
             });
         }
 
+        //Deletar questão.
         function deleteQuestion(questionNumber) {
             var position = convertQuestionNumber(questionNumber);
 
@@ -287,6 +292,7 @@
         }
 
         <?php
+        //Verifica se é o coordernador que está logado.
         if ($id_role == 1) {
             echo '
         var div = document.getElementById("container_selectDiscipline");
@@ -305,6 +311,7 @@
             }
         }
 
+        //Verifica se há questões sendo exibidas.
         if (empty($array)) {
             echo '
         $("#container_selectDiscipline").find("*").prop("disabled", true);
