@@ -32,9 +32,9 @@
         </div>
     </div>
 
+    <!--Filtros-->
     <section class="d-flex justify-content-center mt-3">
         <div class="d-flex flex-column">
-            <!--Filtros-->
             <div class="d-flex flex-row mb-3">
                 <!--Filtro disciplina-->
                 <div id="container_selectDiscipline" class="w-25 mt-1 mr-3" hidden>
@@ -54,7 +54,7 @@
                 <div name="container_select" class="w-25 mt-1 mr-3">
                     <label for="dificulty">Dificuldade:</label>
                     <select name="dificulty" id="dificulty" class="form-control">
-                        <option value="" disabled selected>Escolha...</option>
+                        <option value="" selected>Escolha...</option>
                         <option value="1">Fácil</option>
                         <option value="2">Média</option>
                         <option value="3">Difícil</option>
@@ -67,17 +67,19 @@
                 </div>
                 <!--Questões arquivadas-->
                 <div class="w-auto mt-1 mr-2">
-                    <a id="unarchive" onclick="filter(1, 1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg" alt="Questões desarquivadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões desarquivadas"> </a>
+                    <a id="archive" onclick="filter(0, 0)" onclick="iconChange()"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Questões arquivadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões arquivadas"> </a>
                 </div>
-                 <!--Questões deletadas-->
-                 <div class="w-auto mt-1">
-                    <a id="delete" onclick="filter(-1, -1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Questões deletadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões deletadas"> </a>
+                <!--Questões deletadas-->
+                <div class="w-auto mt-1">
+                    <a id="undelete" onclick="filter(1, 1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash.svg" alt="Questões habilitadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões habilitadas"> </a>
                 </div>
             </div>
 
             <!--Botões-->
-            <div class="d-flex flex-row justify-content-center mb-3">
-                <a id="filter" type="button" class="btn btn-info w-25" onclick="filter(0, 0)">Filtrar</a>
+            <div class="d-flex flex-row justify-content-between mb-3">
+                <a href="../../views/home.php" type="button" class="btn btn-primary w-25 mr-5">Voltar</a>
+                <a id="filter" type="button" class="btn btn-info w-25 mr-5" onclick="filter(1, 1)">Filtrar</a>
+                <a href="createGUI.php" type="button" class="btn btn-primary w-25">Criar questão</a>
             </div>
 
             <!--Blocos de questões-->
@@ -159,7 +161,6 @@
             selectSubjects.innerHTML = "";
 
             var option = document.createElement("option");
-            option.setAttribute("disabled", "disabled");
             option.setAttribute("selected", "selected");
             option.setAttribute("label", "Escolha...");
             selectSubjects.appendChild(option);
@@ -185,7 +186,7 @@
         //Função que coleta o filtro desejado.
         function filter(pag, status) {
             var url;
-
+            
             if (pag == -1) {
                 url = "http://autella.com/cruds/question/deleteGUI.php?";
             } else if (pag == 0) {
@@ -213,44 +214,41 @@
             var date_filter = document.getElementById("date");
             date_filter = date_filter.value;
 
-            filters = `${url}filter=true&id_discipline=${discipline_filter}&id_subject=${subject_filter}&dificulty=${dificulty_filter}&date=${date_filter}&status=${status}&`;
+            filters = `${url}id_discipline=${discipline_filter}&id_subject=${subject_filter}&dificulty=${dificulty_filter}&date=${date_filter}&status=${status}&`;
 
             var filter_btn = document.getElementById("filter");
-            var unarchive_btn = document.getElementById("unarchive");
-            var delete_btn = document.getElementById("delete");
+            var archive_btn = document.getElementById("archive");
+            var undelete_btn = document.getElementById("undelete");
 
             filter_btn.setAttribute("href", filters);
-            unarchive_btn.setAttribute("href", filters);
-            delete_btn.setAttribute("href", filters);
-        }
+            archive_btn.setAttribute("href", filters);
+            undelete_btn.setAttribute("href", filters);
+        }   
 
-        //Especifica a ação do modal
+        //Especifica a ação do modal.
         function defineModalAction(action, questionNumber) {
-            var modal = [
-                ["unarchiveModal", "unarchiveModalLabel", `Desarquivar a <strong>Questão - ${questionNumber}</strong>?`, "Ao desarquivar essa questão, ela ficará disponível em todas as provas simples e provas globais onde está inclusa.", `Você tem certeza que deseja desarquivar a <strong>Questão - ${questionNumber}</strong>?`, "unarchiveButton", "unarchiveQuestion("],
-                ["deleteModal", "deleteModalLabel", `Deletar a <strong>Questão - ${questionNumber}</strong>?`, "Ao excluir essa questão, ela se perderá permanentemente e se tornará indisponível em todas as provas simples e provas globais onde está inclusa.", `Você tem certeza que deseja excluir a <strong>Questão - ${questionNumber}</strong>?`, "deleteButton", "deleteQuestion("]
-            ];
+            var modal = ["undeleteModal", "undeleteModalLabel", `Restaurar a <strong>Questão - ${questionNumber}</strong>?`, "Ao restaurar essa questão, ela voltará existir normalmente.", `Você tem certeza que deseja restaurar a <strong>Questão - ${questionNumber}</strong>?`, "undeleteButton", "undeleteQuestion("];
 
             var container = document.getElementsByName("container")[0];
             container.removeAttribute("id");
-            container.setAttribute("id", `${modal[action][0]}`);
+            container.setAttribute("id", `${modal[0]}`);
 
             var h5 = document.getElementsByName("header")[0];
             h5.removeAttribute("id");
-            h5.setAttribute("id", `${modal[action][1]}`)
-            h5.innerHTML = `${modal[action][2]}`;
+            h5.setAttribute("id", `${modal[1]}`)
+            h5.innerHTML = `${modal[2]}`;
 
             var p0 = document.getElementById("p0");
-            p0.innerHTML = `${modal[action][3]}`;
+            p0.innerHTML = `${modal[3]}`;
 
             var p1 = document.getElementById("p1");
-            p1.innerHTML = `${modal[action][4]}`;
+            p1.innerHTML = `${modal[4]}`;
 
             var button = document.getElementsByName("modalButton")[0];
             button.removeAttribute("id")
             button.removeAttribute("onclick");
-            button.setAttribute("id", `${modal[action][5]}`);
-            button.setAttribute("onclick", `${modal[action][6] + questionNumber})`);
+            button.setAttribute("id", `${modal[5]}`);
+            button.setAttribute("onclick", `${modal[6] + questionNumber})`);
         }
 
         //Converte o número da questão para sua respectiva posição no array de exibição.
@@ -271,47 +269,8 @@
             return position;
         }
 
-        //Arquivar questão.
-        function unarchiveQuestion(questionNumber) {
-            var position = convertQuestionNumber(questionNumber);
-
-            var question_archive_unarchive = questions[position];
-            //console.log(question_archive_unarchive);
-
-            $.ajax({
-                type: 'POST',
-                url: 'updateSQL.php',
-                data: {
-                    question_archive_unarchive
-                },
-                success: function(result) {
-                    $("#img_toast").attr({
-                        src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg",
-                        alt: "Desarquivar"
-                    });
-                    $("#span_toast").text("Sucesso!");
-                    $('#result').html(result).fadeIn();
-                    $("#toast").toast('show');
-                    setTimeout(function() {
-                        window.location.reload(1);
-                    }, 2000);
-                    //console.log(result);
-                },
-                error: function(error) {
-                    $("#img_toast").attr({
-                        src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg",
-                        alt: "Desarquivar"
-                    });
-                    $("#span_toast").text("Erro!");
-                    $("#result").html(error).fadeIn();
-                    $("#toast").toast('show');
-                    //console.log(result);
-                }
-            });
-        }
-
         //Deletar questão.
-        function deleteQuestion(questionNumber) {
+        function undeleteQuestion(questionNumber) {
             var position = convertQuestionNumber(questionNumber);
 
             var question_delete_undelete = questions[position];
@@ -324,21 +283,21 @@
                 },
                 success: function(result) {
                     $("#img_toast").attr({
-                        src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg",
-                        alt: "Deletar"
+                        src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash.svg",
+                        alt: "Restaurar questão"
                     });
                     $("#span_toast").text("Sucesso!");
                     $('#result').html(result).fadeIn();
                     $("#toast").toast('show');
                     setTimeout(function() {
-                        window.location.reload(1);
+                       location.reload(1);
                     }, 2000);
                     //console.log(result);
                 },
                 error: function(error) {
                     $("#img_toast").attr({
-                        src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg",
-                        alt: "Deletar"
+                        src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash.svg",
+                        alt: "Restaurar questão"
                     });
                     $("#span_toast").text("Erro!");
                     $("#result").html(error).fadeIn();
@@ -364,7 +323,7 @@
         var container' . $i . ' = list[' . $i . '];
         container' . $i . '.removeAttribute("class", "w-25 mt-1 mr-3");
         container' . $i . '.setAttribute("class", "w-50 mt-1 mr-3");
-            ';
+                ';
             }
         }
 

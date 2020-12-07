@@ -85,19 +85,27 @@
 	- [X] Adicionar paginação
 	- [X] Adicionar filtros de pesquisa
 	- [X] Adicionar opção "Escolha..." no selectDiscipline
-	- [ ] Configurar o toast de arquivamento de questão
-	- [ ] Configurar o toast de exclusão de questão
 	- [ ] Exibir em quais provas a questão está presente
 	- [ ] Exibir mais de uma matéria
 	
 - [X] Update
 
-- [X] Archive
+- [ ] Archive
 	- [X] Arquivar questão
 	- [X] Listar quetões arquivadas
 	- [X] Desarquivar questão
+	- [X] Configurar o toast de arquivamento de questão
+	- [ ] Arquivar todas as questões
+	- [ ] Desarquivar todas as questões
+	- [ ] Selecionar quais questões deseja arquivar
 
 - [ ] Delete
+	- [X] Deletar questão
+	- [X] Configurar o toast de exclusão de questão
+	- [ ] Deletar todas as questões
+	- [ ] Selecionar quais questões deseja deletar
+	- [ ] Desarquivar todas as questões
+	- [ ] Selecionar quais questões deseja arquivar
 
 - [ ] Help
 

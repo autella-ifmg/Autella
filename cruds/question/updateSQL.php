@@ -39,25 +39,67 @@ if (isset($_POST["submit"])) {
     header('Location: readGUI.php');
 }
 
-if(isset($_POST['question'])) {
+if(isset($_POST['question_archive_unarchive'])) {
     require_once "../../utilities/dbConnect.php";
 
-    if($_POST["question"]["status"] == 0) {
-        $status = 1;
-    } else {
-        $status = 0;
-    }
+    $id_question = $_POST["question_archive_unarchive"][0];
 
-    $id_question = $_POST["question"][0];
+    $date_archive_unarchive = null;
+
+    if($_POST["question_archive_unarchive"]["status"] == 0) {
+        $status = 1;
+        $sucess = "Questão desarquivada com sucesso!";
+        $error = "Erro ao desarquivar questão!";
+    } else {
+        date_default_timezone_set("America/Sao_Paulo");
+        $date_archive_unarchive = date("Y-m-d");
+        $status = 0;
+        $sucess = "Questão arquivada com sucesso!";
+        $error = "Erro ao arquivar questão!";
+    }
     
-    $sql = "UPDATE question SET status = '$status' WHERE id = '$id_question'";
+    $sql = "UPDATE question SET secondary_date = '$date_archive_unarchive', status = '$status' WHERE id = '$id_question'";
 
     if ($connection->query($sql) === TRUE) {
         //array_push($_SESSION['debug'], "Questão arquivada com sucesso!");
-        $result = "Questão arquivada com sucesso!";
+        $result = $sucess;
     } else {
         //array_push($_SESSION['debug'], "Erro ao arquivar questão!");
-       $result = "Erro ao arquivar questão!";
+        $result = $error;
+    }
+
+    $connection->close();
+
+    echo $result;
+} 
+
+if(isset($_POST['question_delete_undelete'])) {
+    require_once "../../utilities/dbConnect.php";
+
+    $id_question = $_POST["question_delete_undelete"][0];
+
+    $date_exclusion = null;
+
+    if($_POST["question_delete_undelete"]["status"] == -1) {
+        $status = 1;
+        $sucess = "Questão restaurada com sucesso!";
+        $error = "Erro ao restaurar questão!";
+    } else {
+        date_default_timezone_set("America/Sao_Paulo");
+        $date_exclusion = date("Y-m-d");
+        $status = -1;
+        $sucess = "Questão excluída com sucesso!";
+        $error = "Erro ao excluir questão!";
+    }
+    
+    $sql = "UPDATE question SET secondary_date = '$date_exclusion', status = '$status' WHERE id = '$id_question'";
+
+    if ($connection->query($sql) === TRUE) {
+        //array_push($_SESSION['debug'], "Questão arquivada com sucesso!");
+        $result = $sucess;
+    } else {
+        //array_push($_SESSION['debug'], "Erro ao arquivar questão!");
+       $result = $error;
     }
 
     $connection->close();
