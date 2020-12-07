@@ -72,6 +72,7 @@
 	- [X] Deixar valores dos dropdowns pré-selecionados
 	- [X] Remover selectAlternativesQuant
 	- [X] Tratamento para inserção de apóstrofo
+	- [ ] Otimizar códigos
 	- [ ] Responsividade
 	- [ ] Nos selectSubjects, permitir que mais de um item possa ser selecionado
 	- [ ] Validação required no CKEditor
