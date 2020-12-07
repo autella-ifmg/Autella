@@ -60,7 +60,8 @@ CREATE TABLE `db_autella_local`.`subject`(
 
 CREATE TABLE `db_autella_local`.`question`(
 	`id` INT NOT NULL AUTO_INCREMENT,
-  `date` DATE,
+  `creation_date` DATE,
+  `secondary_date` DATE,
   `id_user` INT,
   `id_subject` INT,
   `dificulty` INT,

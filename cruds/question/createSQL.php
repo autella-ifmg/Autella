@@ -6,24 +6,26 @@ if (!isset($_SESSION)) {
 //Função que remove conteúdos indejados dos inputs.
 function secure($input)
 {
-    global $connection;
+    //global $connection;
 
-    $aux = mysqli_escape_string($connection, $input);
+    $input = addslashes($input);
 
-    $aux = htmlspecialchars($aux);
+    //$input = mysqli_escape_string($connection, $input);
 
-    return $aux;
+    //$input = htmlspecialchars($aux);
+
+    return $input;
 }
 
 if (isset($_POST["submit"])) {
     require_once "../../utilities/dbConnect.php";
 
     date_default_timezone_set("America/Sao_Paulo");
-    $date = date("Y-m-d");
+    $creation_date = date("Y-m-d");
     $id_user = $_SESSION["userData"]["id"];
     $id_subject = $_POST["subjects"];
     $dificulty = $_POST["dificulty"];
-    $enunciate = addslashes($_POST["enunciate"]);
+    $enunciate = secure($_POST["enunciate"]);
     $correctAnswer = $_POST["correctAnswer"];
     $status = 1;
 
@@ -37,7 +39,7 @@ if (isset($_POST["submit"])) {
 
     $enunciate .= "<br>" . $answersEnunciate;
 
-    $sql = "INSERT INTO question (date, id_user, id_subject, dificulty, enunciate, correctAnswer, status) VALUES ('$date', '$id_user', '$id_subject', '$dificulty', '$enunciate', '$correctAnswer', '$status');";
+    $sql = "INSERT INTO question (creation_date, id_user, id_subject, dificulty, enunciate, correctAnswer, status) VALUES ('$creation_date', '$id_user', '$id_subject', '$dificulty', '$enunciate', '$correctAnswer', '$status');";
 
     if ($connection->query($sql) === TRUE) {
         //array_push($_SESSION['debug'], "Questão criada com sucesso!");

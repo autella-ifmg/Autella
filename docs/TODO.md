@@ -67,39 +67,48 @@
 - [ ] Delete
 
 ## Question
-- [ ] Create
+- [ ] Geral
 	- [X] Configurar ações do coordenador
-	- [X] Exibir dropdown de disciplina apenas caso seja o coordenador
 	- [X] Deixar valores dos dropdowns pré-selecionados
-	- [X] Travar o dropdownAC enquanto o dropdownQA ainda não tiver sido preenchido
-	- [X] Remover select de número de alternativas
-	- [X] Tratamento de inserção de apóstrofo
-	- [ ] Tratamento de inserção de imagem
-	- [ ] Inserir validação required para o enunciado da questão
-	- [ ] Permitir que as alternativas também sejam formatadas
-	- [ ] Adicionar plugins
-	- [ ] Permitir a seleção de mais de uma matéria
-	- [ ] Revisar as opções da barra de ferramentas
+	- [X] Remover selectAlternativesQuant
+	- [X] Tratamento para inserção de apóstrofo
+	- [ ] Otimizar códigos
+	- [ ] Responsividade
+	- [ ] Nos selectSubjects, permitir que mais de um item possa ser selecionado
+	- [ ] Validação required no CKEditor
+	- [ ] CKEditor Custom
+	- [ ] Tratamento para inserção de imagens
+
+- [ ] Create
+	- [ ] Permitir que os campos de alternativas também sejam formatados
+
 - [ ] Read
-	- [X] Configurar ações do coordenador
-	- [X] Executar HTML dentro do CKEditor
-	- [X] Exibir dificuldade da questão
-	- [X] Adicionar ícone para permitir edição
-	- [X] Criar funções de tratamento
 	- [X] Adicionar paginação
 	- [X] Adicionar filtros de pesquisa
-	- [X] Adicionar opção "Escolha..." no select disciplines
-	- [ ] Configurar o Toast de arquivamento de questão
-	- [ ] Configurar o Toast de exclusão de questão
-	- [ ] Exibir mais de uma matéria
+	- [X] Adicionar opção "Escolha..." no selectDiscipline
 	- [ ] Exibir em quais provas a questão está presente
+	- [ ] Exibir mais de uma matéria
+	
 - [X] Update
-	- [X] Remover select de número de alternativas
-- [X] Archive
+
+- [ ] Archive
 	- [X] Arquivar questão
-	- [X] Deslocar listagem de quetões arquivadas
-	- [X] Desarquivar questões
+	- [X] Listar quetões arquivadas
+	- [X] Desarquivar questão
+	- [X] Configurar o toast de arquivamento de questão
+	- [ ] Arquivar todas as questões
+	- [ ] Desarquivar todas as questões
+	- [ ] Selecionar quais questões deseja arquivar
+
 - [ ] Delete
+	- [X] Deletar questão
+	- [X] Listar quetões deletadas
+	- [X] Restaurar questão
+	- [X] Configurar o toast de exclusão de questão
+	- [ ] Deletar todas as questões
+	- [ ] Restaurar todas as questões
+	- [ ] Selecionar quais questões deseja deletar
+
 - [ ] Help
 
 ## Painel de controle

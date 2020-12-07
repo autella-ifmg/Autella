@@ -4,23 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autella | Visualizar questão</title>
+    <title>Autella | Visualizar questões</title>
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
-    <script src="../../libraries/ckeditor5/ckeditor.js"></script>
+    <script src="../../libraries/ckeditor/ckeditor.js"></script>
     <?php
     require_once "../../utilities/dbSelect.php";
-    require_once "archiveSQL.php";
+    require_once "readSQL.php";
     ?>
 </head>
 
 <body>
     <?php require_once '../../views/navbar.php'; ?>
 
-    <!--Filtros-->
+    <!--Toast genérico-->
+    <div id="container_toast" style="position: fixed; top: 95px; right: 10px">
+        <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-delay="2000">
+            <div class="toast-header">
+                <img id="img_toast" class="rounded mr-2">
+                <strong class="mr-auto"><span id="span_toast"></span></strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="result" class="toast-body"></div>
+        </div>
+    </div>
+
     <section class="d-flex justify-content-center mt-3">
         <div class="d-flex flex-column">
+            <!--Filtros-->
             <div class="d-flex flex-row mb-3">
                 <!--Filtro disciplina-->
                 <div id="container_selectDiscipline" class="w-25 mt-1 mr-3" hidden>
@@ -52,8 +66,12 @@
                     <input id="date" type="date" class="form-control">
                 </div>
                 <!--Questões arquivadas-->
-                <div class="w-auto mt-1">
+                <div class="w-auto mt-1 mr-2">
                     <a id="unarchive" onclick="filter(1, 1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg" alt="Questões desarquivadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões desarquivadas"> </a>
+                </div>
+                 <!--Questões deletadas-->
+                 <div class="w-auto mt-1">
+                    <a id="delete" onclick="filter(-1, -1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Questões deletadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões deletadas"> </a>
                 </div>
             </div>
 
@@ -117,6 +135,7 @@
     </div>
 
     <script>
+        //Array global com as questões que estão sendo exibidas.
         <?php
         $questions = json_encode($array);
         echo "questions = " . $questions . ";\n";
@@ -164,13 +183,15 @@
         document.addEventListener("DOMContentLoaded", updateSubjects(), false);
 
         //Função que coleta o filtro desejado.
-        function filter(pag, unarchive_filter) {
+        function filter(pag, status) {
             var url;
 
-            if (pag == 1) {
-                url = "http://autella.com/cruds/question/readGUI.php?";
-            } else {
+            if (pag == -1) {
+                url = "http://autella.com/cruds/question/deleteGUI.php?";
+            } else if (pag == 0) {
                 url = "http://autella.com/cruds/question/archiveGUI.php?";
+            } else {
+                url = "http://autella.com/cruds/question/readGUI.php?";
             }
 
             <?php
@@ -192,37 +213,22 @@
             var date_filter = document.getElementById("date");
             date_filter = date_filter.value;
 
-            filters = `${url}filter=true&id_discipline=${discipline_filter}&id_subject=${subject_filter}&dificulty=${dificulty_filter}&date=${date_filter}&status=${unarchive_filter}&`;
+            filters = `${url}filter=true&id_discipline=${discipline_filter}&id_subject=${subject_filter}&dificulty=${dificulty_filter}&date=${date_filter}&status=${status}&`;
 
             var filter_btn = document.getElementById("filter");
             var unarchive_btn = document.getElementById("unarchive");
+            var delete_btn = document.getElementById("delete");
 
             filter_btn.setAttribute("href", filters);
             unarchive_btn.setAttribute("href", filters);
-        }
-
-        function convertQuestionNumber(questionNumber) {
-            var position;
-            var str = questionNumber.toString();
-
-            if ((str.substr(-1)) > 5) {
-                position = Math.ceil(questionNumber % 5) - 1;
-            } else if ((str.substr(-1)) == 0) {
-                position = 4;
-            } else {
-                questionNumber -= 1;
-                str = questionNumber.toString();
-                position = Number.parseInt(str.substr(-1));
-            }
-
-            return position;
+            delete_btn.setAttribute("href", filters);
         }
 
         //Especifica a ação do modal
-        function chooseAction(action, questionNumber) {
+        function defineModalAction(action, questionNumber) {
             var modal = [
-                ["unarchiveModal", "unarchiveModalLabel", `Desarquivar a <b>Questão - ${questionNumber}</b>?`, "Ao desarquivar essa questão, ela ficará disponível em todas as provas simples e provas globais onde está inclusa.", `Você tem certeza que deseja desarquivar a <b>Questão - ${questionNumber}</b>?`, "unarchiveButton", "unarchiveQuestion("],
-                ["deleteModal", "deleteModalLabel", `Deletar a <b>Questão - ${questionNumber}</b>?`, "Ao excluir essa questão, ela se perderá permanentemente e se tornará indisponível em todas as provas simples e provas globais onde está inclusa.", `Você tem certeza que deseja excluir a <b>Questão - ${questionNumber}</b>?`, "deleteButton", "deleteQuestion("]
+                ["unarchiveModal", "unarchiveModalLabel", `Desarquivar a <strong>Questão - ${questionNumber}</strong>?`, "Ao desarquivar essa questão, ela ficará disponível em todas as provas simples e provas globais onde está inclusa.", `Você tem certeza que deseja desarquivar a <strong>Questão - ${questionNumber}</strong>?`, "unarchiveButton", "unarchiveQuestion("],
+                ["deleteModal", "deleteModalLabel", `Deletar a <strong>Questão - ${questionNumber}</strong>?`, "Ao excluir essa questão, ela se perderá permanentemente e se tornará indisponível em todas as provas simples e provas globais onde está inclusa.", `Você tem certeza que deseja excluir a <strong>Questão - ${questionNumber}</strong>?`, "deleteButton", "deleteQuestion("]
             ];
 
             var container = document.getElementsByName("container")[0];
@@ -247,34 +253,103 @@
             button.setAttribute("onclick", `${modal[action][6] + questionNumber})`);
         }
 
+        //Converte o número da questão para sua respectiva posição no array de exibição.
+        function convertQuestionNumber(questionNumber) {
+            var position;
+            var str = questionNumber.toString();
+
+            if ((str.substr(-1)) > 5) {
+                position = Math.ceil(questionNumber % 5) - 1;
+            } else if ((str.substr(-1)) == 0) {
+                position = 4;
+            } else {
+                questionNumber -= 1;
+                str = questionNumber.toString();
+                position = Number.parseInt(str.substr(-1));
+            }
+
+            return position;
+        }
+
+        //Arquivar questão.
         function unarchiveQuestion(questionNumber) {
             var position = convertQuestionNumber(questionNumber);
 
-            var question = questions[position];
-            //console.log(questionForUnarchive);
+            var question_archive_unarchive = questions[position];
+            //console.log(question_archive_unarchive);
 
             $.ajax({
                 type: 'POST',
                 url: 'updateSQL.php',
                 data: {
-                    question
+                    question_archive_unarchive
                 },
                 success: function(result) {
-                    window.location.reload();
-                    console.log(result);
-                    //$('#resultados').html(result).fadeIn();
-                    //$(".toast").toast("show");
+                    $("#img_toast").attr({
+                        src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg",
+                        alt: "Desarquivar"
+                    });
+                    $("#span_toast").text("Sucesso!");
+                    $('#result').html(result).fadeIn();
+                    $("#toast").toast('show');
+                    setTimeout(function() {
+                        window.location.reload(1);
+                    }, 2000);
+                    //console.log(result);
+                },
+                error: function(error) {
+                    $("#img_toast").attr({
+                        src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg",
+                        alt: "Desarquivar"
+                    });
+                    $("#span_toast").text("Erro!");
+                    $("#result").html(error).fadeIn();
+                    $("#toast").toast('show');
+                    //console.log(result);
                 }
             });
         }
 
+        //Deletar questão.
         function deleteQuestion(questionNumber) {
             var position = convertQuestionNumber(questionNumber);
 
-            var questionForDelete = questions[position];
+            var question_delete_undelete = questions[position];
+
+            $.ajax({
+                type: 'POST',
+                url: 'updateSQL.php',
+                data: {
+                    question_delete_undelete
+                },
+                success: function(result) {
+                    $("#img_toast").attr({
+                        src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg",
+                        alt: "Deletar"
+                    });
+                    $("#span_toast").text("Sucesso!");
+                    $('#result').html(result).fadeIn();
+                    $("#toast").toast('show');
+                    setTimeout(function() {
+                        window.location.reload(1);
+                    }, 2000);
+                    //console.log(result);
+                },
+                error: function(error) {
+                    $("#img_toast").attr({
+                        src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg",
+                        alt: "Deletar"
+                    });
+                    $("#span_toast").text("Erro!");
+                    $("#result").html(error).fadeIn();
+                    $("#toast").toast('show');
+                    //console.log(result);
+                }
+            });
         }
 
         <?php
+        //Verifica se é o coordernador que está logado.
         if ($id_role == 1) {
             echo '
         var div = document.getElementById("container_selectDiscipline");
@@ -293,6 +368,7 @@
             }
         }
 
+        //Verifica se há questões sendo exibidas.
         if (empty($array)) {
             echo '
         $("#container_selectDiscipline").find("*").prop("disabled", true);
@@ -303,7 +379,7 @@
             for ($i = 0; $i < 3; $i++) {
                 echo '
         var container' . $i . ' = list[' . $i . '];
-        $(container' . $i .').find("*").prop("disabled", true);
+        $(container' . $i . ').find("*").prop("disabled", true);
                 ';
             }
         }
