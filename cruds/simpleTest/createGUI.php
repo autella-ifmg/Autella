@@ -10,48 +10,70 @@
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
     <script src="../../libraries/ckeditor5/ckeditor.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
     <?php
     require_once "../../utilities/dbSelect.php";
     require_once "createSQL.php";
-
+    
     ?>
+    <style>
+        .a{
+           border-style: solid;
+        }
+    </style>
     <script>
+        
         function IDquestions(id) {
             testQuestion[testQuestion.length] = id;
-            document.getElementById('sidebar').innerHTML += "<div class= w3-container>" + js_array[id][4] + "</div>";
+            document.getElementById('sidebar').innerHTML += " <div  id = 'question"+[id]+"' class = a> <div  class= a>" + js_array[id][4] + "</div> Disciplina :"+js_array[id][9]+"//"+js_array[id][10]+"//<img  src=../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash.svg alt=Editar height=25 onclick = 'delet("+id+")'/> </div> <br><br>";
         }
-
-        function Insert() {
-            <?php insertInDatabase($testQuestion) ?>
+        function delet(id){
+                for(var i = 0; i != testQuestion.length;i ++){
+                    if(testQuestion[i] == id){
+                        document.getElementById('question'+id).remove();
+                        
+                        testQuestion.splice(i,1);
+                        
+                    
+                    }
+                }
         }
+       
     </script>
 </head>
 
 <body>
-
     <?php require_once '../../views/navbar.php'; ?>
     <div id='sidebar' class="w3-sidebar w3-bar-block w3-card" style="width:25%;right:0;">
+    
         <script type="text/javascript">
+            
             function convert() {
-                var string = document.getElementById("string1");
+                var ids = document.getElementById("ids");
+                var testName = document.getElementById("name")
                 NEWstring = testQuestion.toString();
-                string.value = NEWstring;
+                ids.value = NEWstring;
+                testName.value = NEWstring;
                 Insert();
             }
         </script>
         <form method="get">
-            <input name="string1" id="string1" type="hidden" value="aaa" />
-            <input onclick="convert();" name="BTN" type="submit" value="FINALIZAR" />
+            <input name="ids" id="ids" type="hidden" value="aaa" />
+            <label style="font-size: 20px ;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" for="testName">Nome da prova simples:</label><br>
+            <input aria-label = "Prova 1"  id = "testName" name="testName" type="text" />
+            <input class="btn btn-success" onclick="convert();" name="BTN" type="submit" value="FINALIZAR" />
         </form>
-
+            <div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><H2>QUESTÕES:</H2></div>
         <?php
         if (isset($_GET['BTN'])) {
-            $testQuestion = explode(',', $_GET['string1']);
-        }
+            $testQuestion = explode(',', $_GET['ids']);
+            $testName = explode(',', $_GET['testName']);
+            insertInDatabase($testQuestion,$array,$testName[0]);
+        }   
         ?>
     </div>
     <script>
-        var testQuestion = ["oi"];
+        var testQuestion = [];
         <?php $js_array = json_encode($array);
         echo "var js_array = " . $js_array . ";\n"; ?>
     </script>

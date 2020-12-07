@@ -71,3 +71,21 @@ CREATE TABLE `db_autella_local`.`question`(
   FOREIGN KEY (`id_user`) REFERENCES `user`(`id`),
   FOREIGN KEY (`id_subject`) REFERENCES `subject`(`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+Create table `db_autella_local`.`Tests`(
+	`id` int NOT NULL AUTO_INCREMENT,
+	`id_user` int NOT NULL,
+	`making_date` DATE,
+	`changing_date` DATE,
+	 `name` varchar(256),
+	 `status` int,
+	  PRIMARY KEY (`id`),
+	  FOREIGN KEY (`id_user`) REFERENCES `user`(`id`)
+	) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+	Create table `db_autella_local`.`question_test`(
+	`id_tests` int NOT NULL ,
+	`id_question` int NOT NULL,
+	FOREIGN KEY (`id_tests`) REFERENCES `tests`(`id`),
+	FOREIGN KEY (`id_question`) REFERENCES `question`(`id`)
+	);
