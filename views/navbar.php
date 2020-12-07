@@ -10,8 +10,14 @@
                 <a class="nav-link" href="/cruds/question/readGUI.php?">Visualizar questões</a>
             </li>
             <li>
-                <a class="nav-link" href="/cruds/simpleTest/createGUI.php">Prova Simples</a>
+                <a class="nav-link" href="/cruds/simpleTest/createGUI.php">Criar provas simples</a>
             </li>
+            <li>
+                <a class="nav-link" href="/cruds/simpleTest/readListGUI.php">Visualizar provas simples</a>
+            </li>
+            
+          
+            
 
             <?php
             if ($_SESSION['userData']['id_role'] == 1) {

@@ -1,4 +1,6 @@
 <?php
+require_once '../../utilities/dbConnect.php';
+global $connection;
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -75,6 +77,8 @@ function dateTratament($date)
 function data($array, $id_role)
 {
     global $start;
+    global $array1;
+    $array1 = $array; 
     $id_user = $_SESSION["userData"]["id"];
 
     if (!empty($array)) {
@@ -164,13 +168,25 @@ function imports($array)
     }
 }
 
-function insertInDatabase($ids)
+function insertInDatabase($ids,$array,$testName)
 {
-    $i = $ids[0];
+    date_default_timezone_set("America/Sao_Paulo");
+    $date = date("Y-m-d");
+    
     require_once '../../utilities/dbConnect.php';
+    global $connection;
     $id_user = $_SESSION["userData"]["id"];
-    $sql = "INSERT into Tests(id, id_subject, id_user, making_date, changing_date, name) VALUES ('$array[$i][]);');";
-    if ($connection->query($sql) === TRUE) {
-        array_push($_SESSION['debug'], "Conta criada com sucesso!");
+    $sql = "INSERT into Tests(id_user, making_date, changing_date, name) VALUES ('$id_user','$date','$date','$testName');";  
+    mysqli_query($connection, $sql);
+    $id_test =  mysqli_insert_id($connection);
+    if (!empty($ids)) {
+        if (count($ids) > 0) {
+            for ($i = 0; $i < count($ids); $i++) {
+                $id_question = $array[$ids[$i]][0];    
+                $sql = "INSERT into question_test(id_question, id_tests) VALUES ('$id_question','$id_test');";
+                //echo $i .'+ '.$sql ;
+                mysqli_query($connection, $sql);
+            }
+        }       
     }
 }
