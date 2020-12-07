@@ -101,11 +101,12 @@
 
 - [ ] Delete
 	- [X] Deletar questão
+	- [X] Listar quetões deletadas
+	- [X] Restaurar questão
 	- [X] Configurar o toast de exclusão de questão
 	- [ ] Deletar todas as questões
+	- [ ] Restaurar todas as questões
 	- [ ] Selecionar quais questões deseja deletar
-	- [ ] Desarquivar todas as questões
-	- [ ] Selecionar quais questões deseja arquivar
 
 - [ ] Help
 
