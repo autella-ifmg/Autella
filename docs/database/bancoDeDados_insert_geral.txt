@@ -1,114 +1,114 @@
 /*utilidade pública: ALTER TABLE question AUTO_INCREMENT = 1;*/
 
-INSERT INTO `db_autella_local`.`field` (`name`) VALUES ('Ciências Humanas e suas Tecnologias');
-INSERT INTO `db_autella_local`.`field` (`name`) VALUES ('Ciências da Natureza e suas Tecnologias');
-INSERT INTO `db_autella_local`.`field` (`name`) VALUES ('Linguagens, Códigos e suas Tecnologias');
-INSERT INTO `db_autella_local`.`field` (`name`) VALUES ('Matemática e suas Tecnologias');
+INSERT INTO `field` (`name`) VALUES ('Ciências Humanas e suas Tecnologias');
+INSERT INTO `field` (`name`) VALUES ('Ciências da Natureza e suas Tecnologias');
+INSERT INTO `field` (`name`) VALUES ('Linguagens, Códigos e suas Tecnologias');
+INSERT INTO `field` (`name`) VALUES ('Matemática e suas Tecnologias');
 
 
 
 
-INSERT INTO `db_autella_local`.`discipline` (`id_field`, `name`) VALUES ('1', 'História');
-INSERT INTO `db_autella_local`.`discipline` (`id_field`, `name`) VALUES ('1', 'Geografia');
-INSERT INTO `db_autella_local`.`discipline` (`id_field`, `name`) VALUES ('1', 'Filosofia');
-INSERT INTO `db_autella_local`.`discipline` (`id_field`, `name`) VALUES ('1', 'Sociologia');
-INSERT INTO `db_autella_local`.`discipline` (`id_field`, `name`) VALUES ('2', 'Química');
-INSERT INTO `db_autella_local`.`discipline` (`id_field`, `name`) VALUES ('2', 'Física');
-INSERT INTO `db_autella_local`.`discipline` (`id_field`, `name`) VALUES ('2', 'Biologia');
-INSERT INTO `db_autella_local`.`discipline` (`id_field`, `name`) VALUES ('3', 'Língua Portuguesa');
-INSERT INTO `db_autella_local`.`discipline` (`id_field`, `name`) VALUES ('3', 'Literatura');
-INSERT INTO `db_autella_local`.`discipline` (`id_field`, `name`) VALUES ('3', 'Inglês');
-INSERT INTO `db_autella_local`.`discipline` (`id_field`, `name`) VALUES ('3', 'Espanhol');
-INSERT INTO `db_autella_local`.`discipline` (`id_field`, `name`) VALUES ('3', 'Artes');
-INSERT INTO `db_autella_local`.`discipline` (`id_field`, `name`) VALUES ('3', 'Educação Física');
-INSERT INTO `db_autella_local`.`discipline` (`id_field`, `name`) VALUES ('4', 'Matemática');
+INSERT INTO `discipline` (`id_field`, `name`) VALUES ('1', 'História');
+INSERT INTO `discipline` (`id_field`, `name`) VALUES ('1', 'Geografia');
+INSERT INTO `discipline` (`id_field`, `name`) VALUES ('1', 'Filosofia');
+INSERT INTO `discipline` (`id_field`, `name`) VALUES ('1', 'Sociologia');
+INSERT INTO `discipline` (`id_field`, `name`) VALUES ('2', 'Química');
+INSERT INTO `discipline` (`id_field`, `name`) VALUES ('2', 'Física');
+INSERT INTO `discipline` (`id_field`, `name`) VALUES ('2', 'Biologia');
+INSERT INTO `discipline` (`id_field`, `name`) VALUES ('3', 'Língua Portuguesa');
+INSERT INTO `discipline` (`id_field`, `name`) VALUES ('3', 'Literatura');
+INSERT INTO `discipline` (`id_field`, `name`) VALUES ('3', 'Inglês');
+INSERT INTO `discipline` (`id_field`, `name`) VALUES ('3', 'Espanhol');
+INSERT INTO `discipline` (`id_field`, `name`) VALUES ('3', 'Artes');
+INSERT INTO `discipline` (`id_field`, `name`) VALUES ('3', 'Educação Física');
+INSERT INTO `discipline` (`id_field`, `name`) VALUES ('4', 'Matemática');
 
 
 
 
-INSERT INTO `db_autella_local`.`role` (`name`) VALUES ('Coordenador');
-INSERT INTO `db_autella_local`.`role` (`name`) VALUES ('Professor Titular');
-INSERT INTO `db_autella_local`.`role` (`name`) VALUES ('Professor Substituto');
-INSERT INTO `db_autella_local`.`role` (`name`) VALUES ('Professor Visitante');
+INSERT INTO `role` (`name`) VALUES ('Coordenador');
+INSERT INTO `role` (`name`) VALUES ('Professor Titular');
+INSERT INTO `role` (`name`) VALUES ('Professor Substituto');
+INSERT INTO `role` (`name`) VALUES ('Professor Visitante');
 
 
 
-INSERT INTO `db_autella_local`.`institution` (`full_name`, `abbreviation`, `phone`, `cep`, `email`, `number`, `street`, `neighborhood`, `city`, `state`) VALUES ('Escola Municipal Professor Doriol Beato', 'Doriol', '(31) 3769-2587', '36401-038', 'doriol@edu.br','610', 'Rua Senador Milton Campos', 'Angêlica', 'Conselheiro Lafaiete', 'Minas Gerais');
-INSERT INTO `db_autella_local`.`institution` (`full_name`, `abbreviation`, `phone`, `cep`, `email`, `number`, `street`, `neighborhood`, `city`, `state`) VALUES ('Instituto Federal de Minas Gerais - Campus Ouro Branco', 'IFMG-OB', '(31) 3938-1200', '36420-000', 'ere.ourobranco@ifmg.edu.br', '90', 'Rua Afonso Sardinha', 'Pioneiros', 'Ouro Branco', 'Minas Gerais');
+INSERT INTO `institution` (`full_name`, `abbreviation`, `phone`, `cep`, `email`, `number`, `street`, `neighborhood`, `city`, `state`) VALUES ('Escola Municipal Professor Doriol Beato', 'Doriol', '(31) 3769-2587', '36401-038', 'doriol@edu.br','610', 'Rua Senador Milton Campos', 'Angêlica', 'Conselheiro Lafaiete', 'Minas Gerais');
+INSERT INTO `institution` (`full_name`, `abbreviation`, `phone`, `cep`, `email`, `number`, `street`, `neighborhood`, `city`, `state`) VALUES ('Instituto Federal de Minas Gerais - Campus Ouro Branco', 'IFMG-OB', '(31) 3938-1200', '36420-000', 'ere.ourobranco@ifmg.edu.br', '90', 'Rua Afonso Sardinha', 'Pioneiros', 'Ouro Branco', 'Minas Gerais');
 
 
 
 
-INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
+INSERT INTO `user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
 VALUES ('aline.presot@ifmg.edu.br', 'Aline Alves Presot', 'aline', '1', '4', '2');
-INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
+INSERT INTO `user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
 VALUES ('rodolpho.santos@ifmg.edu.br', 'Rodolpho Gauthier Cardoso dos Santos', 'rodolpho', '1', '2', '2');
-INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
+INSERT INTO `user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
 VALUES ('lawrence.andrade@ifmg.edu.br', 'Lawrence de Andrade Magalhães Gomes', 'lawrence', '2', '1', '2');
-INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
+INSERT INTO `user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
 VALUES ('rui.mauricio@ifmg.edu.br', 'Rui Evangelista Maurício', 'rui', '2', '3', '2');
-INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
+INSERT INTO `user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
 VALUES ('rafael.marinho@ifmg.edu.br', 'Rafael de Araújo Álvares Marinho', 'rafael', '6', '2', '2');
-INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
+INSERT INTO `user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
 VALUES ('aurelio.ferreira@ifmg.edu.br', 'Aurélio Alves Ferreira', 'aurelio', '3', '2', '2');
-INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
+INSERT INTO `user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
 VALUES ('adilson.ribeiro@ifmg.edu.br', 'Adilson Ribeiro de Oliveira', 'adilson', '8', '2', '2');
-INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
+INSERT INTO `user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
 VALUES ('cesar@gmail.com', 'César Willer', '123', '1', '2', '1');
-INSERT INTO `db_autella_local`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
+INSERT INTO `user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
 VALUES ('therezinha@gmail.com', 'Dona Terezinha da Silva Matos', '123', '8', '1', '1');
 
 
 
 
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('1', 'Revolução Russa');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('1', 'Cultura Afro-brasileira');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('1', 'Ditadura Militar');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('1', 'Grandes Invasões');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('1', 'República da Espada');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('1', 'Revolução Francesa');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('1', 'Proclamação da República');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('1', 'Crise do Sistema Colonial');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('2', 'Solos');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('2', 'Agricultura');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('2', 'Apartheid');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('2', 'Domínios morfoclimáticos');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('3', 'A Crise da Razão');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('3', 'Epicurismo');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('3', 'Relativismo Cultural');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('4', 'Sociologia do Desenvolvimento');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('4', 'Ética e Moral');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('4', 'Cidadania e Política');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('5', 'Leis ponderais e estequiometria');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('5', 'Eletroquímica');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('5', 'Reações orgânicas');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('6', 'Energia, trabalho e potência');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('6', 'Calorimetria');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('6', 'Corrente Elétrica');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('7', 'Ecologia');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('7', 'Citologia');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('7', 'Genética');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('8', 'Conjunções');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('8', 'Orações Coordenadas');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('8', 'Orações Subordinadas');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('9', 'Realismo');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('9', 'Quinhentismo');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('9', 'Simbolismo');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('10', 'Tempos verbais');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('10', 'Voz passiva');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('10', 'Linking words');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('11', 'Advérbios');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('11', 'Palavras homônimas');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('11', 'Substantivos e adjetivos');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('12', 'Modernismo');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('12', 'Barroco');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('12', 'Arte Brasileira pós 1970');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('13', 'Práticas corporais e autonomia');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('13', 'Padrão estético contemporâneo');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('13', 'Esportes');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('14', 'Funções');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('14', 'Geometria Plana');
-INSERT INTO `db_autella_local`.`subject` (`id_discipline`, `name`) VALUES ('14', 'Geometria Espacial');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('1', 'Revolução Russa');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('1', 'Cultura Afro-brasileira');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('1', 'Ditadura Militar');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('1', 'Grandes Invasões');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('1', 'República da Espada');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('1', 'Revolução Francesa');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('1', 'Proclamação da República');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('1', 'Crise do Sistema Colonial');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('2', 'Solos');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('2', 'Agricultura');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('2', 'Apartheid');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('2', 'Domínios morfoclimáticos');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('3', 'A Crise da Razão');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('3', 'Epicurismo');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('3', 'Relativismo Cultural');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('4', 'Sociologia do Desenvolvimento');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('4', 'Ética e Moral');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('4', 'Cidadania e Política');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('5', 'Leis ponderais e estequiometria');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('5', 'Eletroquímica');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('5', 'Reações orgânicas');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('6', 'Energia, trabalho e potência');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('6', 'Calorimetria');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('6', 'Corrente Elétrica');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('7', 'Ecologia');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('7', 'Citologia');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('7', 'Genética');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('8', 'Conjunções');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('8', 'Orações Coordenadas');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('8', 'Orações Subordinadas');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('9', 'Realismo');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('9', 'Quinhentismo');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('9', 'Simbolismo');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('10', 'Tempos verbais');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('10', 'Voz passiva');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('10', 'Linking words');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('11', 'Advérbios');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('11', 'Palavras homônimas');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('11', 'Substantivos e adjetivos');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('12', 'Modernismo');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('12', 'Barroco');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('12', 'Arte Brasileira pós 1970');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('13', 'Práticas corporais e autonomia');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('13', 'Padrão estético contemporâneo');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('13', 'Esportes');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('14', 'Funções');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('14', 'Geometria Plana');
+INSERT INTO `subject` (`id_discipline`, `name`) VALUES ('14', 'Geometria Espacial');
 
 
 
