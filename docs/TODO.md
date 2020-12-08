@@ -96,18 +96,12 @@
 	- [X] Listar quetões arquivadas
 	- [X] Desarquivar questão
 	- [X] Configurar o toast de arquivamento de questão
-	- [ ] Arquivar todas as questões
-	- [ ] Desarquivar todas as questões
-	- [ ] Selecionar quais questões deseja arquivar
 
 - [ ] Delete
 	- [X] Deletar questão
 	- [X] Listar quetões deletadas
 	- [X] Restaurar questão
 	- [X] Configurar o toast de exclusão de questão
-	- [ ] Deletar todas as questões
-	- [ ] Restaurar todas as questões
-	- [ ] Selecionar quais questões deseja deletar
 
 - [ ] Help
 
