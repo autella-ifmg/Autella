@@ -67,7 +67,7 @@
                 </div>
                 <!--Questões arquivadas-->
                 <div class="w-auto mt-1 mr-2">
-                    <a id="unarchive" onclick="filter(1, 1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg" alt="Questões desarquivadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões desarquivadas"> </a>
+                    <a id="unarchive" onclick="filter(1, 1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg" alt="Questões habilitadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões habilitadas"> </a>
                 </div>
                  <!--Questões deletadas-->
                  <div class="w-auto mt-1">

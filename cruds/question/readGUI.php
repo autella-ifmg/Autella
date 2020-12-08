@@ -142,7 +142,7 @@
         $questions = json_encode($array);
         echo "questions = " . $questions . ";\n";
         ?>
-
+      
         //Função para inserir as matérias no selectSubjects.
         function updateSubjects() {
             <?php
@@ -214,8 +214,8 @@
             var date_filter = document.getElementById("date");
             date_filter = date_filter.value;
 
-            filters = `${url}id_discipline=${discipline_filter}&id_subject=${subject_filter}&dificulty=${dificulty_filter}&date=${date_filter}&status=${status}&`;
-
+            filters = `${url}filter=true&id_discipline=${discipline_filter}&id_subject=${subject_filter}&dificulty=${dificulty_filter}&date=${date_filter}&status=${status}&`;
+            console.log(filters)
             var filter_btn = document.getElementById("filter");
             var archive_btn = document.getElementById("archive");
             var delete_btn = document.getElementById("delete");
@@ -279,8 +279,12 @@
 
         //Editar questão.
         function editQuestion(questionNumber) {
+            var position = convertQuestionNumber(questionNumber);
+            
+            var id_question_edit = questions[position][0];
+            console.log(id_question_edit)
             var button = document.getElementById("editButton");
-            button.setAttribute("href", `updateGUI.php?questionNumber=${questionNumber}`);
+            button.setAttribute("href", `updateGUI.php?id_question_edit=${id_question_edit}`);
         }
 
         //Arquivar questão.

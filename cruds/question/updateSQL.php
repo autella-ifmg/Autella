@@ -44,7 +44,7 @@ if(isset($_POST['question_archive_unarchive'])) {
 
     $id_question = $_POST["question_archive_unarchive"][0];
 
-    $date_archive_unarchive = null;
+    $date_archive_unarchive = NULL;
 
     if($_POST["question_archive_unarchive"]["status"] == 0) {
         $status = 1;
@@ -78,7 +78,7 @@ if(isset($_POST['question_delete_undelete'])) {
 
     $id_question = $_POST["question_delete_undelete"][0];
 
-    $date_exclusion = null;
+    $date_exclusion = NULL;
 
     if($_POST["question_delete_undelete"]["status"] == -1) {
         $status = 1;

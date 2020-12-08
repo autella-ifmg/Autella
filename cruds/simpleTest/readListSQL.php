@@ -7,10 +7,10 @@ if (!isset($_SESSION)) {
 
 
 
-function dateTratament($date)
+function dateTratament($creation_date)
 {
-    $date = strtotime($date);
-    return $date = "Criada em: " . date("d/m/Y", $date);
+    $creation_date = strtotime($creation_date);
+    return $creation_date = "Criada em: " . date("d/m/Y", $creation_date);
 }
 function dateTratamentChange($date)
 {

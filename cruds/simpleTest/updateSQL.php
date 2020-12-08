@@ -68,10 +68,10 @@ function dificultyTratament($dificulty)
     }
 }
 
-function dateTratament($date)
+function dateTratament($creation_date)
 {
-    $date = strtotime($date);
-    return $date = "Criada em: " . date("d/m/Y", $date);
+    $creation_date = strtotime($creation_date);
+    return $creation_date = "Criada em: " . date("d/m/Y", $creation_date);
 }
 
 function data($array, $id_role)
@@ -89,7 +89,7 @@ function data($array, $id_role)
                 $correctAnswer = "Alternativa correta: " . $array[$i]["correctAnswer"];
                 $discipline =  "Disciplina: " . $array[$i][9];
                 $subject = "Matéria: " . $array[$i]["name"];
-                $date = dateTratament($array[$i]["date"]);
+                $creation_date = dateTratament($array[$i]["creation_date"]);
                 $enunciate =  $array[$i]["enunciate"];
 
                 echo '
@@ -115,7 +115,7 @@ function data($array, $id_role)
 
                     <div class="d-flex flex-row bd-highlight">
                         <div class="p-2 w-25 border border-dark border-top-0">Inclusa em: ...</div>
-                        <div class="p-2 w-25 border border-dark border-left-0  border-top-0">' . $date . '</div>
+                        <div class="p-2 w-25 border border-dark border-left-0  border-top-0">' . $creation_date . '</div>
                         <div class="p-2 w-25 border border-dark border-left-0  border-top-0">' . $dificulty . '</div>
                         <div class="p-2 w-25 border border-dark border-left-0  border-top-0">' . $correctAnswer  . '</div>
                     </div>
