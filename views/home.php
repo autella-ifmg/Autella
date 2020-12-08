@@ -14,11 +14,14 @@
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php'; ?>
 </head>
 
-<body class="h-100 w-100">
+<body class="h-100 w-100 d-flex flex-column">
     <header>
         <?php require_once 'navbar.php'; ?>
     </header>
 
+    <main class="flex-grow-1" style="background-image: url(../images/background.jpeg);">
+
+    </main>
 </body>
 
 </html>
