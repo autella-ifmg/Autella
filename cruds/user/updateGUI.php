@@ -58,6 +58,7 @@
                 </div>
 
                 <div class="d-flex flex-row justify-content-between">
+                    <a class="btn btn-lg btn-danger" href="deleteGUI.php">Excluir conta</a>
                     <a class="btn btn-lg btn-danger" href="../../index.php">Cancelar</a>
                     <input type="submit" class="btn btn-lg btn-success" name="submit" value="Alterar">
                 </div>

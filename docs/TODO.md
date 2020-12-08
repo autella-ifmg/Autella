@@ -36,7 +36,7 @@
 - [X] Read
 	- [X] Fazer campos de "Área" e "Disciplina" funcionarem
 
-- [ ] Delete
+- [X] Delete
 
 
 ## Institution
