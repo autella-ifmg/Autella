@@ -23,6 +23,10 @@
         <h1 class="text-center mt-5 mb-3 mb-sm-5">Autella <span class="d-none d-sm-inline">| Visualizar dados da instituição</span></h1>
 
         <div class="row">
+            <div class="w-100 px-3 mb-5" style="position:relative">
+                <img id="institutionPicture" style="max-width:100%; height: auto" src="../../images/institutions/<?php echo $array['id']; ?>.jpeg<?php echo '?' . time() ?>" />
+            </div>
+
             <div class="form-group col-12 ">
                 <label>Nome completo</label>
                 <input readonly type="text" class="form-control" value="<?php echo $array['full_name'] ?>">
@@ -70,10 +74,6 @@
             <div class="form-group col-12 col-md-6 ">
                 <label>Estado</label>
                 <input readonly type="text" class="form-control" value="<?php echo $array['state'] ?>">
-            </div>
-
-            <div class="w-100 px-3 mb-5" style="position:relative">
-                <img id="institutionPicture" style="max-width:100%; height: auto" src="../../images/institutions/<?php echo $array['id']; ?>.jpeg<?php echo '?' . time() ?>" />
             </div>
 
             <div class="d-flex justify-content-around pt-4 pt-sm-0 w-100 mx-3 mb-5">

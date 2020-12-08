@@ -24,6 +24,12 @@
         <h1 class="text-center mb-3 mt-5 mb-sm-5">Autella <span class="d-none d-sm-inline">| Alterar dados da instituição</span></h1>
 
         <form action="updateSQL.php" method="POST" novalidate class="needs-validation row">
+            <div class="w-100 px-3 mb-5" style="position:relative">
+                <img id="institutionPicture" style="width:100%; height:auto" src="../../images/institutions/<?php echo $_SESSION['userInstitutionData']['id']; ?>.jpeg<?php echo '?' . time() ?>" />
+                <label class="position-absolute m-0 p-0 mr-3 border" style="bottom:0; right:0" for="inputImage"><img class="p-2" style="width:64px; background-color: white;" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/upload.svg" alt=""></label>
+                <input class="d-none" type="file" id="inputImage" name="image" accept="image/*">
+            </div>
+
             <div class="form-group col-12 ">
                 <label>Nome completo</label>
                 <input required type="text" class="form-control" name="fullName" value="<?php echo $_SESSION['userInstitutionData']['full_name'] ?>">
@@ -72,12 +78,6 @@
             <div class="form-group col-12 col-md-6 ">
                 <label>Estado</label>
                 <input required type="text" class="form-control" name="state" value="<?php echo $_SESSION['userInstitutionData']['state'] ?>">
-            </div>
-
-            <div class="w-100 px-3 mb-5" style="position:relative">
-                <img id="institutionPicture" style="width:100%; height:auto" src="../../images/institutions/<?php echo $_SESSION['userInstitutionData']['id']; ?>.jpeg<?php echo '?' . time() ?>" />
-                <label class="position-absolute m-0 p-0 mr-3 border" style="bottom:0; right:0" for="inputImage"><img class="p-2" style="width:64px; background-color: white;" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/upload.svg" alt=""></label>
-                <input class="d-none" type="file" id="inputImage" name="image" accept="image/*">
             </div>
 
             <div class="d-flex justify-content-between pt-4 pt-sm-0 w-100 mx-3 mb-5">
