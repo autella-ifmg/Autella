@@ -37,7 +37,7 @@ if (isset($_POST["submit"])) {
         $answersEnunciate .= "<br>" . "$letters[$i]) " . secure($_POST["question$i"]);
     }
 
-    $enunciate .= "<br>" . $answersEnunciate;
+    $enunciate .= "\n" . $answersEnunciate;
 
     $sql = "INSERT INTO question (creation_date, id_user, id_subject, dificulty, enunciate, correctAnswer, status) VALUES ('$creation_date', '$id_user', '$id_subject', '$dificulty', '$enunciate', '$correctAnswer', '$status');";
 
@@ -49,5 +49,5 @@ if (isset($_POST["submit"])) {
 
     $connection->close();
 
-    header('Location: createGUI.php');
+    header('Location: readGUI.php');
 }

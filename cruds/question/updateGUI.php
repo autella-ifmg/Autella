@@ -24,9 +24,15 @@
 
     $array = selectQuestions(false, 0, 0, $filter);
     //var_dump($array);
-    $questionNumber = $_GET["questionNumber"] - 1;
-    //echo $questionNumber;
-    $arrayUpdate = $array[$questionNumber];
+
+    $id_question_edit = $_GET["id_question_edit"];
+    //var_dump($id_question_edit);
+
+    for ($i = 0; $i < count($array); $i++) {
+        if ($array[$i][0] == $id_question_edit) {
+            $arrayUpdate = $array[$i];
+        }
+    }
     //var_dump($arrayUpdate);
     ?>
 </head>
@@ -35,12 +41,12 @@
     <h1 class="text-center mt-3 mb-1">Autella <span class="d-none d-sm-inline">| Alterar dados da questão</span></h1>
 
     <hr>
-    
+
     <section class="d-flex justify-content-center mt-4">
         <div class="d-flex flex-column">
             <form id="questionForm" action="updateSQL.php" method="post">
                 <input name="id" type="hidden" value="<?php echo $arrayUpdate[0]; ?>">
-                <div class="d-flex flex-row mb-2">
+                <div class="d-flex flex-row justify-content-between mb-2">
                     <!--Select disciplina-->
                     <div id="selectDiscipline_container" class="w-25 mt-1 mr-3" hidden>
                         <label for="disciplines">Disciplina:</label>
@@ -82,7 +88,7 @@
                 <!--Enunciado da questão-->
                 <div class="mb-3">
                     <div name="toolbar" id="toolbar-container"></div>
-                    <div name="editor" id="editor" style="max-width: 65rem; min-height: 20rem; max-height: 20rem; border: 1px solid gray;"><?php echo $arrayUpdate["enunciate"]; ?></div>
+                    <div name="editor" id="editor" style="min-width: 65rem; max-width: 65rem; min-height: 20rem; max-height: 20rem; border: 1px solid gray;"><?php echo $arrayUpdate["enunciate"]; ?></div>
                 </div>
 
                 <hr>

@@ -116,13 +116,13 @@ function selectQuestions($limit, $start, $end, $filter)
         $id_discipline = "null";
         $id_subject = "question.id_subject";
         $dificulty = "";
-        $date = "";
+        $creation_date = "";
         $status = " AND question.status = 1";
     } else {
         $id_discipline = $filter[0] == null ? "null" : $filter[0];
         $id_subject = $filter[1] == null ? "question.id_subject" : $filter[1];
         $dificulty = $filter[2] == null ? "" : " AND question.dificulty = $filter[2]";
-        $date = $filter[3] == null ? "" : " AND question.date = '$filter[3]'";
+        $creation_date = $filter[3] == null ? "" : " AND question.date = '$filter[3]'";
         $status = $filter[4] == null ? " AND question.status = 1" : " AND question.status = $filter[4]";
     }
 
@@ -134,7 +134,7 @@ function selectQuestions($limit, $start, $end, $filter)
             JOIN subject ON subject.id = question.id_subject 
             WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] . "
             AND discipline.id = subject.id_discipline" . $status .
-            $dificulty . $date . "
+            $dificulty . $creation_date . "
             ORDER BY discipline.name, subject.name " . $sql_limit;
     } else {
         $sql = "SELECT question.id, question.status, question.creation_date, question.dificulty, question.enunciate, question.correctAnswer, 
@@ -145,7 +145,7 @@ function selectQuestions($limit, $start, $end, $filter)
         " WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] .
         " AND discipline.id = subject.id_discipline AND subject.id = question.id_subject" 
         . $status . 
-        $dificulty . $date .
+        $dificulty . $creation_date .
         " ORDER BY discipline.name, subject.name " . $sql_limit;
     }
     //echo $sql;
