@@ -67,18 +67,14 @@
                 </div>
                 <!--Questões arquivadas-->
                 <div class="w-auto mt-1 mr-2">
-                    <a id="archive" onclick="filter(0, 0)" onclick="iconChange()"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Questões arquivadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões arquivadas"> </a>
-                </div>
-                <!--Questões deletadas-->
-                <div class="w-auto mt-1">
-                    <a id="delete" onclick="filter(-1, -1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Questões deletadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões deletadas"> </a>
+                    <a id="filter" onclick="filter(1, 1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-square-fill.svg" alt="Aplicar filtros" height="75" data-toggle="tooltip" data-placement="top" title="Aplicar filtros"> </a>
                 </div>
             </div>
 
             <!--Botões-->
             <div class="d-flex flex-row justify-content-between mb-3">
                 <a href="../../views/home.php" type="button" class="btn btn-primary w-25 mr-5">Voltar</a>
-                <a id="filter" type="button" class="btn btn-info w-25 mr-5" onclick="filter(1, 1)">Filtrar</a>
+                <a id="archive" type="button" class="btn btn-info w-25 mr-5" onclick="filter(0, 0)">Visualizar questões arquivadas</a>
                 <a href="createGUI.php" type="button" class="btn btn-primary w-25">Criar questão</a>
             </div>
 
@@ -142,7 +138,7 @@
         $questions = json_encode($array);
         echo "questions = " . $questions . ";\n";
         ?>
-      
+
         //Função para inserir as matérias no selectSubjects.
         function updateSubjects() {
             <?php
@@ -186,7 +182,7 @@
         //Função que coleta o filtro desejado.
         function filter(pag, status) {
             var url;
-            
+
             if (pag == -1) {
                 url = "http://autella.com/cruds/question/deleteGUI.php?";
             } else if (pag == 0) {
@@ -223,7 +219,7 @@
             filter_btn.setAttribute("href", filters);
             archive_btn.setAttribute("href", filters);
             delete_btn.setAttribute("href", filters);
-        }   
+        }
 
         //Especifica a ação do modal.
         function defineModalAction(action, questionNumber) {
@@ -280,7 +276,7 @@
         //Editar questão.
         function editQuestion(questionNumber) {
             var position = convertQuestionNumber(questionNumber);
-            
+
             var id_question_edit = questions[position][0];
             console.log(id_question_edit)
             var button = document.getElementById("editButton");
@@ -330,13 +326,13 @@
         function deleteQuestion(questionNumber) {
             var position = convertQuestionNumber(questionNumber);
 
-            var question_delete_undelete = questions[position];
+            var question_delete = questions[position];
 
             $.ajax({
                 type: 'POST',
                 url: 'updateSQL.php',
                 data: {
-                    question_delete_undelete
+                    question_delete
                 },
                 success: function(result) {
                     $("#img_toast").attr({
@@ -347,7 +343,7 @@
                     $('#result').html(result).fadeIn();
                     $("#toast").toast('show');
                     setTimeout(function() {
-                       location.reload(1);
+                        location.reload(1);
                     }, 2000);
                     //console.log(result);
                 },

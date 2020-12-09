@@ -67,17 +67,13 @@
                 </div>
                 <!--Questões arquivadas-->
                 <div class="w-auto mt-1 mr-2">
-                    <a id="unarchive" onclick="filter(1, 1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg" alt="Questões habilitadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões habilitadas"> </a>
-                </div>
-                 <!--Questões deletadas-->
-                 <div class="w-auto mt-1">
-                    <a id="delete" onclick="filter(-1, -1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Questões deletadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões deletadas"> </a>
+                    <a id="filter" onclick="filter(0, 0)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-square-fill.svg" alt="Aplicar filtros" height="75" data-toggle="tooltip" data-placement="top" title="Aplicar filtros"> </a>
                 </div>
             </div>
 
             <!--Botões-->
             <div class="d-flex flex-row justify-content-center mb-3">
-                <a id="filter" type="button" class="btn btn-info w-25" onclick="filter(0, 0)">Filtrar</a>
+                <a id="unarchive" type="button" class="btn btn-info w-25" onclick="filter(1, 1)">Visualizar questões habilitadas</a>
             </div>
 
             <!--Blocos de questões-->
@@ -314,13 +310,13 @@
         function deleteQuestion(questionNumber) {
             var position = convertQuestionNumber(questionNumber);
 
-            var question_delete_undelete = questions[position];
+            var question_delete = questions[position];
 
             $.ajax({
                 type: 'POST',
                 url: 'updateSQL.php',
                 data: {
-                    question_delete_undelete
+                    question_delete
                 },
                 success: function(result) {
                     $("#img_toast").attr({

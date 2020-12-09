@@ -91,11 +91,7 @@ function data($array, $id_role)
                 $status = $array[$i]["status"];
 
                 if($id_role == 1 || $array[$i]["id_user"] == $id_user ) {
-                    if($status == -1) {
-                        $icons = '
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash.svg" alt="Deletar" height="25" onclick="defineModalAction(2, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#undeleteModal" data-toggle="tooltip" data-placement="bottom" title="Deletar questão"/></div>
-                        ';
-                    } elseif ($status == 0) {
+                   if ($status == 0) {
                         $icons = '
                         <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg" alt="Arquivar" height="25" onclick="defineModalAction(0, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#unarchiveModal" data-toggle="tooltip" data-placement="bottom" title="Arquivar questão"/></div>
                         <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="defineModalAction(1, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal" data-toggle="tooltip" data-placement="bottom" title="Deletar questão"/></div>
