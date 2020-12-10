@@ -1,11 +1,11 @@
-CREATE TABLE `laura_erica`.`field` (
+CREATE TABLE `autella`.`field` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
-CREATE TABLE `laura_erica`.`discipline` (
+CREATE TABLE `autella`.`discipline` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_field` int NOT NULL,
   `name` varchar(64) NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE `laura_erica`.`discipline` (
   FOREIGN KEY (`id_field`) REFERENCES `field`(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE `laura_erica`.`institution` (
+CREATE TABLE `autella`.`institution` (
   `id` int NOT NULL AUTO_INCREMENT,
   `full_name` varchar(64) NOT NULL,
   `abbreviation` varchar(64) NOT NULL,
@@ -28,13 +28,13 @@ CREATE TABLE `laura_erica`.`institution` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE `laura_erica`.`role` (
+CREATE TABLE `autella`.`role` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE `laura_erica`.`user` (
+CREATE TABLE `autella`.`user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(64) NOT NULL,
   `name` varchar(64) NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE `laura_erica`.`user` (
   FOREIGN KEY (`id_institution`) REFERENCES `institution`(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE `laura_erica`.`subject`(
+CREATE TABLE `autella`.`subject`(
 	`id` INT NOT NULL AUTO_INCREMENT,
   `id_discipline` INT NOT NULL,
   `name` varchar(64) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE `laura_erica`.`subject`(
   FOREIGN KEY (`id_discipline`) REFERENCES `discipline`(`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE `laura_erica`.`question`(
+CREATE TABLE `autella`.`question`(
 	`id` INT NOT NULL AUTO_INCREMENT,
   `creation_date` DATE,
   `secondary_date` DATE,
@@ -71,7 +71,7 @@ CREATE TABLE `laura_erica`.`question`(
   FOREIGN KEY (`id_subject`) REFERENCES `subject`(`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-Create table `laura_erica`.`Tests`(
+Create table `autella`.`Tests`(
 	`id` int NOT NULL AUTO_INCREMENT,
 	`id_user` int NOT NULL,
 	`making_date` DATE,
@@ -82,7 +82,7 @@ Create table `laura_erica`.`Tests`(
 	  FOREIGN KEY (`id_user`) REFERENCES `user`(`id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-	Create table `laura_erica`.`question_test`(
+	Create table `autella`.`question_test`(
 	`id_tests` int NOT NULL ,
 	`id_question` int NOT NULL,
 	FOREIGN KEY (`id_tests`) REFERENCES `tests`(`id`),
