@@ -187,7 +187,6 @@
         if ($id_role == 1) {
             echo '
         var div = document.getElementById("selectDiscipline_container");
-    
         div.removeAttribute("hidden");
         ';
         }

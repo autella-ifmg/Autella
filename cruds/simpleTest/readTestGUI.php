@@ -201,7 +201,7 @@
             for ($i = 0; $i < 3; $i++) {
                 echo '
         var container' . $i . ' = list[' . $i . '];
-        container' . $i . '.removeAttribute("class", "w-25 mt-1 mr-3");
+        container' . $i . '.removeAttribute("class");
         container' . $i . '.setAttribute("class", "w-50 mt-1 mr-3");
                 ';
             }

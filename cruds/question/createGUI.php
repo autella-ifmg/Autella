@@ -88,7 +88,8 @@
         </div>
     </section>
 
-   
+   <!--Importação das funções .js utilizadas nessa página
+   <script src="../../utilities/functionsForQuestion.js"></script>-->
 
     <script>
         //Função para inserir as matérias no selectSubjects.

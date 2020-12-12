@@ -25,7 +25,7 @@ if (isset($_GET["filter"])) {
 }
 //var_dump($filter);
 
-//Paginação - PHP
+//Paginação
 //Número da página atual
 $current = intval(isset($_GET["pag"]) ? $_GET["pag"] : 1);
 //var_dump($current);
@@ -36,8 +36,8 @@ $end = 5;
 //Início da exibicação.
 $start = ($end * $current) - $end;
 
-$array = selectQuestions(true, $start, $end, $filter);
-//var_dump($array);
+$questions = selectQuestions(true, $start, $end, $filter);
+//var_dump($questions);
 
 //Total de linhas da tabela.
 $totalRows = count($aux = selectQuestions(false, 0, 0, $filter));
@@ -72,35 +72,35 @@ function dateTratament($creation_date)
     return $creation_date = "Criada em: " . date("d/m/Y", $creation_date);
 }
 
-function data($array, $id_role)
+function questionBlocks($questions, $id_role)
 {
     global $start;
     $id_user = $_SESSION["userData"]["id"];
 
-    if (!empty($array)) {
-        if (count($array) > 0) {
-            for ($i = 0; $i < count($array); $i++) {
+    if (!empty($questions)) {
+        if (count($questions) > 0) {
+            for ($i = 0; $i < count($questions); $i++) {
                 $icons = "";
                 $questionNumber = ($start + ($i + 1));
-                $dificulty = dificultyTratament($array[$i]["dificulty"]);
-                $correctAnswer = "Alternativa correta: " . $array[$i]["correctAnswer"];
-                $discipline =  "Disciplina: " . $array[$i][9];
-                $subject = "Matéria: " . $array[$i]["name"];
-                $creation_date = dateTratament($array[$i]["creation_date"]);
-                $enunciate =  $array[$i]["enunciate"];
-                $status = $array[$i]["status"];
+                $dificulty = dificultyTratament($questions[$i]["dificulty"]);
+                $correctAnswer = "Alternativa correta: " . $questions[$i]["correctAnswer"];
+                $discipline =  "Disciplina: " . $questions[$i][9];
+                $subject = "Matéria: " . $questions[$i]["name"];
+                $creation_date = dateTratament($questions[$i]["creation_date"]);
+                $enunciate =  $questions[$i]["enunciate"];
+                $status = $questions[$i]["status"];
 
-                if($id_role == 1 || $array[$i]["id_user"] == $id_user ) {
+                if($id_role == 1 || $questions[$i]["id_user"] == $id_user ) {
                    if ($status == 0) {
                         $icons = '
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg" alt="Arquivar" height="25" onclick="defineModalAction(0, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#unarchiveModal" data-toggle="tooltip" data-placement="bottom" title="Arquivar questão"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="defineModalAction(1, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal" data-toggle="tooltip" data-placement="bottom" title="Deletar questão"/></div>
+                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg" alt="Arquivar" height="25" onclick="defineModalAction(2, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#unarchiveModal" data-toggle="tooltip" data-placement="bottom" title="Arquivar questão"/></div>
+                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="defineModalAction(3, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal" data-toggle="tooltip" data-placement="bottom" title="Deletar questão"/></div>
                         ';
                     } elseif($status == 1) {
                         $icons = '
                         <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" alt="Editar" height="25" onclick="defineModalAction(0, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Editar questão"/></div>
                         <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Arquivar" height="25" onclick="defineModalAction(1, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#archiveModal" data-toggle="tooltip" data-placement="bottom" title="Arquivar questão"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="defineModalAction(2, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal" data-toggle="tooltip" data-placement="bottom" title="Deletar questão"/></div>
+                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="defineModalAction(3, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal" data-toggle="tooltip" data-placement="bottom" title="Deletar questão"/></div>
                         ';
                     }
                 }
@@ -145,10 +145,10 @@ function data($array, $id_role)
     }
 }
 
-function imports($array)
+function imports($questions)
 {
-    if (count($array) > 0) {
-        for ($i = 0; $i < count($array); $i++) {
+    if (count($questions) > 0) {
+        for ($i = 0; $i < count($questions); $i++) {
             echo '
             DecoupledEditor
             .create(document.querySelector("#editor' . $i . '"))

@@ -122,7 +122,7 @@ function selectQuestions($limit, $start, $end, $filter)
         $id_discipline = $filter[0] == null ? "null" : $filter[0];
         $id_subject = $filter[1] == null ? "question.id_subject" : $filter[1];
         $dificulty = $filter[2] == null ? "" : " AND question.dificulty = $filter[2]";
-        $creation_date = $filter[3] == null ? "" : " AND question.date = '$filter[3]'";
+        $creation_date = $filter[3] == null ? "" : " AND question.creation_date = '$filter[3]'";
         $status = $filter[4] == null ? " AND question.status = 1" : " AND question.status = $filter[4]";
     }
 
@@ -164,7 +164,8 @@ function selectQuestions($limit, $start, $end, $filter)
     $connection->close();
     return $array;
 }
-//Provas
+
+//simpleTest
 function selectTestQuestions($filter,$id_test)
 {
     require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
