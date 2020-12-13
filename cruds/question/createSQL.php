@@ -1,8 +1,7 @@
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
-
+ $id_role = $_SESSION["userData"]["id_role"];
+ //var_dump($id_role);
+ 
 //Função que remove conteúdos indejados dos inputs.
 function secure($input)
 {

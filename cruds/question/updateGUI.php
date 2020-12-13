@@ -11,10 +11,9 @@
     <script src="../../libraries/ckeditor/ckeditor.js"></script>
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
-    //require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php'; class="needs-validation"
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
-
     $id_role = $_SESSION["userData"]["id_role"];
+    //var_dump($id_role);
 
     $filter[0] = null;
     $filter[1] = null;
@@ -22,18 +21,18 @@
     $filter[3] = null;
     $filter[4] = 1;
 
-    $array = selectQuestions(false, 0, 0, $filter);
-    //var_dump($array);
+    $questions = selectQuestions(false, 0, 0, $filter);
+    //var_dump($questions);
 
-    $id_question_edit = $_GET["id_question_edit"];
-    //var_dump($id_question_edit);
+    $id_question_update = $_GET["id_question_update"];
+    //var_dump($id_question_update);
 
-    for ($i = 0; $i < count($array); $i++) {
-        if ($array[$i][0] == $id_question_edit) {
-            $arrayUpdate = $array[$i];
+    for ($i = 0; $i < count($questions); $i++) {
+        if ($questions[$i][0] == $id_question_update) {
+            $questionForUpdate = $questions[$i];
         }
     }
-    //var_dump($arrayUpdate);
+    //var_dump($questionForUpdate);
     ?>
 </head>
 
@@ -45,23 +44,23 @@
     <section class="d-flex justify-content-center mt-4">
         <div class="d-flex flex-column">
             <form id="questionForm" action="updateSQL.php" method="post">
-                <input name="id" type="hidden" value="<?php echo $arrayUpdate[0]; ?>">
+                <input name="id" type="hidden" value="<?php echo $questionForUpdate[0]; ?>">
                 <div class="d-flex flex-row justify-content-between mb-2">
-                    <!--Select disciplina-->
-                    <div id="selectDiscipline_container" class="w-25 mt-1 mr-3" hidden>
+                    <!--Select - disciplina-->
+                    <div id="disciplineSelection_container" class="w-25 mt-1 mr-3" hidden>
                         <label for="disciplines">Disciplina:</label>
                         <select name="disciplines" id="disciplines" class="form-control" onchange="updateSelects()">
                             <?php disciplineNames(2); ?>
                         </select>
                     </div>
-                    <!--Select matérias-->
+                    <!--Select - matérias-->
                     <div class="w-25 mt-1 mr-3">
                         <label for="subjects">Matéria:</label>
                         <select name="subjects" id="subjects" class="form-control" required>
                             <!--updateSelects()-->
                         </select>
                     </div>
-                    <!--Select dificuldade-->
+                    <!--Select - dificuldade-->
                     <div class="w-25 mt-1 mr-3">
                         <label for="dificulty">Dificuldade:</label>
                         <select name="dificulty" id="dificulty" class="form-control" required>
@@ -70,7 +69,7 @@
                             <option id="d3" value="3">Difícil</option>
                         </select>
                     </div>
-                    <!--Select alternativa correta-->
+                    <!--Select - alternativa correta-->
                     <div class="w-25 mt-1">
                         <label for="correctAnswer">Alternativa correta:</label>
                         <select name="correctAnswer" id="correctAnswer" class="form-control" required>
@@ -88,7 +87,7 @@
                 <!--Enunciado da questão-->
                 <div class="mb-3">
                     <div name="toolbar" id="toolbar-container"></div>
-                    <div name="editor" id="editor" style="min-width: 65rem; max-width: 65rem; min-height: 20rem; max-height: 20rem; border: 1px solid gray;"><?php echo $arrayUpdate["enunciate"]; ?></div>
+                    <div name="editor" id="editor" style="min-width: 65rem; max-width: 65rem; min-height: 20rem; max-height: 20rem; border: 1px solid gray;"><?php echo $questionForUpdate["enunciate"]; ?></div>
                 </div>
 
                 <hr>
@@ -102,95 +101,47 @@
         </div>
     </section>
 
+    <!--Importação das funções .js utilizadas nessa página-->
+    <script src="../../utilities/functionsForQuestion.js"></script>
 
     <script>
-        //Função para inserir as matérias no selectSubject.
-        function updateSelects() {
-            <?php
-            $disciplineSelected = json_encode($arrayUpdate[8]);
-            $subjectSelected = json_encode($arrayUpdate["name"]);
-            $dificultySelected = json_encode($arrayUpdate["dificulty"]);
-            $correctAnswerSelected = json_encode($arrayUpdate["correctAnswer"]);
+        <?php
+        //Variável global com o id_discipline da questão selecionada.
+        $js_var = json_encode($questionForUpdate[8]);
+        echo "disciplineSelected = " . $js_var . ";\n";
 
-            echo "
-            var disciplineSelected = " . $disciplineSelected . ";\n
-            var subjectSelected = " . $subjectSelected . ";\n
-            var dificultySelected = " . $dificultySelected . ";\n
-            var correctAnswerSelected = " . $correctAnswerSelected . ";
-            ";
-            ?>
+        //Variável global com o nome da matéria da questão selecionada.
+        $js_var = json_encode($questionForUpdate["name"]);
+        echo "subjectSelected = " . $js_var . ";\n";
 
-            //Discipline
-            var disciplineOption = document.getElementById(disciplineSelected);
-            disciplineOption.setAttribute("selected", "selected");
+        //Array global com todas as matérias registradas.
+        $php_array = selectSubjects();
+        $js_array = json_encode($php_array);
+        echo "subjects = " . $js_array . ";\n";
 
-            var selectDiscipline = document.getElementById("disciplines");
-            selectDiscipline = selectDiscipline.value;
+        //Variável global com a dificuldade da questão selecionada.
+        $js_var = json_encode($questionForUpdate["dificulty"]);
+        echo "dificultySelected = " . $js_var . ";\n";
 
-            //Subject
-            var selectSubjects = document.getElementById("subjects");
-            selectSubjects.innerHTML = "";
+        //Variável global com a alternativa correta da questão selecionada.
+        $js_var = json_encode($questionForUpdate["correctAnswer"]);
+        echo "correctAnswerSelected = " . $js_var . ";\n";
 
-            <?php
-            $php_array = selectSubjects();
-            $js_array = json_encode($php_array);
-            echo "var subjects = " . $js_array . ";\n";
-            ?>
+        //Variável global com o id_role atual.
+        $js_var = json_encode($id_role);
+        echo "id_role = Number(" . $js_var . ");\n";
+        ?>
 
-            for (let i = 0; i < subjects.length; i++) {
-                if (subjects[i][1] == selectDiscipline) {
-                    let option = document.createElement("option");
-                    option.setAttribute("value", `${subjects[i][0]}`);
-                    option.setAttribute("label", `${subjects[i][2]}`);
+        action_pag = 3;
 
-                    if (subjects[i][2] == subjectSelected) {
-                        option.setAttribute("selected", "selected");
-                    }
+        //Quando o documento estiver carregado, executa o método verifyRole().
+        document.addEventListener("DOMContentLoaded", verifyRole(), false);
 
-                    selectSubjects.appendChild(option);
-                }
-            }
-
-            //Dificulty
-            var dificultyOption = document.getElementById(`d${dificultySelected}`);
-            dificultyOption.setAttribute("selected", "selected");
-
-            //Correct Answer
-            var correctAnswerOption = document.getElementById(`option${correctAnswerSelected}`);
-            correctAnswerOption.setAttribute("selected", "selected");
-        }
         //Quando o documento estiver carregado, executa o método updateSelects().
         document.addEventListener("DOMContentLoaded", updateSelects(), false);
 
-        //Função para realizar a conexão CKEditor - MySQL.-
-        document.querySelector("#submit").addEventListener("click", () => {
-            var editorData = document.querySelector("#editor").children;
-
-            var string = "";
-            for (let i = 0; i < editorData.length; i++) {
-                string += editorData[i].outerHTML;
-                string += "\n";
-            }
-            var invisibleInput = document.createElement("input");
-            invisibleInput.setAttribute("name", "enunciate");
-            invisibleInput.setAttribute("id", "enunciate");
-            invisibleInput.setAttribute("type", "text");
-            invisibleInput.setAttribute("value", `${string}`);
-            invisibleInput.setAttribute("style", "display: none");
-
-            var form = document.getElementById("#questionForm");
-            questionForm.appendChild(invisibleInput);
-        });
-
-        //Verifica se um coordenador que está logado.
-        <?php
-        if ($id_role == 1) {
-            echo '
-        var div = document.getElementById("selectDiscipline_container");
-        div.removeAttribute("hidden");
-        ';
-        }
-        ?>
+        //Quando o documento estiver carregado, executa o método submitEnunciate().
+        document.addEventListener("DOMContentLoaded", submitEnunciate(), false);
     </script>
 
     <!--CKEditor-->

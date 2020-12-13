@@ -4,11 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CKEditor - Custom</title>
-    <link rel="stylesheet" href="/libraries/bootstrap/bootstrap.css">
+    <title>Autella | Criar questão</title>
+    <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
+    <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
+    <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
+    <script src="../../libraries/ckeditor/ckeditor.js"></script>
     <?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
-    require_once "../../utilities/dbSelect.php";
     ?>
 </head>
 
@@ -50,9 +53,6 @@
         </p>
     </footer>
 
-    <!--Importações do Bootstrap-->
-    <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
-    <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
 
     <!--Importações do CKEditor-->
     <script //src="../../libraries/ckeditor/ckeditor.js"></script>
@@ -68,6 +68,7 @@
                 console.error0(error0);
             });*/
     </script>
+    
     <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
     <script src="../../libraries/ckeditor - custom/build/ckeditor.js"></script>
     <script>

@@ -5,7 +5,6 @@ $username = "autella";
 $password = "autella2020";
 $dbname = "autella";
 
-
 /*
 $host = "localhost";
 $username = "root";

@@ -1,8 +1,4 @@
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
-
 //Função que remove conteúdos indejados dos inputs.
 function secure($input)
 {

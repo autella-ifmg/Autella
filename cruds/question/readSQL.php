@@ -1,8 +1,4 @@
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
-
 $id_role = $_SESSION["userData"]["id_role"];
 //var_dump($id_role);
 $id_discipline = $_SESSION["userData"]["id_discipline"];

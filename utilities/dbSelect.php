@@ -158,7 +158,7 @@ function selectQuestions($limit, $start, $end, $filter)
         }
         // array_push($_SESSION['debug'], "Questões selecionadas com sucesso!");
     } else {
-        array_push($_SESSION['debug'], "Erro ao selecionar questões!");
+        array_push($_SESSION['debug'], "Erro ao selecionar questões!" . $sql);
     }
 
     $connection->close();

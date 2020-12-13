@@ -11,15 +11,12 @@
     <script src="../../libraries/ckeditor/ckeditor.js"></script>
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
-    //require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php'; class="needs-validation"
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
-
-    $id_role = $_SESSION["userData"]["id_role"];
-    //var_dump($id_role);
+    require_once "createSQL.php";
     ?>
 </head>
 
-<body onload="alternativesField()">
+<body>
     <?php require_once '../../views/navbar.php'; ?>
 
     <section class="d-flex justify-content-center mt-4">
@@ -27,9 +24,9 @@
             <form id="questionForm" action="createSQL.php" method="post">
                 <div class="d-flex flex-row mb-2 justify-content-between">
                     <!--Select disciplina-->
-                    <div id="selectDiscipline_container" class="w-25 mt-1 mr-3" hidden>
-                        <label for="discipline">Disciplina:</label>
-                        <select name="discipline" id="discipline" class="form-control" onchange="updateSubjects()">
+                    <div id="disciplineSelection_container" class="w-25 mt-1 mr-3" hidden>
+                        <label for="disciplines">Disciplina:</label>
+                        <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
                             <?php disciplineNames(0); ?>
                         </select>
                     </div>
@@ -82,107 +79,41 @@
                 <!--Botões-->
                 <div class="d-flex flex-row justify-content-around mb-5">
                     <a href="readGUI.php" type="button" class="w-25 btn btn-danger mr-2">Cancelar</a>
-                    <button name="submit" id="submit" type="submit" class="w-25 btn btn-success">Adicionar</button>
+                    <button name="submit" id="submit" type="submit" class="w-25 btn btn-success">Criar questão</button>
                 </div>
             </form>
         </div>
     </section>
 
-   <!--Importação das funções .js utilizadas nessa página
-   <script src="../../utilities/functionsForQuestion.js"></script>-->
+    <!--Importação das funções .js utilizadas nessa página-->
+    <script src="../../utilities/functionsForQuestion.js"></script>
 
     <script>
-        //Função para inserir as matérias no selectSubjects.
-        function updateSubjects() {
-            var selectDiscipline = document.getElementById("discipline");
-            selectDiscipline = selectDiscipline.value;
+        <?php
+        //Variável global com o id_role atual.
+        $js_var = json_encode($id_role);
+        echo "id_role = Number(" . $js_var . ");\n";
 
-            var selectSubjects = document.getElementById("subjects");
-            selectSubjects.innerHTML = "";
+        //Array global com todas as matérias registradas.
+        $php_array = selectSubjects();
+        $js_array = json_encode($php_array);
+        echo "subjects = " . $js_array . ";\n";
+        ?>
 
-            var option = document.createElement("option");
-            option.setAttribute("disabled", "disabled");
-            option.setAttribute("selected", "selected");
-            option.setAttribute("label", "Escolha...");
-            selectSubjects.appendChild(option);
+        //Variável global que informa a função da página atual.
+        action_pag = 2;
 
-            <?php
-            $php_array = selectSubjects();
-            $js_array = json_encode($php_array);
-            echo "var subjects = " . $js_array . ";\n";
-            ?>
+        //Quando o documento estiver carregado, executa o método verifyRole().
+        document.addEventListener("DOMContentLoaded", verifyRole(), false);
 
-            for (let i = 0; i < subjects.length; i++) {
-                if (subjects[i][1] == selectDiscipline) {
-                    let option = document.createElement("option");
-                    option.setAttribute("value", `${subjects[i][0]}`);
-                    option.setAttribute("label", `${subjects[i][2]}`);
-                    selectSubjects.appendChild(option);
-                }
-            }
-        }
         //Quando o documento estiver carregado, executa o método updateSubjects().
         document.addEventListener("DOMContentLoaded", updateSubjects(), false);
 
-        //Função para gerar os campos de texto das alternativas.
-        function alternativesField() {
-            var alternatives_container = document.getElementById("alternatives_container");
-            letters = ["A", "B", "C", "D", "E"];
+        //Quando o documento estiver carregado, executa o método alternativesField().
+        document.addEventListener("DOMContentLoaded", alternativesField(), false);
 
-            for (let i = 0; i < 5; i++) {
-                let div = document.createElement("div");
-                div.setAttribute("id", "div_container");
-                div.setAttribute("class", "d-flex flex-row");
-                alternatives_container.appendChild(div);
-
-                let img = document.createElement("img");
-                img.setAttribute("src", `../../images/alternatives/${letters[i]}.png`);
-                img.setAttribute("alt", letters[i]);
-                img.setAttribute("class", "bg-info rounded-circle mr-1 mb-3");
-                div.appendChild(img);
-
-                let textarea = document.createElement("textarea");
-                textarea.setAttribute("name", `question${i}`);
-                textarea.setAttribute("id", `question${i}`);
-                textarea.setAttribute("cols", "125");
-                textarea.setAttribute("rows", "3");
-                textarea.setAttribute("class", "ml-1 mb-3 rounded");
-                textarea.setAttribute("style", "resize: none;");
-                textarea.setAttribute("placeholder", "Insira o enunciado da alternativa...");
-                textarea.setAttribute("required", "required");
-                div.appendChild(textarea);
-            }
-        }
-
-        //Função para realizar a enviar o conteúdo do CKEDitor.
-        document.querySelector("#submit").addEventListener("click", () => {
-            var editorData = document.querySelector("#editor").children;
-
-            var string = "";
-            for (let i = 0; i < editorData.length; i++) {
-                string += editorData[i].outerHTML;
-                string += "\n";
-            }
-
-            var invisibleInput = document.createElement("input");
-            invisibleInput.setAttribute("name", "enunciate");
-            invisibleInput.setAttribute("id", "enunciate");
-            invisibleInput.setAttribute("type", "text");
-            invisibleInput.setAttribute("value", string);
-            invisibleInput.setAttribute("style", "display: none");
-
-            var form = document.getElementById("#questionForm");
-            questionForm.appendChild(invisibleInput);
-        });
-
-        //Verifica se um coordenador que está logado.
-        <?php
-        if ($id_role == 1) {
-            echo '
-        var div = document.getElementById("selectDiscipline_container");
-        div.removeAttribute("hidden");';
-        }
-        ?>
+        //Quando o documento estiver carregado, executa o método submitEnunciate().
+        document.addEventListener("DOMContentLoaded", submitEnunciate(), false);
     </script>
 
     <!--CKEditor-->

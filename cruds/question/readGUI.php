@@ -10,54 +10,27 @@
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
     <script src="../../libraries/ckeditor/ckeditor.js"></script>
     <?php
-    require_once "../../utilities/dbSelect.php";
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
     require_once "readSQL.php";
     ?>
 </head>
 
-<body onload="verifyRole()">
+<body>
     <?php require_once '../../views/navbar.php'; ?>
 
     <!--Toast genérico-->
     <?php require_once '../../views/genericToast.php'; ?>
 
     <section class="d-flex justify-content-center mt-3">
-        <!--Filtros-->
         <div class="d-flex flex-column">
             <div class="d-flex flex-row mb-3">
                 <!--Botão filtrar-->
                 <div class="w-auto mt-1 mr-3">
                     <a id="filter" onclick="filter(1, 1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-square-fill.svg" alt="Aplicar filtros" height="75" data-toggle="tooltip" data-placement="top" title="Aplicar filtros"> </a>
                 </div>
-                <!--Filtro - disciplina-->
-                <div id="container_selectDiscipline" class="w-25 mt-1 mr-3" hidden>
-                    <label for="disciplines">Disciplina:</label>
-                    <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
-                        <?php disciplineNames(1); ?>
-                    </select>
-                </div>
-                <!--Filtro - matéria-->
-                <div name="container_select" class="w-25 mt-1 mr-3">
-                    <label for="subjects">Matéria:</label>
-                    <select name="subjects" id="subjects" class="form-control">
-                        <!--updateSubjects()-->
-                    </select>
-                </div>
-                <!--Filtro - dificuldade-->
-                <div name="container_select" class="w-25 mt-1 mr-3">
-                    <label for="dificulty">Dificuldade:</label>
-                    <select name="dificulty" id="dificulty" class="form-control">
-                        <option value="" selected>Escolha...</option>
-                        <option value="1">Fácil</option>
-                        <option value="2">Média</option>
-                        <option value="3">Difícil</option>
-                    </select>
-                </div>
-                <!--Filtro - data-->
-                <div name="container_select" class="w-25 mt-1">
-                    <label for="date">Data de criação:</label>
-                    <input id="date" type="date" class="form-control">
-                </div>
+                 <!--Filtros-->
+                 <?php require_once '../../views/filters.php'; ?>
             </div>
 
             <!--Botões-->
@@ -84,23 +57,23 @@
     <script>
         <?php
         //Array global com as questões que estão sendo exibidas.
-        $php_array = json_encode($questions);
-        echo "questions = " . $php_array . ";\n";
+        $js_var = json_encode($questions);
+        echo "questions = " . $js_var . ";\n";
 
-        //Variável global com o id_role atual.
-        $php_var = json_encode($id_role);
-        echo "id_role = Number(" . $php_var . ");\n";
+        //Variável global com o id_role do usário atual.
+        $js_var = json_encode($id_role);
+        echo "id_role = Number(" . $js_var . ");\n";
 
-        //Variável global com o id_discipline atual.
-        $php_var = json_encode($id_discipline);
-        echo "id_discipline = Number(" . $php_var . ");\n";
+        //Variável global com o id_discipline do usário atual.
+        $js_var = json_encode($id_discipline);
+        echo "id_discipline = Number(" . $js_var . ");\n";
 
         //Array global com todas as matérias registradas.
         $php_array = selectSubjects();
         $js_array = json_encode($php_array);
         echo "subjects = " . $js_array . ";\n";
 
-        //Variável global que informa se há ou não questõe sendo exibidas.
+        //Variável global que informa se há ou não questões sendo exibidas.
         if (empty($questions)) {
             echo "arrayIsEmpty = true;\n";
         } else {
@@ -110,6 +83,9 @@
 
         //Variável global que informa a função da página atual.
         action_pag = 1;
+
+        //Quando o documento estiver carregado, executa o método verifyRole().
+        document.addEventListener("DOMContentLoaded", verifyRole(), false);
 
         //Quando o documento estiver carregado, executa o método updateSubjects().
         document.addEventListener("DOMContentLoaded", updateSubjects(), false);

@@ -1,6 +1,29 @@
+//Função para enviar o conteúdo do CKEDitor.
+function submitEnunciate() {
+  document.querySelector("#submit").addEventListener("click", () => {
+    var editorData = document.querySelector("#editor").children;
+  
+    var string = "";
+    for (let i = 0; i < editorData.length; i++) {
+      string += editorData[i].outerHTML;
+      string += "\n";
+    }
+  
+    var invisibleInput = document.createElement("input");
+    invisibleInput.setAttribute("name", "enunciate");
+    invisibleInput.setAttribute("id", "enunciate");
+    invisibleInput.setAttribute("type", "text");
+    invisibleInput.setAttribute("value", string);
+    invisibleInput.setAttribute("style", "display: none");
+  
+    var form = document.getElementById("#questionForm");
+    questionForm.appendChild(invisibleInput);
+  });
+}
+
 //Função para inserir as matérias no selectSubjects.
 function updateSubjects() {
-  if (id_role == 1) {
+  if (id_role == 1 || action_pag == 2) {
     var selectDiscipline = document.getElementById("disciplines");
     selectDiscipline = selectDiscipline.value;
   } else {
@@ -24,6 +47,44 @@ function updateSubjects() {
       selectSubjects.appendChild(option);
     }
   }
+}
+
+//Função para inserir os dados da questão selecionado nos selects.
+function updateSelects() {
+  //Discipline
+  var disciplineOption = document.getElementById(disciplineSelected);
+  disciplineOption.setAttribute("selected", "selected");
+
+  var selectDiscipline = document.getElementById("disciplines");
+  selectDiscipline = selectDiscipline.value;
+
+  //Subject
+  var selectSubjects = document.getElementById("subjects");
+  selectSubjects.innerHTML = "";
+
+  for (let i = 0; i < subjects.length; i++) {
+    if (subjects[i][1] == selectDiscipline) {
+      let option = document.createElement("option");
+      option.setAttribute("value", `${subjects[i][0]}`);
+      option.setAttribute("label", `${subjects[i][2]}`);
+
+      if (subjects[i][2] == subjectSelected) {
+        option.setAttribute("selected", "selected");
+      }
+
+      selectSubjects.appendChild(option);
+    }
+  }
+
+  //Dificulty
+  var dificultyOption = document.getElementById(`d${dificultySelected}`);
+  dificultyOption.setAttribute("selected", "selected");
+
+  //Correct Answer
+  var correctAnswerOption = document.getElementById(
+    `option${correctAnswerSelected}`
+  );
+  correctAnswerOption.setAttribute("selected", "selected");
 }
 
 //Função que coleta o filtro desejado.
@@ -66,7 +127,6 @@ function filter(pag, status) {
 
 //Especifica a ação do modal
 function defineModalAction(action, questionNumber) {
-  console.log("teste");
   var modal = [
     [
       "editModal",
@@ -150,12 +210,12 @@ function convertQuestionNumber(questionNumber) {
 function editQuestion(questionNumber) {
   var position = convertQuestionNumber(questionNumber);
 
-  var id_question_edit = questions[position][0];
-  console.log(id_question_edit);
+  var id_question_update = questions[position][0];
+  //console.log(id_question_update);
   var button = document.getElementById("editButton");
   button.setAttribute(
     "href",
-    `updateGUI.php?id_question_edit=${id_question_edit}`
+    `updateGUI.php?id_question_update=${id_question_update}`
   );
 }
 
@@ -279,16 +339,52 @@ function deleteQuestion(questionNumber) {
   });
 }
 
+//Função para gerar os campos de texto das alternativas.
+function alternativesField() {
+  var alternatives_container = document.getElementById(
+    "alternatives_container"
+  );
+  letters = ["A", "B", "C", "D", "E"];
+
+  for (let i = 0; i < 5; i++) {
+    let div = document.createElement("div");
+    div.setAttribute("id", "div_container");
+    div.setAttribute("class", "d-flex flex-row");
+    alternatives_container.appendChild(div);
+
+    let img = document.createElement("img");
+    img.setAttribute("src", `../../images/alternatives/${letters[i]}.png`);
+    img.setAttribute("alt", letters[i]);
+    img.setAttribute("class", "bg-info rounded-circle mr-1 mb-3");
+    div.appendChild(img);
+
+    let textarea = document.createElement("textarea");
+    textarea.setAttribute("name", `question${i}`);
+    textarea.setAttribute("id", `question${i}`);
+    textarea.setAttribute("cols", "125");
+    textarea.setAttribute("rows", "3");
+    textarea.setAttribute("class", "ml-1 mb-3 rounded");
+    textarea.setAttribute("style", "resize: none;");
+    textarea.setAttribute(
+      "placeholder",
+      "Insira o enunciado da alternativa..."
+    );
+    textarea.setAttribute("required", "required");
+    div.appendChild(textarea);
+  }
+}
+
 function verifyRole() {
   if (id_role == 1) {
-    var div = document.getElementById("container_selectDiscipline");
+    //console.log("role");
+    var div = document.getElementById("disciplineSelection_container");
     div.removeAttribute("hidden");
-  } else if (action_pag != 2) {
-    var list = document.getElementsByName("container_select");
+  } else if (action_pag < 2) {
+    var list = document.getElementsByName("selection_container");
 
     for (let i = 0; i < 3; i++) {
       var container = list[`${i}`];
-      var mr = (i != 2 ? "mr-3" : "");
+      var mr = i != 2 ? "mr-3" : "";
       container.setAttribute("class", `w-50 mt-1 ${mr}`);
     }
   }
@@ -296,9 +392,9 @@ function verifyRole() {
 
 function arrayIsEmpty() {
   if (arrayIsEmpty) {
-    $("#container_selectDiscipline").find("*").prop("disabled", true);
+    $("#disciplineSelection_container").find("*").prop("disabled", true);
 
-    var list = document.getElementsByName("container_select");
+    var list = document.getElementsByName("selection_container");
 
     for (let i = 0; i < 3; i++) {
       var container = list[`${i}`];
