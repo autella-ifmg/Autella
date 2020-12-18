@@ -1,0 +1,87 @@
+Tem que arrumar responsividade
+
+Copiar layout do github -> mostrar questões, provas simples e provas globais já feitas
+Acrescentar "Bio" (biografia) para o usuário usando ckeditor
+
+Na navbar vai ter duas opções: questões, provas simples e provas globais. Cada um vai redirecionar para seu respectivo read, e nesse read vai ter um botão que direciona para a criação
+
+
+
+
+
+
+-------------------- Painel de controle do coordenador --------------------
+Nesse painel o coordenador terá acesso absoluto ao sistema.
+Ele poderá alterar, editar e excluir:
+1. Usuários, além de poder logar como se fosse um professor específico (Responsável: Nicholas)
+2. Questões (Responsável: José)
+3. Provas simples e globais (Responsável: João)
+
+Obs1.: a listagem de questões, provas simples e provas globais será bem parecida com a que um professor tem acesso. Ela terá apenas o filtro de disciplina também.
+Obs2.: é necessário criar uma forma de listagem dos usuários
+
+
+
+
+
+
+
+
+
+
+-------------------- Avisos de edição --------------------
+1. Ao editar uma questão, exibir o aviso: "Ao alterar essa questão, todas as provas simples e provas globais que usam essa questão também serão alteradas. Você tem certeza que deseja fazer modificação?"
+
+2. Ao editar prova simples, exibir o aviso: "Ao alterar essa prova simples, todas as provas globais que usam essa prova simples também serão alteradas. Você tem certeza que deseja fazer modificação?
+
+
+
+
+
+
+
+
+
+-------------------- Ideia principal --------------------
+Não é uma boa ideia inserir a coluna de "status da conta" na tabela de user. Fazer isso geraria implicações em todo site:
+Seria necessário verificar se a conta está ativa: na hora de criar uma questão, prova simples e prova global, login.
+Após uma conta ser desativada, poderia ser usada novamente? Se sim, seria necessário o coordenador fazer uma aprovação daquela ativação? Como seria feita essa aprovação?
+Como seria exibido as informações do usuário desativado na listagem das questões e provas?
+Enfim, diversas complicações desnecessárias que podem ser eliminadas com o método abaixo.
+
+
+
+
+
+Funcionamento das exclusões do sistema:
+1. Excluir prova global: Elimina registro do banco de dados diretamente por não ser referenciada em hipótese alguma.
+2. Excluir prova simples: Elimina registro do banco de dados diretamente apenas caso não seja referenciada por nenhuma prova global, caso contrário, a única modificação seria os valores de seus campos. 
+3. Excluir questão: Elimina registro do banco de dados diretamente apenas caso não seja referenciada por nenhuma prova simples, caso contrário, a única modificação seria os valores de seus campos. 
+4. Excluir usuário: Elimina registro do banco de dados diretamente apenas caso não seja referenciado por nenhuma questão, prova simples ou prova global (já que o usuário pode criá-las independentemente) caso contrário, a única modificação seria os valores de seus campos. 
+5. Excluir instituição: Elimina registro do banco de dados diretamente, incluindo todos os usuários, questões, provas simples e provas globais daquela instituição.
+
+Obs.: No primeiro momento em que algum desses elementos for excluído (com exceção da prova global e instituição) seus campos serão apenas alterados. A cada 24h o servidor executará uma função, excluirElementosFantasma(), que verificará a questão dessas referenciações e excluirá elementos ilhados.
+
+
+
+
+
+Valores dos campos ao excluir elemento:
+1. Prova simples: 
+	1.1 ?: "[Prova excluída em (data da exclusão)]"
+	1.2 ?: ?
+	1.3 ?: ?
+	(É necessário substituir os ?)
+	Obs.: atentar-se com a tabela de relacionamento que informa quais questões que uma certa prova simples tem
+
+2. Questão:
+	2.1 ?: "[Questão excluída em (data da exclusão)]"
+	2.2 ?: ?
+	2.3 ?: ?
+	(É necessário substituir os ?)
+
+3. Usuário: 
+	3.1 Nome: "[Conta excluída em (data da exclusão)]"
+	3.2 Email: ""
+	3.3 Senha: ""
+	Obs.: o restante dos campos permanecem inalterados
