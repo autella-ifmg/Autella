@@ -25,14 +25,14 @@ if (isset($_POST["submit"])) {
     $sql = "UPDATE question SET id_subject = '$id_subject', dificulty = '$dificulty', enunciate = '$enunciate', correctAnswer = '$correctAnswer' WHERE id = '$id'";
 
     if ($connection->query($sql) === TRUE) {
-        //array_push($_SESSION['debug'], "Questão alterada com sucesso!");
+        array_push($_SESSION['debug'], "Questão editada com sucesso!");
     } else {
-        array_push($_SESSION['debug'], "Erro ao alterar questão!");
+        array_push($_SESSION['debug'], "Erro ao editar questão!");
     }
 
     $connection->close();
 
-    header('Location: readGUI.php');
+    header('Location: readGUI.php?action_per=2');
 }
 
 if (isset($_POST['question_archive_unarchive'])) {

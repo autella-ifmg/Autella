@@ -15,9 +15,9 @@
             <li>
                 <a class="nav-link" href="/cruds/simpleTest/readListGUI.php">Visualizar provas simples</a>
             </li>
-            
-          
-            
+
+
+
 
             <?php
             if ($_SESSION['userData']['id_role'] == 1) {

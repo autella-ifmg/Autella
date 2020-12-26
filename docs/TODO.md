@@ -80,7 +80,7 @@
 	- [ ] Tratamento para inserção de imagens
 
 - [ ] Create
-	- [ ] Configurar o toast de criação de questão
+	- [X] Configurar o toast de criação de questão
 	- [ ] Permitir que os campos de alternativas também sejam formatados
 
 - [ ] Read
@@ -90,8 +90,8 @@
 	- [ ] Exibir em quais provas a questão está presente
 	- [ ] Exibir mais de uma matéria
 	
-- [ ] Update
-	- [ ] Configurar o toast de alteração de questão
+- [X] Update
+	- [X] Configurar o toast de alteração de questão
 
 - [ ] Archive
 	- [X] Arquivar questão

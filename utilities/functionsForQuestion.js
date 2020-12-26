@@ -2,20 +2,20 @@
 function submitEnunciate() {
   document.querySelector("#submit").addEventListener("click", () => {
     var editorData = document.querySelector("#editor").children;
-  
+
     var string = "";
     for (let i = 0; i < editorData.length; i++) {
       string += editorData[i].outerHTML;
       string += "\n";
     }
-  
+
     var invisibleInput = document.createElement("input");
     invisibleInput.setAttribute("name", "enunciate");
     invisibleInput.setAttribute("id", "enunciate");
     invisibleInput.setAttribute("type", "text");
     invisibleInput.setAttribute("value", string);
     invisibleInput.setAttribute("style", "display: none");
-  
+
     var form = document.getElementById("#questionForm");
     questionForm.appendChild(invisibleInput);
   });
@@ -132,7 +132,7 @@ function defineModalAction(action, questionNumber) {
       "editModal",
       "editModalLabel",
       `Editar a <strong>Questão - ${questionNumber}</strong>?`,
-      "Ao alterar essa questão, todas as provas simples e provas globais que a utilizam também serão alteradas.",
+      "Ao editar essa questão, todas as provas simples e provas globais que a utilizam também serão alteradas.",
       `Você tem certeza que deseja fazer alguma modificação na <strong>Questão - ${questionNumber}</strong>?`,
       "editButton",
       "editQuestion(",
@@ -206,6 +206,38 @@ function convertQuestionNumber(questionNumber) {
   return position;
 }
 
+//Gera os toasts referentes às ações de criar e editar questão.
+function genericToastCEQ() {
+  if (action_per == 1) {
+    $("#img_toast").attr({
+      src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/journal-x.svg",
+      alt: "Criar questão"
+    });
+
+    if (result == "Questão criada com sucesso!") {
+      $("#span_toast").text("Sucesso!");
+    } else if (result == "Erro ao criar questão!") {
+      $("#span_toast").text("Erro!");
+    }
+  } else {
+    $("#img_toast").attr({
+      src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg",
+      alt: "Editar questão"
+    });
+
+    if (result == "Questão editada com sucesso!") {
+      $("#span_toast").text("Sucesso!");
+    } else if (result == "Erro ao editar questão!") {
+      $("#span_toast").text("Erro!");
+    }
+  }
+
+  $("#result").html(result).fadeIn();
+  $("#toast").toast("show");
+  window.history.pushState({}, "Autella | Visualizar questões", "/cruds/question/readGUI.php?");
+  console.log(result);
+}
+
 //Editar questão.
 function editQuestion(questionNumber) {
   var position = convertQuestionNumber(questionNumber);
@@ -236,7 +268,7 @@ function archiveQuestion(questionNumber) {
       $("#img_toast").attr({
         src:
           "../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg",
-        alt: "Arquivar",
+        alt: "Arquivar"
       });
       $("#span_toast").text("Sucesso!");
       $("#result").html(success).fadeIn();
@@ -250,7 +282,7 @@ function archiveQuestion(questionNumber) {
       $("#img_toast").attr({
         src:
           "../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg",
-        alt: "Arquivar",
+        alt: "Arquivar"
       });
       $("#span_toast").text("Erro!");
       $("#result").html(error).fadeIn();
@@ -276,7 +308,7 @@ function unarchiveQuestion(questionNumber) {
     success: function (success) {
       $("#img_toast").attr({
         src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg",
-        alt: "Desarquivar",
+        alt: "Desarquivar"
       });
       $("#span_toast").text("Sucesso!");
       $("#result").html(success).fadeIn();
@@ -289,7 +321,7 @@ function unarchiveQuestion(questionNumber) {
     error: function (error) {
       $("#img_toast").attr({
         src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg",
-        alt: "Desarquivar",
+        alt: "Desarquivar"
       });
       $("#span_toast").text("Erro!");
       $("#result").html(error).fadeIn();
@@ -315,7 +347,7 @@ function deleteQuestion(questionNumber) {
       $("#img_toast").attr({
         src:
           "../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg",
-        alt: "Deletar",
+        alt: "Deletar"
       });
       $("#span_toast").text("Sucesso!");
       $("#result").html(success).fadeIn();
@@ -329,7 +361,7 @@ function deleteQuestion(questionNumber) {
       $("#img_toast").attr({
         src:
           "../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg",
-        alt: "Deletar",
+        alt: "Deletar"
       });
       $("#span_toast").text("Erro!");
       $("#result").html(error).fadeIn();

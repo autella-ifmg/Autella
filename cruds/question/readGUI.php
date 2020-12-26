@@ -29,8 +29,8 @@
                 <div class="w-auto mt-1 mr-3">
                     <a id="filter" onclick="filter(1, 1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-square-fill.svg" alt="Aplicar filtros" height="75" data-toggle="tooltip" data-placement="top" title="Aplicar filtros"> </a>
                 </div>
-                 <!--Filtros-->
-                 <?php require_once '../../views/filters.php'; ?>
+                <!--Filtros-->
+                <?php require_once '../../views/filters.php'; ?>
             </div>
 
             <!--Botões-->
@@ -84,11 +84,65 @@
         //Variável global que informa a função da página atual.
         action_pag = 1;
 
+        action_per = 0;
         //Quando o documento estiver carregado, executa o método verifyRole().
         document.addEventListener("DOMContentLoaded", verifyRole(), false);
 
         //Quando o documento estiver carregado, executa o método updateSubjects().
         document.addEventListener("DOMContentLoaded", updateSubjects(), false);
+
+        //Quando o documento estiver carregado, executa o método genericToast_CEQ().
+        //document.addEventListener("DOMContentLoaded", genericToastCEQ(), false);
+
+        <?php
+        if (isset($_GET['action_per'])) {
+            //Variável global que informa se alguma questão foi criada/editada.
+            $php_var = empty($_SESSION['debug']) ? "" : $_SESSION['debug'][count($_SESSION['debug']) - 1];
+            $js_var = json_encode($php_var, JSON_UNESCAPED_UNICODE);
+            echo "result = " . $js_var . ";\n";
+
+            //Variável global que informa qual foi a última ação (criação/edição) do usuário.
+            $php_var =  $_GET['action_per'];
+            $js_var = json_encode($php_var);
+            echo "action_per = Number(" . $js_var . ");\n";
+
+            //Quando o documento estiver carregado, executa o método genericToastCEQ().
+            $js_var = 'document.addEventListener("DOMContentLoaded", genericToastCEQ(), false);';
+            echo $js_var."\n";
+        }
+        ?>
+
+        //Gera os toasts referentes às ações de criar e editar questão.
+        function genericToastCEQ() {
+            if (action_per == 1) {
+                $("#img_toast").attr({
+                    src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/journal-x.svg",
+                    alt: "Criar questão"
+                });
+
+                if (result == "Questão criada com sucesso!") {
+                    $("#span_toast").text("Sucesso!");
+                } else if (result == "Erro ao criar questão!") {
+                    $("#span_toast").text("Erro!");
+                }
+            } else {
+                $("#img_toast").attr({
+                    src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg",
+                    alt: "Editar questão"
+                });
+
+                if (result == "Questão editada com sucesso!") {
+                    $("#span_toast").text("Sucesso!");
+                } else if (result == "Erro ao editar questão!") {
+                    $("#span_toast").text("Erro!");
+                }
+            }
+
+            $("#result").html(result).fadeIn();
+            $("#toast").toast("show");
+            window.history.pushState({}, "Autella | Visualizar questões", "/cruds/question/readGUI.php?");
+            //console.log(result);
+        }
     </script>
 
     <!--CKEditor-->

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autella | Alterar questão</title>
+    <title>Autella | Editar questão</title>
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
@@ -37,7 +37,7 @@
 </head>
 
 <body>
-    <h1 class="text-center mt-3 mb-1">Autella <span class="d-none d-sm-inline">| Alterar dados da questão</span></h1>
+    <h1 class="text-center mt-3 mb-1">Autella <span class="d-none d-sm-inline">| Editar dados da questão</span></h1>
 
     <hr>
 
@@ -95,7 +95,7 @@
                 <!--Botões-->
                 <div class="d-flex flex-row justify-content-around mb-5">
                     <a href="readGUI.php" type="button" class="w-25 btn btn-danger mr-2">Cancelar</a>
-                    <button name="submit" id="submit" type="submit" class="w-25 btn btn-success">Alterar</button>
+                    <button name="submit" id="submit" type="submit" class="w-25 btn btn-success">Editar</button>
                 </div>
             </form>
         </div>

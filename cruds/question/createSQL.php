@@ -41,12 +41,12 @@ if (isset($_POST["submit"])) {
     $sql = "INSERT INTO question (creation_date, id_user, id_subject, dificulty, enunciate, correctAnswer, status) VALUES ('$creation_date', '$id_user', '$id_subject', '$dificulty', '$enunciate', '$correctAnswer', '$status');";
 
     if ($connection->query($sql) === TRUE) {
-        //array_push($_SESSION['debug'], "Questão criada com sucesso!");
+        array_push($_SESSION['debug'], "Questão criada com sucesso!");
     } else {
         array_push($_SESSION['debug'], "Erro ao criar questão!");
     }
 
     $connection->close();
 
-    header('Location: readGUI.php');
+    header('Location: readGUI.php?action_per=1');
 }
