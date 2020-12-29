@@ -30,6 +30,7 @@ INSERT INTO `autella`.`role` (`name`) VALUES ('Coordenador');
 INSERT INTO `autella`.`role` (`name`) VALUES ('Professor Titular');
 INSERT INTO `autella`.`role` (`name`) VALUES ('Professor Substituto');
 INSERT INTO `autella`.`role` (`name`) VALUES ('Professor Visitante');
+INSERT INTO `autella`.`role` (`name`) VALUES ('Gerenciador do Sistema');
 
 
 
@@ -57,6 +58,8 @@ INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_
 VALUES ('cesar@gmail.com', 'César Willer', '123', '1', '2', '1');
 INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
 VALUES ('therezinha@gmail.com', 'Dona Terezinha da Silva Matos', '123', '8', '1', '1');
+INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
+VALUES ('autella.ifmg@gmail.com', 'autella-ifmg', '123', '1', '5', '2');
 
 
 
