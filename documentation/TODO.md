@@ -90,7 +90,10 @@
 	- [X] Adicionar opção "Escolha..." no selectDiscipline
 	- [ ] Exibir em quais provas a questão está presente
 	- [ ] Exibir mais de uma matéria
-	
+	- [ ] Exibir quem criou a questão
+	- [ ] Mostrar quais filtros foram aplicados
+	- [ ] Só mostrar paginação caso necessário
+ 	
 - [X] Update
 	- [X] Configurar o toast de alteração de questão
 

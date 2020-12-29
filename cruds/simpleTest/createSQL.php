@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 global $connection;
 if (!isset($_SESSION)) {
     session_start();

@@ -1,14 +1,7 @@
 <?php
 if (isset($_POST['submit'])) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
-
-    function secure($data)
-    {
-        global $connection;
-        $data = mysqli_escape_string($connection, $data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/security.php';
 
     $email = secure($_POST['email']);
     $name = secure($_POST['name']);
