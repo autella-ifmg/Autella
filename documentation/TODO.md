@@ -75,8 +75,6 @@
 	- [X] Tratamento para inserção de apóstrofo
 	- [X] Otimização de códigos
 	- [ ] Responsividade
-	- [ ] Nos selectSubjects, permitir que mais de um item possa ser selecionado
-	- [ ] Validação required no CKEditor
 	- [ ] CKEditor Custom
 	- [ ] Tratamento para inserção de imagens
 
@@ -89,7 +87,6 @@
 	- [X] Adicionar filtros de pesquisa
 	- [X] Adicionar opção "Escolha..." no selectDiscipline
 	- [ ] Exibir em quais provas a questão está presente
-	- [ ] Exibir mais de uma matéria
 	- [ ] Exibir quem criou a questão
 	- [ ] Mostrar quais filtros foram aplicados
 	- [ ] Só mostrar paginação caso necessário
@@ -97,13 +94,13 @@
 - [X] Update
 	- [X] Configurar o toast de alteração de questão
 
-- [ ] Archive
+- [X] Archive
 	- [X] Arquivar questão
 	- [X] Listar quetões arquivadas
 	- [X] Desarquivar questão
 	- [X] Configurar o toast de arquivamento de questão
 
-- [ ] Delete
+- [X] Delete
 	- [X] Deletar questão
 	- [X] Listar quetões deletadas
 	- [X] Restaurar questão
@@ -133,8 +130,7 @@
 - [X] Eliminar coluna de "picture" do usuário
 - [X] Eliminar coluna de "picture" da instituição
 - [X] Criar coluna de CEP e email na instituição
-- [ ] Remover coluna de id_discipline e correctAnswerEnunciate na tabela question
-- [ ] user -> coluna de "último acesso em"
+- [X] Remover coluna de id_discipline e correctAnswerEnunciate na tabela question
 - [ ] user/institution -> coluna de status ("conta/instituição ativa", "conta/instituição inativa")
 
 ## Geral
@@ -146,15 +142,13 @@
 - [ ] Carousel de instituições
 - [ ] Carousel de opiniões (mexe sozinho)
 - [ ] Sobre nós
-- [ ] Segurança das demais abas (caso um usuário não cadastrado tente acessar uma página proibida; die() // Garante que nada abaixo será executado)
-- [ ] Exibir ao usuário informações importantes do console
-- [ ] Tabela de instituição (coordenador é responsável por administrar a página da instituição)
 
 ## Segurança
 - [ ] Tirar senha do $_SESSION['userData'] -> implicações no professor/updateSQL.php
 - [ ] Criptografia de senhas
 - [ ] Desativar tags "<script>" e "<?php" do que o CkEditor retorna
 - [ ] Verificar, no início de cada página, as possibilidades de erro 403 ou 404
+- [ ] Segurança das demais abas (caso um usuário não cadastrado tente acessar uma página proibida; die() // Garante que nada abaixo será executado)
 
 ## Observações
 	1 coordenador por escola
@@ -165,19 +159,12 @@
 
 
 ## Dicas
-	* Use die() se não achou $_GET
-	* enctype="multipart/form-data" -> atributo necessário em <form> caso envolva envio de imagens
-	* Quando as imagens não estiverem atualizando, pode ser que o navegador esteja guardando-as em cache.
-	Para evitar isso, faça o seguinte: adicione "?1222259157.415" no final do src da imagem, onde "1222259157.415" é o horário do servidor. Ex.: <img src="picture.jpg?1222259157.415" alt="">
-	A função de tempo no php é "time()", então ficaria <img src="/images/users/2.jpeg<?php echo '?' . time() ?>" />
-	*index.php com 403 em todas as pastas para evitar acessos indevidos
-	*if($_Session['userData']['status'] == 2){
-		$otherProfileName = 'Conta desativada';
-	} else {
-		$otherProfileName = array['name'];
-	}
-	* This script tag should be included between the <head> tags in your HTML document.
-	*$connection->close();		após		require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
+* Use die() se não achou $_GET
+* Quando as imagens não estiverem atualizando, pode ser que o navegador esteja guardando-as em cache.
+Para evitar isso, faça o seguinte: adicione "?1222259157.415" no final do src da imagem, onde "1222259157.415" é o horário do servidor. Ex.: <img src="picture.jpg?1222259157.415" alt="">
+A função de tempo no php é "time()", então ficaria <img src="/images/users/2.jpeg<?php echo '?' . time() ?>" />
+* <script> be included between the <head> tags in your HTML document.
+* $connection->close();		após		require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
 
 
 ## Possíveis novas funções
