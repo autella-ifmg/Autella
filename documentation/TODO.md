@@ -119,9 +119,11 @@
 	- [ ] Botão de excluir funcionando
 	- [ ] Desativar e alterar subordinados
 	- [ ] Transferência de cargo
+- [ ] Barra de pesquisa
 	
 ## Painel de controle do gerenciador do sistema
 - [ ] Log (Ex.: Usuário tal fez tal coisa em tal data; Tal instituição foi criada; Tal questão foi alterada)
+- [ ] Barra de pesquisa
 
 ## Database
 
