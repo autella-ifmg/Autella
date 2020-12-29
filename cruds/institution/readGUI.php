@@ -14,7 +14,7 @@
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
-    require_once 'readSQL.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/cruds/institution/readSQL.php';
     ?>
 </head>
 

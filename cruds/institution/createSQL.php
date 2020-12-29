@@ -1,14 +1,8 @@
 <?php
 if (isset($_POST['submit'])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/security.php';
 
-    function secure($data)
-    {
-        global $connection;
-        $data = mysqli_escape_string($connection, $data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
 
     $full_name = secure($_POST['fullName']);
     $abbreviation = secure($_POST['abbreviation']);
@@ -31,8 +25,8 @@ if (isset($_POST['submit'])) {
         // array_push($_SESSION['debug'], "Instituição criada com sucesso!");
         $newInstitutionId = $connection->insert_id;
 
-        // Adicionar imagem de perfil padrão
-        $path = "../../images/institutionDefault.jpeg";
+        // Adicionar imagem padrão
+        $path = "../../images/institutions/institutionDefault.jpeg";
         $data = file_get_contents($path);
         $image_name = '../../images/institutions/' . $newInstitutionId . '.jpeg';
         file_put_contents($image_name, $data);
@@ -42,5 +36,5 @@ if (isset($_POST['submit'])) {
     $connection->close();
 
 
-    header('Location: ../../index.php');
+    header('Location: ../..');
 }

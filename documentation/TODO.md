@@ -20,6 +20,7 @@
 		- [X] Campo de confirmar senha
 		- [X] Impedir contas com o mesmo email
 		- [X] Impedir mais de um coordenador por instituição
+	- [ ] Só permitir o coordenador da instituição criar professores
 	
 - [X] Update
 	- [X] Alterar modal para arquivos próprios
@@ -47,8 +48,7 @@
 	- [X] Campo CEP e email institucional
 		- [X] GUI
 		- [X] SQL
-
-	- [ ] Dar a opção de "Sou professor" na hora do cadastro, para coordenadores que não são professores -> perguntar para o kdú se isso existe
+	- [ ] Só permitir o gerenciador do site criar instituições
 
 - [X] Read
 	- [X] Foto -> Banner
@@ -56,10 +56,11 @@
 		- [X] GUI
 		- [X] SQL
 
-- [X] Update
+- [ ] Update
 	- [X] Usar CropperJS
 	- [X] Foto -> Banner
 	- [X] Apenas o coordenador da instituição pode alterar seus dados
+	- [ ] Permitir alteração em qualquer instituição, para o gerenciador do site
 	- [X] Campo CEP e email institucional
 		- [X] GUI
 		- [X] SQL

@@ -294,7 +294,7 @@ function selectSubjects()
 }
 
 //user
-function selectUsers()
+function usersToRows($id_institution)
 {
     require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
@@ -302,7 +302,7 @@ function selectUsers()
             JOIN discipline ON user.id_discipline = discipline.id
             JOIN field ON field.id = discipline.id_field
             JOIN role ON user.id_role = role.id
-            WHERE user.id_institution = " . $_SESSION['userData']['id_institution'];
+            WHERE user.id_institution = " . $id_institution;
 
     $result = mysqli_query($connection, $sql);
 
@@ -331,9 +331,9 @@ function selectUsers()
                 </tr>
             ';
         }
-        array_push($_SESSION['debug'], 'Usuários selecionados com sucesso!');
-        $connection->close();
+        // array_push($_SESSION['debug'], 'Usuários selecionados com sucesso!');
     } else {
         array_push($_SESSION['debug'], 'Erro ao selecionar usuários!');
     }
+    $connection->close();
 }
