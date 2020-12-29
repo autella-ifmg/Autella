@@ -2,7 +2,7 @@
 //discipline
 function selectDisciplines()
 {
-    require $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $sql = "SELECT * FROM discipline;";
     $result = mysqli_query($connection, $sql);
@@ -47,7 +47,7 @@ function disciplineNames($action)
 //field
 function fieldNamesToDropdownItems()
 {
-    require $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $sql = "SELECT * FROM field;";
     $result = mysqli_query($connection, $sql);
@@ -75,7 +75,7 @@ function fieldNamesToDropdownItems()
 //institution
 function institutionNamesToDropdownItems()
 {
-    require $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $sql = "SELECT * FROM institution;";
     $result = mysqli_query($connection, $sql);
@@ -104,7 +104,7 @@ function institutionNamesToDropdownItems()
 //question
 function selectQuestions($limit, $start, $end, $filter)
 {
-    require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $sql_limit = "";
 
@@ -168,7 +168,7 @@ function selectQuestions($limit, $start, $end, $filter)
 //simpleTest
 function selectTestQuestions($filter,$id_test)
 {
-    require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
     $id_discipline = $filter[0] == null ? "null" : $filter[0];
     $id_subject = $filter[1] == null ? "question.id_subject" : $filter[1];
    $sql = "SELECT id_question from question_test WHERE id_tests = ". $id_test;
@@ -205,7 +205,7 @@ function selectTestQuestions($filter,$id_test)
 }
 function SimpleTestes(){
     $array = [];
-    require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
     
     $sql = "SELECT * from Tests;";
     $result = mysqli_query($connection, $sql);
@@ -235,7 +235,7 @@ function SimpleTestes(){
 //role
 function idRoleToRoleName($id)
 {
-    require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $sql = "SELECT name from role WHERE id = '$id';";
     $result = mysqli_query($connection, $sql);
@@ -246,7 +246,7 @@ function idRoleToRoleName($id)
 
 function roleNamesToDropdownItems()
 {
-    require $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $sql = "SELECT * FROM role;";
     $result = mysqli_query($connection, $sql);
@@ -275,7 +275,7 @@ function roleNamesToDropdownItems()
 //subject
 function selectSubjects()
 {
-    require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $sql = "SELECT * FROM subject;";
     $result = mysqli_query($connection, $sql);
@@ -296,7 +296,7 @@ function selectSubjects()
 //user
 function selectUsers()
 {
-    require $_SERVER["DOCUMENT_ROOT"] . "/utilities/dbConnect.php";
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $sql = "SELECT user.id, user.name, user.email, role.name, field.name, discipline.name FROM user 
             JOIN discipline ON user.id_discipline = discipline.id

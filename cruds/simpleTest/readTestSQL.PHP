@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../utilities/dbConnect.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
 global $connection;
 if (!isset($_SESSION)) {
     session_start();

@@ -2,7 +2,7 @@
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
     $sql = "SELECT * FROM institution WHERE id=" . $id;
     $result = mysqli_query($connection, $sql);
     if (mysqli_num_rows($result) != 0) {

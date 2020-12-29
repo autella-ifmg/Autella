@@ -33,8 +33,10 @@
             <li class="nav-item">
                 <a style="color: rgb(124, 124, 124); font-weight: bold" class="nav-link"><?php echo $_SESSION['userData']['name']; ?>&nbsp </a>
                 <span style="text-align: right; font-size: 0.8rem; color: rgb(166, 166, 166)" class="nav-link pt-0">
-                    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
-                    echo idRoleToRoleName($_SESSION['userData']['id_role']); ?>
+                    <?php
+                    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
+                    echo idRoleToRoleName($_SESSION['userData']['id_role']);
+                    ?>
                 </span>
             </li>
 
@@ -46,7 +48,7 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position: absolute; left: -4rem">
                     <a class="dropdown-item" href="/cruds/user/readGUI.php?id=<?php echo $_SESSION['userData']['id']; ?>">Sua conta</a>
                     <a class="dropdown-item" href="/cruds/institution/readGUI.php?id=<?php echo $_SESSION['userData']['id_institution'] ?>">Sua instituição</a>
-                    <a class="dropdown-item" href="/utilities/logout.php">Logout</a>
+                    <a class="dropdown-item" href="/authentication/logout.php">Logout</a>
                 </div>
 
             </li>

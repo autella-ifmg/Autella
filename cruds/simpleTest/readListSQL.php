@@ -1,5 +1,5 @@
 <?php
-require_once '../../utilities/dbConnect.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
 global $connection;
 if (!isset($_SESSION)) {
     session_start();
@@ -58,7 +58,7 @@ function data()
         date_default_timezone_set("America/Sao_Paulo");
         $date = date("Y-m-d");
         //echo $id_test;
-        require_once '../../utilities/dbConnect.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
         global $connection;
         
         $sql =" UPDATE Tests set status = -1 WHERE id = '$id_test';";

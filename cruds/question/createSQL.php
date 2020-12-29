@@ -17,7 +17,7 @@ function secure($input)
 }
 
 if (isset($_POST["submit"])) {
-    require_once "../../utilities/dbConnect.php";
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
 
     date_default_timezone_set("America/Sao_Paulo");
     $creation_date = date("Y-m-d");

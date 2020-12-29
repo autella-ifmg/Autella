@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['userData'])) {
-    require_once 'views/home.php';
+    header("Location: views/home.php");
 } else {
-    require_once 'views/loginGUI.php';
+    header("Location: authentication/loginGUI.php");
 }

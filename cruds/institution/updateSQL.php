@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['submit'])) {
-    require_once '../../utilities/dbConnect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
 
     function secure($data)
     {

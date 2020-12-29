@@ -1,5 +1,5 @@
 <?php
-require_once '../../utilities/dbConnect.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
 global $connection;
 if (!isset($_SESSION)) {
     session_start();
@@ -173,7 +173,7 @@ function insertInDatabaseTestQuestion($ids,$array,$id_test)
     date_default_timezone_set("America/Sao_Paulo");
     $date = date("Y-m-d");
     echo $id_test;
-    require_once '../../utilities/dbConnect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
     global $connection;
     
     $sql = "DELETE from question_test where id_tests = ".$id_test;

@@ -10,7 +10,7 @@
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
     <script src="../../libraries/ckeditor/ckeditor.js"></script>
     <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbSelect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
     require_once "createSQL.php";
     ?>

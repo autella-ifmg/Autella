@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     
     <?php
-    require_once "../../utilities/dbSelect.php";
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
     require_once "updateSQL.php";
     $id_test_update = $_GET['id'];
     ?>

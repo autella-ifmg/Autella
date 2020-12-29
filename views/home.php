@@ -16,7 +16,7 @@
 
 <body class="h-100 w-100 d-flex flex-column">
     <header>
-        <?php require_once 'navbar.php'; ?>
+        <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/navbar.php'; ?>
     </header>
 
     <main class="flex-grow-1" style="background-image: url(../images/background.jpeg);">

@@ -25,7 +25,7 @@
 
             <div class="col-12 ml-4 pl-3 col-md-8 col-lg-6 ml-lg-0 pl-lg-0 col-xl-5">
                 <div class="card p-3">
-                    <form action="../utilities/loginSQL.php" method="post">
+                    <form action="loginSQL.php" method="post">
                         <div class="form-group">
                             <label>Email</label>
                             <input type="email" class="form-control" name="email">
