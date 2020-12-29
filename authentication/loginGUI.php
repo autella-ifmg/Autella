@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Autella | Login</title>
+    <title>Autella</title>
 
     <link rel="stylesheet" href="/libraries/bootstrap/bootstrap.css">
     <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
@@ -30,7 +30,7 @@
                             <label>Email</label>
                             <input type="email" class="form-control" name="email">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="inputSenha">Senha</label>
                             <input type="password" class="form-control mb-3" name="password">
