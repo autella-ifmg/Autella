@@ -1,5 +1,5 @@
 ## User
-- [X] Create
+- [ ] Create
 	- [X] Alterar modal para arquivos próprios
 	- [X] Dropdown de "Área"
 	- [X] Dropdown de "Disciplina"
@@ -111,12 +111,17 @@
 
 - [ ] Help
 
-## Painel de controle
+## Painel de controle do coordenador
 - [ ] Users
 	- [X] Tabela de visualização dos dados
 	- [X] Botão de visualizar funcionando
 	- [ ] Botão de editar funcionando
 	- [ ] Botão de excluir funcionando
+	- [ ] Desativar e alterar subordinados
+	- [ ] Transferência de cargo
+	
+## Painel de controle do gerenciador do sistema
+- [ ] Log (Ex.: Usuário tal fez tal coisa em tal data; Tal instituição foi criada; Tal questão foi alterada)
 
 ## Database
 
@@ -177,11 +182,5 @@
 * Sistema de mensagens (tipo do moddle)
 * Email de verificação de criação de contas
 * Esqueci a senha
-* Mudar Gerar PDF do Nicholas para o João
-* Crud da instituição
-* Versionamento de questões (tipo o do GitHub)
-* Versionamento de provas (tipo o do GitHub)
+* Versionamento de provas e questões (tipo o do GitHub)
 * Comentário das questões
-* Painel de controle do coordenador
-	* Desativar e alterar subordinados
-	* Transferência de cargo
