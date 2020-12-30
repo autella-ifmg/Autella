@@ -14,7 +14,7 @@ function secure($input)
 }
 
 if (isset($_POST["submit"])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $id = $_POST["id"];
     $id_subject = $_POST["subjects"];
@@ -36,7 +36,7 @@ if (isset($_POST["submit"])) {
 }
 
 if (isset($_POST['question_archive_unarchive'])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $id_question = $_POST["question_archive_unarchive"][0];
 
@@ -70,7 +70,7 @@ if (isset($_POST['question_archive_unarchive'])) {
 }
 
 if (isset($_POST['question_delete'])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $id_question = $_POST["question_delete"][0];
 

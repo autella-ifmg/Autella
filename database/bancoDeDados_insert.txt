@@ -1,4 +1,4 @@
-/*utilidade pública: ALTER TABLE question AUTO_INCREMENT = 1;*/
+/*utilidade pública: ALTER TABLE autella.nome_da_tabela AUTO_INCREMENT = 1;*/
 
 INSERT INTO `autella`.`field` (`name`) VALUES ('Ciências Humanas e suas Tecnologias');
 INSERT INTO `autella`.`field` (`name`) VALUES ('Ciências da Natureza e suas Tecnologias');
