@@ -62,12 +62,9 @@
             <div class="row justify-content-between mb-0 mx-1 mb-sm-5">
                 <div class="col-12 mt-3 col-sm-8 mt-sm-0  row">
                     <label class="col-12 pl-0">Instituição</label>
-                    <select class="dropdown-toggle btn border col-10" name="institutionId">
+                    <select class="dropdown-toggle btn border col-12" name="institutionId">
                         <?php institutionNamesToDropdownItems() ?>
                     </select>
-                    <a class="col-2 p-0 pl-4" data-toggle="tooltip" data-placement="bottom" title="Cadastrar instituição" href="../institution/createGUI.php">
-                        <img src="../../libraries/bootstrap/bootstrap-icons-1.0.0/plus-circle.svg" width="40" height="40" />
-                    </a>
                 </div>
 
                 <div class="col-12 mt-3 col-sm-3 mt-sm-0 row">

@@ -35,8 +35,8 @@ function disciplineNames($action)
         } else if ($action == 1) {
             if (($i - 1) == -1) {
                 echo '<option name="null" id="null" value="null" class="dropdown-item" selected="selected">Escolha...</option>';
-            } 
-               
+            }
+
             echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
         } else {
             echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
@@ -141,12 +141,12 @@ function selectQuestions($limit, $start, $end, $filter)
         user.id_institution, question.id_user, discipline.id, discipline.name, subject.name FROM question 
         JOIN user ON user.id = question.id_user 
         JOIN discipline ON discipline.id = " . $id_discipline .
-        " JOIN subject ON subject.id = ". $id_subject .
-        " WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] .
-        " AND discipline.id = subject.id_discipline AND subject.id = question.id_subject" 
-        . $status . 
-        $dificulty . $creation_date .
-        " ORDER BY discipline.name, subject.name " . $sql_limit;
+            " JOIN subject ON subject.id = " . $id_subject .
+            " WHERE user.id_institution = " . $_SESSION["userData"]["id_institution"] .
+            " AND discipline.id = subject.id_discipline AND subject.id = question.id_subject"
+            . $status .
+            $dificulty . $creation_date .
+            " ORDER BY discipline.name, subject.name " . $sql_limit;
     }
     //echo $sql;
     $result = mysqli_query($connection, $sql);
@@ -166,47 +166,48 @@ function selectQuestions($limit, $start, $end, $filter)
 }
 
 //simpleTest
-function selectTestQuestions($filter,$id_test)
+function selectTestQuestions($filter, $id_test)
 {
     require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
     $id_discipline = $filter[0] == null ? "null" : $filter[0];
     $id_subject = $filter[1] == null ? "question.id_subject" : $filter[1];
-   $sql = "SELECT id_question from question_test WHERE id_tests = ". $id_test;
-   //echo $sql;
-   $result = mysqli_query($connection, $sql);
-   $arrayIDS = [];
-   if (mysqli_num_rows($result) != 0) {
-    while ($row = mysqli_fetch_array($result)) {
-        array_push($arrayIDS, $row);
+    $sql = "SELECT id_question from question_test WHERE id_tests = " . $id_test;
+    //echo $sql;
+    $result = mysqli_query($connection, $sql);
+    $arrayIDS = [];
+    if (mysqli_num_rows($result) != 0) {
+        while ($row = mysqli_fetch_array($result)) {
+            array_push($arrayIDS, $row);
+        }
     }
-}
     $array = [];
-    for($i = 0; $i < count($arrayIDS); $i++){
+    for ($i = 0; $i < count($arrayIDS); $i++) {
         $sql = "SELECT question.id, question.status, question.date, question.dificulty, question.enunciate, question.correctAnswer, 
         user.id_institution, question.id_user, discipline.id, discipline.name, subject.name FROM question 
         JOIN user ON user.id = question.id_user 
         JOIN discipline ON discipline.id = " . $id_discipline .
-        " JOIN subject ON subject.id = ". $id_subject .
-        " WHERE question.id = ".$arrayIDS[$i][0];
-        " ORDER BY discipline.name" ;
+            " JOIN subject ON subject.id = " . $id_subject .
+            " WHERE question.id = " . $arrayIDS[$i][0];
+        " ORDER BY discipline.name";
         //echo $sql;
         $result = mysqli_query($connection, $sql);
         if (mysqli_num_rows($result) != 0) {
             while ($row = mysqli_fetch_array($result)) {
                 array_push($array, $row);
             }
+        }
     }
-}
     //echo $sql;
-   
+
 
     $connection->close();
     return $array;
 }
-function SimpleTestes(){
+function SimpleTestes()
+{
     $array = [];
     require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
-    
+
     $sql = "SELECT * from Tests;";
     $result = mysqli_query($connection, $sql);
 
@@ -219,16 +220,15 @@ function SimpleTestes(){
     } else {
         array_push($_SESSION['debug'], "Erro ao selecionar questões!");
     }
-    for($i = 0; $i < count($array); $i++){
-    $sql = "SELECT name from user WHERE id = ".$array[$i][1];
-    $result = mysqli_query($connection, $sql);
-    //$arrayname = [];
-    array_push($array[$i],mysqli_fetch_array($result)[0]);
+    for ($i = 0; $i < count($array); $i++) {
+        $sql = "SELECT name from user WHERE id = " . $array[$i][1];
+        $result = mysqli_query($connection, $sql);
+        //$arrayname = [];
+        array_push($array[$i], mysqli_fetch_array($result)[0]);
     }
-   
+
     $connection->close();
     return $array;
-    
 }
 
 
@@ -262,10 +262,13 @@ function roleNamesToDropdownItems()
     }
 
     for ($i = 0; $i < count($array); $i++) {
-        if ($i == 0) {
-            echo '<option selected="selected" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
-        } else {
-            echo '<option value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
+        // Impedir a exibição da opção "Coordenador do sistema"
+        if ($i != 5) {
+            if ($i == 0) {
+                echo '<option selected="selected" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
+            } else {
+                echo '<option value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
+            }
         }
     }
 
