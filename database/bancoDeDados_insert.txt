@@ -40,26 +40,26 @@ INSERT INTO `autella`.`institution` (`full_name`, `abbreviation`, `phone`, `cep`
 
 
 
-INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
-VALUES ('aline.presot@ifmg.edu.br', 'Aline Alves Presot', 'aline', '1', '4', '2');
-INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
-VALUES ('rodolpho.santos@ifmg.edu.br', 'Rodolpho Gauthier Cardoso dos Santos', 'rodolpho', '1', '2', '2');
-INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
-VALUES ('lawrence.andrade@ifmg.edu.br', 'Lawrence de Andrade Magalhães Gomes', 'lawrence', '2', '1', '2');
-INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
-VALUES ('rui.mauricio@ifmg.edu.br', 'Rui Evangelista Maurício', 'rui', '2', '3', '2');
-INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
-VALUES ('rafael.marinho@ifmg.edu.br', 'Rafael de Araújo Álvares Marinho', 'rafael', '6', '2', '2');
-INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
-VALUES ('aurelio.ferreira@ifmg.edu.br', 'Aurélio Alves Ferreira', 'aurelio', '3', '2', '2');
-INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
-VALUES ('adilson.ribeiro@ifmg.edu.br', 'Adilson Ribeiro de Oliveira', 'adilson', '8', '2', '2');
-INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
-VALUES ('cesar@gmail.com', 'César Willer', '123', '1', '2', '1');
-INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
-VALUES ('therezinha@gmail.com', 'Dona Terezinha da Silva Matos', '123', '8', '1', '1');
-INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`) 
-VALUES ('autella.ifmg@gmail.com', 'autella-ifmg', '123', '1', '5', '2');
+INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`, `status`) 
+VALUES ('aline.presot@ifmg.edu.br', 'Aline Alves Presot', 'aline', '1', '4', '2', '1');
+INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`, `status`)  
+VALUES ('rodolpho.santos@ifmg.edu.br', 'Rodolpho Gauthier Cardoso dos Santos', 'rodolpho', '1', '2', '2', '1');
+INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`, `status`)  
+VALUES ('lawrence.andrade@ifmg.edu.br', 'Lawrence de Andrade Magalhães Gomes', 'lawrence', '2', '1', '2', '1');
+INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`, `status`)  
+VALUES ('rui.mauricio@ifmg.edu.br', 'Rui Evangelista Maurício', 'rui', '2', '3', '2', '1');
+INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`, `status`)  
+VALUES ('rafael.marinho@ifmg.edu.br', 'Rafael de Araújo Álvares Marinho', 'rafael', '6', '2', '2', '1');
+INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`, `status`)  
+VALUES ('aurelio.ferreira@ifmg.edu.br', 'Aurélio Alves Ferreira', 'aurelio', '3', '2', '2', '1');
+INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`, `status`)  
+VALUES ('adilson.ribeiro@ifmg.edu.br', 'Adilson Ribeiro de Oliveira', 'adilson', '8', '2', '2', '1');
+INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`, `status`)  
+VALUES ('cesar@gmail.com', 'César Willer', '123', '1', '2', '1', '1');
+INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`, `status`)  
+VALUES ('therezinha@gmail.com', 'Dona Terezinha da Silva Matos', '123', '8', '1', '1', '1');
+INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`, `status`)  
+VALUES ('autella.ifmg@gmail.com', 'autella-ifmg', '123', '1', '5', '2', '1');
 
 
 

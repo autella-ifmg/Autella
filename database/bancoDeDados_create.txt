@@ -44,6 +44,7 @@ CREATE TABLE `autella`.`user` (
   `id_discipline` int,
   `id_role` int NOT NULL,
   `id_institution` int,
+  `status` int, /*   1 = conta ativada   2 = conta desativada */
   PRIMARY KEY (`id`),
   FOREIGN KEY (`id_discipline`) REFERENCES `discipline`(id),
   FOREIGN KEY (`id_role`) REFERENCES `role`(id),

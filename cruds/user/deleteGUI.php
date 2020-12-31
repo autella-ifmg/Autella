@@ -16,7 +16,7 @@
 
 <body class="h-100 w-100">
     <div class="row mt-5 mx-5 justify-content-around">
-        <h1 class="col-12 col-lg-8">TEM CERTEZA QUE DESEJA EXCLUIR SUA CONTA?</h1>
+        <h1 class="col-12 col-lg-8">TEM CERTEZA QUE DESEJA DESATIVAR SUA CONTA?</h1>
         <form class="col-12 col-lg-8" action="deleteSQL.php" method="post">
             <div class="form-group mt-3">
                 <label>Senha atual</label>
