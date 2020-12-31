@@ -1,6 +1,6 @@
 <?php
 if (isset($_GET['id'])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/dbConnect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
     $id = $_GET['id'];
 
     $sql = "SELECT user.name, user.email, field.name, discipline.name, role.name, user.id 
