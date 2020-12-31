@@ -12,7 +12,7 @@
 
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
-    require_once 'readSQL.php'
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/cruds/user/readSQL.php'
     ?>
 </head>
 

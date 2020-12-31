@@ -24,10 +24,10 @@ if (isset($_GET['id'])) {
 
         $connection->close();
     } else {
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/404.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/authentication/404.php';
         die();
     }
 } else {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/views/404.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/authentication/404.php';
     die();
 }
