@@ -1,5 +1,5 @@
 ## User
-- [ ] Create
+- [X] Create
 	- [X] Alterar modal para arquivos próprios
 	- [X] Dropdown de "Área"
 	- [X] Dropdown de "Disciplina"
@@ -20,7 +20,6 @@
 		- [X] Campo de confirmar senha
 		- [X] Impedir contas com o mesmo email
 		- [X] Impedir mais de um coordenador por instituição
-	- [ ] Só permitir o coordenador da instituição criar professores
 	
 - [X] Update
 	- [X] Alterar modal para arquivos próprios
@@ -34,8 +33,9 @@
 		- [X] Campo de confirmar senha
 		- [X] Impedir contas com o mesmo email
 
-- [X] Read
+- [ ] Read
 	- [X] Fazer campos de "Área" e "Disciplina" funcionarem
+	- [ ] Se a conta estiver desativada e não for o próprio usuário que estiver acessando, mostrar "Essa conta foi desativada"
 
 - [X] Delete
 
@@ -55,12 +55,12 @@
 	- [X] Campo CEP e email institucional
 		- [X] GUI
 		- [X] SQL
+	[ ] Se a conta estiver desativada e não for o próprio coordenador que estiver acessando, mostrar "Essa conta foi desativada"
 
-- [ ] Update
+- [X] Update
 	- [X] Usar CropperJS
 	- [X] Foto -> Banner
 	- [X] Apenas o coordenador da instituição pode alterar seus dados
-	- [ ] Permitir alteração em qualquer instituição, para o gerenciador do site
 	- [X] Campo CEP e email institucional
 		- [X] GUI
 		- [X] SQL
@@ -109,18 +109,15 @@
 - [ ] Help
 
 ## Painel de controle do coordenador
-- [ ] Users
-	- [X] Tabela de visualização dos dados
-	- [X] Botão de visualizar funcionando
-	- [ ] Botão de editar funcionando
-	- [ ] Botão de excluir funcionando
-	- [ ] Desativar e alterar subordinados
-	- [ ] Transferência de cargo
-- [ ] Barra de pesquisa
-	
+- [X] Tabela de visualização dos dados
+- [X] Botão de visualizar funcionando
+- [ ] Página de edição personalizada, para editar qualquer atributo de um usuário
+- [ ] Transformar cruds/user/delete para pegar "$_GET" e não "$_SESSION['userData']['id']"
+- [ ] Barra de pesquisa de nome de usuário
+- [ ] Log (Ex.: Usuário tal fez tal coisa em tal data; Tal questão foi alterada; Tal prova foi criada)
+- [ ] Criação de usuários
+
 ## Painel de controle do gerenciador do sistema
-- [ ] Log (Ex.: Usuário tal fez tal coisa em tal data; Tal instituição foi criada; Tal questão foi alterada)
-- [ ] Barra de pesquisa
 
 ## Database
 
@@ -131,12 +128,12 @@
 - [X] Eliminar coluna de "picture" da instituição
 - [X] Criar coluna de CEP e email na instituição
 - [X] Remover coluna de id_discipline e correctAnswerEnunciate na tabela question
-- [ ] user/institution -> coluna de status ("conta/instituição ativa", "conta/instituição inativa")
+- [X] user -> coluna de status ("conta ativa", "conta inativa")
+- [ ] institution -> coluna de status ("instituição ativa", "instituição inativa")
 
 ## Geral
 - [X] Redirecionar da homepage para outras páginas quando cadastrado
 - [X] Inserir imagem e opções de usuário na navbar
-- [ ] Alterar funcionalidades da Navbar dependendo do cargo
 - [ ] Tela de apresentação do site (Tela inicial)
 - [ ] Carousel de usuários (visualizar professores e coordenadores; mexe sozinho)
 - [ ] Carousel de instituições
