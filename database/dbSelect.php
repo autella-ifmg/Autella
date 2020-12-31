@@ -158,7 +158,7 @@ function selectQuestions($limit, $start, $end, $filter)
         }
         // array_push($_SESSION['debug'], "Questões selecionadas com sucesso!");
     } else {
-        array_push($_SESSION['debug'], "Erro ao selecionar questões!" . $sql);
+        array_push($_SESSION['debug'], "Erro ao selecionar questões!");
     }
 
     $connection->close();
@@ -231,6 +231,28 @@ function SimpleTestes()
     return $array;
 }
 
+function selectTestNames($question_id)
+{
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
+
+    $sql = "SELECT tests.id, tests.name FROM question_test
+            JOIN tests ON tests.id = question_test.id_tests
+            WHERE question_test.id_question = " . $question_id;
+    $result = mysqli_query($connection, $sql);
+    $array = [];
+
+    if (mysqli_num_rows($result) != 0) {
+        while ($row = mysqli_fetch_row($result)) {
+            array_push($array, $row);
+        }
+        // array_push($_SESSION['debug'], "Nome das provas selecionados com sucesso!");
+    } else {
+        array_push($_SESSION['debug'], "Erro ao selecionar o nome das provas!");
+    }
+    $connection->close();
+
+    return $array;
+}
 
 //role
 function idRoleToRoleName($id)

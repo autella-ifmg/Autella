@@ -76,7 +76,7 @@ function questionBlocks($questions, $id_role)
     if (!empty($questions)) {
         if (count($questions) > 0) {
             for ($i = 0; $i < count($questions); $i++) {
-                $icons = "";
+                $question_id = $questions[$i][0];
                 $questionNumber = ($start + ($i + 1));
                 $dificulty = dificultyTratament($questions[$i]["dificulty"]);
                 $correctAnswer = "Alternativa correta: " . $questions[$i]["correctAnswer"];
@@ -86,40 +86,62 @@ function questionBlocks($questions, $id_role)
                 $enunciate =  $questions[$i]["enunciate"];
                 $status = $questions[$i]["status"];
 
-                if($id_role == 1 || $questions[$i]["id_user"] == $id_user ) {
-                   if ($status == 0) {
+                $tests = selectTestNames($question_id);
+                
+                $icons = "";
+
+                if ($id_role == 1 || $questions[$i]["id_user"] == $id_user) {
+                    if ($status == 0) {
                         $icons = '
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg" alt="Arquivar" height="25" onclick="defineModalAction(2, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#unarchiveModal" data-toggle="tooltip" data-placement="bottom" title="Arquivar questão"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="defineModalAction(3, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal" data-toggle="tooltip" data-placement="bottom" title="Deletar questão"/></div>
+                        <div class="p-2 w-auto border border-dark border-left-0"><img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg" alt="Arquivar" height="25" onclick="defineModalAction(2, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#unarchiveModal" data-toggle="tooltip" data-placement="bottom" title="Arquivar questão"/></div>
+                        <div class="p-2 w-auto border border-dark border-left-0"><img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="defineModalAction(3, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal" data-toggle="tooltip" data-placement="bottom" title="Deletar questão"/></div>
                         ';
-                    } elseif($status == 1) {
+                    } elseif ($status == 1) {
                         $icons = '
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" alt="Editar" height="25" onclick="defineModalAction(0, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Editar questão"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Arquivar" height="25" onclick="defineModalAction(1, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#archiveModal" data-toggle="tooltip" data-placement="bottom" title="Arquivar questão"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="defineModalAction(3, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal" data-toggle="tooltip" data-placement="bottom" title="Deletar questão"/></div>
+                        <div class="p-2 w-auto border border-dark border-left-0"><img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" alt="Editar" height="25" onclick="defineModalAction(0, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Editar questão"/></div>
+                        <div class="p-2 w-auto border border-dark border-left-0"><img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Arquivar" height="25" onclick="defineModalAction(1, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#archiveModal" data-toggle="tooltip" data-placement="bottom" title="Arquivar questão"/></div>
+                        <div class="p-2 w-auto border border-dark border-left-0"><img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="defineModalAction(3, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal" data-toggle="tooltip" data-placement="bottom" title="Deletar questão"/></div>
                         ';
                     }
                 }
-
+ 
                 echo '
                     <div class="d-flex flex-row bd-highlight">
                         <div class="p-2 w-25 border border-dark">Questão - ' . $questionNumber . '</div>
-                        <div class="p-2 w-25 border border-dark border-left-0">' . $discipline . '</div>
-                        <div class="p-2 flex-fill border border-dark border-left-0">' . $subject . '</div>'  
-                        . $icons .  
+                        <div class="p-2 w-25 border border-dark border-left-0">Criada por: ...</div>
+                        <div class="p-2 flex-fill border border-dark border-left-0">' . $creation_date . '</div>
+                ';
+                        
+                if (!empty($tests)) { 
+                    echo '    
+                        <div class="dropdown p-2 w-auto border border-dark border-left-0">
+                            <img id="dropdownMenuButton' . $i . '" src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/file-ruled-fill.svg" height="25" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton' . $i . '">
+                                <h6 class="dropdown-header">Questão inclusa em:</h6>
+                    ';
+
+                            for ($aux = 0; $aux < count($tests); $aux++) {
+                                echo '<a class="dropdown-item" href="simpleTest/readTestGUI.php?id=' . $tests[$aux][0] . '">' . $tests[$aux][1] . '</a>';
+                            }
+                    echo '
+                            </div>
+                        </div>
+                    ';
+                }
+
+                echo     $icons .
                     '</div>
 
                     <div class="d-flex flex-row bd-highlight">
-                        <div class="p-2 w-25 border border-dark border-top-0">Inclusa em: ...</div>
-                        <div class="p-2 w-25 border border-dark border-left-0  border-top-0">' . $creation_date . '</div>
-                        <div class="p-2 w-25 border border-dark border-left-0  border-top-0">' . $dificulty . '</div>
-                        <div class="p-2 w-25 border border-dark border-left-0  border-top-0">' . $correctAnswer  . '</div>
+                        <div class="p-2 w-25 border border-dark border-top-0">' . $discipline . '</div>
+                        <div class="p-2 w-25 border border-dark border-left-0 border-top-0">' . $subject . '</div>
+                        <div class="p-2 w-25 border border-dark border-left-0 border-top-0">' . $dificulty . '</div>
+                        <div class="p-2 w-25 border border-dark border-left-0 border-top-0">' . $correctAnswer  . '</div>
                     </div>
 
                     <div name="toolbar' . $i . '" id="toolbar-container' . $i . '" class="border border-dark border-top-0 border-bottom-0" disabled></div>
                     <div name="editor' . $i . '" id="editor' . $i . '" class="border border-dark border-top-0 mb-4" style="min-width: 65rem; max-width: 65rem; min-height: 20rem; max-height: 20rem;">' . $enunciate . '</div>
-                 
-                    ';
+                ';
             }
         }
     } else {
@@ -137,7 +159,8 @@ function questionBlocks($questions, $id_role)
                         <div class="p-2 flex-fill bd-highlight border border-dark border-left-0 border-top-0">Alternativa correta: </div>
                     </div>
 
-                    <div name="editor" id="editor" class="border border-dark border-top-0 mb-3" style="min-width: 65rem; max-width: 65rem; min-height: 20rem; max-height: 20rem;"><p class="font-weight-bold text-center">Não conseguimos encontrar as questões que você buscou. :/<p></div>';
+                    <div class="border border-dark border-top-0 mb-3" style="min-width: 65rem; max-width: 65rem; min-height: 20rem; max-height: 20rem;"><p class="font-weight-bold text-center">Não conseguimos encontrar as questões que você buscou. :/<p></div>
+        ';
     }
 }
 

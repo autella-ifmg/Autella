@@ -86,7 +86,7 @@
 	- [X] Adicionar paginação
 	- [X] Adicionar filtros de pesquisa
 	- [X] Adicionar opção "Escolha..." no selectDiscipline
-	- [ ] Exibir em quais provas a questão está presente
+	- [X] Exibir em quais provas simples a questão está presente
 	- [ ] Exibir quem criou a questão
 	- [ ] Mostrar quais filtros foram aplicados
 	- [X] Só mostrar paginação caso necessário

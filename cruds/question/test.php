@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
-    <script src="../../libraries/ckeditor/ckeditor.js"></script>
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
@@ -20,16 +19,25 @@
         <div class="d-flex flex-column ">
             <div class="d-flex flex-row ">
                 <div class="p-2 w-25  border border-dark">Questão - 1</div>
-                <div class="p-2 w-25 border border-dark border-left-0">Disciplina: Arte</div>
-                <div class="p-2 flex-fill border border-dark border-left-0">Matéria: Modernismo</div>
-                <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" height="25" /></div>
-                <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" height="25" /></div>
-                <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" height="25" /></div>
+                <div class="p-2 w-25 border border-dark border-left-0">Criada por: Denise Giarola</div>
+                <div class="p-2 flex-fill border border-dark border-left-0">Data de criação: 24/11/2020</div>
+                <div class="dropdown p-2 w-auto border border-dark border-left-0">
+                    <img id="dropdownMenuButton" src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/file-ruled-fill.svg" height="25" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" ><strong>Questão inclusa em:</strong></a>
+                        <a class="dropdown-item" href="#">Prova Simples 1</a>
+                        <a class="dropdown-item" href="#">Prova Global 7</a>
+                        <a class="dropdown-item" href="#">Prova Simples 3</a>
+                    </div>
+                </div>
+                <div class="p-2 w-auto border border-dark border-left-0"><img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" height="25" /></div>
+                <div class="p-2 w-auto border border-dark border-left-0"><img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" height="25" /></div>
+                <div class="p-2 w-auto border border-dark border-left-0"><img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" height="25" /></div>
             </div>
 
-            <div class="d-flex flex-row ">
-                <div class="p-2 w-25 border border-dark border-top-0">Inclusa em: Prova de Artes</div>
-                <div class="p-2 w-25 border border-dark border-left-0 border-top-0">Criada em: 24/11/2020</div>
+            <div class="d-flex flex-row">
+                <div class="p-2 w-25 border border-dark border-top-0">Disciplina: Arte</div>
+                <div class="p-2 w-25 border border-dark border-left-0 border-top-0">Matéria: Modernismo</div>
                 <div class="p-2 w-25 border border-dark border-left-0 border-top-0">Dificuldade: Fácil</div>
                 <div class="p-2 w-25 border border-dark border-left-0 border-top-0">Alternativa correta: B</div>
             </div>
@@ -55,9 +63,9 @@
 
 
     <!--Importações do CKEditor-->
-    <script //src="../../libraries/ckeditor/ckeditor.js"></script>
+    <script src="../../libraries/ckeditor/ckeditor.js"></script>
     <script>
-        /*DecoupledEditor
+        DecoupledEditor
             .create(document.querySelector("#editor0"))
             .then(editor0 => {
                 const toolbarContainer0 = document.querySelector("#toolbar-container0");
@@ -66,10 +74,10 @@
             })
             .catch(error0 => {
                 console.error0(error0);
-            });*/
+            });
     </script>
-    
-    <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
+
+    <!--<script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
     <script src="../../libraries/ckeditor - custom/build/ckeditor.js"></script>
     <script>
         const watchdog = new CKSource.Watchdog();
@@ -149,7 +157,7 @@
             console.warn('Build id: nh8ufpfzmkzv-23v807lh1m7m');
             console.error(error);
         }
-    </script>
+    </script>-->
 </body>
 
 </html>
