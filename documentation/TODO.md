@@ -78,6 +78,7 @@
 	- [X] Remover selectAlternativesQuant
 	- [X] Tratamento para inserção de apóstrofo
 	- [X] Otimização de códigos
+	- [ ] Otimização de importações
 	- [ ] Tratamento para inserção de imagens
 	- [ ] Responsividade
 	- [ ] CKEditor Custom
