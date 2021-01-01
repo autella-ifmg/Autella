@@ -52,14 +52,12 @@
 	- [X] Campo CEP e email institucional
 		- [X] GUI
 		- [X] SQL
-	- [ ] Só permitir o gerenciador do site criar instituições
 
 - [X] Read
 	- [X] Foto -> Banner
 	- [X] Campo CEP e email institucional
 		- [X] GUI
 		- [X] SQL
-	[ ] Se a conta estiver desativada e não for o próprio coordenador que estiver acessando, mostrar "Essa conta foi desativada"
 
 - [X] Update
 	- [X] Usar CropperJS
@@ -148,8 +146,7 @@
 - [ ] Tirar senha do $_SESSION['userData'] -> implicações no professor/updateSQL.php
 - [ ] Criptografia de senhas
 - [ ] Desativar tags "<script>" e "<?php" do que o CkEditor retorna
-- [ ] Verificar, no início de cada página, as possibilidades de erro 403 ou 404
-- [ ] Segurança das demais abas (caso um usuário não cadastrado tente acessar uma página proibida; die() // Garante que nada abaixo será executado)
+- [ ] Segurança das demais abas (para implementar no "utilities/security.php". Exemplo demonstrado no "cruds/user/readGUI.php");
 
 ## Observações
 	1 coordenador por escola

@@ -27,6 +27,7 @@ CREATE TABLE `autella`.`institution` (
   `neighborhood` varchar(64) NOT NULL,
   `city` varchar(64) NOT NULL,
   `state` varchar(64) NOT NULL,
+  `status` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 

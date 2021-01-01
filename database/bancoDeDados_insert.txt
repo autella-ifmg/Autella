@@ -34,8 +34,8 @@ INSERT INTO `autella`.`role` (`name`) VALUES ('Gerenciador do Sistema');
 
 
 
-INSERT INTO `autella`.`institution` (`full_name`, `abbreviation`, `phone`, `cep`, `email`, `number`, `street`, `neighborhood`, `city`, `state`) VALUES ('Escola Municipal Professor Doriol Beato', 'Doriol', '(31) 3769-2587', '36401-038', 'doriol@edu.br','610', 'Rua Senador Milton Campos', 'Angêlica', 'Conselheiro Lafaiete', 'Minas Gerais');
-INSERT INTO `autella`.`institution` (`full_name`, `abbreviation`, `phone`, `cep`, `email`, `number`, `street`, `neighborhood`, `city`, `state`) VALUES ('Instituto Federal de Minas Gerais - Campus Ouro Branco', 'IFMG-OB', '(31) 3938-1200', '36420-000', 'ere.ourobranco@ifmg.edu.br', '90', 'Rua Afonso Sardinha', 'Pioneiros', 'Ouro Branco', 'Minas Gerais');
+INSERT INTO `autella`.`institution` (`full_name`, `abbreviation`, `phone`, `cep`, `email`, `number`, `street`, `neighborhood`, `city`, `state`, `status`) VALUES ('Escola Municipal Professor Doriol Beato', 'Doriol', '(31) 3769-2587', '36401-038', 'doriol@edu.br','610', 'Rua Senador Milton Campos', 'Angêlica', 'Conselheiro Lafaiete', 'Minas Gerais', '1');
+INSERT INTO `autella`.`institution` (`full_name`, `abbreviation`, `phone`, `cep`, `email`, `number`, `street`, `neighborhood`, `city`, `state`, `status`) VALUES ('Instituto Federal de Minas Gerais - Campus Ouro Branco', 'IFMG-OB', '(31) 3938-1200', '36420-000', 'ere.ourobranco@ifmg.edu.br', '90', 'Rua Afonso Sardinha', 'Pioneiros', 'Ouro Branco', 'Minas Gerais', '1');
 
 
 
