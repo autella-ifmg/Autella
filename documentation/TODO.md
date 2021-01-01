@@ -78,10 +78,10 @@
 	- [X] Remover selectAlternativesQuant
 	- [X] Tratamento para inserção de apóstrofo
 	- [X] Otimização de códigos
+	- [ ] Tratamento para inserção de imagens
 	- [ ] Responsividade
 	- [ ] CKEditor Custom
-	- [ ] Tratamento para inserção de imagens
-
+	
 - [ ] Create
 	- [X] Configurar o toast de criação de questão
 	- [ ] Permitir que os campos de alternativas também sejam formatados
@@ -167,7 +167,7 @@
 Para evitar isso, faça o seguinte: adicione "?1222259157.415" no final do src da imagem, onde "1222259157.415" é o horário do servidor. Ex.: <img src="picture.jpg?1222259157.415" alt="">
 A função de tempo no php é "time()", então ficaria <img src="/images/users/2.jpeg<?php echo '?' . time() ?>" />
 * <script> be included between the <head> tags in your HTML document.
-* $connection->close();		após		require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
+* $connection->close();		após		require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/...';
 
 
 ## Possíveis novas funções
