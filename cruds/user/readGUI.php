@@ -12,7 +12,12 @@
 
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/cruds/user/readSQL.php'
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/cruds/user/readSQL.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/security.php';
+
+    // if account desactivated, allow only for account owner, coordinator and system manager
+    // if id_role == 5 (system manager), dont show too
+    securePage(1, $_GET['id']);
     ?>
 </head>
 

@@ -33,9 +33,13 @@
 		- [X] Campo de confirmar senha
 		- [X] Impedir contas com o mesmo email
 
-- [ ] Read
+- [X] Read
 	- [X] Fazer campos de "Área" e "Disciplina" funcionarem
-	- [ ] Se a conta estiver desativada e não for o próprio usuário que estiver acessando, mostrar "Essa conta foi desativada"
+	- [X] Impedir a exibição de contas do gerenciador do sistema
+	- [X] Se a conta estiver desativada e não for o próprio usuário ou coordenador ou gerenciador do sistema que estiver acessando, mostrar "Essa conta foi desativada"
+		- [X] Fazer função que pega o id do usuário e retorna o 'status' da conta
+		- [X] Fazer função que retorna o id do coordenador da instituição do usuário
+
 
 - [X] Delete
 

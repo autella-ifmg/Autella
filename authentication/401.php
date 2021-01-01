@@ -17,7 +17,7 @@
 <body class="h-100 w-100">
     <div class="jumbotron">
         <h1 class="display-4">Erro 403: Acesso negado!</h1>
-        <p class="lead">Opa! Você tentou acessar uma página proibida!</p>
+        <p class="lead">Opa! Você não tem as credenciais necessárias para acessar essa página!</p>
         <hr class="my-4">
         <p>Caso você queira voltar para a página anterior, clique no botão abaixo</p>
         <a class="btn btn-primary btn-lg" href="javascript:history.back()" role="button">Voltar</a>
