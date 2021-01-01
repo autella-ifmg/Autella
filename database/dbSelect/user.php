@@ -120,3 +120,15 @@ function getAccountRole($id_user)
     }
     $connection->close();
 }
+
+function selectUserEmail($user_id) {
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
+
+    $sql = "SELECT email FROM user WHERE id = " . $user_id;
+
+    $result = mysqli_query($connection, $sql);
+
+    $connection->close();
+
+    return mysqli_fetch_array($result)[0];
+}

@@ -93,7 +93,7 @@
 	- [X] Adicionar opção "Escolha..." no selectDiscipline
 	- [X] Exibir em quais provas simples a questão está presente
 	- [X] Só mostrar paginação caso necessário
-	- [ ] Exibir quem criou a questão
+	- [X] Exibir quem criou a questão
 	- [ ] Mostrar quais filtros foram aplicados
  	
 - [X] Update

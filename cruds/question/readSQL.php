@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question_test.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/user.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
 
 $id_role = $_SESSION["userData"]["id_role"];
@@ -72,6 +73,20 @@ function dateTratament($creation_date)
     return $creation_date = "Criada em: " . date("d/m/Y", $creation_date);
 }
 
+
+function nameTratament($email) {
+    $part1 = strstr($email, '.', true);
+    $part1 = ucfirst($part1);
+    
+    $part2 = strstr($email, ".", false);
+    $part2 = strstr($part2, "@", true);
+    $part2 = substr($part2, 1);
+    $part2 = ucfirst($part2);
+
+    $result = "Criada por: " . $part1 . " " . $part2;
+    return $result;
+}
+
 function questionBlocks($questions, $id_role)
 {
     global $start;
@@ -89,6 +104,9 @@ function questionBlocks($questions, $id_role)
                 $creation_date = dateTratament($questions[$i]["creation_date"]);
                 $enunciate =  $questions[$i]["enunciate"];
                 $status = $questions[$i]["status"];
+
+                $userEmail = selectUserEmail($questions[$i]['id_user']);
+                $create_by = nameTratament($userEmail);
 
                 $test_names = selectTestNames($question_id);
 
@@ -111,8 +129,8 @@ function questionBlocks($questions, $id_role)
 
                 echo '
                     <div class="d-flex flex-row bd-highlight">
-                        <div class="p-2 w-25 border border-dark">Questão - ' . $questionNumber . '</div>
-                        <div class="p-2 w-25 border border-dark border-left-0">Criada por: ...</div>
+                        <div class="p-2 w-auto border border-dark">Questão - ' . $questionNumber . '</div>
+                        <div class="p-2 w-25 border border-dark border-left-0">' . $create_by . '</div>
                         <div class="p-2 flex-fill border border-dark border-left-0">' . $creation_date . '</div>
                 ';
 
@@ -137,10 +155,10 @@ function questionBlocks($questions, $id_role)
                     '</div>
 
                     <div class="d-flex flex-row bd-highlight">
-                        <div class="p-2 w-25 border border-dark border-top-0">' . $discipline . '</div>
-                        <div class="p-2 w-25 border border-dark border-left-0 border-top-0">' . $subject . '</div>
-                        <div class="p-2 w-25 border border-dark border-left-0 border-top-0">' . $dificulty . '</div>
-                        <div class="p-2 w-25 border border-dark border-left-0 border-top-0">' . $correctAnswer  . '</div>
+                        <div class="p-2 w-auto border border-dark border-top-0">' . $discipline . '</div>
+                        <div class="p-2 flex-fill border border-dark border-left-0 border-top-0">' . $subject . '</div>
+                        <div class="p-2 w-auto border border-dark border-left-0 border-top-0">' . $dificulty . '</div>
+                        <div class="p-2 w-auto border border-dark border-left-0 border-top-0">' . $correctAnswer  . '</div>
                     </div>
 
                     <div name="toolbar' . $i . '" id="toolbar-container' . $i . '" class="border border-dark border-top-0 border-bottom-0" disabled></div>
