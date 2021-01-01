@@ -11,6 +11,9 @@
     <script src="../../libraries/ckeditor/ckeditor.js"></script>
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/discipline.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/subject.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
     $id_role = $_SESSION["userData"]["id_role"];
     //var_dump($id_role);
@@ -50,7 +53,7 @@
                     <div id="disciplineSelection_container" class="w-25 mt-1 mr-3" hidden>
                         <label for="disciplines">Disciplina:</label>
                         <select name="disciplines" id="disciplines" class="form-control" onchange="updateSelects()">
-                            <?php disciplineNames(2); ?>
+                            <?php selectDisciplineNames(2); ?>
                         </select>
                     </div>
                     <!--Select - matérias-->

@@ -1,5 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/tests.php';
+
 global $connection;
 if (!isset($_SESSION)) {
     session_start();

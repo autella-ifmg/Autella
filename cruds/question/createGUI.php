@@ -11,6 +11,8 @@
     <script src="../../libraries/ckeditor/ckeditor.js"></script>
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/discipline.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/subject.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
     require_once "createSQL.php";
     ?>
@@ -27,7 +29,7 @@
                     <div id="disciplineSelection_container" class="w-25 mt-1 mr-3" hidden>
                         <label for="disciplines">Disciplina:</label>
                         <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
-                            <?php disciplineNames(0); ?>
+                            <?php selectDisciplineNames(0); ?>
                         </select>
                     </div>
                     <!--Select matérias-->

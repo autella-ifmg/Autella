@@ -11,6 +11,10 @@
     <script src="../../libraries/ckeditor/ckeditor.js"></script>
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/discipline.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question_test.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/subject.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
     require_once "readSQL.php";
     ?>

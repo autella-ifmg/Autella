@@ -85,8 +85,8 @@ function questionBlocks($questions, $id_role)
                 $creation_date = dateTratament($questions[$i]["creation_date"]);
                 $enunciate =  $questions[$i]["enunciate"];
                 $status = $questions[$i]["status"];
-
-                $tests = selectTestNames($question_id);
+         
+                $test_names = selectTestNames($question_id);
                 
                 $icons = "";
 
@@ -112,7 +112,7 @@ function questionBlocks($questions, $id_role)
                         <div class="p-2 flex-fill border border-dark border-left-0">' . $creation_date . '</div>
                 ';
                         
-                if (!empty($tests)) { 
+                if (!empty($test_names)) { 
                     echo '    
                         <div class="dropdown p-2 w-auto border border-dark border-left-0">
                             <img id="dropdownMenuButton' . $i . '" src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/file-ruled-fill.svg" height="25" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
@@ -120,8 +120,8 @@ function questionBlocks($questions, $id_role)
                                 <h6 class="dropdown-header">Questão inclusa em:</h6>
                     ';
 
-                            for ($aux = 0; $aux < count($tests); $aux++) {
-                                echo '<a class="dropdown-item" href="simpleTest/readTestGUI.php?id=' . $tests[$aux][0] . '">' . $tests[$aux][1] . '</a>';
+                            for ($aux = 0; $aux < count($test_names); $aux++) {
+                                echo '<a class="dropdown-item" href="simpleTest/readTestGUI.php?id=' . $test_names[$aux][0] . '">' . $test_names[$aux][1] . '</a>';
                             }
                     echo '
                             </div>
