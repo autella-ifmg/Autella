@@ -94,6 +94,9 @@
         //Quando o documento estiver carregado, executa o método updateSubjects().
         document.addEventListener("DOMContentLoaded", updateSubjects(), false);
 
+        //Quando o documento estiver carregado, executa o método updateDropdownHeader().
+        document.addEventListener("DOMContentLoaded", updateDropdownHeader(), false);
+
         //Quando o documento estiver carregado, executa o método genericToast_CEQ().
         //document.addEventListener("DOMContentLoaded", genericToastCEQ(), false);
 
@@ -111,7 +114,7 @@
 
             //Quando o documento estiver carregado, executa o método genericToastCEQ().
             $js_var = 'document.addEventListener("DOMContentLoaded", genericToastCEQ(), false);';
-            echo $js_var."\n";
+            echo $js_var . "\n";
         }
         ?>
 
@@ -145,6 +148,14 @@
             $("#toast").toast("show");
             window.history.pushState({}, "Autella | Visualizar questões", "/cruds/question/readGUI.php?");
             //console.log(result);
+        }
+
+        function updateDropdownHeader() {
+            if (action_pag == 0) {
+                $("#dropdownHeader").html("Questão estava inclusa em:");
+            } else if (action_pag == 1) {
+                $("#dropdownHeader").html("Questão inclusa em:");
+            }
         }
     </script>
 

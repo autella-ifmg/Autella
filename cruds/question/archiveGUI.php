@@ -32,8 +32,8 @@
                 <div class="w-auto mt-1 mr-3">
                     <a id="filter" onclick="filter(0, 0)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-square-fill.svg" alt="Aplicar filtros" height="75" data-toggle="tooltip" data-placement="top" title="Aplicar filtros"> </a>
                 </div>
-                 <!--Filtros-->
-                 <?php require_once '../../views/filters.php'; ?>
+                <!--Filtros-->
+                <?php require_once '../../views/filters.php'; ?>
             </div>
 
             <!--Botões-->
@@ -90,6 +90,17 @@
 
         //Quando o documento estiver carregado, executa o método updateSubjects().
         document.addEventListener("DOMContentLoaded", updateSubjects(), false);
+
+        //Quando o documento estiver carregado, executa o método updateDropdownHeader().
+        document.addEventListener("DOMContentLoaded", updateDropdownHeader(), false);
+
+        function updateDropdownHeader() {
+            if (action_pag == 0) {
+                $("#dropdownHeader").html("Questão estava inclusa em:");
+            } else if (action_pag == 1) {
+                $("#dropdownHeader").html("Questão inclusa em:");
+            }
+        }
     </script>
 
     <!--CKEditor-->

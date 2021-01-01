@@ -238,6 +238,15 @@ function genericToastCEQ() {
   console.log(result);
 }
 
+//Autaliza o cabeçalho do dropdown que contém os nomes dos testes.
+function updateDropdownHeader() {
+  if (action_pag == 0) {
+      $("#dropdownHeader").html("Questão estava inclusa em:");
+  } else if (action_pag == 1) {
+      $("#dropdownHeader").html("Questão inclusa em:");
+  }
+}
+
 //Editar questão.
 function editQuestion(questionNumber) {
   var position = convertQuestionNumber(questionNumber);

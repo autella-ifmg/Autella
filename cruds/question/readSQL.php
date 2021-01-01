@@ -117,7 +117,7 @@ function questionBlocks($questions, $id_role)
                         <div class="dropdown p-2 w-auto border border-dark border-left-0">
                             <img id="dropdownMenuButton' . $i . '" src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/file-ruled-fill.svg" height="25" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton' . $i . '">
-                                <h6 class="dropdown-header">Questão inclusa em:</h6>
+                                <h6 id="dropdownHeader" class="dropdown-header"></h6>
                     ';
 
                             for ($aux = 0; $aux < count($test_names); $aux++) {
