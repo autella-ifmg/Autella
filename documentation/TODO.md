@@ -45,7 +45,7 @@
 
 
 ## Institution
-- [ ] Create
+- [X] Create
 	- [X] Ao criar instituição, inserir imagem padrão
 		- [X] Fazer imagem padrão
 		- [X] Mudar o createSQL.php
@@ -89,9 +89,9 @@
 	- [X] Adicionar filtros de pesquisa
 	- [X] Adicionar opção "Escolha..." no selectDiscipline
 	- [X] Exibir em quais provas simples a questão está presente
+	- [X] Só mostrar paginação caso necessário
 	- [ ] Exibir quem criou a questão
 	- [ ] Mostrar quais filtros foram aplicados
-	- [X] Só mostrar paginação caso necessário
  	
 - [X] Update
 	- [X] Configurar o toast de alteração de questão
@@ -120,6 +120,8 @@
 - [ ] Criação de usuários
 
 ## Painel de controle do gerenciador do sistema
+- [ ] Coisas do painel de controle do coordenador
+- [ ] Coisas do painel de controle do coordenador, mas adaptadas para instituições
 
 ## Database
 
@@ -131,7 +133,7 @@
 - [X] Criar coluna de CEP e email na instituição
 - [X] Remover coluna de id_discipline e correctAnswerEnunciate na tabela question
 - [X] user -> coluna de status ("conta ativa", "conta inativa")
-- [ ] institution -> coluna de status ("instituição ativa", "instituição inativa")
+- [X] institution -> coluna de status ("instituição ativa", "instituição inativa")
 
 ## Geral
 - [X] Redirecionar da homepage para outras páginas quando cadastrado
