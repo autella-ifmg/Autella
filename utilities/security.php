@@ -20,7 +20,7 @@ function securePage($option, $aux1)
 {
     switch ($option) {
         case 1: {
-                require $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
+                require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/user.php';
                 if (getAccountRole($aux1) == 5) {
                     // O usuário é um gerenciador do sistema, acesso proibido
                     require_once $_SERVER['DOCUMENT_ROOT'] . '/authentication/403.php';

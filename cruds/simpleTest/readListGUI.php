@@ -11,7 +11,6 @@
     <script src="../../libraries/ckeditor5/ckeditor.js"></script>
     <script> 
     <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
     require_once "readListSQL.php";
     
     $testID = null;

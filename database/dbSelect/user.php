@@ -1,5 +1,5 @@
 <?php
-//user
+
 function usersToRows($id_institution)
 {
     require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
@@ -8,8 +8,8 @@ function usersToRows($id_institution)
             JOIN discipline ON user.id_discipline = discipline.id
             JOIN field ON field.id = discipline.id_field
             JOIN role ON user.id_role = role.id
-            WHERE user.id_institution = " . $id_institution . 
-            " AND user.id_role != 5";
+            WHERE user.id_institution = " . $id_institution .
+        " AND user.id_role != 5";
 
     $result = mysqli_query($connection, $sql);
 
@@ -64,7 +64,8 @@ function getAccountStatus($id_user)
     $connection->close();
 }
 
-function getAccountInstitution($id_user){
+function getAccountInstitution($id_user)
+{
     require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $sql = "SELECT id_institution FROM user WHERE id =" . $id_user;
@@ -82,7 +83,8 @@ function getAccountInstitution($id_user){
     $connection->close();
 }
 
-function getAccountCoordinator($id_user){
+function getAccountCoordinator($id_user)
+{
     require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $sql = "SELECT id FROM user WHERE id_role = 1 and id_institution = " . getAccountInstitution($id_user);
@@ -100,7 +102,8 @@ function getAccountCoordinator($id_user){
     $connection->close();
 }
 
-function getAccountRole($id_user){
+function getAccountRole($id_user)
+{
     require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $sql = "SELECT id_role FROM user WHERE id = " . $id_user;

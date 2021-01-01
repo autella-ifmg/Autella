@@ -9,7 +9,6 @@
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
     <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
     ?>
 </head>

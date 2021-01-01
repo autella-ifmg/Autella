@@ -10,7 +10,6 @@
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
     <script src="../../libraries/ckeditor5/ckeditor.js"></script>
     <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/discipline.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/subject.php';
     require_once "readTestSQL.php";

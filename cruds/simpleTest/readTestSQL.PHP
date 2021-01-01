@@ -1,6 +1,4 @@
 <?php
-
-require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question_test.php';
 

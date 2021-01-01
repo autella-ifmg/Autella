@@ -34,7 +34,10 @@
                 </thead>
 
                 <tbody>
-                    <?php usersToRows($_SESSION['userData']['id_institution']); ?>
+                    <?php
+                    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/user.php';
+                    usersToRows($_SESSION['userData']['id_institution']);
+                    ?>
                 </tbody>
             </table>
         </div>

@@ -173,7 +173,6 @@ function insertInDatabase($ids,$array,$testName)
     date_default_timezone_set("America/Sao_Paulo");
     $date = date("Y-m-d");
     
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
     global $connection;
     $id_user = $_SESSION["userData"]["id"];
     $sql = "INSERT into Tests(id_user, making_date, changing_date, name) VALUES ('$id_user','$date','$date','$testName');";  
