@@ -22,7 +22,7 @@
             <?php
             if ($_SESSION['userData']['id_role'] == 1) {
                 echo '<li>
-                    <a class="nav-link" href="/controlPanel/userReadGUI.php">Painel de controle</a>
+                    <a class="nav-link" href="/controlPanel/allUsersReadGUI.php">Painel de controle</a>
                 </li>';
             }
             ?>

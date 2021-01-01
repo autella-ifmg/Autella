@@ -41,7 +41,8 @@
 		- [X] Fazer função que retorna o id do coordenador da instituição do usuário
 
 
-- [X] Delete
+- [X] Desactivate
+	- [ ] Activate
 
 
 ## Institution
@@ -67,7 +68,8 @@
 		- [X] GUI
 		- [X] SQL
 
-- [ ] Delete
+- [ ] Desactivate
+	- [ ] Activate
 
 ## Question
 - [ ] Geral
@@ -143,6 +145,7 @@
 - [ ] Carousel de instituições
 - [ ] Carousel de opiniões (mexe sozinho)
 - [ ] Sobre nós
+- [ ] Toasts de mensagens
 
 ## Segurança
 - [ ] Tirar senha do $_SESSION['userData'] -> implicações no professor/updateSQL.php

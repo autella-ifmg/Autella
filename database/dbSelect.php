@@ -327,7 +327,8 @@ function usersToRows($id_institution)
             JOIN discipline ON user.id_discipline = discipline.id
             JOIN field ON field.id = discipline.id_field
             JOIN role ON user.id_role = role.id
-            WHERE user.id_institution = " . $id_institution;
+            WHERE user.id_institution = " . $id_institution . 
+            " AND user.id_role != 5";
 
     $result = mysqli_query($connection, $sql);
 
