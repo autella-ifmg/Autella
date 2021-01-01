@@ -9,15 +9,11 @@
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
     <script src="../../libraries/ckeditor/ckeditor.js"></script>
-    <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/discipline.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/subject.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
-    require_once "createSQL.php";
-    ?>
+    <?php require_once "createSQL.php"; ?>
 </head>
 
 <body>
+    <!--NavBar-->
     <?php require_once '../../views/navbar.php'; ?>
 
     <section class="d-flex justify-content-center mt-4">
@@ -87,7 +83,7 @@
     </section>
 
     <!--Importação das funções .js utilizadas nessa página-->
-    <script src="../../utilities/functionsForQuestion.js"></script>
+    <script src="../../utilities/jsFunctions/question.js"></script>
 
     <script>
         <?php
@@ -99,10 +95,10 @@
         $php_array = selectSubjects();
         $js_array = json_encode($php_array);
         echo "subjects = " . $js_array . ";\n";
-        ?>
 
         //Variável global que informa a função da página atual.
-        action_pag = 2;
+        echo "action_pag = 2;"
+        ?>
 
         //Quando o documento estiver carregado, executa o método verifyRole().
         document.addEventListener("DOMContentLoaded", verifyRole(), false);

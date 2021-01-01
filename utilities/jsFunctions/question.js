@@ -207,7 +207,7 @@ function convertQuestionNumber(questionNumber) {
 }
 
 //Gera os toasts referentes às ações de criar e editar questão.
-function genericToastCEQ() {
+/*function genericToastCEQ() {
   if (action_per == 1) {
     $("#img_toast").attr({
       src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/journal-x.svg",
@@ -245,18 +245,18 @@ function updateDropdownHeader() {
   } else if (action_pag == 1) {
       $("#dropdownHeader").html("Questão inclusa em:");
   }
-}
+}*/
 
 //Editar questão.
 function editQuestion(questionNumber) {
   var position = convertQuestionNumber(questionNumber);
 
-  var id_question_update = questions[position][0];
-  //console.log(id_question_update);
+  var question_id_update = questions[position][0];
+  //console.log(question_id_update);
   var button = document.getElementById("editButton");
   button.setAttribute(
     "href",
-    `updateGUI.php?id_question_update=${id_question_update}`
+    `updateGUI.php?question_id_update=${question_id_update}`
   );
 }
 

@@ -1,20 +1,10 @@
 <?php
- $id_role = $_SESSION["userData"]["id_role"];
- //var_dump($id_role);
- 
-//Função que remove conteúdos indejados dos inputs.
-function secure($input)
-{
-    //global $connection;
+require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/discipline.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/subject.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
 
-    $input = addslashes($input);
-
-    //$input = mysqli_escape_string($connection, $input);
-
-    //$input = htmlspecialchars($aux);
-
-    return $input;
-}
+$id_role = $_SESSION["userData"]["id_role"];
+//var_dump($id_role); 
 
 if (isset($_POST["submit"])) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
@@ -24,7 +14,7 @@ if (isset($_POST["submit"])) {
     $id_user = $_SESSION["userData"]["id"];
     $id_subject = $_POST["subjects"];
     $dificulty = $_POST["dificulty"];
-    $enunciate = secure($_POST["enunciate"]);
+    $enunciate = addslashes($_POST["enunciate"]);
     $correctAnswer = $_POST["correctAnswer"];
     $status = 1;
 
@@ -33,7 +23,7 @@ if (isset($_POST["submit"])) {
     $letters = ["A", "B", "C", "D", "E"];
 
     for ($i = 0; $i < 5; $i++) {
-        $answersEnunciate .= "<br>" . "$letters[$i]) " . secure($_POST["question$i"]);
+        $answersEnunciate .= "<br>" . "$letters[$i]) " . addslashes($_POST["question$i"]);
     }
 
     $enunciate .= "\n" . $answersEnunciate;

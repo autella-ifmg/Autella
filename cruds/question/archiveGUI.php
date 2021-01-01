@@ -9,17 +9,11 @@
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
     <script src="../../libraries/ckeditor/ckeditor.js"></script>
-    <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/discipline.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question_test.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/subject.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
-    require_once "readSQL.php";
-    ?>
+    <?php require_once "readSQL.php"; ?>
 </head>
 
 <body>
+    <!--Navbar-->
     <?php require_once '../../views/navbar.php'; ?>
 
     <!--Toast genérico-->
@@ -32,12 +26,13 @@
                 <div class="w-auto mt-1 mr-3">
                     <a id="filter" onclick="filter(0, 0)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-square-fill.svg" alt="Aplicar filtros" height="75" data-toggle="tooltip" data-placement="top" title="Aplicar filtros"> </a>
                 </div>
+
                 <!--Filtros-->
                 <?php require_once '../../views/filters.php'; ?>
             </div>
 
             <!--Botões-->
-            <div class="d-flex flex-row justify-content-center mb-3">
+            <div class="d-flex justify-content-center mb-3">
                 <a id="unarchive" type="button" class="btn btn-info w-25" onclick="filter(1, 1)">Visualizar questões habilitadas</a>
             </div>
 
@@ -53,7 +48,7 @@
     <?php require_once '../../views/genericModal.php'; ?>
 
     <!--Importação das funções .js utilizadas nessa página-->
-    <script src="../../utilities/functionsForQuestion.js"></script>
+    <script src="../../utilities/jsFunctions/question.js"></script>
 
     <script>
         <?php
@@ -80,10 +75,10 @@
         } else {
             echo "arrayIsEmpty = false;\n";
         }
-        ?>
 
         //Variável global que informa a função da página atual.
-        action_pag = 0;
+        echo "action_pag = 0;\n";
+        ?>
 
         //Quando o documento estiver carregado, executa o método verifyRole().
         document.addEventListener("DOMContentLoaded", verifyRole(), false);

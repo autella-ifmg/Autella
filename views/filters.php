@@ -2,7 +2,10 @@
 <div id="disciplineSelection_container" class="w-25 mt-1 mr-3" hidden>
     <label for="disciplines">Disciplina:</label>
     <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
-        <?php selectDisciplineNames(1); ?>
+        <?php
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/discipline.php';
+        selectDisciplineNames(1);
+        ?>
     </select>
 </div>
 <!--Filtro - matéria-->
@@ -10,6 +13,7 @@
     <label for="subjects">Matéria:</label>
     <select name="subjects" id="subjects" class="form-control">
         <!--updateSubjects()-->
+        <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/subject.php'; ?>
     </select>
 </div>
 <!--Filtro - dificuldade-->

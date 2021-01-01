@@ -1,25 +1,11 @@
 <?php
-//Função que remove conteúdos indejados dos inputs.
-function secure($input)
-{
-    //global $connection;
-
-    $input = addslashes($input);
-
-    //$input = mysqli_escape_string($connection, $input);
-
-    //$input = htmlspecialchars($aux);
-
-    return $input;
-}
-
 if (isset($_POST["submit"])) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $id = $_POST["id"];
     $id_subject = $_POST["subjects"];
     $dificulty = $_POST["dificulty"];
-    $enunciate = secure($_POST["enunciate"]);
+    $enunciate = addslashes($_POST["enunciate"]);
     $correctAnswer = $_POST["correctAnswer"];
 
     $sql = "UPDATE question SET id_subject = '$id_subject', dificulty = '$dificulty', enunciate = '$enunciate', correctAnswer = '$correctAnswer' WHERE id = '$id'";

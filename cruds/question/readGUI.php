@@ -9,17 +9,11 @@
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
     <script src="../../libraries/ckeditor/ckeditor.js"></script>
-    <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/discipline.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question_test.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/subject.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
-    require_once "readSQL.php";
-    ?>
+    <?php require_once "readSQL.php"; ?>
 </head>
 
 <body>
+    <!--Navbar-->
     <?php require_once '../../views/navbar.php'; ?>
 
     <!--Toast genérico-->
@@ -32,6 +26,7 @@
                 <div class="w-auto mt-1 mr-3">
                     <a id="filter" onclick="filter(1, 1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-square-fill.svg" alt="Aplicar filtros" height="75" data-toggle="tooltip" data-placement="top" title="Aplicar filtros"> </a>
                 </div>
+
                 <!--Filtros-->
                 <?php require_once '../../views/filters.php'; ?>
             </div>
@@ -55,7 +50,7 @@
     <?php require_once '../../views/genericModal.php'; ?>
 
     <!--Importação das funções .js utilizadas nessa página-->
-    <script src="../../utilities/functionsForQuestion.js"></script>
+    <script src="../../utilities/jsFunctions/question.js"></script>
 
     <script>
         <?php
@@ -82,12 +77,14 @@
         } else {
             echo "arrayIsEmpty = false;\n";
         }
-        ?>
 
         //Variável global que informa a função da página atual.
-        action_pag = 1;
+        echo "action_pag = 1;\n";
 
-        action_per = 0;
+        //Variável global que irá armazenar a última ação do usuário.
+        echo "action_per = 0;\n";
+        ?>
+
         //Quando o documento estiver carregado, executa o método verifyRole().
         document.addEventListener("DOMContentLoaded", verifyRole(), false);
 
@@ -97,12 +94,9 @@
         //Quando o documento estiver carregado, executa o método updateDropdownHeader().
         document.addEventListener("DOMContentLoaded", updateDropdownHeader(), false);
 
-        //Quando o documento estiver carregado, executa o método genericToast_CEQ().
-        //document.addEventListener("DOMContentLoaded", genericToastCEQ(), false);
-
         <?php
         if (isset($_GET['action_per'])) {
-            //Variável global que informa se alguma questão foi criada/editada.
+            //Variável global que informa se alguma questão foi criada/editada e armazena o resultado da respectiva ação.
             $php_var = empty($_SESSION['debug']) ? "" : $_SESSION['debug'][count($_SESSION['debug']) - 1];
             $js_var = json_encode($php_var, JSON_UNESCAPED_UNICODE);
             echo "result = " . $js_var . ";\n";
@@ -150,6 +144,7 @@
             //console.log(result);
         }
 
+        //Autaliza o cabeçalho do dropdown que contém os nomes dos testes.
         function updateDropdownHeader() {
             if (action_pag == 0) {
                 $("#dropdownHeader").html("Questão estava inclusa em:");

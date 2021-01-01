@@ -1,4 +1,8 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question_test.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
+
 $id_role = $_SESSION["userData"]["id_role"];
 //var_dump($id_role);
 $id_discipline = $_SESSION["userData"]["id_discipline"];
@@ -85,9 +89,9 @@ function questionBlocks($questions, $id_role)
                 $creation_date = dateTratament($questions[$i]["creation_date"]);
                 $enunciate =  $questions[$i]["enunciate"];
                 $status = $questions[$i]["status"];
-         
+
                 $test_names = selectTestNames($question_id);
-                
+
                 $icons = "";
 
                 if ($id_role == 1 || $questions[$i]["id_user"] == $id_user) {
@@ -104,15 +108,15 @@ function questionBlocks($questions, $id_role)
                         ';
                     }
                 }
- 
+
                 echo '
                     <div class="d-flex flex-row bd-highlight">
                         <div class="p-2 w-25 border border-dark">Questão - ' . $questionNumber . '</div>
                         <div class="p-2 w-25 border border-dark border-left-0">Criada por: ...</div>
                         <div class="p-2 flex-fill border border-dark border-left-0">' . $creation_date . '</div>
                 ';
-                        
-                if (!empty($test_names)) { 
+
+                if (!empty($test_names)) {
                     echo '    
                         <div class="dropdown p-2 w-auto border border-dark border-left-0">
                             <img id="dropdownMenuButton' . $i . '" src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/file-ruled-fill.svg" height="25" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
@@ -120,9 +124,9 @@ function questionBlocks($questions, $id_role)
                                 <h6 id="dropdownHeader" class="dropdown-header"></h6>
                     ';
 
-                            for ($aux = 0; $aux < count($test_names); $aux++) {
-                                echo '<a class="dropdown-item" href="simpleTest/readTestGUI.php?id=' . $test_names[$aux][0] . '">' . $test_names[$aux][1] . '</a>';
-                            }
+                    for ($aux = 0; $aux < count($test_names); $aux++) {
+                        echo '<a class="dropdown-item" href="simpleTest/readTestGUI.php?id=' . $test_names[$aux][0] . '">' . $test_names[$aux][1] . '</a>';
+                    }
                     echo '
                             </div>
                         </div>

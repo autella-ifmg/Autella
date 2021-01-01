@@ -14,6 +14,7 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/subject.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
+
     $id_role = $_SESSION["userData"]["id_role"];
     //var_dump($id_role);
 
@@ -26,11 +27,11 @@
     $questions = selectQuestions(false, 0, 0, $filter);
     //var_dump($questions);
 
-    $id_question_update = $_GET["id_question_update"];
-    //var_dump($id_question_update);
+    $question_id_update = $_GET["question_id_update"];
+    //var_dump($question_id_update);
 
     for ($i = 0; $i < count($questions); $i++) {
-        if ($questions[$i][0] == $id_question_update) {
+        if ($questions[$i][0] == $question_id_update) {
             $questionForUpdate = $questions[$i];
         }
     }
@@ -47,6 +48,7 @@
         <div class="d-flex flex-column">
             <form id="questionForm" action="updateSQL.php" method="post">
                 <input name="id" type="hidden" value="<?php echo $questionForUpdate[0]; ?>">
+
                 <div class="d-flex flex-row justify-content-between mb-2">
                     <!--Select - disciplina-->
                     <div id="disciplineSelection_container" class="w-25 mt-1 mr-3" hidden>
@@ -104,7 +106,7 @@
     </section>
 
     <!--Importação das funções .js utilizadas nessa página-->
-    <script src="../../utilities/functionsForQuestion.js"></script>
+    <script src="../../utilities/jsFunctions/question.js"></script>
 
     <script>
         <?php
@@ -132,9 +134,9 @@
         //Variável global com o id_role atual.
         $js_var = json_encode($id_role);
         echo "id_role = Number(" . $js_var . ");\n";
-        ?>
 
-        action_pag = 3;
+        echo "action_pag = 3;";
+        ?>
 
         //Quando o documento estiver carregado, executa o método verifyRole().
         document.addEventListener("DOMContentLoaded", verifyRole(), false);
