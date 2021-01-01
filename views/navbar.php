@@ -35,6 +35,7 @@
                 <span style="text-align: right; font-size: 0.8rem; color: rgb(166, 166, 166)" class="nav-link pt-0">
                     <?php
                     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
+                    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/role.php';
                     echo idRoleToRoleName($_SESSION['userData']['id_role']);
                     ?>
                 </span>

@@ -16,6 +16,9 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/discipline.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/field.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/institution.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/role.php';
     ?>
 </head>
 
