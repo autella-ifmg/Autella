@@ -25,13 +25,15 @@
             <h3 class="text-center col-12 mt-3">Professores</h3>
             <table class="table col-12">
                 <thead class="thead-dark">
-                    <th scope="col">Código</th>
+                    <!-- <th scope="col">Código</th> -->
+                    <th scope="col">Ver</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Email</th>
                     <th scope="col">Cargo</th>
-                    <th scope="col">Área</th>
+                    <!-- <th scope="col">Área</th> -->
                     <th scope="col">Disciplina</th>
-                    <th scope="col">Ações</th>
+                    <th scope="col">Conta ativa</th>
+                    <th scope="col">Editar</th>
                 </thead>
 
                 <tbody>

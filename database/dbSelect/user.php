@@ -17,22 +17,28 @@ function usersToRows($id_institution)
         while ($row = mysqli_fetch_array($result)) {
             echo '
                 <tr>
-                    <th style="vertical-align: middle;">' . $row[0] . '</th>
+                    <td style="vertical-align: middle;"> 
+                        <a class="mt-2" href="/cruds/user/readGUI.php?id=' . $row[0] . '">
+                            <img style="width: 32px" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/eye.svg">
+                        </a> 
+                    </td>
+                    <!-- <th style="vertical-align: middle;">' . $row[0] . '</th> -->
                     <td style="vertical-align: middle;">' . $row[1] . '</td>
                     <td style="vertical-align: middle;">' . $row[2] . '</td>
                     <td style="vertical-align: middle;">' . $row[3] . '</td>
-                    <td style="vertical-align: middle;">' . $row[4] . '</td>
+                    <!-- <td style="vertical-align: middle;">' . $row[4] . '</td> -->
                     <td style="vertical-align: middle;">' . $row[5] . '</td>
+
+                    <td style="vertical-align: middle;">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch' . $row[0] . '">
+                            <label class="custom-control-label" for="customSwitch' . $row[0] . '"></label>
+                        </div>
+                    </td>
                     
-                    <td class="d-flex flex-row justify-content-around" style="min-width: 200px">
-                        <a class="mt-2" href="/cruds/user/readGUI.php?id=' . $row[0] . '">
-                            <img style="width: 32px" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/eye.svg">
-                        </a>
-                        <a class="mt-2" href="">
+                    <td style="vertical-align: middle;"> 
+                        <a class="mt-2" href="userUpdateGUI.php?id='. $row[0] . '">
                             <img style="width: 32px" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil.svg">
-                        </a>
-                        <a class="mt-2" href="">
-                            <img style="width: 32px" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/x-circle.svg">
                         </a>
                     </td>
                 </tr>
@@ -121,7 +127,8 @@ function getAccountRole($id_user)
     $connection->close();
 }
 
-function selectUserName($user_id) {
+function selectUserName($user_id)
+{
     require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $sql = "SELECT name FROM user WHERE id = " . $user_id;
