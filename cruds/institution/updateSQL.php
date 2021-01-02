@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
     }
     $connection->close();
 
-    //header('Location: ../../index.php');
+    header('Location: ../../index.php');
 }
 
 
