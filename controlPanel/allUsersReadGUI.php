@@ -20,8 +20,9 @@
     </header>
 
     <main class="d-flex flex-column align-items-center flex-grow-1">
+        <a class="btn btn-success my-3" href="../cruds/user/createGUI.php">Cadastrar professor</a>
         <div class="d-inline-block border" style="width: 95%">
-            <h3 class="text-center col-12 mt-3">Usuários</h3>
+            <h3 class="text-center col-12 mt-3">Professores</h3>
             <table class="table col-12">
                 <thead class="thead-dark">
                     <th scope="col">Código</th>

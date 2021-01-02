@@ -15,6 +15,7 @@
 	- [X] Usar CropperJS na atualização da imagem
 	- [X] Mudar de "professor" para "user"
 	- [X] Ao criar conta, inserir imagem padrão	
+	- [X] Impedir a exibição de "gerenciador do sistema" para coordenadores
 	- [X] Verificação de campos
 		- [X] Vazios
 		- [X] Campo de confirmar senha
@@ -120,7 +121,7 @@
 - [ ] Transformar cruds/user/delete para pegar "$_GET" e não "$_SESSION['userData']['id']"
 - [ ] Barra de pesquisa de nome de usuário
 - [ ] Log (Ex.: Usuário tal fez tal coisa em tal data; Tal questão foi alterada; Tal prova foi criada)
-- [ ] Criação de usuários
+- [X] Criação de usuários
 
 ## Painel de controle do gerenciador do sistema
 - [ ] Coisas do painel de controle do coordenador

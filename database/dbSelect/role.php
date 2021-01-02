@@ -15,7 +15,15 @@ function roleNamesToDropdownItems()
 {
     require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
-    $sql = "SELECT * FROM role;";
+    // Impedir a exibição de "gerenciador do sistema"
+    $sql = "SELECT * FROM role WHERE id != 5";
+
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/user.php';
+    if(getAccountRole($_SESSION['userData']['id']) != 5){
+        //Só exibir a opção de criar coordenador para gerenciador do sistema
+        $sql .= ' AND id != 1';
+    }
+
     $result = mysqli_query($connection, $sql);
     $array = [];
 
@@ -29,14 +37,12 @@ function roleNamesToDropdownItems()
     }
 
     for ($i = 0; $i < count($array); $i++) {
-        // Impedir a exibição da opção "Coordenador do sistema"
-        if ($i != 5) {
+            // Coloca a primeira opção como padrão
             if ($i == 0) {
                 echo '<option selected="selected" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
             } else {
                 echo '<option value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
             }
-        }
     }
 
     $connection->close();
