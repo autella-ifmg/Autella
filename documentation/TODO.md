@@ -41,8 +41,8 @@
 		- [X] Fazer função que retorna o id do coordenador da instituição do usuário
 
 
-- [X] Desactivate
-	- [ ] Activate
+- [X] Deactivate
+	- [X] Activate
 
 
 ## Institution

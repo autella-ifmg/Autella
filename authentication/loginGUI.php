@@ -40,10 +40,10 @@
                     </form>
 
                     <a class="text-center my-3">Esqueceu a senha?</a>
-                    <hr class="my-0">
+                    <!-- <hr class="my-0">
                     <div class="w-100 text-center mt-4">
                         <a class="btn btn-success w-50" href="../cruds/user/createGUI.php">Criar nova conta</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 

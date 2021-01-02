@@ -16,6 +16,7 @@
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/user.php';
     ?>
 </head>
 
@@ -58,7 +59,16 @@
                 </div>
 
                 <div class="d-flex flex-row justify-content-between">
-                    <a class="btn btn-lg btn-danger" href="deleteGUI.php">Desativar conta</a>
+                <?php
+                if(getAccountStatus($_SESSION['userData']['id']) == 1){
+                    // Conta ativa
+                    echo '<a class="btn btn-lg btn-danger" href="deactivateGUI.php">Desativar conta</a>';
+                } else {
+                    // Conta foi desativada
+                    echo '<a class="btn btn-lg btn-danger" href="activateGUI.php">Ativar conta</a>';
+                }
+                    
+                ?>
                     <a class="btn btn-lg btn-danger" href="../../index.php">Cancelar</a>
                     <input type="submit" class="btn btn-lg btn-success" name="submit" value="Alterar">
                 </div>
