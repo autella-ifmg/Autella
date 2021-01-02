@@ -24,7 +24,7 @@
             <div class="d-flex flex-row mb-3">
                 <!--Botão filtrar-->
                 <div class="w-auto mt-1 ml-1 mr-3">
-                    <a id="filter" onclick="filter(0, 0)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-circle-fill.svg" alt="Aplicar filtros" height="75" data-toggle="tooltip" data-placement="top" title="Aplicar filtros"> </a>
+                    <a id="filter" onclick="applyFilter(0, 0)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-circle-fill.svg" alt="Aplicar filtros" height="75" data-toggle="tooltip" data-placement="top" title="Aplicar filtros"> </a>
                 </div>
 
                 <!--Filtros-->
@@ -36,7 +36,7 @@
 
             <!--Botões-->
             <div class="d-flex justify-content-center mb-3">
-                <a id="unarchive" type="button" class="btn btn-info w-25" onclick="filter(1, 1)">Visualizar questões habilitadas</a>
+                <a id="unarchive" type="button" class="btn btn-info w-25" onclick="applyFilter(1, 1)">Visualizar questões habilitadas</a>
             </div>
 
             <!--Blocos de questões-->
@@ -51,7 +51,8 @@
     <?php require_once '../../views/genericModal.php'; ?>
 
     <!--Importação das funções .js utilizadas nessa página-->
-    <script src="../../utilities/jsFunctions/question.js"></script>
+    <script src="../../utilities/jsFunctions/question/question.js"></script>
+    <script src="../../utilities/jsFunctions/question/filter.js"></script>
 
     <script>
         <?php
@@ -91,14 +92,6 @@
 
         //Quando o documento estiver carregado, executa o método updateDropdownHeader().
         document.addEventListener("DOMContentLoaded", updateDropdownHeader(), false);
-
-        function updateDropdownHeader() {
-            if (action_pag == 0) {
-                $("#dropdownHeader").html("Questão estava inclusa em:");
-            } else if (action_pag == 1) {
-                $("#dropdownHeader").html("Questão inclusa em:");
-            }
-        }
     </script>
 
     <!--CKEditor-->

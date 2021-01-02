@@ -128,7 +128,7 @@
                     <div id="container_selectDiscipline" class="w-25 mt-1 mr-3" hidden>
                         <label for="disciplines">Disciplina:</label>
                         <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
-                            <?php selectDisciplineNames(1); ?>
+                            <?php selectDisciplineNamesToDropdowns(1); ?>
                         </select>
                     </div>
                     <!--Filtro matéria-->
@@ -162,7 +162,7 @@
                 <!--Botões-->
                 <div class="d-flex flex-row justify-content-center mb-3">
                     <a href="../../views/home.php" type="button" class="btn btn-primary w-25 mr-5">Voltar</a>
-                    <a id="filter" type="button" class="btn btn-info w-25 mr-5" onclick="filter(1)">Filtrar</a>
+                    <a id="filter" type="button" class="btn btn-info w-25 mr-5" onclick="flter(1)">Filtrar</a>
                     <a href="createGUI.php" type="button" class="btn btn-primary w-25">Criar questão</a>
                 </div>
 

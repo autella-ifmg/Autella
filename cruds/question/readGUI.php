@@ -24,7 +24,7 @@
             <div class="d-flex flex-row mb-3">
                 <!--Botão filtrar-->
                 <div class="w-auto mt-1 ml-1 mr-3">
-                    <a id="filter" onclick="filter(1, 1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-circle-fill.svg" alt="Aplicar filtros" height="75" data-toggle="tooltip" data-placement="top" title="Aplicar filtros"> </a>
+                    <a id="filter" onclick="applyFilter(1, 1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-circle-fill.svg" alt="Aplicar filtros" height="75" data-toggle="tooltip" data-placement="top" title="Aplicar filtros"> </a>
                 </div>
 
                 <!--Filtros-->
@@ -37,7 +37,7 @@
             <!--Botões-->
             <div class="d-flex flex-row justify-content-between mb-3">
                 <a href="../../views/home.php" type="button" class="btn btn-primary w-25 mr-5">Voltar</a>
-                <a id="archive" type="button" class="btn btn-info w-25 mr-5" onclick="filter(0, 0)">Visualizar questões arquivadas</a>
+                <a id="archive" type="button" class="btn btn-info w-25 mr-5" onclick="applyFilter(0, 0)">Visualizar questões arquivadas</a>
                 <a href="createGUI.php" type="button" class="btn btn-primary w-25">Criar questão</a>
             </div>
 
@@ -53,10 +53,13 @@
     <?php require_once '../../views/genericModal.php'; ?>
 
     <!--Importação das funções .js utilizadas nessa página-->
-    <script src="../../utilities/jsFunctions/question.js"></script>
+    <script src="../../utilities/jsFunctions/question/question.js"></script>
+    <script src="../../utilities/jsFunctions/question/filter.js"></script>
 
     <script>
         <?php
+        //Sequência de instanciação de variáveis globais que são utilizadas por funções .js
+
         //Array global com as questões que estão sendo exibidas.
         $js_var = json_encode($questions);
         echo "questions = " . $js_var . ";\n";
@@ -73,6 +76,11 @@
         $php_array = selectSubjects();
         $js_array = json_encode($php_array);
         echo "subjects = " . $js_array . ";\n";
+
+        //Array global com todas as disciplinas registradas.
+        $php_array = selectDisciplines();
+        $js_array = json_encode($php_array);
+        echo "disciplines = " . $js_array . ";\n";
 
         //Variável global que informa se há ou não questões sendo exibidas.
         if (empty($questions)) {
@@ -114,47 +122,6 @@
             echo $js_var . "\n";
         }
         ?>
-
-        //Gera os toasts referentes às ações de criar e editar questão.
-        function genericToastCEQ() {
-            if (action_per == 1) {
-                $("#img_toast").attr({
-                    src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/journal-x.svg",
-                    alt: "Criar questão"
-                });
-
-                if (result == "Questão criada com sucesso!") {
-                    $("#span_toast").text("Sucesso!");
-                } else if (result == "Erro ao criar questão!") {
-                    $("#span_toast").text("Erro!");
-                }
-            } else {
-                $("#img_toast").attr({
-                    src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg",
-                    alt: "Editar questão"
-                });
-
-                if (result == "Questão editada com sucesso!") {
-                    $("#span_toast").text("Sucesso!");
-                } else if (result == "Erro ao editar questão!") {
-                    $("#span_toast").text("Erro!");
-                }
-            }
-
-            $("#result").html(result).fadeIn();
-            $("#toast").toast("show");
-            window.history.pushState({}, "Autella | Visualizar questões", "/cruds/question/readGUI.php?");
-            //console.log(result);
-        }
-
-        //Autaliza o cabeçalho do dropdown que contém os nomes dos testes.
-        function updateDropdownHeader() {
-            if (action_pag == 0) {
-                $("#dropdownHeader").html("Questão estava inclusa em:");
-            } else if (action_pag == 1) {
-                $("#dropdownHeader").html("Questão inclusa em:");
-            }
-        }
     </script>
 
     <!--CKEditor-->

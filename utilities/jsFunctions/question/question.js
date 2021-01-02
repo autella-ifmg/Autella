@@ -87,44 +87,6 @@ function updateSelects() {
   correctAnswerOption.setAttribute("selected", "selected");
 }
 
-//Função que coleta o filtro desejado.
-function filter(pag, status) {
-  var url;
-
-  if (pag == 0) {
-    url = "http://autella.com/cruds/question/archiveGUI.php?";
-  } else {
-    url = "http://autella.com/cruds/question/readGUI.php?";
-  }
-
-  if (id_role == 1) {
-    var discipline_filter = document.getElementById("disciplines");
-    discipline_filter = discipline_filter.value;
-  } else {
-    var discipline_filter = id_discipline;
-  }
-
-  var subject_filter = document.getElementById("subjects");
-  subject_filter = subject_filter.value;
-  var dificulty_filter = document.getElementById("dificulty");
-  dificulty_filter = dificulty_filter.value;
-  var date_filter = document.getElementById("date");
-  date_filter = date_filter.value;
-
-  filters = `${url}filter=true&id_discipline=${discipline_filter}&id_subject=${subject_filter}&dificulty=${dificulty_filter}&date=${date_filter}&status=${status}&`;
-
-  var filter_btn = document.getElementById("filter");
-  filter_btn.setAttribute("href", filters);
-
-  if (action_pag == 0) {
-    var unarchive_btn = document.getElementById("unarchive");
-    unarchive_btn.setAttribute("href", url);
-  } else {
-    var archive_btn = document.getElementById("archive");
-    archive_btn.setAttribute("href", filters);
-  }
-}
-
 //Especifica a ação do modal
 function defineModalAction(action, questionNumber) {
   var modal = [
@@ -207,7 +169,7 @@ function convertQuestionNumber(questionNumber) {
 }
 
 //Gera os toasts referentes às ações de criar e editar questão.
-/*function genericToastCEQ() {
+function genericToastCEQ() {
   if (action_per == 1) {
     $("#img_toast").attr({
       src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/journal-x.svg",
@@ -245,7 +207,7 @@ function updateDropdownHeader() {
   } else if (action_pag == 1) {
       $("#dropdownHeader").html("Questão inclusa em:");
   }
-}*/
+}
 
 //Editar questão.
 function editQuestion(questionNumber) {

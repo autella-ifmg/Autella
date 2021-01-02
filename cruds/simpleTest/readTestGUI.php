@@ -27,7 +27,7 @@
                 <div id="container_selectDiscipline" class="w-25 mt-1 mr-3" hidden>
                     <label for="disciplines">Disciplina:</label>
                     <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
-                        <?php selectDisciplineNames(1); ?>
+                        <?php selectDisciplineNamesToDropdowns(1); ?>
                     </select>
                 </div>
                 <!--Filtro matéria-->
@@ -54,7 +54,7 @@
                 </div>
                 <!--Questões arquivadas-->
                 <div class="w-auto mt-1">
-                    <a id="archive" onclick="filter(0, 0)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Questões arquivadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões arquivadas"> </a>
+                    <a id="archive" onclick="filter(ply0, 0)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Questões arquivadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões arquivadas"> </a>
                 </div>
             </div>
 

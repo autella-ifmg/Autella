@@ -56,13 +56,13 @@ function dificultyTratament($dificulty)
 {
     switch ($dificulty) {
         case 1:
-            return $dificulty = "Dificuldade: Fácil";
+            return $dificulty = "Fácil";
             break;
         case 2:
-            return $dificulty = "Dificuldade: Média";
+            return $dificulty = "Média";
             break;
         default:
-            return $dificulty = "Dificuldade: Difícil";
+            return $dificulty = "Difícil";
             break;
     }
 }
@@ -70,7 +70,7 @@ function dificultyTratament($dificulty)
 function dateTratament($creation_date)
 {
     $creation_date = strtotime($creation_date);
-    return $creation_date = "Criada em: " . date("d/m/Y", $creation_date);
+    return $creation_date = date("d/m/Y", $creation_date);
 }
 
 function questionBlocks($questions, $id_role)
@@ -116,10 +116,10 @@ function questionBlocks($questions, $id_role)
                     <div class="d-flex flex-row">
                         <div class="d-flex flex-row w-50">
                             <div class="p-2 w-auto border border-dark">Questão - ' . $questionNumber . '</div>
-                            <div class="p-2 flex-fill border border-dark border-left-0">' . $create_by . '</div>
+                            <div class="p-2 flex-fill border border-dark border-left-0">Criada por: ' . $create_by . '</div>
                         </div>
 
-                        <div class="p-2 flex-fill border border-dark border-left-0">' . $creation_date . '</div>
+                        <div class="p-2 flex-fill border border-dark border-left-0">Criada em: ' . $creation_date . '</div>
                 ';
 
                 if (!empty($test_names)) {
@@ -143,7 +143,7 @@ function questionBlocks($questions, $id_role)
                     '</div>
 
                     <div class="d-flex flex-row">
-                        <div class="p-2 w-25 border border-dark border-top-0">' . $dificulty . '</div>
+                        <div class="p-2 w-25 border border-dark border-top-0">Dificuldade: ' . $dificulty . '</div>
                         <div class="p-2 w-25 border border-dark border-left-0 border-top-0">' . $correctAnswer  . '</div>
                         <div class="p-2 w-auto border border-dark border-left-0 border-top-0">' . $discipline . '</div>
                         <div class="p-2 flex-fill border border-dark border-left-0 border-top-0">' . $subject . '</div>

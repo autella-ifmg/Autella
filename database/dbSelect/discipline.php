@@ -22,25 +22,42 @@ function selectDisciplines()
     return $array;
 }
 
-function selectDisciplineNames($action)
+function selectDisciplineNamesToDropdowns($action)
 {
     $array = selectDisciplines();
 
     for ($i = 0; $i < count($array); $i++) {
-        if ($action == 0) {
-            if ($array[$i][0] == $_SESSION["userData"]["id_discipline"]) {
-                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item" selected="selected">' . $array[$i][2] . '</option>';
-            } else {
-                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
-            }
-        } else if ($action == 1) {
-            if (($i - 1) == -1) {
-                echo '<option name="null" id="null" value="null" class="dropdown-item" selected="selected">Escolha...</option>';
-            }
+        switch ($action) {
+            case 0:
+                if ($array[$i][0] == $_SESSION["userData"]["id_discipline"]) {
+                    echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item" selected="selected">' . $array[$i][2] . '</option>';
+                } else {
+                    echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
+                }
+                break;
+            case 1:
+                if (($i - 1) == -1) {
+                    echo '<option name="null" id="null" value="null" class="dropdown-item" selected="selected">Escolha...</option>';
+                }
 
-            echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
-        } else {
-            echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
+                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
+                break;
+            case 2:
+                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
+                break;
         }
     }
+}
+
+function selectDisciplineName($discipline_id)
+{
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
+
+    $sql = "SELECT name FROM discipline WHERE id = " . $discipline_id;
+
+    $result = mysqli_query($connection, $sql);
+
+    $connection->close();
+
+    return mysqli_fetch_array($result)[0];
 }

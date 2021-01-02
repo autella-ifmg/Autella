@@ -54,7 +54,7 @@
                     <div id="disciplineSelection_container" class="w-25 mt-1 mr-3" hidden>
                         <label for="disciplines">Disciplina:</label>
                         <select name="disciplines" id="disciplines" class="form-control" onchange="updateSelects()">
-                            <?php selectDisciplineNames(2); ?>
+                            <?php selectDisciplineNamesToDropdowns(2); ?>
                         </select>
                     </div>
                     <!--Select - matérias-->
@@ -106,7 +106,8 @@
     </section>
 
     <!--Importação das funções .js utilizadas nessa página-->
-    <script src="../../utilities/jsFunctions/question.js"></script>
+    <script src="../../utilities/jsFunctions/question/question.js"></script>
+    <script src="../../utilities/jsFunctions/question/filter.js"></script>
 
     <script>
         <?php
