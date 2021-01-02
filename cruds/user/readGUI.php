@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="row justify-content-around">
-                    <a class="btn btn-danger col-4" href="../../index.php">Voltar</a>
+                    <a class="btn btn-danger col-4" href="javascript:history.back()">Voltar</a>
 
                     <?php if ($_GET['id'] == $_SESSION['userData']['id']) {
                         echo '<a class="btn btn-success col-4" href="updateGUI.php">Alterar conta</a>';

@@ -32,6 +32,10 @@ if ($oldPassword == $_SESSION['userData']['password'] || getAccountRole($_SESSIO
 
 $connection->close();
 
-header('Location: ' . $_SERVER['HTTP_REFERER']);
-//header("Location: ../../index.php");
+if($_SERVER['HTTP_REFERER'] == "http://autella.com/cruds/user/activateDeactivateGUI.php"){
+    header("Location: ../../index.php");
+} else {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+}
+
 

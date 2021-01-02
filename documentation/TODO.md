@@ -117,11 +117,12 @@
 ## Painel de controle do coordenador
 - [X] Tabela de visualização dos dados
 - [X] Botão de visualizar funcionando
+- [X] User activate/deactivate
+	- [X] Transformar cruds/user/deactivate para pegar "$_GET" e não "$_SESSION['userData']['id']"
+- [X] Criação de usuários
 - [ ] Página de edição personalizada, para editar qualquer atributo de um usuário
-- [ ] Transformar cruds/user/delete para pegar "$_GET" e não "$_SESSION['userData']['id']"
 - [ ] Barra de pesquisa de nome de usuário
 - [ ] Log (Ex.: Usuário tal fez tal coisa em tal data; Tal questão foi alterada; Tal prova foi criada)
-- [X] Criação de usuários
 
 ## Painel de controle do gerenciador do sistema
 - [ ] Coisas do painel de controle do coordenador
