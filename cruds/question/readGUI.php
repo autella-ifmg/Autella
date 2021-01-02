@@ -23,13 +23,16 @@
         <div class="d-flex flex-column">
             <div class="d-flex flex-row mb-3">
                 <!--Botão filtrar-->
-                <div class="w-auto mt-1 mr-3">
-                    <a id="filter" onclick="filter(1, 1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-square-fill.svg" alt="Aplicar filtros" height="75" data-toggle="tooltip" data-placement="top" title="Aplicar filtros"> </a>
+                <div class="w-auto mt-1 ml-1 mr-3">
+                    <a id="filter" onclick="filter(1, 1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-circle-fill.svg" alt="Aplicar filtros" height="75" data-toggle="tooltip" data-placement="top" title="Aplicar filtros"> </a>
                 </div>
 
                 <!--Filtros-->
-                <?php require_once '../../views/filters.php'; ?>
+                <?php require_once '../../views/filterStructure.php'; ?>
             </div>
+
+            <!--Filtros aplicados-->
+            <?php require_once '../../views/appliedFilters.php'; ?>
 
             <!--Botões-->
             <div class="d-flex flex-row justify-content-between mb-3">
