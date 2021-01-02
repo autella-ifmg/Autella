@@ -1,73 +1,44 @@
 <?php
 if (isset($_POST['submit'])) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
-
-    function secure($data)
-    {
-        global $connection;
-        $data = mysqli_escape_string($connection, $data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/security.php';
 
     $email = secure($_POST['email']);
     $name = secure($_POST['name']);
-    $oldPassword = secure($_POST['oldPassword']);
-    $newPassword = secure($_POST['password']);
-
-    if ($newPassword == "") {
-        $newPassword = $oldPassword;
-    }
-
-    if ($oldPassword == $_SESSION['userData']['password']) {
-
-        // Impedir criação de contas com emails iguais
-        $sql = "SELECT id FROM user WHERE email='$email';";
-        $result = mysqli_query($connection, $sql);
-        if (mysqli_num_rows($result) != 0) {
-            array_push($_SESSION['debug'], "Email já está cadastrado no sistema!");
-        } else {
+    $password = secure($_POST['password']);
+    $id_discipline = secure($_POST['disciplineId']);
+    $id_role = secure($_POST['roleId']);
+    $id_institution = secure($_POST['institutionId']);
 
 
 
-            $sql = "UPDATE user SET email='$email', name='$name', password='$newPassword' 
-                    WHERE id=" . $_SESSION['userData']['id'];
-
-            if ($connection->query($sql) === TRUE) {
-                array_push($_SESSION['debug'], "Dados alterados!");
-            } else {
-                array_push($_SESSION['debug'], "Ocorreu um erro na alteração dos dados!");
-            }
 
 
-            // Login para atualizar dados
-            $sql = "SELECT * FROM user WHERE email='$email' AND password='$newPassword'";
-            $result = mysqli_query($connection, $sql);
-
-            if (mysqli_num_rows($result) != 0) {
-                $array = mysqli_fetch_array($result);
-                $_SESSION['userData'] = $array;
-                array_push($_SESSION['debug'], "Login bem sucedido!");
-            } else {
-                array_push($_SESSION['debug'], "Senha incorreta!");
-            }
-
-            // $sql = 'SELECT * FROM institution WHERE id=' . $_SESSION['userData']['id_institution'];
-            // $result = mysqli_query($connection, $sql);
-
-            // if (mysqli_num_rows($result) != 0) {
-            //     $array = mysqli_fetch_array($result);
-            //     $_SESSION['userInstitutionData'] = $array;
-            //     array_push($_SESSION['debug'], "Instituição encontrada!");
-            // } else {
-            //     array_push($_SESSION['debug'], "Instituição não encontrada!");
-            // }
-        }
+    // Impedir criação de mais de um coordenador por instituição
+    $sql = "SELECT * FROM db_autella_local.user WHERE id_role='1' AND id_institution=$id_institution";
+    $result = mysqli_query($connection, $sql);
+    if (mysqli_num_rows($result) != 0 && $id_role == '1') {
+        array_push($_SESSION['debug'], "Instituição já possui um coordenador!");
     } else {
-        array_push($_SESSION['debug'], "Senha atual incorreta!");
+
+
+        // Criar conta
+        $sql = "UPDATE user SET email='$email', name='$name', password='$password', id_discipline='$id_discipline', 
+            id_role='$id_role', id_institution='$id_institution' WHERE id=" . $_GET['id'];
+
+        if ($connection->query($sql) === TRUE) {
+            array_push($_SESSION['debug'], "Conta alheia alterada com sucesso!");
+        } else {
+            array_push($_SESSION['debug'], "Erro na alteração da conta alheia!");
+        }
     }
 
     $connection->close();
 
-    header("Location: ../../index.php");
+    if (strpos($_SERVER['HTTP_REFERER'], 'http://autella.com/controlPanel/userUpdateGUI.php') !== false) {
+        header('Location: allUsersReadGUI.php');    
+    } else {
+        header('Location: ..'); 
+    }
+    
 }

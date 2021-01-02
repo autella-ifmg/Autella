@@ -120,9 +120,9 @@
 - [X] User activate/deactivate
 	- [X] Transformar cruds/user/deactivate para pegar "$_GET" e não "$_SESSION['userData']['id']"
 - [X] Criação de usuários
-- [ ] Página de edição detalhada, para editar qualquer atributo de um usuário
+- [X] Página de edição detalhada, para editar qualquer atributo de um usuário
 	- [X] GUI
-	- [ ] SQL
+	- [X] SQL
 	
 
 ## Painel de controle do gerenciador do sistema

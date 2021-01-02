@@ -59,7 +59,7 @@ if (isset($_GET['id'])) {
     <div class="col-12 ml-4 col-sm-10 col-lg-8 col-xl-6">
         <h1 class="text-center mb-3 mb-sm-5">Autella <span class="d-none d-sm-inline">| Alterar conta</span></h1>
 
-        <form action="createSQL.php" method="POST" novalidate class="needs-validation">
+        <form action="userUpdateSQL.php?id=<?php echo $_GET['id'] ?>" method="POST" novalidate class="needs-validation">
             <div class="form-group">
                 <label>Nome</label>
                 <input required type="text" class="form-control" name="name" value="<?php echo $otherProfileName ?>">
