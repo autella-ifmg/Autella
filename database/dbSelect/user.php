@@ -4,7 +4,7 @@ function usersToRows($id_institution)
 {
     require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
-    $sql = "SELECT user.id, user.name, user.email, role.name, field.name, discipline.name FROM user 
+    $sql = "SELECT user.id, user.name, user.email, role.name, field.name, discipline.name, user.status FROM user 
             JOIN discipline ON user.id_discipline = discipline.id
             JOIN field ON field.id = discipline.id_field
             JOIN role ON user.id_role = role.id
@@ -31,13 +31,20 @@ function usersToRows($id_institution)
 
                     <td style="vertical-align: middle;">
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="customSwitch' . $row[0] . '">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch' . $row[0] . '"';
+
+            // Se a conta estiver ativada, colocar atributo "checked"
+            if($row[6] == 1){
+                echo 'checked';
+            }
+            
+            echo '>
                             <label class="custom-control-label" for="customSwitch' . $row[0] . '"></label>
                         </div>
                     </td>
                     
                     <td style="vertical-align: middle;"> 
-                        <a class="mt-2" href="userUpdateGUI.php?id='. $row[0] . '">
+                        <a class="mt-2" href="userUpdateGUI.php?id=' . $row[0] . '">
                             <img style="width: 32px" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil.svg">
                         </a>
                     </td>
