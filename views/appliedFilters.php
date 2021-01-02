@@ -14,7 +14,7 @@ if (isset($_GET["filter"])) {
         $discipline_name = selectDisciplineName($_GET["id_discipline"]);
 
         echo '
-                <div class="d-flex justify-content-between w-25 mr-3 form-control ">
+                <div class="d-flex justify-content-between w-25 mr-3 form-control">
                     <label>' . $discipline_name . '</label>
                     <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/x-circle-fill.svg" alt="Remover filtro">
                 </div>

@@ -43,6 +43,7 @@ function addFilterInList(selected_filter) {
     }
 
     var filter_value = document.getElementById(selected_filter);
+    filter_value.setAttribute("disabled", "disabled");
     filter_value = filter_value.value;
 
     if (filter_value != 'null') {

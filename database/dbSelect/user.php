@@ -144,5 +144,5 @@ function selectUserName($user_id)
 
     $connection->close();
 
-    return "Criada por: " . mysqli_fetch_array($result)[0];
+    return mysqli_fetch_array($result)[0];
 }
