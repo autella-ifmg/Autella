@@ -18,7 +18,10 @@ function roleNamesToDropdownItems()
     // Impedir a exibição de "gerenciador do sistema"
     $sql = "SELECT * FROM role WHERE id != 5";
 
-    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/user.php';
+    // PERIGO! SE ESSA REQUISIÇÃO FOR FEITA NOVAMENTE, NÃO SERÁ REALIZADA
+    // MAS NÃO TIRE O "_once" SENÃO VAI QUEBRAR "http://autella.com/controlPanel/userUpdateGUI"
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/user.php';
+    
     if(getAccountRole($_SESSION['userData']['id']) != 5){
         //Só exibir a opção de criar coordenador para gerenciador do sistema
         $sql .= ' AND id != 1';

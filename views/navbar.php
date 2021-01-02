@@ -20,7 +20,7 @@
 
 
             <?php
-            if ($_SESSION['userData']['id_role'] == 1) {
+            if ($_SESSION['userData']['id_role'] == 1 || $_SESSION['userData']['id_role'] == 5) {
                 echo '<li>
                     <a class="nav-link" href="/controlPanel/allUsersReadGUI.php">Painel de controle</a>
                 </li>';

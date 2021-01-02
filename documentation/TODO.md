@@ -120,9 +120,10 @@
 - [X] User activate/deactivate
 	- [X] Transformar cruds/user/deactivate para pegar "$_GET" e não "$_SESSION['userData']['id']"
 - [X] Criação de usuários
-- [ ] Página de edição personalizada, para editar qualquer atributo de um usuário
-- [ ] Barra de pesquisa de nome de usuário
-- [ ] Log (Ex.: Usuário tal fez tal coisa em tal data; Tal questão foi alterada; Tal prova foi criada)
+- [ ] Página de edição detalhada, para editar qualquer atributo de um usuário
+	- [X] GUI
+	- [ ] SQL
+	
 
 ## Painel de controle do gerenciador do sistema
 - [ ] Coisas do painel de controle do coordenador
@@ -179,3 +180,4 @@ A função de tempo no php é "time()", então ficaria <img src="/images/users/2
 * Esqueci a senha
 * Versionamento de provas e questões (tipo o do GitHub)
 * Comentário das questões
+* Log (Ex.: Usuário tal fez tal coisa em tal data; Tal questão foi alterada; Tal prova foi criada)

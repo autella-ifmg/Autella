@@ -1,6 +1,39 @@
+<?php
+if (isset($_GET['id'])) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
+    $id = $_GET['id'];
+
+    $sql = "SELECT user.name, user.email, field.id, discipline.id, role.id
+            FROM discipline 
+            JOIN field ON discipline.id_field = field.id 
+            JOIN user ON user.id_discipline = discipline.id 
+            JOIN role ON user.id_role = role.id 
+            AND user.id = '$id';";
+
+    $result = mysqli_query($connection, $sql);
+    if (mysqli_num_rows($result) != 0) {
+        $array = mysqli_fetch_array($result);
+
+        $otherProfileName = $array[0];
+        $otherProfileEmail = $array[1];
+        $otherProfileField = $array[2];
+        $otherProfileDiscipline = $array[3];
+        $otherProfileRole = $array[4];
+
+        $connection->close();
+    } else {
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/authentication/404.php';
+        die();
+    }
+} else {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/authentication/404.php';
+    die();
+}
+?>
+
 <!DOCTYPE html>
 
-<html class="w-100">
+<html class="h-100 w-100">
 
 <head>
     <meta charset="UTF-8">
@@ -8,166 +41,125 @@
     <title>Autella</title>
 
     <link rel="stylesheet" href="/libraries/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="/libraries/cropperjs/cropper.css">
     <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
-    <script src="/libraries/cropperjs/cropper.js"></script>
 
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/discipline.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/field.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/institution.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/role.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/user.php';
     ?>
 </head>
 
-<body class="w-100">
-    <div class="container w-100 align-items-center">
-        <h1 class="text-center" style="margin: 8% 0">Autella | Alterar conta</h1>
+<body class="h-100 w-100 row align-items-center justify-content-center">
+    <div class="col-12 ml-4 col-sm-10 col-lg-8 col-xl-6">
+        <h1 class="text-center mb-3 mb-sm-5">Autella <span class="d-none d-sm-inline">| Alterar conta</span></h1>
 
-        <form action="updateSQL.php" method="POST" class="row justify-content-around needs-validation" novalidate>
-            <div class="col-12 col-sm-10 col-md-5" style="max-height: 30rem">
-                <img id="userPicture" class="w-100" src="/images/users/<?php echo $_GET['id'] ?>.jpeg<?php echo '?' . time() ?>" />
-                <label class="position-absolute m-0 p-0 pr-3" style="bottom:2rem; right:-1px; cursor: pointer" for="inputImage"><img class="p-2" style="width:64px; background-color: white;" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil.svg" alt=""></label>
-                <input class="d-none" type="file" id="inputImage" name="image" accept="image/*">
+        <form action="createSQL.php" method="POST" novalidate class="needs-validation">
+            <div class="form-group">
+                <label>Nome</label>
+                <input required type="text" class="form-control" name="name" value="<?php echo $otherProfileName ?>">
             </div>
 
-            <div class="col-12 col-sm-10 col-md-5 mt-3">
-                <div class="form-group">
-                    <label>Nome</label>
-                    <input required type="text" class="form-control" name="name" value="<?php echo $_SESSION['userData']['name'] ?>">
+            <div class="form-group">
+                <label>Email</label>
+                <input required type="email" class="form-control" name="email" value="<?php echo $otherProfileEmail ?>">
+            </div>
+
+            <div class="form-group">
+                <label>Nova senha</label>
+                <input required type="password" class="form-control" id="password" name="password">
+            </div>
+
+            <div class="form-group">
+                <label>Confirmar nova senha</label>
+                <input required type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+            </div>
+
+            <div class="row justify-content-between mb-0 mx-1 mb-sm-3">
+                <div class="col-12 mt-3 col-sm-8 mt-sm-0 row">
+                    <label class="col-12 pl-0">Área</label>
+                    <select onchange="updateDisciplines()" class="btn border col-12" id="fieldList">
+                        <?php fieldNamesToDropdownItems(); ?>
+                    </select>
                 </div>
 
-                <div class="form-group">
-                    <label>Email</label>
-                    <input required type="email" class="form-control" name="email" value="<?php echo $_SESSION['userData']['email'] ?>">
+                <div class="col-12 mt-3 col-sm-3 mt-sm-0 row">
+                    <label class="col-12 pl-0">Disciplina</label>
+                    <select class="btn border col-12" name="disciplineId" id="disciplineList">
+                        <!-- Preenchido com <script> -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="row justify-content-between mb-0 mx-1 mb-sm-5">
+                <div class="col-12 mt-3 col-sm-8 mt-sm-0  row" <?php
+                                                                if (getAccountRole($_SESSION['userData']['id']) != 5) {
+                                                                    echo ' style="display:none"';
+                                                                }
+                                                                ?>>
+                    <label class="col-12 pl-0">Instituição</label>
+
+                    <!-- Desabilitar caso não seja o gerenciador do sistema -->
+                    <select class="dropdown-toggle btn border col-12" name="institutionId">
+                        <?php institutionNamesToDropdownItems() ?>
+                    </select>
                 </div>
 
-                <div class="form-group">
-                    <label>Nova senha</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                <div class="col-12 mt-3 col-sm-3 mt-sm-0 row <?php
+                                                                if (getAccountRole($_SESSION['userData']['id']) != 5) {
+                                                                    echo ' col-sm-8';
+                                                                }
+                                                                ?>">
+                    <label class="col-12 pl-0">Cargo</label>
+                    <select class="dropdown-toggle btn border col-12" name="roleId" id="rolesList">
+                        <?php roleNamesToDropdownItems(); ?>
+                    </select>
                 </div>
+            </div>
 
-
-                <div class="form-group">
-                    <label>Confirmar nova senha</label>
-                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
-                </div>
-
-                <div class="d-flex flex-row justify-content-between">
-                    <a class="btn btn-lg btn-danger" href="deleteGUI.php">Desativar conta</a>
-                    <a class="btn btn-lg btn-danger" href="../../index.php">Cancelar</a>
-                    <input type="submit" class="btn btn-lg btn-success" name="submit" value="Alterar">
-                </div>
+            <div class="d-flex justify-content-between pt-4 pt-sm-0">
+                <a class="btn btn-danger btn-lg" href="../../index.php">Cancelar</a>
+                <input type="submit" class="btn btn-success btn-lg" name="submit" value="Alterar conta">
             </div>
         </form>
     </div>
 
-
-
-
-
-    <!-- CropperJS -->
-    <!-- CropperJS Modal -->
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Recorte a sua imagem</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="img-container">
-                        <div class="row w-100">
-                            <div class="col-12 col-md-7">
-                                <img class="w-100 h-100" src="" id="sample_image" />
-                            </div>
-                            <div class="col-md-4 mx-3 d-none   d-md-block">
-                                <div style="overflow: hidden; width: 160px; height: 160px;" class="border" id="cropperjspreview"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="crop" class="btn btn-success">Atualizar imagem</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- CropperJS Script -->
     <script>
-        $(document).ready(function() {
+        // Quando trocar a área, exibir apenas as disciplinas correspondentes a ela
+        function updateDisciplines() {
+            var id_field = document.getElementById("fieldList");
+            var id_field = id_field.value;
 
-            var $modal = $('#modal');
+            var container = document.getElementById("disciplineList");
+            container.innerHTML = "";
 
-            var image = document.getElementById('sample_image');
+            // Transforma array do php em array do js
+            <?php
+            $php_array = selectDisciplines();
+            $js_array = json_encode($php_array);
+            echo "var allDisciplines = " . $js_array . ";\n";
+            ?>
 
-            var cropper;
+            for (let i = 0; i < allDisciplines.length; i++) {
+                if (allDisciplines[i][1] == id_field) {
+                    var option = document.createElement("option");
+                    option.innerHTML = allDisciplines[i][2];
+                    option.setAttribute("value", allDisciplines[i][0]);
 
-            $('#inputImage').change(function(event) {
-                var files = event.target.files;
-
-                var done = function(url) {
-                    image.src = url;
-                    $modal.modal('show');
-                };
-
-                if (files && files.length > 0) {
-                    reader = new FileReader();
-                    reader.onload = function(event) {
-                        done(reader.result);
-                    };
-                    reader.readAsDataURL(files[0]);
+                    container.appendChild(option);
                 }
-            });
+            }
+        };
 
-            $modal.on('shown.bs.modal', function() {
-                cropper = new Cropper(image, {
-                    aspectRatio: 1,
-                    viewMode: 3,
-                    preview: "#cropperjspreview"
-                });
-            }).on('hidden.bs.modal', function() {
-                cropper.destroy();
-                cropper = null;
-            });
-
-            $('#crop').click(function() {
-                canvas = cropper.getCroppedCanvas({
-                    width: 720,
-                    height: 720
-                });
-
-                canvas.toBlob(function(blob) {
-                    url = URL.createObjectURL(blob);
-                    var reader = new FileReader();
-                    reader.readAsDataURL(blob);
-                    reader.onloadend = function() {
-                        var base64data = reader.result;
-                        $.ajax({
-                            url: 'updateSQL.php',
-                            method: 'POST',
-                            data: {
-                                image: base64data
-                            },
-                            success: function(data) {
-                                $modal.modal('hide');
-
-                                // Preview da imagem com CropperJS
-                                // Adiciona 1 no final do src da imagem, porque o time() não funciona, porque o html faz cache até do time()
-                                // Poderia ser qualquer outra coisa no lugar do 1
-                                $('#userPicture').attr('src', $('#userPicture').attr('src') + 1);
-                            }
-                        });
-                    };
-                });
-            });
-
-        });
+        // Quando o documento estiver carregado, executar o método updateDisciplines()
+        document.addEventListener('DOMContentLoaded', updateDisciplines(), false);
     </script>
+    <p>a</p>
 </body>
 
 </html>
