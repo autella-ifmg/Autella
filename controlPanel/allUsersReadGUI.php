@@ -45,6 +45,12 @@
             </table>
         </div>
     </main>
+
+    <script>
+        function changeAccountStatus(id){
+            window.location.href = "../cruds/user/activateDeactivateSQL.php?id=" + id;
+        }
+    </script>
 </body>
 
 </html>

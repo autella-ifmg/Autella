@@ -11,13 +11,24 @@
     <script src="/libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="/libraries/bootstrap/bootstrap.bundle.js"></script>
 
-    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php'; ?>
+    <?php 
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php'; 
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/user.php'; 
+    ?>
 </head>
 
 <body class="h-100 w-100">
     <div class="row mt-5 mx-5 justify-content-around">
-        <h1 class="col-12 col-lg-8">TEM CERTEZA QUE DESEJA ATIVAR SUA CONTA?</h1>
-        <form class="col-12 col-lg-8" action="activateSQL.php?id=<?php echo $_SESSION['userData']['id'] ?>" method="post">
+        <h1 class="col-12 col-lg-8">TEM CERTEZA QUE DESEJA
+        <?php
+            if(getAccountStatus($_SESSION['userData']['id']) == 1){
+                echo "DESATIVAR";
+            } else {
+                echo "ATIVAR";
+            }
+        ?>    
+        SUA CONTA?</h1>
+        <form class="col-12 col-lg-8" action="activateDeactivateSQL.php?id=<?php echo $_SESSION['userData']['id'] ?>" method="post">
             <div class="form-group mt-3">
                 <label>Senha atual</label>
                 <input required type="password" class="form-control" name="oldPassword">

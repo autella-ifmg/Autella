@@ -31,15 +31,15 @@ function usersToRows($id_institution)
 
                     <td style="vertical-align: middle;">
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="customSwitch' . $row[0] . '"';
+                            <input type="checkbox" class="custom-control-input" id="customSwitch' . $row[0] . '" onChange="changeAccountStatus(' . $row[0] . ')"';
 
             // Se a conta estiver ativada, colocar atributo "checked"
             if($row[6] == 1){
                 echo 'checked';
             }
-            
+        
             echo '>
-                            <label class="custom-control-label" for="customSwitch' . $row[0] . '"></label>
+                            <label style="cursor: pointer;" class="custom-control-label" for="customSwitch' . $row[0] . '"></label>
                         </div>
                     </td>
                     
