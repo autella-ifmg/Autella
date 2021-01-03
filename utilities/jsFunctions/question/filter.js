@@ -57,10 +57,10 @@ function filterGathering(selected_filter, filter_value) {
 
     //console.log(appliedFilters);
 
-    apply(1, 1);
+    apply(1, 1, null);
 }
 
-function apply(pag, status) {
+function apply(pag, status, remove) {
     var url;
 
     if (pag == 0) {
@@ -69,8 +69,22 @@ function apply(pag, status) {
         url = "http://autella.com/cruds/question/readGUI.php?";
     }
 
-    filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&`;
+    if (infosToBlockSelects != null) {
+        //console.log(infosToBlockSelects);
 
+        for (let i = 0; i < 4; i++) {
+            if (infosToBlockSelects[i] != "false" && i == remove) {
+                //console.log(infosToBlockSelects[i]);
+                appliedFilters[i] = "";
+                infosToBlockSelects[i] = "false";
+            } else if (infosToBlockSelects[i] != "false") {
+                appliedFilters[i] = infosToBlockSelects[i][1];
+            }
+        }
+    }
+
+
+    filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&`;
 
     if (action_pag == 0) {
         var unarchive_btn = document.getElementById("unarchive");
@@ -163,17 +177,32 @@ function removeFilterFromList(selected_filter) {
     select.selectedIndex = 0;
     select.removeAttribute("disabled");
 
-    apply(1, 1);
+    switch (selected_filter) {
+        case 'disciplines':
+            var remove = 0;
+            break;
+        case 'subjects':
+            var remove = 1;
+            break;
+        case 'dificulty':
+            var remove = 2;
+            break;
+        case 'date':
+            var remove = 3;
+            break;
+    }
+
+    apply(1, 1, remove);
 }
 
 function blockFilterSelects() {
     if (infosToBlockSelects != null) {
-        //console.log(infosToBlockSelects);
+        console.log(infosToBlockSelects);
 
         for (let i = 0; i < 4; i++) {
             if (infosToBlockSelects[i] != "false") {
-                //console.log(infosToBlockSelects[i]);
-                 
+                console.log(infosToBlockSelects[i]);
+
                 var select = document.getElementById(infosToBlockSelects[i][0]);
 
                 select.selectedIndex = infosToBlockSelects[i][1];

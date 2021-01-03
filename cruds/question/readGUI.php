@@ -100,6 +100,8 @@
         echo "action_per = 0;\n";
         ?>
 
+       
+
         //Quando o documento estiver carregado, executa o método verifyRole().
         document.addEventListener("DOMContentLoaded", verifyRole(), false);
 
