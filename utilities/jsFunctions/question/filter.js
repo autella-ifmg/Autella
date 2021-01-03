@@ -87,6 +87,7 @@ function addFilterInList(selected_filter) {
         }
 
         var container_filter = document.getElementsByName("container_filter")[0];
+        container_filter.setAttribute('id', `container_${selected_filter}`);
 
         var label = document.createElement("label");
         label.innerHTML = filter_value;
@@ -95,8 +96,20 @@ function addFilterInList(selected_filter) {
         var img = document.createElement("img");
         img.setAttribute("src", "../../../libraries/bootstrap/bootstrap-icons-1.0.0/x-circle-fill.svg");
         img.setAttribute("alt", "Remover filtro");
+        img.setAttribute("onclick", `removeFilterFromList('${selected_filter}')`)
         container_filter.appendChild(img);
 
         container_filter.setAttribute("name", "container_filter_defined");
     }
+}
+
+function removeFilterFromList(selected_filter) {
+    container_filter = document.getElementById(`container_${selected_filter}`);
+    container_filter.innerHTML = "";
+
+    container_filter.setAttribute("name", "container_filter");
+
+    select = document.getElementById(selected_filter);
+    select.selectedIndex = 0;
+    select.removeAttribute("disabled");
 }
