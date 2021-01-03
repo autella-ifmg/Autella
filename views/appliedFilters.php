@@ -10,10 +10,10 @@ if (isset($_GET["filter"])) {
     for ($i = 0; $i < 4; $i++) {
         if ($i != 3) {
             echo '
-            <div class="d-flex justify-content-between w-25 mr-3 form-control">';
+            <div id="' . $select_names[$i] . '" class="d-flex justify-content-between w-25 mr-3 form-control">';
         } else {
             echo '
-            <div class="d-flex justify-content-between w-25 mr-1 form-control">';
+            <div id="' . $select_names[$i] . '" class="d-flex justify-content-between w-25 mr-1 form-control">';
         }
 
         if (!empty($_GET[$filter_names[$i]])) {
@@ -31,10 +31,10 @@ if (isset($_GET["filter"])) {
                     $content = dateTratament($_GET[("date")]);
                     break;
             }
-
+            
             echo '
                 <label>' . $content . '</label>
-                <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/x-circle-fill.svg" alt="Remover filtro">
+                <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/x-circle-fill.svg" alt="Remover filtro" onclick="removeFilterFromList(\'' . $select_names[$i] . '\')">
             </div>
             ';
         } else {

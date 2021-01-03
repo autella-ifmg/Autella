@@ -138,7 +138,6 @@ function addFilterInList(selected_filter) {
         }
 
         var container_filter = document.getElementsByName("container_filter")[0];
-        container_filter.setAttribute('id', `container_${selected_filter}`);
 
         var label = document.createElement("label");
         label.innerHTML = filter_value;
@@ -147,7 +146,6 @@ function addFilterInList(selected_filter) {
         var img = document.createElement("img");
         img.setAttribute("src", "../../../libraries/bootstrap/bootstrap-icons-1.0.0/x-circle-fill.svg");
         img.setAttribute("alt", "Remover filtro");
-        img.setAttribute("onclick", `removeFilterFromList('${selected_filter}')`)
         container_filter.appendChild(img);
 
         container_filter.setAttribute("name", "container_filter_defined");
@@ -155,14 +153,17 @@ function addFilterInList(selected_filter) {
 }
 
 function removeFilterFromList(selected_filter) {
-    container_filter = document.getElementById(`container_${selected_filter}`);
+    container_filter = document.getElementById(selected_filter);
     container_filter.innerHTML = "";
 
     container_filter.setAttribute("name", "container_filter");
 
+    selected_filter = selected_filter.split("_")[1];
     select = document.getElementById(selected_filter);
     select.selectedIndex = 0;
     select.removeAttribute("disabled");
+
+    apply(1, 1);
 }
 
 function blockFilterSelects() {
@@ -172,8 +173,9 @@ function blockFilterSelects() {
         for (let i = 0; i < 4; i++) {
             if (infosToBlockSelects[i] != "false") {
                 //console.log(infosToBlockSelects[i]);
-                
+                 
                 var select = document.getElementById(infosToBlockSelects[i][0]);
+
                 select.selectedIndex = infosToBlockSelects[i][1];
                 updateSubjects();
                 select.setAttribute("disabled", "disabled");

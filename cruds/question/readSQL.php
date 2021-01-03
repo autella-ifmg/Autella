@@ -11,6 +11,8 @@ $id_discipline = $_SESSION["userData"]["id_discipline"];
 
 $filter = [];
 $filter_names = ['id_discipline', 'id_subject', 'dificulty', 'date'];
+$select_names = ['container_disciplines', 'container_subjects', 'container_dificulty', 'container_date'];
+
 //Verifica quais filtros foram setados.
 if (isset($_GET["filter"])) {
     $filter[0] = (isset($_GET["id_discipline"]) ? $_GET["id_discipline"] : null);
