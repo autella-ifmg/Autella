@@ -1,4 +1,14 @@
 <?php
+if($id_role == 1) {
+    $count = 4;
+    $class_alter = "w-25 mr-3";
+    $mr_exception = "w-25 mr-1";
+} else {
+    $count = 3;
+    $class_alter = "w-50 mr-3";
+    $mr_exception = "w-50 mr-1";
+}
+
 if (isset($_GET["filter"])) {
     echo '
     <div class="border border-muted rounded mb-3">
@@ -7,13 +17,13 @@ if (isset($_GET["filter"])) {
                 <h6 style="width: 70px; text-align: center;">Filtros aplicados:</h6>
             </div>';
 
-    for ($i = 0; $i < 4; $i++) {
-        if ($i != 3) {
+    for ($i = 0; $i < $count; $i++) {
+        if ($i != ($count - 1)) {
             echo '
-            <div id="' . $select_names[$i] . '" class="d-flex justify-content-between w-25 mr-3 form-control">';
+            <div id="' . $select_names[$i] . '" class="d-flex justify-content-between ' . $class_alter . ' form-control">';
         } else {
             echo '
-            <div id="' . $select_names[$i] . '" class="d-flex justify-content-between w-25 mr-1 form-control">';
+            <div id="' . $select_names[$i] . '" class="d-flex justify-content-between ' . $mr_exception . ' form-control">';
         }
 
         if (!empty($_GET[$filter_names[$i]])) {
@@ -53,16 +63,20 @@ if (isset($_GET["filter"])) {
     <div class="border border-muted rounded mb-3">
         <div class="d-flex flex-row justify-content-between mt-2">
             <div class="ml-2 mr-3">
-                <h6 style="width: 70px; text-align: center;">Filtrar por:</h6>
-            </div>
+                <h6 style="width: 70px; text-align: center;">Filtros aplicados:</h6>
+            </div>';
 
-            <div name="container_filter" class="d-flex justify-content-between w-25 mr-3 form-control"></div>
+            for ($i = 0; $i < $count; $i++) {
+                if ($i != ($count - 1)) {
+                    echo '
+                    <div name="container_filter" class="d-flex justify-content-between ' . $class_alter . ' form-control text-muted"></div>';
+                } else {
+                    echo '
+                    <div name="container_filter" class="d-flex justify-content-between ' . $mr_exception . ' form-control text-muted"></div>';
+                }
+            }
 
-            <div name="container_filter" class="d-flex justify-content-between w-25 mr-3 form-control"></div>
-
-            <div name="container_filter" class="d-flex justify-content-between w-25 mr-3 form-control"></div>
-
-            <div name="container_filter" class="d-flex justify-content-between w-25 mr-1 form-control"></div>
+    echo '
         </div>
     </div>
     ';

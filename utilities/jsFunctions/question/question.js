@@ -385,7 +385,7 @@ function verifyRole() {
 
     for (let i = 0; i < 3; i++) {
       var container = list[`${i}`];
-      var mr = i != 2 ? "mr-3" : "";
+      var mr = i != 2 ? "mr-3" : "mr-1";
       container.setAttribute("class", `w-50 mt-1 ${mr}`);
     }
   }
