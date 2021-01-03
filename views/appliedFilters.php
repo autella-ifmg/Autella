@@ -1,13 +1,10 @@
 <?php
-
-$filter_name = ["id_discipline", "id_subject", "dificulty", "date"];
-
 if (isset($_GET["filter"])) {
     echo '
     <div class="border border-muted rounded mb-3">
         <div id="container_filters" class="d-flex flex-row justify-content-between mt-2">
             <div class="ml-2 mr-3">
-                <h6 style="width: 70px; text-align: center;">Filtrar por:</h6>
+                <h6 style="width: 70px; text-align: center;">Filtros aplicados:</h6>
             </div>';
 
     for ($i = 0; $i < 4; $i++) {
@@ -19,18 +16,18 @@ if (isset($_GET["filter"])) {
             <div class="d-flex justify-content-between w-25 mr-1 form-control">';
         }
 
-        if ($_GET[$filter_name[$i]]!= "") {
-            switch ($filter_name[$i]) {
-                case 0:
+        if (!empty($_GET[$filter_names[$i]])) {
+            switch ($filter_names[$i]) {
+                case 'id_discipline':
                     $content = selectDisciplineName($_GET[("id_discipline")]);
                     break;
-                case 1:
+                case 'id_subject':
                     $content = selectSubjectName($_GET[("id_subject")]);
                     break;
-                case 2:
+                case 'dificulty':
                     $content = dificultyTratament($_GET[("dificulty")]);
                     break;
-                case 3:
+                case 'date':
                     $content = dateTratament($_GET[("date")]);
                     break;
             }

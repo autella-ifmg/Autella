@@ -95,7 +95,7 @@
 	- [X] Exibir em quais provas simples a questão está presente
 	- [X] Só mostrar paginação caso necessário
 	- [X] Exibir quem criou a questão
-	- [ ] Mostrar quais filtros foram aplicados
+	- [X] Mostrar quais filtros foram aplicados
  	
 - [X] Update
 	- [X] Configurar o toast de alteração de questão

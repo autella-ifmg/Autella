@@ -10,15 +10,7 @@ $id_discipline = $_SESSION["userData"]["id_discipline"];
 //var_dump($id_discipline);
 
 $filter = [];
-
-if (isset($_POST['filters'])) {
-    $filter[0] = (isset($_POST['filters'][0]) ? $_POST['filters'][0] : null);
-    $filter[1] = (isset($_POST['filters'][1]) ? $_POST['filters'][1] : null);
-    $filter[2] = (isset($_POST['filters'][2]) ? $_POST['filters'][2] : null);
-    $filter[3] = (isset($_POST['filters'][3]) ? $_POST['filters'][3] : null);
-    $filter[4] = (isset($_POST['filters'][4]) ? $_POST['filters'][4] : null);
-}
-
+$filter_names = ['id_discipline', 'id_subject', 'dificulty', 'date'];
 //Verifica quais filtros foram setados.
 if (isset($_GET["filter"])) {
     $filter[0] = (isset($_GET["id_discipline"]) ? $_GET["id_discipline"] : null);
@@ -204,4 +196,45 @@ function imports($questions)
             ';
         }
     }
+}
+
+function infosToBlockSelects()
+{
+    global $filter_names;
+    $php_array = [
+        "0" => ["false"],
+        "1" => ["false"],
+        "2" => ["false"],
+        "3" => ["false"]
+    ];
+    $js_array = [];
+    $result = "infosToBlockSelects = null;\n";
+
+    if (isset($_GET['filter'])) {
+        for ($i = 0; $i < 4; $i++) {
+
+            if (!empty($_GET[$filter_names[$i]])) {
+
+                switch ($filter_names[$i]) {
+                    case 'id_discipline':
+                        $php_array["0"] = [["disciplines"], [$_GET[$filter_names[$i]]]];
+                        break;
+                    case 'id_subject':
+                        $php_array["1"] = [["subjects"], [$_GET[$filter_names[$i]]]];
+                        break;
+                    case 'dificulty':
+                        $php_array["2"] = [["dificulty"], [$_GET[$filter_names[$i]]]];
+                        break;
+                    case 'date':
+                        $php_array["3"] = [["date"], [$_GET[$filter_names[$i]]]];
+                        break;
+                }
+            }
+        }
+
+        $js_array = json_encode($php_array);
+        $result = "infosToBlockSelects = " . $js_array . ";\n";
+    } 
+
+    return $result;
 }

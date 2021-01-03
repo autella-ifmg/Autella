@@ -36,26 +36,26 @@ function applyFilter(pag, status) {
     }
 }
 
-function filterGathering(filter_value, selected_filter) {
+function filterGathering(selected_filter, filter_value) {
     switch (selected_filter) {
         case 'disciplines':
-            filters[0] = filter_value;
+            appliedFilters[0] = filter_value;
             break;
         case 'subjects':
-            filters[1] = filter_value;
+            appliedFilters[1] = filter_value;
             break;
         case 'dificulty':
-            filters[2] = filter_value;
+            appliedFilters[2] = filter_value;
             break;
         case 'date':
-            filters[3] = filter_value;
+            appliedFilters[3] = filter_value;
             break;
         default:
-            filters[4] = filter_value;
+            appliedFilters[4] = filter_value;
             break;
     }
 
-    console.log(filters);
+    //console.log(appliedFilters);
 
     apply(1, 1);
 }
@@ -69,9 +69,9 @@ function apply(pag, status) {
         url = "http://autella.com/cruds/question/readGUI.php?";
     }
 
-    filters_url = `${url}filter=true&id_discipline=${filters[0]}&id_subject=${filters[1]}&dificulty=${filters[2]}&date=${filters[3]}&status=${status}&`;
+    filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&`;
 
-    
+
     if (action_pag == 0) {
         var unarchive_btn = document.getElementById("unarchive");
         unarchive_btn.setAttribute("href", url);
@@ -91,10 +91,9 @@ function addFilterInList(selected_filter) {
     }
 
     var filter_value = document.getElementById(selected_filter);
-    filter_value.setAttribute("disabled", "disabled");
     filter_value = filter_value.value;
 
-    filterGathering(filter_value, `${selected_filter}`);
+    filterGathering(`${selected_filter}`, filter_value);
 
     if (filter_value != 'null') {
         switch (selected_filter) {
@@ -164,4 +163,21 @@ function removeFilterFromList(selected_filter) {
     select = document.getElementById(selected_filter);
     select.selectedIndex = 0;
     select.removeAttribute("disabled");
+}
+
+function blockFilterSelects() {
+    if (infosToBlockSelects != null) {
+        //console.log(infosToBlockSelects);
+
+        for (let i = 0; i < 4; i++) {
+            if (infosToBlockSelects[i] != "false") {
+                //console.log(infosToBlockSelects[i]);
+                
+                var select = document.getElementById(infosToBlockSelects[i][0]);
+                select.selectedIndex = infosToBlockSelects[i][1];
+                updateSubjects();
+                select.setAttribute("disabled", "disabled");
+            }
+        }
+    }
 }

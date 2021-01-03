@@ -81,9 +81,7 @@ function updateSelects() {
   dificultyOption.setAttribute("selected", "selected");
 
   //Correct Answer
-  var correctAnswerOption = document.getElementById(
-    `option${correctAnswerSelected}`
-  );
+  var correctAnswerOption = document.getElementById(`option${correctAnswerSelected}`);
   correctAnswerOption.setAttribute("selected", "selected");
 }
 
@@ -203,9 +201,9 @@ function genericToastCEQ() {
 //Autaliza o cabeçalho do dropdown que contém os nomes dos testes.
 function updateDropdownHeader() {
   if (action_pag == 0) {
-      $("#dropdownHeader").html("Questão estava inclusa em:");
+    $("#dropdownHeader").html("Questão estava inclusa em:");
   } else if (action_pag == 1) {
-      $("#dropdownHeader").html("Questão inclusa em:");
+    $("#dropdownHeader").html("Questão inclusa em:");
   }
 }
 

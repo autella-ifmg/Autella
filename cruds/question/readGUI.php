@@ -90,7 +90,8 @@
         }
 
         //Arrat global que armazena o(s) filtro(s) escolhido(s).
-        echo "filters = [[], [], [], []];\n";
+        echo "appliedFilters = [[], [], [], []];\n";
+        echo infosToBlockSelects();
 
         //Variável global que informa a função da página atual.
         echo "action_pag = 1;\n";
@@ -107,6 +108,9 @@
 
         //Quando o documento estiver carregado, executa o método updateDropdownHeader().
         document.addEventListener("DOMContentLoaded", updateDropdownHeader(), false);
+
+        //Quando o documento estiver carregado, executa o método blockFilterSelects().
+        document.addEventListener("DOMContentLoaded", blockFilterSelects(), false);
 
         <?php
         if (isset($_GET['action_per'])) {
