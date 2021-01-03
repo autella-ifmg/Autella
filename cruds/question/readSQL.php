@@ -10,6 +10,15 @@ $id_discipline = $_SESSION["userData"]["id_discipline"];
 //var_dump($id_discipline);
 
 $filter = [];
+
+if (isset($_POST['filters'])) {
+    $filter[0] = (isset($_POST['filters'][0]) ? $_POST['filters'][0] : null);
+    $filter[1] = (isset($_POST['filters'][1]) ? $_POST['filters'][1] : null);
+    $filter[2] = (isset($_POST['filters'][2]) ? $_POST['filters'][2] : null);
+    $filter[3] = (isset($_POST['filters'][3]) ? $_POST['filters'][3] : null);
+    $filter[4] = (isset($_POST['filters'][4]) ? $_POST['filters'][4] : null);
+}
+
 //Verifica quais filtros foram setados.
 if (isset($_GET["filter"])) {
     $filter[0] = (isset($_GET["id_discipline"]) ? $_GET["id_discipline"] : null);

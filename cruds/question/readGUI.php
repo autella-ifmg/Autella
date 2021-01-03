@@ -89,6 +89,9 @@
             echo "arrayIsEmpty = false;\n";
         }
 
+        //Arrat global que armazena o(s) filtro(s) escolhido(s).
+        echo "filters = [[], [], [], []];\n";
+
         //Variável global que informa a função da página atual.
         echo "action_pag = 1;\n";
 
