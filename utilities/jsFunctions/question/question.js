@@ -23,7 +23,7 @@ function submitEnunciate() {
 
 //Função para inserir as matérias no selectSubjects.
 function updateSubjects() {
-  if (id_role == 1 || action_pag == 2) {
+  if (id_role == 1 || page_action == 2) {
     var selectDiscipline = document.getElementById("disciplines");
     selectDiscipline = selectDiscipline.value;
   } else {
@@ -200,9 +200,9 @@ function genericToastCEQ() {
 
 //Autaliza o cabeçalho do dropdown que contém os nomes dos testes.
 function updateDropdownHeader() {
-  if (action_pag == 0) {
+  if (page_action == 0) {
     $("#dropdownHeader").html("Questão estava inclusa em:");
-  } else if (action_pag == 1) {
+  } else if (page_action == 1) {
     $("#dropdownHeader").html("Questão inclusa em:");
   }
 }
@@ -380,7 +380,7 @@ function verifyRole() {
     //console.log("role");
     var div = document.getElementById("disciplineSelection_container");
     div.removeAttribute("hidden");
-  } else if (action_pag < 2) {
+  } else if (page_action < 2) {
     var list = document.getElementsByName("selection_container");
 
     for (let i = 0; i < 3; i++) {

@@ -36,7 +36,7 @@
 
             <!--Botões-->
             <div class="d-flex justify-content-center mb-3">
-                <a id="unarchive" type="button" class="btn btn-info w-25" onclick="redirection()">Visualizar questões habilitadas</a>
+                <a id="unarchive" type="button" class="btn btn-info w-25">Visualizar questões habilitadas</a>
             </div>
 
             <!--Blocos de questões-->
@@ -87,7 +87,7 @@
 
         //Arrat global que armazena o(s) filtro(s) escolhido(s).
         echo "appliedFilters = [[], [], [], []];\n";
-        echo infosToBlockSelects();
+        echo infosFromFiltrationSystem();
 
         //Variável global que informa se há ou não questões sendo exibidas.
         if (empty($questions)) {
@@ -97,20 +97,11 @@
         }
 
         //Variável global que informa a função da página atual.
-        echo "action_pag = 0;\n";
+        echo "page_action = 0;\n";
         ?>
 
-        url = "";
-
-        function redirection() {
-            if (action_pag == 0) {
-                var unarchive_btn = document.getElementById("unarchive");
-                unarchive_btn.setAttribute("href", "http://autella.com/cruds/question/readGUI.php?");
-            } else {
-                var archive_btn = document.getElementById("archive");
-                archive_btn.setAttribute("href", "http://autella.com/cruds/question/archiveGUI.php?filter=true&status=0");
-            }
-        }
+        //Quando o documento estiver carregado, executa o método verifyPageAction().
+        document.addEventListener("DOMContentLoaded", verifyPageAction(), false);
 
         //Quando o documento estiver carregado, executa o método verifyRole().
         document.addEventListener("DOMContentLoaded", verifyRole(), false);

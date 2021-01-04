@@ -1,6 +1,31 @@
+url = "";
+status = -1;
+removalIndicator = -1;
 
+function verifyPageAction() {
+    if (page_action == 0) {
+        var unarchive_btn = document.getElementById("unarchive");
+        unarchive_btn.setAttribute("href", "http://autella.com/cruds/question/readGUI.php?");
 
-function filterGathering(selected_filter, filter_value) {
+        url = "http://autella.com/cruds/question/archiveGUI.php?";
+        status = 0;
+    } else {
+        var archive_btn = document.getElementById("archive");
+        archive_btn.setAttribute("href", "http://autella.com/cruds/question/archiveGUI.php?filter=true&status=0");
+
+        url = "http://autella.com/cruds/question/readGUI.php?";
+        status = 1;
+    }
+}
+
+function addFilterInList(selected_filter) {
+    if (id_role != 1) {
+        appliedFilters[0] = id_discipline;
+    } 
+
+    var filter_value = document.getElementById(selected_filter);
+    filter_value = filter_value.value;
+
     switch (selected_filter) {
         case 'disciplines':
             appliedFilters[0] = filter_value;
@@ -14,119 +39,49 @@ function filterGathering(selected_filter, filter_value) {
         case 'date':
             appliedFilters[3] = filter_value;
             break;
-        default:
-            appliedFilters[4] = filter_value;
-            break;
     }
 
-    //console.log(appliedFilters);
-
-    if(action_pag == 0) {
-        var status = 0;
-    } else {
-        var status = 1;
-    }
-
-
-    apply(status, null);
+    applyFilters(status, null);
 }
 
-
-   
-
-function apply(status, remove) {
-
-
-    if (infosToBlockSelects != null) {
-        //console.log(infosToBlockSelects);
+function applyFilters() {
+    if (infosFromFiltrationSystem != null) {
+        //console.log(infosFromFiltrationSystem);
 
         for (let i = 0; i < 4; i++) {
-            if (infosToBlockSelects[i] != "false" && i == remove) {
-                //console.log(infosToBlockSelects[i]);
+            if (infosFromFiltrationSystem[i] != "false" && i == removalIndicator) {
+                //console.log(infosFromFiltrationSystem[i]);
                 appliedFilters[i] = "";
-                infosToBlockSelects[i] = "false";
-            } else if (infosToBlockSelects[i] != "false") {
-                appliedFilters[i] = infosToBlockSelects[i][1];
+                infosFromFiltrationSystem[i] = "false";
+            } else if (infosFromFiltrationSystem[i] != "false") {
+                appliedFilters[i] = infosFromFiltrationSystem[i][1];
             }
         }
     }
 
-    if (action_pag == 0) {
-        url = "http://autella.com/cruds/question/archiveGUI.php?";
-    } else {
-        console.log("a");
-        url = "http://autella.com/cruds/question/readGUI.php?";
-    }
-
     filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&`;
-
-    
-   
 
     window.history.pushState({}, "Autella | Visualizar questões", `${filters_url}`);
     window.location.reload(1);
 }
 
-function addFilterInList(selected_filter) {
-    if (id_role == 1) {
-        var discipline_filter = document.getElementById("disciplines");
-        discipline_filter = discipline_filter.value;
-    }
+function blockFilterSelects() {
+    if (infosFromFiltrationSystem != null) {
+        //console.log(infosFromFiltrationSystem);
 
-    var filter_value = document.getElementById(selected_filter);
-    filter_value = filter_value.value;
+        for (let i = 0; i < 4; i++) {
+            if (infosFromFiltrationSystem[i] != "false") {
+                //console.log(infosFromFiltrationSystem[i]);
 
-    filterGathering(`${selected_filter}`, filter_value);
+                var select = document.getElementById(infosFromFiltrationSystem[i][0]);
 
-    if (filter_value != 'null') {
-        switch (selected_filter) {
-            case 'disciplines':
-                var aux = 0;
-
-                for (let i = 0; i < disciplines.length; i++) {
-                    if (disciplines[i][0] == filter_value) {
-                        filter_value = disciplines[i][2];
-                        //console.log(filter_value);
-                    }
-                }
-                break;
-            case 'subjects':
-                var aux = 1;
-
-                for (let i = 0; i < subjects.length; i++) {
-                    if (subjects[i][0] == filter_value) {
-                        filter_value = subjects[i][2];
-                        //console.log(filter_value);
-                    }
-                }
-                break;
-            case 'dificulty':
-                var aux = 2;
-
-                switch (filter_value) {
-                    case '1':
-                        filter_value = "Fácil";
-                        break;
-                    case '2':
-                        filter_value = "Média";
-                        break;
-                    case '3':
-                        filter_value = "Difícil";
-                        break;
-                }
-                //console.log(filter_value);
-                break;
-            case 'date':
-                var aux = 3;
-
-                var y = filter_value.split("-")[0];
-                var m = filter_value.split("-")[1];
-                var d = filter_value.split("-")[2];
-
-                filter_value = `${d + "/" + m + "/" + y}`;
-                //console.log(filter_value);
-                break;
+                select.selectedIndex = infosFromFiltrationSystem[i][1];
+                updateSubjects();
+                select.setAttribute("disabled", "disabled");
+            }
         }
+
+        window.history.pushState({}, "Autella | Visualizar questões", `${url}`);
     }
 }
 
@@ -143,48 +98,18 @@ function removeFilterFromList(selected_filter) {
 
     switch (selected_filter) {
         case 'disciplines':
-            var remove = 0;
+            removalIndicator = 0;
             break;
         case 'subjects':
-            var remove = 1;
+            removalIndicator = 1;
             break;
         case 'dificulty':
-            var remove = 2;
+            removalIndicator = 2;
             break;
         case 'date':
-            var remove = 3;
+            removalIndicator = 3;
             break;
     }
 
-    if(action_pag == 0) {
-        var status = 0;
-    } else {
-        var status = 1;
-    }
-
-    apply(status, remove);
+    applyFilters();
 }
-
-function blockFilterSelects() {
-    
-
-    if (infosToBlockSelects != null) {
-        console.log(infosToBlockSelects);
- 
-        for (let i = 0; i < 4; i++) {
-            if (infosToBlockSelects[i] != "false") {
-                console.log(infosToBlockSelects[i]);
-
-                var select = document.getElementById(infosToBlockSelects[i][0]);
-
-                select.selectedIndex = infosToBlockSelects[i][1];
-                updateSubjects();
-                select.setAttribute("disabled", "disabled");
-            }
-        }
-
-        window.history.pushState({}, "Autella | Visualizar questões", `${url}`);
-        
-    }
-}
-

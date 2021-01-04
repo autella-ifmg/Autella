@@ -136,7 +136,8 @@
         $js_var = json_encode($id_role);
         echo "id_role = Number(" . $js_var . ");\n";
 
-        echo "action_pag = 3;";
+        //Variável global que informa a função da página atual.
+        echo "page_action = 3;";
         ?>
 
         //Quando o documento estiver carregado, executa o método verifyRole().

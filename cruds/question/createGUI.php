@@ -98,7 +98,7 @@
         echo "subjects = " . $js_array . ";\n";
 
         //Variável global que informa a função da página atual.
-        echo "action_pag = 2;"
+        echo "page_action = 2;"
         ?>
 
         //Quando o documento estiver carregado, executa o método verifyRole().
