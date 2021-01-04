@@ -112,6 +112,8 @@ function addFilterInList(selected_filter) {
     if (filter_value != 'null') {
         switch (selected_filter) {
             case 'disciplines':
+                var aux = 0;
+
                 for (let i = 0; i < disciplines.length; i++) {
                     if (disciplines[i][0] == filter_value) {
                         filter_value = disciplines[i][2];
@@ -120,6 +122,8 @@ function addFilterInList(selected_filter) {
                 }
                 break;
             case 'subjects':
+                var aux = 1;
+
                 for (let i = 0; i < subjects.length; i++) {
                     if (subjects[i][0] == filter_value) {
                         filter_value = subjects[i][2];
@@ -128,6 +132,8 @@ function addFilterInList(selected_filter) {
                 }
                 break;
             case 'dificulty':
+                var aux = 2;
+
                 switch (filter_value) {
                     case '1':
                         filter_value = "Fácil";
@@ -142,6 +148,8 @@ function addFilterInList(selected_filter) {
                 //console.log(filter_value);
                 break;
             case 'date':
+                var aux = 3;
+
                 var y = filter_value.split("-")[0];
                 var m = filter_value.split("-")[1];
                 var d = filter_value.split("-")[2];
@@ -150,19 +158,6 @@ function addFilterInList(selected_filter) {
                 //console.log(filter_value);
                 break;
         }
-
-        var container_filter = document.getElementsByName("container_filter")[0];
-
-        var label = document.createElement("label");
-        label.innerHTML = filter_value;
-        container_filter.appendChild(label);
-
-        var img = document.createElement("img");
-        img.setAttribute("src", "../../../libraries/bootstrap/bootstrap-icons-1.0.0/x-circle-fill.svg");
-        img.setAttribute("alt", "Remover filtro");
-        container_filter.appendChild(img);
-
-        container_filter.setAttribute("name", "container_filter_defined");
     }
 }
 
