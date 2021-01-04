@@ -23,16 +23,16 @@
         <div class="d-flex flex-column">
             <div class="d-flex flex-row mb-3">
                 <!--Ícone do sistema de filtragem-->
-                <div class="w-auto mt-1 ml-1 mr-3">
+                <div class="w-auto mt-1 ml-1 mr-4">
                     <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-circle-fill.svg" alt="Sistema de Filtragem" height="75" data-toggle="tooltip" data-placement="top" title="Sistema de Filtragem">
                 </div>
 
-                <!--Filtros-->
-                <?php require_once '../../views/filterStructure.php'; ?>
+                <!--Estrutura para selecionar filtros-->
+                <?php require_once '../../views/filtrationSystem/choosingFilters.php'; ?>
             </div>
 
             <!--Filtros aplicados-->
-            <?php require_once '../../views/appliedFilters.php'; ?>
+            <?php require_once '../../views/filtrationSystem/appliedFilters.php'; ?>
 
             <!--Botões-->
             <div class="d-flex flex-row justify-content-between mb-3">

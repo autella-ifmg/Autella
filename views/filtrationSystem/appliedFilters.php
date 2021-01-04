@@ -1,33 +1,31 @@
 <?php
-if($id_role == 1) {
-    $count = 4;
+if ($id_role == 1) {
+    $structuresQuantity = 4;
     $class_div = "w-25 mr-3";
     $mr_exception = "w-25 mr-1";
 } else {
-    $count = 3;
+    $structuresQuantity = 3;
     $class_div = "w-50 mr-3";
     $mr_exception = "w-50 mr-1";
 }
 
-
-
-if (isset($_GET["filter"])) {
-    echo '
+echo '
     <div class="border border-muted rounded mb-3">
-        <div id="container_filters" class="d-flex flex-row justify-content-between mt-2">
-            <div class="ml-2 mr-3">
-                <h6 style="width: 70px; text-align: center;">Filtro(s) aplicado(s):</h6>
+        <div id="container_filters" class="d-flex flex-row mt-2">
+            <div class="ml-2 mr-4">
+                <h6 style="width: 69px; text-align: left;">Filtro(s) aplicado(s):</h6>
             </div>';
 
-    for ($i = 0; $i < $count; $i++) {
-        if ($i != ($count - 1)) {
+if (isset($_GET["filter"])) {
+    for ($i = 0; $i < $structuresQuantity; $i++) {
+        if ($i != ($structuresQuantity - 1)) {
             echo '
             <div id="' . $select_names[$i] . '" class="d-flex justify-content-between ' . $class_div . ' form-control">';
         } else {
             echo '
             <div id="' . $select_names[$i] . '" class="d-flex justify-content-between ' . $mr_exception . ' form-control">';
         }
-        
+
         if (!empty($_GET[$filter_names[$i]])) {
             switch ($filter_names[$i]) {
                 case 'id_discipline':
@@ -58,31 +56,19 @@ if (isset($_GET["filter"])) {
             ';
         }
     }
-
-    echo '
-        </div>
-    </div>
-    ';
 } else {
-    echo '
-    <div class="border border-muted rounded mb-3">
-        <div class="d-flex flex-row justify-content-between mt-2">
-            <div class="ml-2 mr-3">
-                <h6 style="width: 70px; text-align: center;">Filtro(s) aplicado(s):</h6>
-            </div>';
+    for ($i = 0; $i < $structuresQuantity; $i++) {
+        if ($i != ($structuresQuantity - 1)) {
+            echo '
+                <div class="' . $class_div . ' form-control"><label class="text-muted">Nenhum</label></div>';
+        } else {
+            echo '
+                <div class="' . $mr_exception . ' form-control"><label class="text-muted">Nenhum</label></div>';
+        }
+    }
+}
 
-            for ($i = 0; $i < $count; $i++) {
-                if ($i != ($count - 1)) {
-                    echo '
-                    <div name="container_filter_' . $i . '" class="d-flex justify-content-between ' . $class_div . ' form-control"><label class="text-muted">Nenhum</label></div>';
-                } else {
-                    echo '
-                    <div name="container_filter_' . $i . '" class="d-flex justify-content-between ' . $mr_exception . ' form-control"><label class="text-muted">Nenhum</label></div>';
-                }
-            }
-
-    echo '
+echo '
         </div>
     </div>
-    ';
-}
+';
