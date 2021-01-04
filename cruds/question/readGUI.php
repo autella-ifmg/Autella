@@ -22,9 +22,9 @@
     <section class="d-flex justify-content-center mt-3">
         <div class="d-flex flex-column">
             <div class="d-flex flex-row mb-3">
-                <!--Botão filtrar-->
+                <!--Ícone do sistema de filtragem-->
                 <div class="w-auto mt-1 ml-1 mr-3">
-                    <a id="filter" onclick="applyFilter(1, 1)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-circle-fill.svg" alt="Aplicar filtros" height="75" data-toggle="tooltip" data-placement="top" title="Aplicar filtros"> </a>
+                    <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-circle-fill.svg" alt="Sistema de Filtragem" height="75" data-toggle="tooltip" data-placement="top" title="Sistema de Filtragem">
                 </div>
 
                 <!--Filtros-->
@@ -37,7 +37,7 @@
             <!--Botões-->
             <div class="d-flex flex-row justify-content-between mb-3">
                 <a href="../../views/home.php" type="button" class="btn btn-primary w-25 mr-5">Voltar</a>
-                <a id="archive" type="button" class="btn btn-info w-25 mr-5" onclick="applyFilter(0, 0)">Visualizar questões arquivadas</a>
+                <a id="archive" type="button" class="btn btn-info w-25 mr-5" onclick="redirection()">Visualizar questões arquivadas</a>
                 <a href="createGUI.php" type="button" class="btn btn-primary w-25">Criar questão</a>
             </div>
 
@@ -100,7 +100,19 @@
         echo "action_per = 0;\n";
         ?>
 
-       
+        url = "";
+
+      
+
+        function redirection() {
+            if (action_pag == 0) {
+                var unarchive_btn = document.getElementById("unarchive");
+                unarchive_btn.setAttribute("href", "http://autella.com/cruds/question/readGUI.php?");
+            } else {
+                var archive_btn = document.getElementById("archive");
+                archive_btn.setAttribute("href", "http://autella.com/cruds/question/archiveGUI.php?filter=true&status=0");
+            }
+        }
 
         //Quando o documento estiver carregado, executa o método verifyRole().
         document.addEventListener("DOMContentLoaded", verifyRole(), false);

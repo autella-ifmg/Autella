@@ -1,40 +1,4 @@
-//Função que coleta o filtro desejado.
-function applyFilter(pag, status) {
-    var url;
 
-    if (pag == 0) {
-        url = "http://autella.com/cruds/question/archiveGUI.php?";
-    } else {
-        url = "http://autella.com/cruds/question/readGUI.php?";
-    }
-
-    if (id_role == 1) {
-        var discipline_filter = document.getElementById("disciplines");
-        discipline_filter = discipline_filter.value;
-    } else {
-        var discipline_filter = id_discipline;
-    }
-
-    var subject_filter = document.getElementById("subjects");
-    subject_filter = subject_filter.value;
-    var dificulty_filter = document.getElementById("dificulty");
-    dificulty_filter = dificulty_filter.value;
-    var date_filter = document.getElementById("date");
-    date_filter = date_filter.value;
-
-    filters = `${url}filter=true&id_discipline=${discipline_filter}&id_subject=${subject_filter}&dificulty=${dificulty_filter}&date=${date_filter}&status=${status}&`;
-
-    var filter_btn = document.getElementById("filter");
-    filter_btn.setAttribute("href", filters);
-
-    if (action_pag == 0) {
-        var unarchive_btn = document.getElementById("unarchive");
-        unarchive_btn.setAttribute("href", url);
-    } else {
-        var archive_btn = document.getElementById("archive");
-        archive_btn.setAttribute("href", filters);
-    }
-}
 
 function filterGathering(selected_filter, filter_value) {
     switch (selected_filter) {
@@ -57,17 +21,21 @@ function filterGathering(selected_filter, filter_value) {
 
     //console.log(appliedFilters);
 
-    apply(1, 1, null);
+    if(action_pag == 0) {
+        var status = 0;
+    } else {
+        var status = 1;
+    }
+
+
+    apply(status, null);
 }
 
-function apply(pag, status, remove) {
-    var url;
 
-    if (pag == 0) {
-        url = "http://autella.com/cruds/question/archiveGUI.php?";
-    } else {
-        url = "http://autella.com/cruds/question/readGUI.php?";
-    }
+   
+
+function apply(status, remove) {
+
 
     if (infosToBlockSelects != null) {
         //console.log(infosToBlockSelects);
@@ -83,16 +51,17 @@ function apply(pag, status, remove) {
         }
     }
 
+    if (action_pag == 0) {
+        url = "http://autella.com/cruds/question/archiveGUI.php?";
+    } else {
+        console.log("a");
+        url = "http://autella.com/cruds/question/readGUI.php?";
+    }
 
     filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&`;
 
-    if (action_pag == 0) {
-        var unarchive_btn = document.getElementById("unarchive");
-        unarchive_btn.setAttribute("href", url);
-    } else {
-        var archive_btn = document.getElementById("archive");
-        archive_btn.setAttribute("href", filters_url);
-    }
+    
+   
 
     window.history.pushState({}, "Autella | Visualizar questões", `${filters_url}`);
     window.location.reload(1);
@@ -187,13 +156,21 @@ function removeFilterFromList(selected_filter) {
             break;
     }
 
-    apply(1, 1, remove);
+    if(action_pag == 0) {
+        var status = 0;
+    } else {
+        var status = 1;
+    }
+
+    apply(status, remove);
 }
 
 function blockFilterSelects() {
+    
+
     if (infosToBlockSelects != null) {
         console.log(infosToBlockSelects);
-
+ 
         for (let i = 0; i < 4; i++) {
             if (infosToBlockSelects[i] != "false") {
                 console.log(infosToBlockSelects[i]);
@@ -205,5 +182,9 @@ function blockFilterSelects() {
                 select.setAttribute("disabled", "disabled");
             }
         }
+
+        window.history.pushState({}, "Autella | Visualizar questões", `${url}`);
+        
     }
 }
+

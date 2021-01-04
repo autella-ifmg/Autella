@@ -88,7 +88,7 @@
 	- [X] Configurar o toast de criação de questão
 	- [ ] Permitir que os campos de alternativas também sejam formatados
 
-- [ ] Read
+- [X] Read
 	- [X] Adicionar paginação
 	- [X] Adicionar filtros de pesquisa
 	- [X] Adicionar opção "Escolha..." no selectDiscipline

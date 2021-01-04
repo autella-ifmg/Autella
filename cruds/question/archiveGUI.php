@@ -22,9 +22,9 @@
     <section class="d-flex justify-content-center mt-3">
         <div class="d-flex flex-column">
             <div class="d-flex flex-row mb-3">
-                <!--Botão filtrar-->
+                <!--Ícone do sistema de filtragem-->
                 <div class="w-auto mt-1 ml-1 mr-3">
-                    <a id="filter" onclick="applyFilter(0, 0)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-circle-fill.svg" alt="Aplicar filtros" height="75" data-toggle="tooltip" data-placement="top" title="Aplicar filtros"> </a>
+                    <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-circle-fill.svg" alt="Sistema de Filtragem" height="75" data-toggle="tooltip" data-placement="top" title="Sistema de Filtragem">
                 </div>
 
                 <!--Filtros-->
@@ -36,7 +36,7 @@
 
             <!--Botões-->
             <div class="d-flex justify-content-center mb-3">
-                <a id="unarchive" type="button" class="btn btn-info w-25" onclick="applyFilter(1, 1)">Visualizar questões habilitadas</a>
+                <a id="unarchive" type="button" class="btn btn-info w-25" onclick="redirection()">Visualizar questões habilitadas</a>
             </div>
 
             <!--Blocos de questões-->
@@ -73,6 +73,22 @@
         $js_array = json_encode($php_array);
         echo "subjects = " . $js_array . ";\n";
 
+        //Array global com todas as disciplinas registradas.
+        $php_array = selectDisciplines();
+        $js_array = json_encode($php_array);
+        echo "disciplines = " . $js_array . ";\n";
+
+        //Variável global que informa se há ou não questões sendo exibidas.
+        if (empty($questions)) {
+            echo "arrayIsEmpty = true;\n";
+        } else {
+            echo "arrayIsEmpty = false;\n";
+        }
+
+        //Arrat global que armazena o(s) filtro(s) escolhido(s).
+        echo "appliedFilters = [[], [], [], []];\n";
+        echo infosToBlockSelects();
+
         //Variável global que informa se há ou não questões sendo exibidas.
         if (empty($questions)) {
             echo "arrayIsEmpty = true;\n";
@@ -84,6 +100,18 @@
         echo "action_pag = 0;\n";
         ?>
 
+        url = "";
+
+        function redirection() {
+            if (action_pag == 0) {
+                var unarchive_btn = document.getElementById("unarchive");
+                unarchive_btn.setAttribute("href", "http://autella.com/cruds/question/readGUI.php?");
+            } else {
+                var archive_btn = document.getElementById("archive");
+                archive_btn.setAttribute("href", "http://autella.com/cruds/question/archiveGUI.php?filter=true&status=0");
+            }
+        }
+
         //Quando o documento estiver carregado, executa o método verifyRole().
         document.addEventListener("DOMContentLoaded", verifyRole(), false);
 
@@ -92,6 +120,9 @@
 
         //Quando o documento estiver carregado, executa o método updateDropdownHeader().
         document.addEventListener("DOMContentLoaded", updateDropdownHeader(), false);
+
+        //Quando o documento estiver carregado, executa o método blockFilterSelects().
+        document.addEventListener("DOMContentLoaded", blockFilterSelects(), false);
     </script>
 
     <!--CKEditor-->
