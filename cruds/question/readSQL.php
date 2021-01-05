@@ -213,7 +213,7 @@ function imports($questions)
 
 function infosFromFiltrationSystem()
 {
-    global $filter_names, $structuresQuantity;
+    global $filter_names, $structuresQuantity, $id_role, $id_discipline;
     $php_array = [
         0 => ["false"],
         1 => ["false"],
@@ -240,6 +240,8 @@ function infosFromFiltrationSystem()
                         $php_array[3] = ["date", $_GET[$filter_names[$i]]];
                         break;
                 }
+            } else if ($id_role != 1) {
+                $php_array[0] = $id_discipline;
             }
         }
 

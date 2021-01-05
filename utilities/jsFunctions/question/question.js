@@ -36,7 +36,15 @@ function updateSubjects() {
   var option = document.createElement("option");
   option.setAttribute("disabled", "disabled");
   option.setAttribute("selected", "selected");
-  option.setAttribute("label", "Escolha...");
+
+  if (selectDiscipline == "null") {
+    var text = "Selecione uma disciplina";
+  } else {
+    var text = "Escolha...";
+  }
+
+  option.setAttribute("label", text);
+  
   selectSubjects.appendChild(option);
 
   for (let i = 0; i < subjects.length; i++) {

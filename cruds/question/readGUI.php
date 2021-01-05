@@ -104,7 +104,7 @@
         echo "action_per = 0;\n";
         ?>
 
-        console.log(infosFromFiltrationSystem);
+    
 
         //Quando o documento estiver carregado, executa o método verifyPageAction().
         document.addEventListener("DOMContentLoaded", verifyPageAction(), false);

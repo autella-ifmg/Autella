@@ -19,83 +19,65 @@ function verifyPageAction() {
 }
 
 function addFilterInList(selected_filter) {
-    if (id_role != 1) {
-        appliedFilters[0] = id_discipline;
-    }
-
     var filter_value = document.getElementById(selected_filter);
     filter_value = filter_value.value;
 
     switch (selected_filter) {
         case 'disciplines':
             appliedFilters[0] = filter_value;
-            removalIndicator += 1;
             break;
         case 'subjects':
             appliedFilters[1] = filter_value;
-            removalIndicator += 2;
             break;
         case 'dificulty':
             appliedFilters[2] = filter_value;
-            removalIndicator += 3;
             break;
         case 'date':
             appliedFilters[3] = filter_value;
-            removalIndicator += 4;
             break;
     }
 
-    applyFilters();
+    applySelectedFilters();
 }
 
-function applyFilters() {
-    console.log("deu?");
-    if (infosFromFiltrationSystem != null && removalIndicator != - 1) {
-        //console.log(infosFromFiltrationSystem);
-
-        for (let i = 0; i < 4; i++) {
-            if (infosFromFiltrationSystem[i] != "false" && i == removalIndicator) {
-                console.log(i);
-                //console.log(infosFromFiltrationSystem[i]);
-                appliedFilters[i] = "";
-                infosFromFiltrationSystem[i] = "false";
-            } else if (infosFromFiltrationSystem[i] != "false") {
-                appliedFilters[i] = infosFromFiltrationSystem[i][1];
-            }
-        }
-    }
-    updateSubjects();
+function applySelectedFilters() {
     filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&`;
 
-    window.history.pushState({}, "Autella | Visualizar questões", `${filters_url}`);
+    window.history.pushState({}, "Autella | Visualizar questões", filters_url);
     window.location.reload(1);
 }
 
 function blockFilterSelects() {
-    if (infosFromFiltrationSystem != null) {
-        //console.log(infosFromFiltrationSystem);
+    if (id_role != 1) {
+        appliedFilters[0] = id_discipline;
+    }
 
+    if (infosFromFiltrationSystem != null) {
         for (let i = 0; i < 4; i++) {
             if (infosFromFiltrationSystem[i] != "false") {
-                console.log(i);
-                console.log(infosFromFiltrationSystem[i]);
+                if (id_role == 1 || i > 0) {
+                    appliedFilters[i] = infosFromFiltrationSystem[i][1];
 
-                if (i < 3) {
-                    var val = infosFromFiltrationSystem[i][1];
-                    document.querySelector(`#${infosFromFiltrationSystem[i][0]} [value="${val}"]`).selected = true;
+                    if (i < 3) {
+                        var value = infosFromFiltrationSystem[i][1];
+                        document.querySelector(`#${infosFromFiltrationSystem[i][0]} [value="${value}"]`).selected = true;
 
-                    if (id_role == 1) {
-                        updateSubjects();
-                        document.querySelector(`#${infosFromFiltrationSystem[i][0]} [value="${val}"]`).selected = true;
+                        if (id_role == 1) {
+                            updateSubjects();
+                            if (i == 0) {
+                            document.querySelector(`#${infosFromFiltrationSystem[i][0]} [value="${value}"]`).selected = true;
+                        } else {
+                            document.querySelector(`#${infosFromFiltrationSystem[1][0]} [value="${infosFromFiltrationSystem[1][1]}"]`).selected = true;
+
+                        }
+                        }
+                    } else {
+                        var date_picker = document.getElementById(infosFromFiltrationSystem[i][0]);
+                        date_picker.setAttribute("value", infosFromFiltrationSystem[i][1]);
                     }
-                } else {
-                    var date_picker = document.getElementById(infosFromFiltrationSystem[i][0]);
-                    date_picker.setAttribute("value", infosFromFiltrationSystem[i][1]);
+
+                    $(`#${infosFromFiltrationSystem[i][0]}`).attr('disabled', 'disabled');
                 }
-
-                $(`#${infosFromFiltrationSystem[i][0]}`).attr('disabled', 'disabled');
-
-
             }
         }
 
@@ -108,9 +90,42 @@ function removeFilterFromList(selected_filter) {
     container_filter.innerHTML = "";
 
     selected_filter = selected_filter.split("_")[1];
-    select = document.getElementById(selected_filter);
+    var select = document.getElementById(selected_filter);
     select.selectedIndex = 0;
     select.removeAttribute("disabled");
 
-    applyFilters();
+    if (selected_filter == 'disciplines') {
+        container_filter = document.getElementById('container_subjects');
+        container_filter.innerHTML = "";
+
+        var select = document.getElementById('subjects');
+        select.selectedIndex = 0;
+        select.removeAttribute("disabled");
+
+        appliedFilters[1] = "";
+
+        infosFromFiltrationSystem[1] = "false";
+
+    }
+
+    switch (selected_filter) {
+        case 'disciplines':
+            removalIndicator += 1;
+            break;
+        case 'subjects':
+            removalIndicator += 2;
+            break;
+        case 'dificulty':
+            removalIndicator += 3;
+            break;
+        case 'date':
+            removalIndicator += 4;
+            break;
+    }
+
+    appliedFilters[removalIndicator] = "";
+
+    infosFromFiltrationSystem[removalIndicator] = "false";
+
+    applySelectedFilters();
 }
