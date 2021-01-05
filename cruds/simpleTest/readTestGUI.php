@@ -4,230 +4,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autella | Visualizar questão</title>
+    <title>Autella | Visualizar questões</title>
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
-    <script src="../../libraries/ckeditor5/ckeditor.js"></script>
-    <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/discipline.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/subject.php';
-    require_once "readTestSQL.php";
-    ?>
+    <script src="../../libraries/ckeditor/ckeditor.js"></script>
+    <?php require_once "readTestSQL.php"; ?>
 </head>
 
 <body>
+    <!--Navbar-->
     <?php require_once '../../views/navbar.php'; ?>
-    <div style="text-align: center;"><H1>PROVA SIMPLES</H1></div>
-    <!--Filtros-->
+
+    <!--Toast genérico-->
+    <?php require_once '../../views/genericToast.php'; ?>
+
     <section class="d-flex justify-content-center mt-3">
         <div class="d-flex flex-column">
             <div class="d-flex flex-row mb-3">
-                <!--Filtro disciplina-->
-                <div id="container_selectDiscipline" class="w-25 mt-1 mr-3" hidden>
-                    <label for="disciplines">Disciplina:</label>
-                    <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
-                        <?php selectDisciplineNamesToDropdowns(1); ?>
-                    </select>
+                <!--Ícone do sistema de filtragem-->
+                <div class="w-auto mt-1 ml-1 mr-4">
+                    <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-circle-fill.svg" alt="Sistema de Filtragem" height="75" data-toggle="tooltip" data-placement="top" title="Sistema de Filtragem">
                 </div>
-                <!--Filtro matéria-->
-                <div name="container_select" class="w-25 mt-1 mr-3">
-                    <label for="subjects">Matéria:</label>
-                    <select name="subjects" id="subjects" class="form-control">
-                        <!--updateSubjects()-->
-                    </select>
-                </div>
-                <!--Filtro dificuldade-->
-                <div name="container_select" class="w-25 mt-1 mr-3">
-                    <label for="dificulty">Dificuldade:</label>
-                    <select name="dificulty" id="dificulty" class="form-control">
-                        <option value="" selected>Escolha...</option>
-                        <option value="1">Fácil</option>
-                        <option value="2">Média</option>
-                        <option value="3">Difícil</option>
-                    </select>
-                </div>
-                <!--Filtro data-->
-                <div name="container_select" class="w-25 mt-1 mr-3">
-                    <label for="date">Data de criação:</label>
-                    <input id="date" type="date" class="form-control">
-                </div>
-                <!--Questões arquivadas-->
-                <div class="w-auto mt-1">
-                    <a id="archive" onclick="filter(ply0, 0)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Questões arquivadas" height="75" data-toggle="tooltip" data-placement="top" title="Visualizar questões arquivadas"> </a>
-                </div>
+
+                <!--Estrutura para selecionar filtros-->
+                <?php require_once '../../views/filtrationSystem/choosingFilters.php'; ?>
             </div>
+
+            <!--Filtros aplicados-->
+            <?php require_once '../../views/filtrationSystem/appliedFilters.php'; ?>
 
             <!--Botões-->
             <div class="d-flex flex-row justify-content-between mb-3">
                 <a href="../../views/home.php" type="button" class="btn btn-primary w-25 mr-5">Voltar</a>
-                <a id="filter" type="button" class="btn btn-info w-25 mr-5" onclick="filter(1, 1)">Filtrar</a>
-               
+                <a id="archive" type="button" class="btn btn-info w-25 mr-5">Visualizar questões arquivadas</a>
+                <a href="createGUI.php" type="button" class="btn btn-primary w-25">Criar questão</a>
             </div>
 
             <!--Blocos de questões-->
-            <div>
-                <?php data($array, $id_role); ?>
-            </div>
+            <div> <?php questionBlocks($questions, $id_role); ?> </div>
 
-            <!--Paginação - HTML e PHP-->
-           
+            <!--Paginação-->
+            <?php require_once '../../views/pagination.php'; ?>
+        </div>
     </section>
 
     <!--Modal genérico-->
-    <div name="container" id="none" class="modal fade" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 name="header" id="none" class="modal-title">none</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p id="p0">none</p>
-                    <p id="p1">none</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <a name="modalButton" id="none" class="btn btn-danger" onclick="none" data-dismiss="modal">Sim, tenho certeza</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php require_once '../../views/genericModal.php'; ?>
+
+    <!--Importação das funções .js utilizadas nessa página-->
+    <script src="../../utilities/jsFunctions/question/question.js"></script>
+    <script src="../../utilities/jsFunctions/question/filter.js"></script>
 
     <script>
         <?php
-        $questions = json_encode($array);
-        echo "questions = " . $questions . ";\n";
+        //Sequência de instanciação de variáveis globais que são utilizadas por funções .js
+
+        //Array global com as questões que estão sendo exibidas.
+        $js_var = json_encode($questions);
+        echo "questions = " . $js_var . ";\n";
+
+        //Variável global com o id_role do usário atual.
+        $js_var = json_encode($id_role);
+        echo "id_role = Number(" . $js_var . ");\n";
+
+        //Variável global com o id_role do usário atual.
+        $js_var = json_encode($structuresQuantity);
+        echo "structuresQuantity = " . $js_var . ";\n";
+
+        //Variável global com o id_discipline do usário atual.
+        $js_var = json_encode($id_discipline);
+        echo "id_discipline = Number(" . $js_var . ");\n";
+
+        //Array global com todas as matérias registradas.
+        $php_array = selectSubjects();
+        $js_array = json_encode($php_array);
+        echo "subjects = " . $js_array . ";\n";
+
+        //Array global com todas as disciplinas registradas.
+        $php_array = selectDisciplines();
+        $js_array = json_encode($php_array);
+        echo "disciplines = " . $js_array . ";\n";
+
+        //Variável global que informa se há ou não questões sendo exibidas.
+        if (empty($questions)) {
+            echo "arrayIsEmpty = true;\n";
+        } else {
+            echo "arrayIsEmpty = false;\n";
+        }
+
+        //Arrat global que armazena o(s) filtro(s) escolhido(s).
+        echo "appliedFilters = [[], [], [], []];\n";
+        echo infosFromFiltrationSystem();
+
+        //Variável global que informa a função da página atual.
+        echo "page_action = 1;\n";
+
+        //Variável global que irá armazenar a última ação do usuário.
+        echo "action_per = 0;\n";
         ?>
 
-        //Função para inserir as matérias no selectSubjects.
-        function updateSubjects() {
-            <?php
-            if ($id_role == 1) {
-                echo "
-            var selectDiscipline = document.getElementById('disciplines');\n
-            selectDiscipline = selectDiscipline.value;\n
-                    ";
-            } else {
-                $var = json_encode($id_discipline);
-                echo "var selectDiscipline = " . $id_discipline . ";\n";
-            }
-            ?>
+        console.log(infosFromFiltrationSystem);
 
-            var selectSubjects = document.getElementById("subjects");
-            selectSubjects.innerHTML = "";
+        //Quando o documento estiver carregado, executa o método verifyPageAction().
+        document.addEventListener("DOMContentLoaded", verifyPageAction(), false);
 
-            var option = document.createElement("option");
-            option.setAttribute("selected", "selected");
-            option.setAttribute("label", "Escolha...");
-            selectSubjects.appendChild(option);
+        //Quando o documento estiver carregado, executa o método verifyRole().
+        document.addEventListener("DOMContentLoaded", verifyRole(), false);
 
-            <?php
-            $php_array = selectSubjects();
-            $js_array = json_encode($php_array);
-            echo "var subjects = " . $js_array . ";\n";
-            ?>
-
-            for (let i = 0; i < subjects.length; i++) {
-                if (subjects[i][1] == selectDiscipline) {
-                    let option = document.createElement("option");
-                    option.setAttribute("value", `${subjects[i][0]}`);
-                    option.setAttribute("label", `${subjects[i][2]}`);
-                    selectSubjects.appendChild(option);
-                }
-            }
-        }
         //Quando o documento estiver carregado, executa o método updateSubjects().
         document.addEventListener("DOMContentLoaded", updateSubjects(), false);
 
-    
-    
-        function convertQuestionNumber(questionNumber) {
-            var position;
-            var str = questionNumber.toString();
+        //Quando o documento estiver carregado, executa o método updateDropdownHeader().
+        document.addEventListener("DOMContentLoaded", updateDropdownHeader(), false);
 
-            if ((str.substr(-1)) > 5) {
-                position = Math.ceil(questionNumber % 5) - 1;
-            } else if ((str.substr(-1)) == 0) {
-                position = 4;
-            } else {
-                questionNumber -= 1;
-                str = questionNumber.toString();
-                position = Number.parseInt(str.substr(-1));
-            }
+        //Quando o documento estiver carregado, executa o método blockFilterSelects().
+        document.addEventListener("DOMContentLoaded", blockFilterSelects(), false);
 
-            return position;
-        }
-
-        function editQuestion(questionNumber) {
-            var button = document.getElementById("editButton");
-            button.setAttribute("href", `updateGUI.php?questionNumber=${questionNumber}`);
-        }
-
-        function archiveQuestion(questionNumber) {
-            var position = convertQuestionNumber(questionNumber);
-
-            var question = questions[position];
-            //console.log(question);
-
-            $.ajax({
-                type: 'POST',
-                url: 'updateSQL.php',
-                data: {
-                    question
-                },
-                success: function(result) {
-                    window.location.reload();
-                    console.log(result);
-                    $('#toast').toast('show');
-                    $('#result').html(result).fadeIn();
-                    //$(".toast").toast("show");
-                }
-            });
-        }
-
-       
         <?php
-        if ($id_role == 1) {
-            echo '
-        var div = document.getElementById("container_selectDiscipline");
-        div.removeAttribute("hidden"); 
-             ';
-        } else {
-            echo '
-        var list = document.getElementsByName("container_select");';
+        if (isset($_GET['action_per'])) {
+            //Variável global que informa se alguma questão foi criada/editada e armazena o resultado da respectiva ação.
+            $php_var = empty($_SESSION['debug']) ? "" : $_SESSION['debug'][count($_SESSION['debug']) - 1];
+            $js_var = json_encode($php_var, JSON_UNESCAPED_UNICODE);
+            echo "result = " . $js_var . ";\n";
 
-            for ($i = 0; $i < 3; $i++) {
-                echo '
-        var container' . $i . ' = list[' . $i . '];
-        container' . $i . '.removeAttribute("class");
-        container' . $i . '.setAttribute("class", "w-50 mt-1 mr-3");
-                ';
-            }
-        }
+            //Variável global que informa qual foi a última ação (criação/edição) do usuário.
+            $php_var =  $_GET['action_per'];
+            $js_var = json_encode($php_var);
+            echo "action_per = Number(" . $js_var . ");\n";
 
-        if (empty($array)) {
-            echo '
-        $("#container_selectDiscipline").find("*").prop("disabled", true);
-
-        var list = document.getElementsByName("container_select");
-            ';
-
-            for ($i = 0; $i < 3; $i++) {
-                echo '
-        var container' . $i . ' = list[' . $i . '];
-        $(container' . $i . ').find("*").prop("disabled", true);
-                ';
-            }
+            //Quando o documento estiver carregado, executa o método genericToastCEQ().
+            $js_var = 'document.addEventListener("DOMContentLoaded", genericToastCEQ(), false);';
+            echo $js_var . "\n";
         }
         ?>
     </script>
 
     <!--CKEditor-->
     <script>
-        <?php imports($array); ?>
+        <?php imports($questions); ?>
     </script>
 </body>
 
