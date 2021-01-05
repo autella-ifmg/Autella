@@ -52,31 +52,31 @@ function blockFilterSelects() {
         appliedFilters[0] = id_discipline;
     }
 
-    if (infosFromFiltrationSystem != null) {
+    if (filtersSystemData != null) {
         for (let i = 0; i < 4; i++) {
-            if (infosFromFiltrationSystem[i] != "false") {
+            if (filtersSystemData[i] != "false") {
                 if (id_role == 1 || i > 0) {
-                    appliedFilters[i] = infosFromFiltrationSystem[i][1];
+                    appliedFilters[i] = filtersSystemData[i][0];
 
                     if (i < 3) {
-                        var value = infosFromFiltrationSystem[i][1];
-                        document.querySelector(`#${infosFromFiltrationSystem[i][0]} [value="${value}"]`).selected = true;
+                        var value = filtersSystemData[i][0];
+                        document.querySelector(`#${filtersSystemData[i][1]} [value="${value}"]`).selected = true;
 
                         if (id_role == 1) {
                             updateSubjects();
                             if (i == 0) {
-                            document.querySelector(`#${infosFromFiltrationSystem[i][0]} [value="${value}"]`).selected = true;
+                            document.querySelector(`#${filtersSystemData[i][1]} [value="${value}"]`).selected = true;
                         } else {
-                            document.querySelector(`#${infosFromFiltrationSystem[1][0]} [value="${infosFromFiltrationSystem[1][1]}"]`).selected = true;
+                            document.querySelector(`#${filtersSystemData[1][1]} [value="${filtersSystemData[1][0]}"]`).selected = true;
 
                         }
                         }
                     } else {
-                        var date_picker = document.getElementById(infosFromFiltrationSystem[i][0]);
-                        date_picker.setAttribute("value", infosFromFiltrationSystem[i][1]);
+                        var date_picker = document.getElementById(filtersSystemData[i][1]);
+                        date_picker.setAttribute("value", filtersSystemData[i][0]);
                     }
 
-                    $(`#${infosFromFiltrationSystem[i][0]}`).attr('disabled', 'disabled');
+                    $(`#${filtersSystemData[i][1]}`).attr('disabled', 'disabled');
                 }
             }
         }
@@ -104,7 +104,7 @@ function removeFilterFromList(selected_filter) {
 
         appliedFilters[1] = "";
 
-        infosFromFiltrationSystem[1] = "false";
+        filtersSystemData[1] = "false";
 
     }
 
@@ -125,7 +125,7 @@ function removeFilterFromList(selected_filter) {
 
     appliedFilters[removalIndicator] = "";
 
-    infosFromFiltrationSystem[removalIndicator] = "false";
+    filtersSystemData[removalIndicator] = "false";
 
     applySelectedFilters();
 }

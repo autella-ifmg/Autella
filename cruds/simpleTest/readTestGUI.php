@@ -28,11 +28,11 @@
                 </div>
 
                 <!--Estrutura para selecionar filtros-->
-                <?php require_once '../../views/filtrationSystem/choosingFilters.php'; ?>
+                <?php require_once '../../views/filtersSystem/choosingFilters.php'; ?>
             </div>
 
             <!--Filtros aplicados-->
-            <?php require_once '../../views/filtrationSystem/appliedFilters.php'; ?>
+            <?php require_once '../../views/filtersSystem/appliedFilters.php'; ?>
 
             <!--Botões-->
             <div class="d-flex flex-row justify-content-between mb-3">
@@ -95,7 +95,7 @@
 
         //Arrat global que armazena o(s) filtro(s) escolhido(s).
         echo "appliedFilters = [[], [], [], []];\n";
-        echo infosFromFiltrationSystem();
+        echo gatheringInfoForFiltersSystem();
 
         //Variável global que informa a função da página atual.
         echo "page_action = 1;\n";
@@ -104,7 +104,7 @@
         echo "action_per = 0;\n";
         ?>
 
-        console.log(infosFromFiltrationSystem);
+        console.log(infosFromfiltersSystem);
 
         //Quando o documento estiver carregado, executa o método verifyPageAction().
         document.addEventListener("DOMContentLoaded", verifyPageAction(), false);

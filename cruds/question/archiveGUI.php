@@ -16,23 +16,13 @@
     <!--Navbar-->
     <?php require_once '../../views/navbar.php'; ?>
 
-    <!--Toast genérico-->
-    <?php require_once '../../views/genericToast.php'; ?>
-
     <section class="d-flex justify-content-center mt-3">
         <div class="d-flex flex-column">
-            <div class="d-flex flex-row mb-3">
-                <!--Ícone do sistema de filtragem-->
-                <div class="w-auto mt-1 ml-1 mr-4">
-                    <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-circle-fill.svg" alt="Sistema de Filtragem" height="75" data-toggle="tooltip" data-placement="top" title="Sistema de Filtragem">
-                </div>
-
-                <!--Estrutura para selecionar filtros-->
-                <?php require_once '../../views/filtrationSystem/choosingFilters.php'; ?>
-            </div>
+            <!--Estrutura para selecionar filtros-->
+            <?php require_once '../../views/filtersSystem/choosingFilters.php'; ?>
 
             <!--Filtros aplicados-->
-            <?php require_once '../../views/filtrationSystem/appliedFilters.php'; ?>
+            <?php require_once '../../views/filtersSystem/appliedFilters.php'; ?>
 
             <!--Botões-->
             <div class="d-flex justify-content-center mb-3">
@@ -50,21 +40,25 @@
     <!--Modal genérico-->
     <?php require_once '../../views/genericModal.php'; ?>
 
+    <!--Toast genérico-->
+    <?php require_once '../../views/genericToast.php'; ?>
+
     <!--Importação das funções .js utilizadas nessa página-->
     <script src="../../utilities/jsFunctions/question/question.js"></script>
     <script src="../../utilities/jsFunctions/question/filter.js"></script>
 
     <script>
+        //Sequência de instanciação de variáveis globais oriundas do php que são utilizadas por funções '.js'.
         <?php
         //Array global com as questões que estão sendo exibidas.
         $js_var = json_encode($questions);
         echo "questions = " . $js_var . ";\n";
 
-        //Variável global com o id_role do usário atual.
+        //Variável global com o id_role do usuário atual.
         $js_var = json_encode($id_role);
         echo "id_role = Number(" . $js_var . ");\n";
 
-        //Variável global com o id_discipline do usário atual.
+        //Variável global com o id_discipline do usuário atual.
         $js_var = json_encode($id_discipline);
         echo "id_discipline = Number(" . $js_var . ");\n";
 
@@ -73,11 +67,6 @@
         $js_array = json_encode($php_array);
         echo "subjects = " . $js_array . ";\n";
 
-        //Array global com todas as disciplinas registradas.
-        $php_array = selectDisciplines();
-        $js_array = json_encode($php_array);
-        echo "disciplines = " . $js_array . ";\n";
-
         //Variável global que informa se há ou não questões sendo exibidas.
         if (empty($questions)) {
             echo "arrayIsEmpty = true;\n";
@@ -85,16 +74,11 @@
             echo "arrayIsEmpty = false;\n";
         }
 
-        //Arrat global que armazena o(s) filtro(s) escolhido(s).
+        //Array global que armazena temporariamente o(s) filtro(s) escolhido(s).
         echo "appliedFilters = [[], [], [], []];\n";
-        echo infosFromFiltrationSystem();
 
-        //Variável global que informa se há ou não questões sendo exibidas.
-        if (empty($questions)) {
-            echo "arrayIsEmpty = true;\n";
-        } else {
-            echo "arrayIsEmpty = false;\n";
-        }
+        //Array global que coleta da url informações sobre o(s) filtro(s) escolhido(s).
+        echo gatheringInfoForFiltersSystem();
 
         //Variável global que informa a função da página atual.
         echo "page_action = 0;\n";

@@ -40,6 +40,48 @@ if (isset($_GET["filter"])) {
 }
 //var_dump($filter);
 
+
+function gatheringInfoForFiltersSystem()
+{
+    global $filter_names, $structuresQuantity, $id_role, $id_discipline;
+    $php_array = [
+        0 => ["false"],
+        1 => ["false"],
+        2 => ["false"],
+        3 => ["false"]
+    ];
+    $js_array = [];
+    $result = "filtersSystemData = null;\n";
+
+    if (isset($_GET['filter'])) {
+        for ($i = 0; $i < $structuresQuantity; $i++) {
+            if (!empty($_GET[$filter_names[$i]])) {
+                switch ($filter_names[$i]) {
+                    case 'id_discipline':
+                        $php_array[0] = [$_GET[$filter_names[$i]], "disciplines"];
+                        break;
+                    case 'id_subject':
+                        $php_array[1] = [$_GET[$filter_names[$i]], "subjects"];
+                        break;
+                    case 'dificulty':
+                        $php_array[2] = [$_GET[$filter_names[$i]], "dificulty"];
+                        break;
+                    case 'date':
+                        $php_array[3] = [$_GET[$filter_names[$i]], "date"];
+                        break;
+                }
+            } else if ($id_role != 1) {
+                $php_array[0] = ["disciplines", $id_discipline];
+            }
+        }
+
+        $js_array = json_encode($php_array);
+        $result = "filtersSystemData = " . $js_array . ";\n";
+    }
+
+    return $result;
+}
+
 //Paginação
 //Número da página atual
 $current = intval(isset($_GET["pag"]) ? $_GET["pag"] : 1);
@@ -169,21 +211,27 @@ function questionBlocks($questions, $id_role)
             }
         }
     } else {
+        if(isset($_GET['filter']) && isset($_GET['id_discipline'])) {
+            $message = "Não encontramos nenhum resultado correspondente aos filtros aplicados. :/";
+        } else {
+            $message = "Ainda não há nenhuma questão disponível.";
+        }
         echo '
-                    <div class="d-flex flex-row bd-highlight">
-                        <div class="p-2 w-25 bd-highlight border border-dark">Nº: </div>
-                        <div class="p-2 w-25 bd-highlight border border-dark border-left-0">Disciplina:</div>
-                        <div class="p-2 flex-fill bd-highlight border border-dark border-left-0">Matéria:</div>
+                    <div class="d-flex flex-row">
+                        <div class="p-2 w-25 border border-dark">Nº:</div>
+                        <div class="p-2 w-25 border border-dark border-left-0">Criada por:</div>
+
+                        <div class="p-2 flex-fill border border-dark border-left-0">Criada em:</div>
                     </div>
 
                     <div class="d-flex flex-row">
-                        <div class="p-2 w-25 bd-highlight border border-dark border-top-0">Inclusa em: </div>
-                        <div class="p-2 w-25 bd-highlight border border-dark border-left-0 border-top-0">Criada em: </div>
-                        <div class="p-2 flex-fill bd-highlight border border-dark border-left-0 border-top-0">Dificuldade: </div>
-                        <div class="p-2 flex-fill bd-highlight border border-dark border-left-0 border-top-0">Alternativa correta: </div>
+                        <div class="p-2 w-25 border border-dark border-top-0">Dificuldade:</div>
+                        <div class="p-2 w-25 border border-dark border-left-0 border-top-0">Alternativa correta:</div>
+                        <div class="p-2 w-25 border border-dark border-left-0 border-top-0">Disciplina:</div>
+                        <div class="p-2 w-25 border border-dark border-left-0 border-top-0">Matéria:</div>
                     </div>
-
-                    <div class="border border-dark border-top-0 mb-3" style="min-width: 65rem; max-width: 65rem; min-height: 20rem; max-height: 20rem;"><p class="font-weight-bold text-center">Não conseguimos encontrar as questões que você buscou. :/<p></div>
+    
+                    <div class="d-flex justify-content-center align-items-center border border-dark border-top-0 mb-3" style="min-width: 65rem; max-width: 65rem; min-height: 20rem; max-height: 20rem;"><p class="font-weight-bold text-primary">' . $message . '<p></div>
         ';
     }
 }
@@ -209,45 +257,4 @@ function imports($questions)
             ';
         }
     }
-}
-
-function infosFromFiltrationSystem()
-{
-    global $filter_names, $structuresQuantity, $id_role, $id_discipline;
-    $php_array = [
-        0 => ["false"],
-        1 => ["false"],
-        2 => ["false"],
-        3 => ["false"]
-    ];
-    $js_array = [];
-    $result = "infosFromFiltrationSystem = null;\n";
-
-    if (isset($_GET['filter'])) {
-        for ($i = 0; $i < $structuresQuantity; $i++) {
-            if (!empty($_GET[$filter_names[$i]])) {
-                switch ($filter_names[$i]) {
-                    case 'id_discipline':
-                        $php_array[0] = ["disciplines", $_GET[$filter_names[$i]]];
-                        break;
-                    case 'id_subject':
-                        $php_array[1] = ["subjects", $_GET[$filter_names[$i]]];
-                        break;
-                    case 'dificulty':
-                        $php_array[2] = ["dificulty", $_GET[$filter_names[$i]]];
-                        break;
-                    case 'date':
-                        $php_array[3] = ["date", $_GET[$filter_names[$i]]];
-                        break;
-                }
-            } else if ($id_role != 1) {
-                $php_array[0] = $id_discipline;
-            }
-        }
-
-        $js_array = json_encode($php_array);
-        $result = "infosFromFiltrationSystem = " . $js_array . ";\n";
-    }
-
-    return $result;
 }

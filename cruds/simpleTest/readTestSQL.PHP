@@ -212,9 +212,9 @@ function imports($questions)
     }
 }
 
-function infosFromFiltrationSystem()
+function gatheringInfoForFiltersSystem()
 {
-    global $filter_names, $structuresQuantity;
+    global $filter_names, $structuresQuantity, $id_role, $id_discipline;
     $php_array = [
         0 => ["false"],
         1 => ["false"],
@@ -222,30 +222,32 @@ function infosFromFiltrationSystem()
         3 => ["false"]
     ];
     $js_array = [];
-    $result = "infosFromFiltrationSystem = null;\n";
+    $result = "filtersSystemData = null;\n";
 
     if (isset($_GET['filter'])) {
         for ($i = 0; $i < $structuresQuantity; $i++) {
             if (!empty($_GET[$filter_names[$i]])) {
                 switch ($filter_names[$i]) {
                     case 'id_discipline':
-                        $php_array[0] = ["disciplines", $_GET[$filter_names[$i]]];
+                        $php_array[0] = [$_GET[$filter_names[$i]], "disciplines"];
                         break;
                     case 'id_subject':
-                        $php_array[1] = ["subjects", $_GET[$filter_names[$i]]];
+                        $php_array[1] = [$_GET[$filter_names[$i]], "subjects"];
                         break;
                     case 'dificulty':
-                        $php_array[2] = ["dificulty", $_GET[$filter_names[$i]]];
+                        $php_array[2] = [$_GET[$filter_names[$i]], "dificulty"];
                         break;
                     case 'date':
-                        $php_array[3] = ["date", $_GET[$filter_names[$i]]];
+                        $php_array[3] = [$_GET[$filter_names[$i]], "date"];
                         break;
                 }
+            } else if ($id_role != 1) {
+                $php_array[0] = ["disciplines", $id_discipline];
             }
         }
 
         $js_array = json_encode($php_array);
-        $result = "infosFromFiltrationSystem = " . $js_array . ";\n";
+        $result = "filtersSystemData = " . $js_array . ";\n";
     }
 
     return $result;

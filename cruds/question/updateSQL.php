@@ -18,7 +18,7 @@ if (isset($_POST["submit"])) {
 
     $connection->close();
 
-    header('Location: readGUI.php?action_per=2');
+    header('Location: readGUI.php?action_performed=2');
 }
 
 if (isset($_POST['question_archive_unarchive'])) {
