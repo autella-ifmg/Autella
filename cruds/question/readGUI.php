@@ -68,6 +68,10 @@
         $js_var = json_encode($id_role);
         echo "id_role = Number(" . $js_var . ");\n";
 
+        //Variável global com o id_role do usário atual.
+        $js_var = json_encode($structuresQuantity);
+        echo "structuresQuantity = " . $js_var . ";\n";
+
         //Variável global com o id_discipline do usário atual.
         $js_var = json_encode($id_discipline);
         echo "id_discipline = Number(" . $js_var . ");\n";
@@ -99,6 +103,8 @@
         //Variável global que irá armazenar a última ação do usuário.
         echo "action_per = 0;\n";
         ?>
+
+        console.log(infosFromFiltrationSystem);
 
         //Quando o documento estiver carregado, executa o método verifyPageAction().
         document.addEventListener("DOMContentLoaded", verifyPageAction(), false);

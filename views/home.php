@@ -48,6 +48,7 @@
             textSize(100);
             stroke(40, 167, 69);
             text("Autella", width/2 - 150, height/2);
+            stroke(255);
             // Comment line for interesting effect
             //noFill();
 

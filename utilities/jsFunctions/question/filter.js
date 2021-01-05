@@ -21,7 +21,7 @@ function verifyPageAction() {
 function addFilterInList(selected_filter) {
     if (id_role != 1) {
         appliedFilters[0] = id_discipline;
-    } 
+    }
 
     var filter_value = document.getElementById(selected_filter);
     filter_value = filter_value.value;
@@ -29,27 +29,33 @@ function addFilterInList(selected_filter) {
     switch (selected_filter) {
         case 'disciplines':
             appliedFilters[0] = filter_value;
+            removalIndicator += 1;
             break;
         case 'subjects':
             appliedFilters[1] = filter_value;
+            removalIndicator += 2;
             break;
         case 'dificulty':
             appliedFilters[2] = filter_value;
+            removalIndicator += 3;
             break;
         case 'date':
             appliedFilters[3] = filter_value;
+            removalIndicator += 4;
             break;
     }
 
-    applyFilters(status, null);
+    applyFilters();
 }
 
 function applyFilters() {
-    if (infosFromFiltrationSystem != null) {
+    console.log("deu?");
+    if (infosFromFiltrationSystem != null && removalIndicator != - 1) {
         //console.log(infosFromFiltrationSystem);
 
         for (let i = 0; i < 4; i++) {
             if (infosFromFiltrationSystem[i] != "false" && i == removalIndicator) {
+                console.log(i);
                 //console.log(infosFromFiltrationSystem[i]);
                 appliedFilters[i] = "";
                 infosFromFiltrationSystem[i] = "false";
@@ -58,7 +64,7 @@ function applyFilters() {
             }
         }
     }
-
+    updateSubjects();
     filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&`;
 
     window.history.pushState({}, "Autella | Visualizar questões", `${filters_url}`);
@@ -71,17 +77,29 @@ function blockFilterSelects() {
 
         for (let i = 0; i < 4; i++) {
             if (infosFromFiltrationSystem[i] != "false") {
-                //console.log(infosFromFiltrationSystem[i]);
+                console.log(i);
+                console.log(infosFromFiltrationSystem[i]);
 
-                var select = document.getElementById(infosFromFiltrationSystem[i][0]);
+                if (i < 3) {
+                    var val = infosFromFiltrationSystem[i][1];
+                    document.querySelector(`#${infosFromFiltrationSystem[i][0]} [value="${val}"]`).selected = true;
 
-                select.selectedIndex = infosFromFiltrationSystem[i][1];
-                updateSubjects();
-                select.setAttribute("disabled", "disabled");
+                    if (id_role == 1) {
+                        updateSubjects();
+                        document.querySelector(`#${infosFromFiltrationSystem[i][0]} [value="${val}"]`).selected = true;
+                    }
+                } else {
+                    var date_picker = document.getElementById(infosFromFiltrationSystem[i][0]);
+                    date_picker.setAttribute("value", infosFromFiltrationSystem[i][1]);
+                }
+
+                $(`#${infosFromFiltrationSystem[i][0]}`).attr('disabled', 'disabled');
+
+
             }
         }
 
-        window.history.pushState({}, "Autella | Visualizar questões", `${url}`);
+        //window.history.pushState({}, "Autella | Visualizar questões", `${url}`);
     }
 }
 
@@ -89,27 +107,10 @@ function removeFilterFromList(selected_filter) {
     container_filter = document.getElementById(selected_filter);
     container_filter.innerHTML = "";
 
-    container_filter.setAttribute("name", "container_filter");
-
     selected_filter = selected_filter.split("_")[1];
     select = document.getElementById(selected_filter);
     select.selectedIndex = 0;
     select.removeAttribute("disabled");
-
-    switch (selected_filter) {
-        case 'disciplines':
-            removalIndicator = 0;
-            break;
-        case 'subjects':
-            removalIndicator = 1;
-            break;
-        case 'dificulty':
-            removalIndicator = 2;
-            break;
-        case 'date':
-            removalIndicator = 3;
-            break;
-    }
 
     applyFilters();
 }

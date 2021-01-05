@@ -215,10 +215,10 @@ function infosFromFiltrationSystem()
 {
     global $filter_names, $structuresQuantity;
     $php_array = [
-        "0" => ["false"],
-        "1" => ["false"],
-        "2" => ["false"],
-        "3" => ["false"]
+        0 => ["false"],
+        1 => ["false"],
+        2 => ["false"],
+        3 => ["false"]
     ];
     $js_array = [];
     $result = "infosFromFiltrationSystem = null;\n";
@@ -228,16 +228,16 @@ function infosFromFiltrationSystem()
             if (!empty($_GET[$filter_names[$i]])) {
                 switch ($filter_names[$i]) {
                     case 'id_discipline':
-                        $php_array["0"] = [["disciplines"], [$_GET[$filter_names[$i]]]];
+                        $php_array[0] = ["disciplines", $_GET[$filter_names[$i]]];
                         break;
                     case 'id_subject':
-                        $php_array["1"] = [["subjects"], [$_GET[$filter_names[$i]]]];
+                        $php_array[1] = ["subjects", $_GET[$filter_names[$i]]];
                         break;
                     case 'dificulty':
-                        $php_array["2"] = [["dificulty"], [$_GET[$filter_names[$i]]]];
+                        $php_array[2] = ["dificulty", $_GET[$filter_names[$i]]];
                         break;
                     case 'date':
-                        $php_array["3"] = [["date"], [$_GET[$filter_names[$i]]]];
+                        $php_array[3] = ["date", $_GET[$filter_names[$i]]];
                         break;
                 }
             }
