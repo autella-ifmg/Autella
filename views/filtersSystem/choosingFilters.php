@@ -1,7 +1,7 @@
-<div class="d-flex flex-row mb-3">
+<div class="d-flex flex-row mb-3 font-weight-bold">
     <!--Ícone do sistema de filtragem-->
-    <div class="w-auto mt-1 ml-1 mr-4">
-        <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-circle-fill.svg" alt="Sistema de Filtragem" height="75" data-toggle="tooltip" data-placement="top" title="Sistema de Filtragem" onclick="easterEgg()">
+    <div class="mt-1 ml-1 mr-3">
+        <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/filter-circle-fill.svg" alt="Sistema de Filtros" height="75" class="ml-2" data-toggle="tooltip" data-placement="top" title="Sistema de Filtros" onclick="easterEgg()">
     </div>
     <!--Filtro - disciplina-->
     <div id="disciplineSelection_container" class="w-25 mr-3" hidden>

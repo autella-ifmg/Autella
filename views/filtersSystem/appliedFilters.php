@@ -2,10 +2,10 @@
 echo '
     <div class="border border-muted rounded mb-3">
         <div id="container_filters" class="d-flex flex-row mt-2">
-            <div class="ml-2 mr-4">
-                <h6 style="width: 69px; text-align: left;">Filtro(s) aplicado(s):</h6>
+            <div class="w-auto mt-1 ml-2 mr-4 mb-1 text-primary">
+                <h6 style="width: 69px; font-size: 0.80em; text-align: left;">Filtro(s) selecionado(s):</h6>
             </div>';
-
+//style="width: 69px; font-size: 0.84em; text-align: left;"
 if (isset($_GET["filter"])) {
     for ($i = 0; $i < $structuresQuantity; $i++) {
         if ($i != ($structuresQuantity - 1)) {
