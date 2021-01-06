@@ -129,3 +129,4 @@ function removeFilterFromList(selected_filter) {
 
     applySelectedFilters();
 }
+

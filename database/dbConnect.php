@@ -9,7 +9,7 @@ $dbname = "autella";
 $host = "localhost";
 $username = "root";
 $password = "";
-$dbname = "db_autella_local";
+$dbname = "autella";
 */
 
 $connection = new mysqli($host, $username, $password, $dbname);

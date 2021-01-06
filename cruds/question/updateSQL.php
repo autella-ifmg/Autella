@@ -80,3 +80,25 @@ if (isset($_POST['question_delete'])) {
 
     echo $result;
 }
+
+if (isset($_POST['easter_egg'])) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
+
+    $sql = "SELECT enunciate FROM question WHERE id = '0'";
+
+    $result = mysqli_query($connection, $sql);
+
+    $result = intval(mysqli_fetch_array($result)[0]) + $_POST['easter_egg'];
+
+    $sql = "UPDATE question SET enunciate = '$result' WHERE id = '0'";
+
+    $message = "É normal imaginar que esse ícone é um botão...";
+
+    if (!$connection->query($sql) === TRUE) {
+        //array_push($_SESSION['debug'], "Erro no easter egg!");
+    }
+
+    $connection->close();
+
+    echo $message;
+}

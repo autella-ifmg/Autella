@@ -1,3 +1,7 @@
+/*utilidade pública: 
+ALTER TABLE autella.nome_da_tabela AUTO_INCREMENT = 1;
+SET FOREIGN_KEY_CHECKS = 0 ou 1;*/
+
 CREATE DATABASE `autella` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
 CREATE TABLE `autella`.`field` (
