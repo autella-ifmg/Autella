@@ -83,8 +83,11 @@
     </section>
 
     <!--Importação das funções .js utilizadas nessa página-->
-    <script src="../../utilities/jsFunctions/question/question.js"></script>
-    <script src="../../utilities/jsFunctions/question/filter.js"></script>
+    <script src="../../utilities/jsFunctions/question/verifications.js"></script>
+    <script src="../../utilities/jsFunctions/question/selects.js"></script>
+    <script src="../../utilities/jsFunctions/question/alternativesField.js"></script>
+    <script src="../../utilities/jsFunctions/question/submitEnunciate.js"></script>
+   
 
     <script>
         <?php

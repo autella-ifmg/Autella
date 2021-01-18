@@ -211,7 +211,7 @@ function questionBlocks($questions, $id_role)
             }
         }
     } else {
-        if(isset($_GET['filter']) && isset($_GET['id_discipline'])) {
+        if (isset($_GET['filter']) && isset($_GET['id_discipline'])) {
             $message = "Não encontramos nenhum resultado correspondente aos filtros aplicados. :/";
         } else {
             $message = "Ainda não há nenhuma questão disponível.";

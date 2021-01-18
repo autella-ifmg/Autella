@@ -1,0 +1,253 @@
+//Converte o número da questão para sua respectiva posição no array de exibição.
+function convertQuestionNumber(questionNumber) {
+    var position;
+    var str = questionNumber.toString();
+
+    if (str.substr(-1) > 5) {
+        position = Math.ceil(questionNumber % 5) - 1;
+    } else if (str.substr(-1) == 0) {
+        position = 4;
+    } else {
+        questionNumber -= 1;
+        str = questionNumber.toString();
+        position = Number.parseInt(str.substr(-1));
+    }
+
+    return position;
+}
+
+//Autaliza o cabeçalho do dropdown que contém os nomes dos testes.
+function updateDropdownHeader() {
+    if (page_action == 0) {
+        $("#dropdownHeader").html("Questão estava inclusa em:");
+    } else if (page_action == 1) {
+        $("#dropdownHeader").html("Questão inclusa em:");
+    }
+}
+
+//Especifica a ação do modal.
+function defineModalAction(action, questionNumber) {
+    var modal = [
+        [
+            "editModal",
+            "editModalLabel",
+            `Editar a <strong>Questão - ${questionNumber}</strong>?`,
+            "Ao editar essa questão, todas as provas simples e provas globais que a utilizam também serão alteradas.",
+            `Você tem certeza que deseja fazer alguma modificação na <strong>Questão - ${questionNumber}</strong>?`,
+            "editButton",
+            "editQuestion(",
+        ],
+        [
+            "archiveModal",
+            "archiveModalLabel",
+            `Arquivar a <strong>Questão - ${questionNumber}</strong>?`,
+            "Ao arquivar essa questão, ela não se perderá, mas, ficará indisponível em todas as provas simples e provas globais onde está inclusa.",
+            `Você tem certeza que deseja arquivar a <strong>Questão - ${questionNumber}</strong>?`,
+            "archiveButton",
+            "archiveQuestion(",
+        ],
+        [
+            "unarchiveModal",
+            "unarchiveModalLabel",
+            `Desarquivar a <strong>Questão - ${questionNumber}</strong>?`,
+            "Ao desarquivar essa questão, ela ficará disponível em todas as provas simples e provas globais onde está inclusa.",
+            `Você tem certeza que deseja desarquivar a <strong>Questão - ${questionNumber}</strong>?`,
+            "unarchiveButton",
+            "unarchiveQuestion(",
+        ],
+        [
+            "deleteModal",
+            "deleteModalLabel",
+            `Deletar a <strong>Questão - ${questionNumber}</strong>?`,
+            "Ao excluir essa questão, ela se perderá permanentemente e se tornará indisponível em todas as provas simples e provas globais onde está inclusa.",
+            `Você tem certeza que deseja excluir a <strong>Questão - ${questionNumber}</strong>?`,
+            "deleteButton",
+            "deleteQuestion(",
+        ],
+    ];
+
+    var container = document.getElementsByName("container")[0];
+    container.setAttribute("id", `${modal[action][0]}`);
+
+    var h5 = document.getElementsByName("header")[0];
+    h5.setAttribute("id", `${modal[action][1]}`);
+    h5.innerHTML = `${modal[action][2]}`;
+
+    var p0 = document.getElementById("p0");
+    p0.innerHTML = `${modal[action][3]}`;
+
+    var p1 = document.getElementById("p1");
+    p1.innerHTML = `${modal[action][4]}`;
+
+    var button = document.getElementsByName("modalButton")[0];
+    button.setAttribute("id", `${modal[action][5]}`);
+    button.setAttribute("onclick", `${modal[action][6] + questionNumber})`);
+
+    if (action == 0) {
+        button.removeAttribute("data-dismiss");
+    }
+}
+
+
+
+//Gera os toasts referentes às ações de criar e editar questão.
+function toastForCreationAndEditing() {
+    if (action_per == 1) {
+        $("#img_toast").attr({
+            src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/journal-x.svg",
+            alt: "Criar questão"
+        });
+
+        if (result == "Questão criada com sucesso!") {
+            $("#span_toast").text("Sucesso!");
+        } else if (result == "Erro ao criar questão!") {
+            $("#span_toast").text("Erro!");
+        }
+    } else {
+        $("#img_toast").attr({
+            src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg",
+            alt: "Editar questão"
+        });
+
+        if (result == "Questão editada com sucesso!") {
+            $("#span_toast").text("Sucesso!");
+        } else if (result == "Erro ao editar questão!") {
+            $("#span_toast").text("Erro!");
+        }
+    }
+
+    $("#result").html(result).fadeIn();
+    $("#toast").toast("show");
+
+    window.history.pushState({}, "Autella | Visualizar questões", "/cruds/question/readGUI.php?");
+    //console.log(result);
+}
+
+//Edita questão.
+function editQuestion(questionNumber) {
+    var position = convertQuestionNumber(questionNumber);
+
+    var question_id_update = questions[position][0];
+    //console.log(question_id_update);
+    var button = document.getElementById("editButton");
+    button.setAttribute(
+        "href",
+        `updateGUI.php?question_id_update=${question_id_update}`
+    );
+}
+
+//Arquiva questão.
+function archiveQuestion(questionNumber) {
+    var position = convertQuestionNumber(questionNumber);
+
+    var question_archive_unarchive = questions[position];
+    //console.log(question_archive_unarchive);
+
+    $.ajax({
+        type: "POST",
+        url: "updateSQL.php",
+        data: {
+            question_archive_unarchive,
+        },
+        success: function (success) {
+            $("#img_toast").attr({
+                src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg",
+                alt: "Arquivar"
+            });
+            $("#span_toast").text("Sucesso!");
+            $("#result").html(success).fadeIn();
+            $("#toast").toast("show");
+            setTimeout(function () {
+                location.reload(1);
+            }, 2000);
+            //console.log(success);
+        },
+        error: function (error) {
+            $("#img_toast").attr({
+                src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg",
+                alt: "Arquivar"
+            });
+            $("#span_toast").text("Erro!");
+            $("#result").html(error).fadeIn();
+            $("#toast").toast("show");
+            //console.log(error);
+        },
+    });
+}
+
+//Desarquiva questão.
+function unarchiveQuestion(questionNumber) {
+    var position = convertQuestionNumber(questionNumber);
+
+    var question_archive_unarchive = questions[position];
+    //console.log(question_archive_unarchive);
+
+    $.ajax({
+        type: "POST",
+        url: "updateSQL.php",
+        data: {
+            question_archive_unarchive,
+        },
+        success: function (success) {
+            $("#img_toast").attr({
+                src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg",
+                alt: "Desarquivar"
+            });
+            $("#span_toast").text("Sucesso!");
+            $("#result").html(success).fadeIn();
+            $("#toast").toast("show");
+            setTimeout(function () {
+                window.location.reload(1);
+            }, 2000);
+            //console.log(success);
+        },
+        error: function (error) {
+            $("#img_toast").attr({
+                src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg",
+                alt: "Desarquivar"
+            });
+            $("#span_toast").text("Erro!");
+            $("#result").html(error).fadeIn();
+            $("#toast").toast("show");
+            //console.log(error);
+        },
+    });
+}
+
+//Deleta questão.
+function deleteQuestion(questionNumber) {
+    var position = convertQuestionNumber(questionNumber);
+
+    var question_delete = questions[position];
+
+    $.ajax({
+        type: "POST",
+        url: "updateSQL.php",
+        data: {
+            question_delete,
+        },
+        success: function (success) {
+            $("#img_toast").attr({
+                src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg",
+                alt: "Deletar"
+            });
+            $("#span_toast").text("Sucesso!");
+            $("#result").html(success).fadeIn();
+            $("#toast").toast("show");
+            setTimeout(function () {
+                window.location.reload(1);
+            }, 2000);
+            //console.log(success);
+        },
+        error: function (error) {
+            $("#img_toast").attr({
+                src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg",
+                alt: "Deletar"
+            });
+            $("#span_toast").text("Erro!");
+            $("#result").html(error).fadeIn();
+            $("#toast").toast("show");
+            //console.log(error);
+        },
+    });
+}

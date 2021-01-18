@@ -46,8 +46,11 @@
     <?php require_once '../../views/genericToast.php'; ?>
 
     <!--Importação das funções .js utilizadas nessa página-->
-    <script src="../../utilities/jsFunctions/question/question.js"></script>
+    <script src="../../utilities/jsFunctions/question/verifications.js"></script>
     <script src="../../utilities/jsFunctions/question/filter.js"></script>
+    <script src="../../utilities/jsFunctions/question/selects.js"></script>
+    <script src="../../utilities/jsFunctions/question/forIcons.js"></script>
+    <script src="../../utilities/jsFunctions/question/easterEgg.js"></script>
 
     <script>
         //Sequência de instanciação de variáveis globais oriundas do php que são utilizadas por funções '.js'.
@@ -116,8 +119,8 @@
             $js_var = json_encode($php_var);
             echo "action_performed = Number(" . $js_var . ");\n";
 
-            //Quando o documento estiver carregado, executa o método genericToastCEQ().
-            $js_var = 'document.addEventListener("DOMContentLoaded", genericToastCEQ(), false);';
+            //Quando o documento estiver carregado, executa o método toastForCreationAndEditing().
+            $js_var = 'document.addEventListener("DOMContentLoaded", toastForCreationAndEditing(), false);';
             echo $js_var . "\n";
         }
         ?>

@@ -133,8 +133,8 @@
             $js_var = json_encode($php_var);
             echo "action_per = Number(" . $js_var . ");\n";
 
-            //Quando o documento estiver carregado, executa o método genericToastCEQ().
-            $js_var = 'document.addEventListener("DOMContentLoaded", genericToastCEQ(), false);';
+            //Quando o documento estiver carregado, executa o método toastForCreationAndEditing().
+            $js_var = 'document.addEventListener("DOMContentLoaded", toastForCreationAndEditing(), false);';
             echo $js_var . "\n";
         }
         ?>

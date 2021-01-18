@@ -65,11 +65,11 @@ function blockFilterSelects() {
                         if (id_role == 1) {
                             updateSubjects();
                             if (i == 0) {
-                            document.querySelector(`#${filtersSystemData[i][1]} [value="${value}"]`).selected = true;
-                        } else {
-                            document.querySelector(`#${filtersSystemData[1][1]} [value="${filtersSystemData[1][0]}"]`).selected = true;
+                                document.querySelector(`#${filtersSystemData[i][1]} [value="${value}"]`).selected = true;
+                            } else {
+                                document.querySelector(`#${filtersSystemData[1][1]} [value="${filtersSystemData[1][0]}"]`).selected = true;
 
-                        }
+                            }
                         }
                     } else {
                         var date_picker = document.getElementById(filtersSystemData[i][1]);
@@ -81,7 +81,7 @@ function blockFilterSelects() {
             }
         }
 
-        //window.history.pushState({}, "Autella | Visualizar questões", `${url}`);
+        window.history.pushState({}, "Autella | Visualizar questões", `${url}`);
     }
 }
 
@@ -129,4 +129,3 @@ function removeFilterFromList(selected_filter) {
 
     applySelectedFilters();
 }
-

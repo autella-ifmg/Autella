@@ -44,8 +44,11 @@
     <?php require_once '../../views/genericToast.php'; ?>
 
     <!--Importação das funções .js utilizadas nessa página-->
-    <script src="../../utilities/jsFunctions/question/question.js"></script>
+    <script src="../../utilities/jsFunctions/question/verifications.js"></script>
     <script src="../../utilities/jsFunctions/question/filter.js"></script>
+    <script src="../../utilities/jsFunctions/question/selects.js"></script>
+    <script src="../../utilities/jsFunctions/question/forIcons.js"></script>
+    <script src="../../utilities/jsFunctions/question/easterEgg.js"></script>
 
     <script>
         //Sequência de instanciação de variáveis globais oriundas do php que são utilizadas por funções '.js'.
