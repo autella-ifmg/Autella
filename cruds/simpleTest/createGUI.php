@@ -22,34 +22,113 @@
         .a{
            border-style: solid;
         }
+         /* Split the screen in half */
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 200px;
+   
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+ 
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+} 
     </style>
-    <script>
-        
-        function IDquestions(id) {
-            testQuestion[testQuestion.length] = id;
-            document.getElementById('sidebar').innerHTML += " <div  id = 'question"+[id]+"' class = a> <div  class= a>" + js_array[id][4] + "</div> Disciplina :"+js_array[id][9]+"//"+js_array[id][10]+"//<img  src=../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash.svg alt=Editar height=25 onclick = 'delet("+id+")'/> </div> <br><br>";
-        }
-        function delet(id){
-                for(var i = 0; i != testQuestion.length;i ++){
-                    if(testQuestion[i] == id){
-                        document.getElementById('question'+id).remove();
-                        
-                        testQuestion.splice(i,1);
-                        
-                    
+    <script> 
+        function dificultyTratament($dificulty)
+{
+    console.log($dificulty);
+    switch ($dificulty) {
+        case '1':
+            return "Dificuldade: Fácil";
+            break;
+        case '2' :
+            return "Dificuldade: Média";
+            break;
+        default:
+            return "Dificuldade: Difícil";
+            break;
+    }
+}
+
+function dateTratament(date){
+    date1 = date.split("-");
+    date1 = date1[0] +"/"+ date1[1]+"/"+date[2];
+    return date1;
+}
+
+
+function IDquestions(id) {
+                for (var i in js_array) 
+                {
+                    console.log("row " + i);
+                     for (var j in js_array[i]) 
+                     {
+                            console.log(" "+ j +"--- "+ js_array[i][j]);
                     }
+                 }           
+            $DataDeCriação = "Criada em :"+ dateTratament(js_array[id][2]);
+            $Dificuldade = dificultyTratament(js_array[id][3]);
+            testQuestion[testQuestion.length] = id;
+            Enunciado = js_array[id][4];
+            $Disciplina = js_array[id][9];
+            $Materia = js_array[id][10];
+            $NumeroDaQuestão = js_array[id][0];
+            QuestaoCorreta = js_array[id][5];
+            document.getElementById('questaoSQL'+id).style.display = 'none';
+            //console.log();
+            document.getElementById('sidebar').innerHTML += "     <div id='prova"+id+"' style=\"margin: 20px;\"> <div class=\"d-flex flex-row bd-highlight\"><div class=\"p-2 w-25 border border-dark\">Questão - " + $NumeroDaQuestão +"</div> <div class=\"p-2 w-25 border border-dark border-left-0\">"+ $Disciplina +"</div>  <div class=\"p-2 flex-fill border border-dark border-left-0\">"+ $Materia +"</div>  </div>  <div class=\"d-flex flex-row bd-highlight\">  <div class=\"p-2 w-25 border border-dark border-top-0\">"+ $DataDeCriação +".</div> <div class=\"p-2 w-25 border border-dark border-left-0  border-top-0\">"+ $Dificuldade +"</div> <div class=\"p-2 flex-fill border border-dark border-left-0  border-top-0\">Alternativa Correta :"+ QuestaoCorreta  +"</div></div> <div '\" class=\" p-2 flex-fill  border border-dark border-top-0 \" style=\"overflow: auto;\">"+ Enunciado +"</div> <img  src=../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash.svg alt=Editar height=25 onclick = 'delet("+id+")'/> </div>";
+        }
+     
+        function delet(id){
+              for(i = 0; i != testQuestion.length;i++){
+                if(testQuestion[i] == id){
+                    document.getElementById('questaoSQL'+id).style.display = 'block';
+                    document.getElementById('prova'+id).remove();
+                    //testQuestion.splice(i, 0);     
+                   
                 }
+                
+              }
         }
        
     </script>
 </head>
 
 <body>
+ </div>
     <?php require_once '../../views/navbar.php'; ?>
-    <div id='sidebar' class="w3-sidebar w3-bar-block w3-card" style="width:25%;right:0;">
-    
+    <div id='sidebar' class="split rigth a" style="width:35%;right:0;">
+    <div style="text-align: center; ">
         <script type="text/javascript">
-            
+          
             function convert() {
                 var ids = document.getElementById("ids");
                 var testName = document.getElementById("name")
@@ -74,6 +153,7 @@
         }   
         ?>
     </div>
+    </div>
     <script>
         var testQuestion = [];
         <?php $js_array = json_encode($array);
@@ -91,7 +171,8 @@
             <div id="result" class="toast-body"></div>
         </div>
     -->
-
+          <div class="split left" style="width: 60%;">
+                <div >
         <!--Filtros-->
         <section class="d-flex justify-content-center mt-3">
             <div class="d-flex flex-column">
@@ -139,8 +220,9 @@
                 </div>
 
                 <!--Blocos de questões-->
-                <div>
+              
                     <?php data($array, $id_role); ?>
+                    </div>
                 </div>
 
                 <!--Paginação - HTML e PHP-->

@@ -48,6 +48,7 @@ function SimpleTestes()
         }
     }
 }
+
    //var_dump($array);
         // array_push($_SESSION['debug'], "Questões selecionadas com sucesso!");
     

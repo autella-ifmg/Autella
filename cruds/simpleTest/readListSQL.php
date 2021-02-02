@@ -40,7 +40,7 @@ function data()
                 <td>'.$datachanging.' </td>
                 <td>'.$nameTeacher.' </td>
                 <td><a href="http://autella.com/cruds/simpleTest/updateGUI.php?id='.$id_test.'">
-                <img  src=../../../libraries/bootstrap/bootstrap-icons-1.0.0/scissors.svg alt=Editar height=25 />
+                <img  src=../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil.svg alt=Editar height=25 />
                 </a> </td>
                 <td>
                 <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="chooseAction(0, ' . ($id_test) . ')" data-toggle="modal" data-target="#deleteModal"  data-toggle="tooltip" data-placement="bottom" title="Deletar questão"/></div>
