@@ -23,7 +23,7 @@
                 <div class="dropdown p-2 w-auto border border-dark border-left-0">
                     <img id="dropdownMenuButton" src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/file-ruled-fill.svg" height="25" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" ><strong>Questão inclusa em:</strong></a>
+                        <a class="dropdown-item"><strong>Questão inclusa em:</strong></a>
                         <a class="dropdown-item" href="#">Prova Simples 1</a>
                         <a class="dropdown-item" href="#">Prova Global 7</a>
                         <a class="dropdown-item" href="#">Prova Simples 3</a>
@@ -41,8 +41,8 @@
                 <div class="p-2 w-25 border border-dark border-left-0 border-top-0">Alternativa correta: B</div>
             </div>
 
-            <div name="toolbar0" id="toolbar-container0" class="border border-dark border-top-0 border-bottom-0"></div>
-            <div name="editor0" id="editor0" class="border border-dark border-top-0 mb-3" style="min-width: 64rem; max-width: 64rem; min-height: 20rem; max-height: 20rem;">
+            <div name="toolbar" id="toolbar-container" class="border border-dark border-top-0 border-bottom-0 col-lg-6"></div>
+            <div name="editor" id="editor" class="border border-dark border-top-0 mb-3 col-lg-6">
                 <p>Dê-me um cigarro<br>Diz a gramática<br>Do professor e do aluno<br>E do mulato sabido<br>Mas o bom negro e o bom branco<br>Da Nação Brasileira<br>Dizem todos os dias<br>Deixa disso camarada<br>Me dá um cigarro.</p>
                 <p>(Pronominais, Oswald de Andrade)</p>
                 <p>Oswald de Andrade foi um dos principais autores da primeira fase do modernismo no Brasil. Na poesia acima, o escritor propõe:</p><br><br>A) a busca de uma identidade universal.<br>B) a valorização da linguagem coloquial brasileira.<br>C) uma crítica aos maus hábitos, como o tabagismo.<br>D) enfatizar a relação entre professor e aluno.<br>E) repensar o uso do português do Brasil.
@@ -50,6 +50,7 @@
         </div>
     </section>
 
+    <!--
     <footer>
         <p><a href="https://ckeditor.com/ckeditor-5/" target="_blank" rel="noopener">CKEditor 5</a>
             – Rich text editor of tomorrow, available today
@@ -61,7 +62,7 @@
     </footer>
 
 
-    <!--Importações do CKEditor-->
+    Importações do CKEditor
     <script src="../../libraries/ckeditor/ckeditor.js"></script>
     <script>
         DecoupledEditor
@@ -74,10 +75,10 @@
             .catch(error0 => {
                 console.error0(error0);
             });
-    </script>
+    </script>-->
 
-    <!--<script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
-    <script src="../../libraries/ckeditor - custom/build/ckeditor.js"></script>
+    <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
+    <script src="../../libraries/ckeditorCustom/build/ckeditor.js"></script>
     <script>
         const watchdog = new CKSource.Watchdog();
 
@@ -156,7 +157,7 @@
             console.warn('Build id: nh8ufpfzmkzv-23v807lh1m7m');
             console.error(error);
         }
-    </script>-->
+    </script>
 </body>
 
 </html>

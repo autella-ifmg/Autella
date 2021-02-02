@@ -92,7 +92,7 @@ function defineModalAction(action, questionNumber) {
 
 //Gera os toasts referentes às ações de criar e editar questão.
 function toastForCreationAndEditing() {
-    if (action_per == 1) {
+    if (action_performed == 1) {
         $("#img_toast").attr({
             src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/journal-x.svg",
             alt: "Criar questão"

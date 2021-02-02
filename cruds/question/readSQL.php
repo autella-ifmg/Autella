@@ -205,16 +205,16 @@ function questionBlocks($questions, $id_role)
                         <div class="p-2 flex-fill border border-dark border-left-0 border-top-0">' . $subject . '</div>
                     </div>
 
-                    <div name="toolbar' . $i . '" id="toolbar-container' . $i . '" class="border border-dark border-top-0 border-bottom-0" disabled></div>
+                    <div id="toolbar' . $i . '" class="d-none col-lg-11"></div>
                     <div name="editor' . $i . '" id="editor' . $i . '" class="border border-dark border-top-0 mb-4" style="min-width: 65rem; max-width: 65rem; min-height: 20rem; max-height: 20rem;">' . $enunciate . '</div>
                 ';
             }
         }
     } else {
         if (isset($_GET['filter']) && isset($_GET['id_discipline'])) {
-            $message = "Não encontramos nenhum resultado correspondente aos filtros aplicados. :/";
+            $message = "Não encontramos nenhum resultado correspondente ao(s) filtro(s) aplicado(s). :/";
         } else {
-            $message = "Ainda não há nenhuma questão disponível.";
+            $message = "Ainda não há nenhuma questão disponível aqui.";
         }
         echo '
                     <div class="d-flex flex-row">
@@ -240,20 +240,85 @@ function imports($questions)
 {
     if (count($questions) > 0) {
         for ($i = 0; $i < count($questions); $i++) {
-            echo '
-            DecoupledEditor
-            .create(document.querySelector("#editor' . $i . '"))
-            .then(editor' . $i . ' => {
-                const toolbarContainer' . $i . ' = document.querySelector("#toolbar-container' . $i . '");
+            echo
+            'watchdog.setCreator((element' . $i . ', config' . $i . ') => {
+                return CKSource.Editor
+                    .create(element' . $i . ', config' . $i . ')
+                    .then(editor' . $i . ' => {
+                        document.querySelector("#toolbar' . $i . '").appendChild(editor' . $i . '.ui.view.toolbar.element);
+                        document.querySelector(".ck-toolbar").classList.add("ck-reset_all");
+                        editor' . $i . '.isReadOnly = true;
 
-                toolbarContainer' . $i . '.appendChild(editor' . $i . '.ui.view.toolbar.element);
-
-                editor' . $i . '.isReadOnly = true;
-            })
-            .catch(error' . $i . ' => {
-                console.error' . $i . '(error' . $i . ');
+                        return editor' . $i . ';
+                    })
             });
-            
+    
+            watchdog.setDestructor(editor' . $i . ' => {
+                document.querySelector("#toolbar' . $i . '").removeChild(editor' . $i . '.ui.view.toolbar.element);
+    
+                return editor' . $i . '.destroy();
+            });
+    
+            watchdog.on("error' . $i . '", handleError);
+
+            watchdog
+                .create(document.querySelector("#editor' . $i . '"), {
+                    toolbar: {
+                        items: [
+                            "heading",
+                            "|",
+                            "fontFamily",
+                            "fontSize",
+                            "fontColor",
+                            "fontBackgroundColor",
+                            "|",
+                            "bold",
+                            "italic",
+                            "underline",
+                            "strikethrough",
+                            "highlight",
+                            "|",
+                            "subscript",
+                            "superscript",
+                            "alignment",
+                            "indent",
+                            "outdent",
+                            "|",
+                            "removeFormat",
+                            "|",
+                            "specialCharacters",
+                            "MathType",
+                            "ChemType",
+                            "|",
+                            "blockQuote",
+                            "insertTable",
+                            "numberedList",
+                            "bulletedList",
+                            "horizontalLine",
+                            "|",
+                            "CKFinder",
+                            "link",
+                            "|",
+                            "exportPdf",
+                            "exportWord",
+                            "|",
+                            "undo",
+                            "redo"
+                        ]
+                    },
+                    language: "pt-br",
+                    table: {
+                        contentToolbar: [
+                            "tableColumn",
+                            "tableRow",
+                            "mergeTableCells",
+                            "tableCellProperties",
+                            "tableProperties"
+                        ]
+                    },
+                    licenseKey: "",
+                })
+                .catch(handleError);
             ';
         }
     }

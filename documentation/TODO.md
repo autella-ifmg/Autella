@@ -82,7 +82,7 @@
 	- [X] Otimização de importações
 	- [ ] Tratamento para inserção de imagens
 	- [ ] Responsividade
-	- [ ] CKEditor Custom
+	- [X] CKEditor Custom
 	
 - [ ] Create
 	- [X] Configurar o toast de criação de questão
