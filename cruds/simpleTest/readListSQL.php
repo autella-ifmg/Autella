@@ -1,4 +1,5 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/tests.php';
 
 global $connection;
@@ -60,11 +61,11 @@ function data()
         $date = date("Y-m-d");
         //echo $id_test;
         global $connection;
+   
         
-        $sql ="UPDATE tests set status = -1 WHERE id = '$id_test';";
+        $sql = "UPDATE autella.tests set status = -1 WHERE id = '$id_test';";
         echo $sql;
-        mysqli_query($connection, $sql);
-    
+        $connection->query($sql);
     }
 
 
