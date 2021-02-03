@@ -97,6 +97,7 @@ function IDquestions(id) {
             $DataDeCriação = "Criada em :"+ dateTratament(js_array[id][2]);
             $Dificuldade = dificultyTratament(js_array[id][3]);
             testQuestion[testQuestion.length] = id;
+            IdentidadeDaQuestão = js_array[id][1];
             Enunciado = js_array[id][4];
             $Disciplina = js_array[id][9];
             $Materia = js_array[id][10];
@@ -104,16 +105,15 @@ function IDquestions(id) {
             QuestaoCorreta = js_array[id][5];
             document.getElementById('questaoSQL'+id).style.display = 'none';
             //console.log();
-            document.getElementById('sidebar').innerHTML += "     <div id='prova"+id+"' style=\"margin: 20px;\"> <div class=\"d-flex flex-row bd-highlight\"><div class=\"p-2 w-25 border border-dark\">Questão - " + $NumeroDaQuestão +"</div> <div class=\"p-2 w-25 border border-dark border-left-0\">"+ $Disciplina +"</div>  <div class=\"p-2 flex-fill border border-dark border-left-0\">"+ $Materia +"</div>  </div>  <div class=\"d-flex flex-row bd-highlight\">  <div class=\"p-2 w-25 border border-dark border-top-0\">"+ $DataDeCriação +".</div> <div class=\"p-2 w-25 border border-dark border-left-0  border-top-0\">"+ $Dificuldade +"</div> <div class=\"p-2 flex-fill border border-dark border-left-0  border-top-0\">Alternativa Correta :"+ QuestaoCorreta  +"</div></div> <div '\" class=\" p-2 flex-fill  border border-dark border-top-0 \" style=\"overflow: auto;\">"+ Enunciado +"</div> <img  src=../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash.svg alt=Editar height=25 onclick = 'delet("+id+")'/> </div>";
+            document.getElementById('sidebar').innerHTML += "    <div id='prova"+id+"' style=\"margin: 20px;\"> <div class=\"d-flex flex-row bd-highlight\"><div class=\"p-2 w-25 border border-dark\">Questão - " + (id+1) +"</div> <div class=\"p-2 w-25 border border-dark border-left-0\">"+ $Disciplina +"</div>  <div class=\"p-2 flex-fill border border-dark border-left-0\">"+ $Materia +"</div>  </div>  <div class=\"d-flex flex-row bd-highlight\">  <div class=\"p-2 w-25 border border-dark border-top-0\">"+ $DataDeCriação +".</div> <div class=\"p-2 w-25 border border-dark border-left-0  border-top-0\">"+ $Dificuldade +"</div> <div class=\"p-2 flex-fill border border-dark border-left-0  border-top-0\">Alternativa Correta :"+ QuestaoCorreta  +"</div></div> <div '\" class=\" p-2 flex-fill  border border-dark border-top-0 \" style=\"overflow: auto;\">"+ Enunciado +"</div> <img  src=../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash.svg alt=Editar height=25 onclick = 'delet("+id+")'/> </div>";
         }
      
         function delet(id){
-              for(i = 0; i != testQuestion.length;i++){
+              for(i = 0; i <= testQuestion.length;i++){
                 if(testQuestion[i] == id){
                     document.getElementById('questaoSQL'+id).style.display = 'block';
                     document.getElementById('prova'+id).remove();
-                    //testQuestion.splice(i, 0);     
-                   
+                    testQuestion.splice(i,1);                
                 }
                 
               }
@@ -123,6 +123,7 @@ function IDquestions(id) {
 </head>
 
 <body>
+
  </div>
     <?php require_once '../../views/navbar.php'; ?>
     <div id='sidebar' class="split rigth a" style="width:35%;right:0;">

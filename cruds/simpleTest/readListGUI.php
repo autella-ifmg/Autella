@@ -15,18 +15,18 @@
     
     $testID = null;
     $testID = $_GET['id'];
- 
+    
     if(isset($testID)){
         deletTest($testID);
+       
     }
-
-    
-    
     ?>
     </script>
 </head>
 
 <body>
+
+
 <?php require_once '../../views/navbar.php'; ?>
     <br>
     <div style="text-align: center; margin-right: 3%;margin-left: 3%;"><?php data();?></div>
@@ -82,9 +82,8 @@
 
         function deleteQuestion(id_test){  
             window.location.href = "http://autella.com/cruds/simpleTest/readListGUI.php?id="+id_test;
-
-
-    //deletTest($testID);
+            
+            //deletTest($testID);
   
         }
     </script>

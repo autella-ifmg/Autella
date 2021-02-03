@@ -61,7 +61,7 @@ function data()
         //echo $id_test;
         global $connection;
         
-        $sql =" UPDATE Tests set status = -1 WHERE id = '$id_test';";
+        $sql ="UPDATE tests set status = -1 WHERE id = '$id_test';";
         echo $sql;
         mysqli_query($connection, $sql);
     
