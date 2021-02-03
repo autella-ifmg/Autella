@@ -181,13 +181,13 @@ function questionBlocks($questions, $id_role)
                 if (!empty($test_names)) {
                     echo '    
                         <div class="dropdown p-2 w-auto border border-dark border-left-0">
-                            <img id="dropdownMenuButton' . $i . '" src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/file-ruled-fill.svg" height="25" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+                            <img id="dropdownMenuButton' . $i . '" src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/file-ruled-fill.svg" height="25" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" title="Lista de Provas" />
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton' . $i . '">
                                 <h6 class="dropdown-header"></h6>
                     ';
 
                     for ($aux = 0; $aux < count($test_names); $aux++) {
-                        echo '<a class="dropdown-item" href="simpleTest/readTestGUI.php?id=' . $test_names[$aux][0] . '">' . $test_names[$aux][1] . '</a>';
+                        echo '<a class="dropdown-item" href="../simpleTest/readTestGUI.php?id=' . $test_names[$aux][0] . '">' . $test_names[$aux][1] . '</a>';
                     }
                     echo '
                             </div>
