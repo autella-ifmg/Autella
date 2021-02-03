@@ -43,7 +43,7 @@ function addFilterInList(selected_filter) {
 function applySelectedFilters() {
     filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&`;
 
-    //({}, "Autella | Visualizar questões", filters_url);
+    window.history.pushState({}, "Autella | Visualizar questões", filters_url);
     window.location.reload(1);
 }
 

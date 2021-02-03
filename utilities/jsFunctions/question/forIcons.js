@@ -19,9 +19,9 @@ function convertQuestionNumber(questionNumber) {
 //Autaliza o cabeçalho do dropdown que contém os nomes dos testes.
 function updateDropdownHeader() {
     if (page_action == 0) {
-        $("#dropdownHeader").html("Questão estava inclusa em:");
+        $(".dropdown-header").html("Questão estava inclusa em:");
     } else if (page_action == 1) {
-        $("#dropdownHeader").html("Questão inclusa em:");
+        $(".dropdown-header").html("Questão inclusa em:");
     }
 }
 
