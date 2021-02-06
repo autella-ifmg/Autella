@@ -15,6 +15,10 @@
             <li>
                 <a class="nav-link" href="/cruds/simpleTest/readListGUI.php">Visualizar provas simples</a>
             </li>
+            <li>
+                <a class="nav-link" href="/cruds/globalTest/createGUI.php">Criar Provas Globais</a>
+            </li>
+
 
 
 
