@@ -15,7 +15,7 @@ function easterEgg() {
             $("#span_toast").text("Easter egg");
             $("#result").html(message).fadeIn();
             $("#toast").toast("show");
-            setTimeout(3000);
+            setTimeout(5000);
             //console.log(message);
         }
     });

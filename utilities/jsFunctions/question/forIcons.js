@@ -31,36 +31,36 @@ function defineModalAction(action, questionNumber) {
         [
             "editModal",
             "editModalLabel",
-            `Editar a <strong>Questão - ${questionNumber}</strong>?`,
+            `Editar a <strong>Questão ${questionNumber}</strong>?`,
             "Ao editar essa questão, todas as provas simples e provas globais que a utilizam também serão alteradas.",
-            `Você tem certeza que deseja fazer alguma modificação na <strong>Questão - ${questionNumber}</strong>?`,
+            `Você tem certeza que deseja fazer alguma modificação na <strong>Questão ${questionNumber}</strong>?`,
             "editButton",
             "editQuestion(",
         ],
         [
             "archiveModal",
             "archiveModalLabel",
-            `Arquivar a <strong>Questão - ${questionNumber}</strong>?`,
+            `Arquivar a <strong>Questão ${questionNumber}</strong>?`,
             "Ao arquivar essa questão, ela não se perderá, mas, ficará indisponível em todas as provas simples e provas globais onde está inclusa.",
-            `Você tem certeza que deseja arquivar a <strong>Questão - ${questionNumber}</strong>?`,
+            `Você tem certeza que deseja arquivar a <strong>Questão ${questionNumber}</strong>?`,
             "archiveButton",
             "archiveQuestion(",
         ],
         [
             "unarchiveModal",
             "unarchiveModalLabel",
-            `Desarquivar a <strong>Questão - ${questionNumber}</strong>?`,
+            `Desarquivar a <strong>Questão ${questionNumber}</strong>?`,
             "Ao desarquivar essa questão, ela ficará disponível em todas as provas simples e provas globais onde está inclusa.",
-            `Você tem certeza que deseja desarquivar a <strong>Questão - ${questionNumber}</strong>?`,
+            `Você tem certeza que deseja desarquivar a <strong>Questão ${questionNumber}</strong>?`,
             "unarchiveButton",
             "unarchiveQuestion(",
         ],
         [
             "deleteModal",
             "deleteModalLabel",
-            `Deletar a <strong>Questão - ${questionNumber}</strong>?`,
+            `Deletar a <strong>Questão ${questionNumber}</strong>?`,
             "Ao excluir essa questão, ela se perderá permanentemente e se tornará indisponível em todas as provas simples e provas globais onde está inclusa.",
-            `Você tem certeza que deseja excluir a <strong>Questão - ${questionNumber}</strong>?`,
+            `Você tem certeza que deseja excluir a <strong>Questão ${questionNumber}</strong>?`,
             "deleteButton",
             "deleteQuestion(",
         ],
@@ -87,8 +87,6 @@ function defineModalAction(action, questionNumber) {
         button.removeAttribute("data-dismiss");
     }
 }
-
-
 
 //Gera os toasts referentes às ações de criar e editar questão.
 function toastForCreationAndEditing() {
