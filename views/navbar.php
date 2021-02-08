@@ -15,9 +15,7 @@
             <li>
                 <a class="nav-link" href="/cruds/simpleTest/readListGUI.php">Visualizar provas simples</a>
             </li>
-            <li>
-                <a class="nav-link" href="/cruds/globalTest/createGUI.php">Criar Provas Globais</a>
-            </li>
+            
 
 
 
@@ -25,7 +23,14 @@
 
             <?php
             if ($_SESSION['userData']['id_role'] == 1 || $_SESSION['userData']['id_role'] == 5) {
-                echo '<li>
+                echo '
+                <li>
+                <a class="nav-link" href="/cruds/globalTest/createGUI.php">Criar Provas Globais</a>
+                </li>
+                <li>
+                <a class="nav-link" href="/cruds/globalTest/readListGUI.php">Visualizar Provas Globais</a>
+                </li>
+                <li>
                     <a class="nav-link" href="/controlPanel/allUsersReadGUI.php">Painel de controle</a>
                 </li>';
             }

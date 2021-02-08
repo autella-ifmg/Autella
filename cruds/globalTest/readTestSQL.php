@@ -37,7 +37,7 @@ function data()
                 echo '<table class ="table" id = "simpleTest'.$id_test.'"> 
                 <div>
                 <tr>
-                <td style="width:20%;" id = "name'.$id_test.'">  <a href="http://autella.com/cruds/simpleTest/readTestGUI.php?id='.$id_test.'">'.$nameTest.' </a></td>
+                <td style="width:20%;" id = "name'.$id_test.'">  <a href="http://autella.com/cruds/globalTest/readTestGUI.php?id='.$id_test.'">'.$nameTest.' </a></td>
                 <td style="width:20%;" id = "dataMaking'.$id_test.'">'.$datamaking.' </td>
                 <td style="width:20%;" id = "dataChanging'.$id_test.'">'.$datachanging.' </td>
                 <td style="width:20%;" id = "nameTeacher'.$id_test.'">'.$nameTeacher.' </td>
@@ -56,19 +56,29 @@ function data()
     
 }
 
-    function deletTest($id_test){
-        date_default_timezone_set("America/Sao_Paulo");
-        $date = date("Y-m-d");
-        //echo $id_test;
+    function readGlobal($id){
         global $connection;
-   
+        $sql = "SELECT id_tests from test_global WHERE id_global = $id";  
+        $result = mysqli_query($connection, $sql);
+        $array = [];
+        if (mysqli_num_rows($result) != 0) {
+            while ($row = mysqli_fetch_array($result)) {
+                array_push($array, $row);
+            }
         
-        $sql = "UPDATE autella.tests set status = -1 WHERE id = '$id_test';";
-        echo $sql;
-        $connection->query($sql);
+            for($i = 0; $i != count($array); $i ++){
+              $sql = "SELECT * from tests where = "+$array[$i][0]+"";
+              $result = mysqli_query($connection, $sql);
+              $arrayInfo = [];
+              if (mysqli_num_rows($result) != 0) {
+                while ($row = mysqli_fetch_array($result)) {
+                    array_push($arrayInfo, $row);
+                }
+            } 
+        }
+            return $arrayInfo;
     }
-
-
+}}
     function insertInDatabase($globalList,$GlobalName)
 {
     date_default_timezone_set("America/Sao_Paulo");

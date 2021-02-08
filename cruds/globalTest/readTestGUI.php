@@ -57,7 +57,7 @@
     $testID = $_GET['id'];
     
     if(isset($testID)){
-        deletTest($testID);
+        readGlobal($testID);
        
     }
     ?>
