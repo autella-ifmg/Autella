@@ -79,7 +79,7 @@ function data($array, $id_role)
 {
     global $start;
     global $array1;
-    $array1 = $array; 
+    $array1 = $array;
     $id_user = $_SESSION["userData"]["id"];
 
     if (!empty($array)) {
@@ -169,30 +169,29 @@ function imports($array)
     }
 }
 
-function insertInDatabaseTestQuestion($ids,$array,$id_test)
+function insertInDatabaseTestQuestion($ids, $array, $id_test)
 {
     date_default_timezone_set("America/Sao_Paulo");
     $date = date("Y-m-d");
     echo $id_test;
 
     global $connection;
-    
-    $sql = "DELETE from question_test where id_tests = ".$id_test;
+
+    $sql = "DELETE from question_test where id_tests = " . $id_test;
     echo $sql;
     mysqli_query($connection, $sql);
-    $sql =" UPDATE Tests set changing_date = '$date' WHERE id = '$id_test';";
+    $sql = " UPDATE Tests set changing_date = '$date' WHERE id = '$id_test';";
     echo $sql;
     mysqli_query($connection, $sql);
-    
+
     if (!empty($ids)) {
         if (count($ids) > 0) {
             for ($i = 0; $i < count($ids); $i++) {
-                $id_question = $ids[$i];    
-                $sql = "INSERT into question_test(id_question, id_tests) VALUES ('".$id_question."','".$id_test."');";
+                $id_question = $ids[$i];
+                $sql = "INSERT into question_test(id_question, id_tests) VALUES ('" . $id_question . "','" . $id_test . "');";
                 //echo $i .'+ '.$sql ;
                 mysqli_query($connection, $sql);
             }
-        }       
+        }
     }
-    
 }

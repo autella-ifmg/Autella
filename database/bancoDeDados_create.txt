@@ -86,6 +86,7 @@ CREATE TABLE `autella`.`tests`(
 	`changing_date` DATE,
 	`name` varchar(256),
 	`status` int,
+  `template_status` int,
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`id_user`) REFERENCES `user`(`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -104,6 +105,7 @@ CREATE TABLE `autella`.`global`(
 	`changing_date` DATE,
 	`name` varchar(256),
 	`status` int,
+  `template_status` int,
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`id_user`) REFERENCES `user`(`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -114,4 +116,3 @@ CREATE TABLE `autella`.`test_global`(
 	FOREIGN KEY (`id_tests`) REFERENCES `tests`(`id`),
 	FOREIGN KEY (`id_global`) REFERENCES `global`(`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-

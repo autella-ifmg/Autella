@@ -102,3 +102,27 @@ if (isset($_POST['easter_egg'])) {
 
     echo $message;
 }
+
+if (isset($_POST["data"])) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
+
+    $array = $_POST["data"];
+
+    $location = $array[0];
+    $template_status = $array[1];
+    $id_test = $array[2];
+
+    $sql = "UPDATE " . $location . " SET template_status = '$template_status' WHERE id = '$id_test'";
+
+    if ($connection->query($sql) === TRUE) {
+        //array_push($_SESSION['debug'], "Gabarito disponível!");
+        $result = true;
+    } else {
+        //array_push($_SESSION['debug'], "Gabarito indisponível!");
+        $result = false;
+    }
+
+    $connection->close();
+
+    echo $result;
+}

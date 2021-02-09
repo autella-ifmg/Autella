@@ -94,8 +94,8 @@ function defineModalAction(action, questionNumber) {
 
     if (action == 0) {
         confirm_button.removeAttribute("data-dismiss");
-    } 
-    
+    }
+
     cancel_button = document.getElementById("cancel");
     var footer = document.getElementById("footer");
 
@@ -109,7 +109,7 @@ function defineModalAction(action, questionNumber) {
         cancel_button.setAttribute("class", "btn btn-secondary w-50");
 
         confirm_button.setAttribute("hidden", "hidden");
-      
+
         footer.setAttribute("class", "d-flex justify-content-center modal-footer");
     }
 }
@@ -118,7 +118,7 @@ function defineModalAction(action, questionNumber) {
 function toastForCreationAndEditing() {
     if (action_performed == 1) {
         $("#img_toast").attr({
-            src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/journal-x.svg",
+            src: "../../../libraries/bootstrap/bootstrap-icons-1.0.0/layout-text-window-reverse.svg",
             alt: "Criar questão"
         });
 

@@ -9,7 +9,10 @@
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
     <script src="../../libraries/ckeditor/build/ckeditor.js"></script>
-    <?php require_once "createSQL.php"; ?>
+    <?php
+    require_once "createSQL.php";
+    require_once "../../libraries/ckeditor/CKEditorImport.php";
+    ?>
 </head>
 
 <body>
@@ -114,7 +117,7 @@
     </script>
 
     <!--CKEditor-->
-    <?php require_once "../../libraries/ckeditor/CKEditorImport.php" ?>
+    <?php forEditing() ?>
 </body>
 
 </html>

@@ -14,6 +14,7 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/subject.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
+    require_once "../../libraries/ckeditor/CKEditorImport.php";
 
     $id_role = $_SESSION["userData"]["id_role"];
     //var_dump($id_role);
@@ -149,7 +150,7 @@
     </script>
 
     <!--CKEditor-->
-    <?php require_once "../../libraries/ckeditor/CKEditorImport.php" ?>
+    <?php forEditing() ?>
 </body>
 
 </html>
