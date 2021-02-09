@@ -9,7 +9,10 @@
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
     <script src="../../libraries/ckeditor/build/ckeditor.js"></script>
-    <?php require_once "readSQL.php"; ?>
+    <?php
+    require_once "readSQL.php";
+    require_once "../../libraries/ckeditor/CKEditorImport.php";
+    ?>
 </head>
 
 <body>
@@ -127,20 +130,7 @@
     </script>
 
     <!--CKEditor-->
-    <script>
-        const watchdog = new CKSource.Watchdog();
-
-        window.watchdog = watchdog;
-        
-        <?php imports($questions); ?>
-
-        function handleError(error) {
-                    console.error("Oops, something went wrong!");
-                    console.error("Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:");
-                    console.warn("Build id: yfh0qr9ny5x9-z26bne1l3y69");
-                    console.error(error);
-                }
-    </script>
+    <?php forRead($questions); ?>
 </body>
 
 </html>
