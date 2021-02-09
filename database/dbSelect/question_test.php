@@ -74,9 +74,27 @@ function selectTestNames($question_id)
         while ($row = mysqli_fetch_row($result)) {
             array_push($array, $row);
         }
-        // array_push($_SESSION['debug'], "Nome das provas selecionados com sucesso!");
+        //array_push($_SESSION['debug'], "Nome das provas selecionados com sucesso!");
     } 
     
+    $connection->close();
+
+    return $array;
+}
+
+function selectAllFromQuestionTest() {
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
+
+    $sql = "SELECT * FROM question_test";
+    $result = mysqli_query($connection, $sql);
+    $array = [];
+
+    if (mysqli_num_rows($result) != 0) {
+        while ($row = mysqli_fetch_row($result)) {
+            array_push($array, $row);
+        }
+    }
+
     $connection->close();
 
     return $array;

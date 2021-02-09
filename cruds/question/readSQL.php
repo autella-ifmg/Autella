@@ -129,6 +129,17 @@ function dateTratament($creation_date)
     return $creation_date = date("d/m/Y", $creation_date);
 }
 
+function verifyHistoricOfQuestion($question_id) {
+    $question_ids = selectAllFromQuestionTest();
+
+    for ($i = 0; $i < count($question_ids); $i++) {
+        if ($question_id == $question_ids[$i][1]) {
+            return true;
+            break;
+        }
+    }
+}
+
 function questionBlocks($questions, $id_role)
 {
     global $start;
@@ -151,19 +162,27 @@ function questionBlocks($questions, $id_role)
 
                 $test_names = selectTestNames($question_id);
 
+                $historic_of_question = verifyHistoricOfQuestion($question_id);
+         
+                if($historic_of_question == true) {
+                    $action_delete = 4;
+                } else {
+                    $action_delete = 3;
+                }
+
                 $icons = "";
 
                 if ($id_role == 1 || $questions[$i]["id_user"] == $id_user) {
                     if ($status == 0) {
                         $icons = '
                         <div class="p-2 w-auto border border-dark border-left-0"><img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg" alt="Arquivar" height="25" onclick="defineModalAction(2, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#unarchiveModal" data-toggle="tooltip" data-placement="bottom" title="Arquivar questão"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"><img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="defineModalAction(3, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal" data-toggle="tooltip" data-placement="bottom" title="Deletar questão"/></div>
+                        <div class="p-2 w-auto border border-dark border-left-0"><img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="defineModalAction(' . ($action_delete) . ', ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal" data-toggle="tooltip" data-placement="bottom" title="Deletar questão"/></div>
                         ';
                     } elseif ($status == 1) {
                         $icons = '
                         <div class="p-2 w-auto border border-dark border-left-0"><img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" alt="Editar" height="25" onclick="defineModalAction(0, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Editar questão"/></div>
                         <div class="p-2 w-auto border border-dark border-left-0"><img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Arquivar" height="25" onclick="defineModalAction(1, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#archiveModal" data-toggle="tooltip" data-placement="bottom" title="Arquivar questão"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"><img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="defineModalAction(3, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal" data-toggle="tooltip" data-placement="bottom" title="Deletar questão"/></div>
+                        <div class="p-2 w-auto border border-dark border-left-0"><img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="defineModalAction(' . ($action_delete) . ', ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal" data-toggle="tooltip" data-placement="bottom" title="Deletar questão"/></div>
                         ';
                     }
                 }

@@ -35,7 +35,7 @@ function defineModalAction(action, questionNumber) {
             "Ao editar essa questão, todas as provas simples e provas globais que a utilizam também serão alteradas.",
             `Você tem certeza que deseja fazer alguma modificação na <strong>Questão ${questionNumber}</strong>?`,
             "editButton",
-            "editQuestion(",
+            "editQuestion("
         ],
         [
             "archiveModal",
@@ -44,7 +44,7 @@ function defineModalAction(action, questionNumber) {
             "Ao arquivar essa questão, ela não se perderá, mas, ficará indisponível em todas as provas simples e provas globais onde está inclusa.",
             `Você tem certeza que deseja arquivar a <strong>Questão ${questionNumber}</strong>?`,
             "archiveButton",
-            "archiveQuestion(",
+            "archiveQuestion("
         ],
         [
             "unarchiveModal",
@@ -53,7 +53,7 @@ function defineModalAction(action, questionNumber) {
             "Ao desarquivar essa questão, ela ficará disponível em todas as provas simples e provas globais onde está inclusa.",
             `Você tem certeza que deseja desarquivar a <strong>Questão ${questionNumber}</strong>?`,
             "unarchiveButton",
-            "unarchiveQuestion(",
+            "unarchiveQuestion("
         ],
         [
             "deleteModal",
@@ -62,8 +62,17 @@ function defineModalAction(action, questionNumber) {
             "Ao excluir essa questão, ela se perderá permanentemente e se tornará indisponível em todas as provas simples e provas globais onde está inclusa.",
             `Você tem certeza que deseja excluir a <strong>Questão ${questionNumber}</strong>?`,
             "deleteButton",
-            "deleteQuestion(",
+            "deleteQuestion("
         ],
+        [
+            "deleteModal",
+            "deleteModalLabel",
+            `Impossível deletar a <strong>Questão ${questionNumber}</strong>!`,
+            "Essa questão já está inclusa em uma ou mais provas, logo, você não pode excluí-la!",
+            "Por favor, antes de tentar excluí-la, remova-a de onde ela estiver inclusa.",
+            "",
+            ""
+        ]
     ];
 
     var container = document.getElementsByName("container")[0];
@@ -79,12 +88,29 @@ function defineModalAction(action, questionNumber) {
     var p1 = document.getElementById("p1");
     p1.innerHTML = `${modal[action][4]}`;
 
-    var button = document.getElementsByName("modalButton")[0];
-    button.setAttribute("id", `${modal[action][5]}`);
-    button.setAttribute("onclick", `${modal[action][6] + questionNumber})`);
+    var confirm_button = document.getElementsByName("modalButton")[0];
+    confirm_button.setAttribute("id", `${modal[action][5]}`);
+    confirm_button.setAttribute("onclick", `${modal[action][6] + questionNumber})`);
 
     if (action == 0) {
-        button.removeAttribute("data-dismiss");
+        confirm_button.removeAttribute("data-dismiss");
+    } 
+    
+    cancel_button = document.getElementById("cancel");
+    var footer = document.getElementById("footer");
+
+    if (action != 4) {
+        cancel_button.setAttribute("class", "btn btn-secondary");
+
+        confirm_button.removeAttribute("hidden");
+
+        footer.setAttribute("class", "modal-footer");
+    } else {
+        cancel_button.setAttribute("class", "btn btn-secondary w-50");
+
+        confirm_button.setAttribute("hidden", "hidden");
+      
+        footer.setAttribute("class", "d-flex justify-content-center modal-footer");
     }
 }
 

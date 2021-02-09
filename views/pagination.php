@@ -1,5 +1,5 @@
 <?php
-if(!empty($questions) && !($questions > 1)) {
+if(!empty($questions) && (count($questions) > 1)) {
     echo '
     <div class="d-flex justify-content-around">
         <ul class="pagination">

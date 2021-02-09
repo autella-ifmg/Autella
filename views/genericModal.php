@@ -11,9 +11,9 @@
                 <p id="p0">none</p>
                 <p id="p1">none</p>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <a name="modalButton" id="none" class="btn btn-danger" onclick="none" data-dismiss="modal">Sim, tenho certeza</a>
+            <div id="footer" class="d-flex justify-content-center modal-footer">
+                <button id="cancel" type="button" class="btn btn-secondary w-50" data-dismiss="modal">Cancelar</button>
+                <a name="modalButton" id="none" class="btn btn-danger" onclick="none" data-dismiss="modal" hidden>Sim, tenho certeza</a>
             </div>
         </div>
     </div>
