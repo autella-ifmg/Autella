@@ -9,29 +9,28 @@
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
     <script src="../../libraries/ckeditor5/ckeditor.js"></script>
-    <script> 
-    <?php
-    require_once "readListSQL.php";
-    
-    $testID = null;
-    $testID = $_GET['id'];
-    
-    if(isset($testID)){
-        deletTest($testID);
-       
-    }
-    ?>
+    <script>
+        <?php
+        require_once "readListSQL.php";
+
+        $testID = null;
+        $testID = $_GET['id'];
+
+        if (isset($testID)) {
+            deletTest($testID);
+        }
+        ?>
     </script>
 </head>
 
 <body>
 
 
-<?php require_once '../../views/navbar.php'; ?>
+    <?php require_once '../../views/navbar.php'; ?>
     <br>
-    <div style="text-align: center; margin-right: 3%;margin-left: 3%;"><?php data();?></div>
-      <!--Modal genérico-->
-      <div name="container" id="none" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div style="text-align: center; margin-right: 3%;margin-left: 3%;"><?php data(); ?></div>
+    <!--Modal genérico-->
+    <div name="container" id="none" class="modal fade" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -51,8 +50,12 @@
             </div>
         </div>
     </div>
+
+    <!--Toast genérico-->
+    <?php require_once '../../views/genericToast.php'; ?>
+
     <script>
-         function chooseAction(action, testNumber) {
+        function chooseAction(action, testNumber) {
             var modal = [
                 ["deleteModal", "deleteModalLabel", `Deletar a <b>Prova - ${testNumber}</b>?`, "Ao excluir esse teste, ele se perderá permanentemente e se tornará indisponível.", `Você tem certeza que deseja excluir a <b>Prova - ${testNumber}</b>?`, "deleteButton", 'deleteQuestion(']
             ];
@@ -77,16 +80,64 @@
             button.removeAttribute("onclick");
             button.setAttribute("id", `${modal[action][5]}`);
             button.setAttribute("onclick", `${modal[action][6] + testNumber})`);
-            
+
         }
 
-        function deleteQuestion(id_test){  
-            window.location.href = "http://autella.com/cruds/globalTest/readListGUI.php?id="+id_test;
-            
+        function deleteQuestion(id_test) {
+            window.location.href = "http://autella.com/cruds/globalTest/readListGUI.php?id=" + id_test;
+
             //deletTest($testID);
-  
+
+        }
+
+        function setTemplateStatus(id_test, name_test) {
+            var icon, header, message;
+            var customSwitch = document.getElementById(`customSwitch${id_test}`);
+
+            var location = customSwitch.value;
+
+            if (customSwitch.checked) {
+                customSwitch = 1;
+            } else {
+                customSwitch = 0;
+            }
+
+            var data = [location, customSwitch, id_test];
+
+            if (customSwitch == 1) {
+                icon = "clipboard-check";
+                header = "Disponível!";
+                message = `Pronto! Agora o gabarito da prova <strong>${name_test}</strong> está <strong>disponível!</strong>`;
+
+            } else {
+                icon = "clipboard-x";
+                header = "Indisponível!";
+                message = `Pronto! Agora o gabarito da prova <strong>${name_test}</strong> está <strong>indisponível!</strong>`;
+            }
+
+            //console.log(data);
+
+            $.ajax({
+                type: "POST",
+                url: "../question/updateSQL.php",
+                data: {
+                    data
+                },
+                success: function(result) {
+                    $("#img_toast").attr({
+                        src: `../../../libraries/bootstrap/bootstrap-icons-1.0.0/${icon}`,
+                        alt: "Disponibilizar gabarito"
+                    });
+                    $("#span_toast").text(`${header}`);
+                    $("#result").html(message).fadeIn();
+                    $("#toast").toast("show");
+                    setTimeout(5000);
+                    //console.log(message);
+                }
+            });
         }
     </script>
-    
+
 </body>
+
 </html>

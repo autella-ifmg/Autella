@@ -78,7 +78,7 @@ function data()
         }
             return $arrayInfo;
     }
-}}
+}
     function insertInDatabase($globalList,$GlobalName)
 {
     date_default_timezone_set("America/Sao_Paulo");
@@ -100,5 +100,3 @@ function data()
         }       
     }
 }
-
-?>

@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/tests.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/user.php';
 
 global $connection;
 if (!isset($_SESSION)) {
@@ -20,7 +21,8 @@ function dateTratamentChange($date)
     return $date = "Ultima modificação em: " . date("d/m/Y", $date);
 }
 
-function verifyTemplateStatus($id_test) {
+function verifyTemplateStatus($id_test)
+{
     $array = SimpleTestes();
 
     for ($i = 0; $i < count($array); $i++) {
@@ -47,13 +49,11 @@ function data()
                     $datamaking = "" . dateTratament($array[$i][2]);
                     $datachanging = "" . dateTratamentChange($array[$i][3]);
                     $nameTest = $array[$i][4];
-                    $nameTeacher = $array[$i][6];
+                    $nameTeacher = selectUserName($array[$i][1]);
                     $id_test = $array[$i][0];
 
                     $template_status = verifyTemplateStatus($id_test);
-                    //$arr = SimpleTestes();
-                    //var_dump($arr);
-
+                
                     echo ' <div>
                 <tr>
                 <td>  <a href="http://autella.com/cruds/simpleTest/readTestGUI.php?id=' . $id_test . '">' . $nameTest . ' </a></td>
