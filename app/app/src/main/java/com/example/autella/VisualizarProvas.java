@@ -44,10 +44,10 @@ public class VisualizarProvas extends AppCompatActivity {
         listaProvas = (ListView) findViewById(R.id.listaProvas);
 
         Intent intencao = getIntent();
-        carregaEventosLista();
+        carregaProvasLista();
     }
 
-    private void carregaEventosLista(){
+    private void carregaProvasLista(){
         provas = new ArrayList<>();
 
         mQueue = Volley.newRequestQueue(this);
@@ -73,6 +73,9 @@ public class VisualizarProvas extends AppCompatActivity {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     Intent troca = new Intent(VisualizarProvas.this, VisualizarGabarito.class);
+                                    Prova temp = provas.get(position);
+                                    troca.putExtra("nomeDaProva", temp.getNome());
+                                    troca.putExtra("idDaProva", temp.getId());
                                     startActivityForResult(troca, 0);
                                 }
                             });
