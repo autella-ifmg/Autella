@@ -1,10 +1,15 @@
 package com.example.autella;
 
+import androidx.fragment.app.FragmentActivity;
+
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,13 +17,16 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
+import static androidx.core.app.ActivityCompat.startActivityForResult;
+
 public class ItemListaProvas extends ArrayAdapter<Prova> {
     private Context contextoPai;
     private ArrayList<Prova> provas;
 
-    private static class ViewHolder{
+    private static class ViewHolder {
         private TextView nomeItemListaProvas;
         private TextView idItemListaProvas;
+
     }
 
     public ItemListaProvas(Context contexto, ArrayList<Prova> provas){

@@ -1,6 +1,8 @@
 package com.example.autella;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.content.Intent;
 
@@ -66,6 +68,14 @@ public class VisualizarProvas extends AppCompatActivity {
                             }
                             adapter = new ItemListaProvas(getApplicationContext(), provas);
                             listaProvas.setAdapter(adapter);
+
+                            listaProvas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    Intent troca = new Intent(VisualizarProvas.this, VisualizarGabarito.class);
+                                    startActivityForResult(troca, 0);
+                                }
+                            });
 
                         } catch (JSONException e) {
                             e.printStackTrace();

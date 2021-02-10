@@ -68,5 +68,6 @@
                     android:layout_marginBottom="10dp"
                     android:text="42"/>
             </LinearLayout>
+
         </LinearLayout>
 </RelativeLayout>
