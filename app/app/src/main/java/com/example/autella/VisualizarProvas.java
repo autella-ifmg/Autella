@@ -48,12 +48,14 @@ public class VisualizarProvas extends AppCompatActivity {
     }
 
     private void carregaProvasLista(){
+        System.out.println("Início da função");
         provas = new ArrayList<>();
 
         mQueue = Volley.newRequestQueue(this);
 //        String urlDoRequest = "http://autella.com/api/require.php?metodo=1";
         String urlDoRequest = "http://10.0.2.2/autella.com/api/require.php?metodo=1";
-        System.out.println("BugPoint 1");
+
+        System.out.println("Inicializando request");
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, urlDoRequest, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -65,10 +67,15 @@ public class VisualizarProvas extends AppCompatActivity {
                                 String nomeDaProva = prova.getString("name");
                                 int idDaProva = prova.getInt("id");
                                 provas.add(new Prova(nomeDaProva, idDaProva));
+                                System.out.println("Prova " + nomeDaProva + " adicionada na lista.");
                             }
+                            System.out.println("Criando adapter");
                             adapter = new ItemListaProvas(getApplicationContext(), provas);
+                            System.out.println("Setando adapter");
                             listaProvas.setAdapter(adapter);
 
+                            System.out.println("Setando On Item Click Listener");
+                            System.out.println("Marcação Importante 1");
                             listaProvas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -79,7 +86,7 @@ public class VisualizarProvas extends AppCompatActivity {
                                     startActivityForResult(troca, 0);
                                 }
                             });
-
+                            System.out.println("Marcação Importante 2");
                         } catch (JSONException e) {
                             e.printStackTrace();
                             System.out.println("BugPoint 3");
@@ -91,6 +98,8 @@ public class VisualizarProvas extends AppCompatActivity {
                 error.printStackTrace();
             }
         });
+        System.out.println("mQueue.add(request);");
         mQueue.add(request);
+        System.out.println("Fim da função ");
     }
 }
