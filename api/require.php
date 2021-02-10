@@ -6,7 +6,8 @@ switch ($_GET['metodo']) {
         }
 
     case 1: {
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
+            // require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/autella.com/database/dbConnect.php';
             $sql = "SELECT name FROM tests";
             $result = mysqli_query($connection, $sql);
             $nomes = [];
