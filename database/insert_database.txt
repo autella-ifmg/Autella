@@ -7,8 +7,14 @@ INSERT INTO `autella`.`field` (`name`) VALUES ('Ciências da Natureza e suas Tec
 INSERT INTO `autella`.`field` (`name`) VALUES ('Linguagens, Códigos e suas Tecnologias');
 INSERT INTO `autella`.`field` (`name`) VALUES ('Matemática e suas Tecnologias');
 
+INSERT INTO `autella`.`institution` (`full_name`, `abbreviation`, `phone`, `cep`, `email`, `number`, `street`, `neighborhood`, `city`, `state`, `status`) VALUES ('Escola Municipal Professor Doriol Beato', 'Doriol', '(31) 3769-2587', '36401-038', 'doriol@edu.br','610', 'Rua Senador Milton Campos', 'Angêlica', 'Conselheiro Lafaiete', 'Minas Gerais', '1');
+INSERT INTO `autella`.`institution` (`full_name`, `abbreviation`, `phone`, `cep`, `email`, `number`, `street`, `neighborhood`, `city`, `state`, `status`) VALUES ('Instituto Federal de Minas Gerais - Campus Ouro Branco', 'IFMG-OB', '(31) 3938-1200', '36420-000', 'ere.ourobranco@ifmg.edu.br', '90', 'Rua Afonso Sardinha', 'Pioneiros', 'Ouro Branco', 'Minas Gerais', '1');
 
-
+INSERT INTO `autella`.`role` (`name`) VALUES ('Coordenador');
+INSERT INTO `autella`.`role` (`name`) VALUES ('Professor Titular');
+INSERT INTO `autella`.`role` (`name`) VALUES ('Professor Substituto');
+INSERT INTO `autella`.`role` (`name`) VALUES ('Professor Visitante');
+INSERT INTO `autella`.`role` (`name`) VALUES ('Gerenciador do Sistema');
 
 INSERT INTO `autella`.`discipline` (`id_field`, `name`) VALUES ('1', 'História');
 INSERT INTO `autella`.`discipline` (`id_field`, `name`) VALUES ('1', 'Geografia');
@@ -24,23 +30,6 @@ INSERT INTO `autella`.`discipline` (`id_field`, `name`) VALUES ('3', 'Espanhol')
 INSERT INTO `autella`.`discipline` (`id_field`, `name`) VALUES ('3', 'Artes');
 INSERT INTO `autella`.`discipline` (`id_field`, `name`) VALUES ('3', 'Educação Física');
 INSERT INTO `autella`.`discipline` (`id_field`, `name`) VALUES ('4', 'Matemática');
-
-
-
-
-INSERT INTO `autella`.`role` (`name`) VALUES ('Coordenador');
-INSERT INTO `autella`.`role` (`name`) VALUES ('Professor Titular');
-INSERT INTO `autella`.`role` (`name`) VALUES ('Professor Substituto');
-INSERT INTO `autella`.`role` (`name`) VALUES ('Professor Visitante');
-INSERT INTO `autella`.`role` (`name`) VALUES ('Gerenciador do Sistema');
-
-
-
-INSERT INTO `autella`.`institution` (`full_name`, `abbreviation`, `phone`, `cep`, `email`, `number`, `street`, `neighborhood`, `city`, `state`, `status`) VALUES ('Escola Municipal Professor Doriol Beato', 'Doriol', '(31) 3769-2587', '36401-038', 'doriol@edu.br','610', 'Rua Senador Milton Campos', 'Angêlica', 'Conselheiro Lafaiete', 'Minas Gerais', '1');
-INSERT INTO `autella`.`institution` (`full_name`, `abbreviation`, `phone`, `cep`, `email`, `number`, `street`, `neighborhood`, `city`, `state`, `status`) VALUES ('Instituto Federal de Minas Gerais - Campus Ouro Branco', 'IFMG-OB', '(31) 3938-1200', '36420-000', 'ere.ourobranco@ifmg.edu.br', '90', 'Rua Afonso Sardinha', 'Pioneiros', 'Ouro Branco', 'Minas Gerais', '1');
-
-
-
 
 INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`, `status`) 
 VALUES ('aline.presot@ifmg.edu.br', 'Aline Alves Presot', 'aline', '1', '4', '2', '1');
@@ -62,9 +51,6 @@ INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_
 VALUES ('therezinha@gmail.com', 'Dona Terezinha da Silva Matos', '123', '8', '1', '1', '1');
 INSERT INTO `autella`.`user` (`email`, `name`, `password`, `id_discipline`, `id_role`, `id_institution`, `status`)  
 VALUES ('autella.ifmg@gmail.com', 'autella-ifmg', '123', '1', '5', '2', '1');
-
-
-
 
 INSERT INTO `autella`.`subject` (`id_discipline`, `name`) VALUES ('1', 'Revolução Russa');
 INSERT INTO `autella`.`subject` (`id_discipline`, `name`) VALUES ('1', 'Cultura Afro-brasileira');
@@ -116,10 +102,6 @@ INSERT INTO `autella`.`subject` (`id_discipline`, `name`) VALUES ('14', 'Geometr
 INSERT INTO `autella`.`subject` (`id_discipline`, `name`) VALUES ('14', 'Geometria Espacial');
 
 
-
-
-INSERT INTO `autella`.`question` (`id`, `enunciate`, `status`) VALUES
-(0, '0', -1);
 INSERT INTO `autella`.`question` (`creation_date`, `id_user`, `id_subject`, `dificulty`, `enunciate`, `correctAnswer`, `status`) VALUES
 ('2020-11-23', 3, 1, 1, '<p data-placeholder=\"Insira o enunciado da questão...\"><span style=\"background-color:rgb(255,255,255);color:rgb(64,64,64);\">(F. M. Santa Casa/SP) A revolução de fevereiro de 1917, na Rússia, pode ser caracterizada como:</span></p><br><br>A) uma luta encabeçada por Lenin para estabelecer um estado soviético.<br>B) uma reação da Igreja Ortodoxa contra a prepotência de Rasputin.<br>C) um conflito de inspiração rural a fim de apoiar os mujiques.<br>D) um movimento de caráter burguês com o objetivo de depor o czar Nicolau II.<br>E) um esforço de intelectuais, comprometidos com as ideias anarquistas de Bakunin.', 'D', 1),
 ('2020-11-24', 3, 9, 1, '<p data-placeholder=\"Insira o enunciado da questão...\"><span style=\"background-color:rgb(255,255,255);color:rgb(0,0,0);\">O solo é um componente terrestre essencial para os seres vivos e também para a realização das atividades econômicas, de forma a ser considerado um importante recurso natural. Em termos de composição geomorfológica, pode-se afirmar que os solos:</span></p><br><br>A) constituem-se em ambientes de erosão e acúmulo de material sedimentar.<br>B) consolidam-se a partir de fatores exógenos do relevo.<br>C) são o ponto de partida para a formação de todas as rochas terrestres.<br>D) têm como característica a alteração mineralógica a partir da pressão do ar.<br>E) apresentam uma maior fertilidade quando livres de compostos orgânicos.', 'B', 1),
