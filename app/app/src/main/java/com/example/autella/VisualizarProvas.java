@@ -55,7 +55,7 @@ public class VisualizarProvas extends AppCompatActivity {
 
         mQueue = Volley.newRequestQueue(this);
 //        String urlDoRequest = "http://autella.com/api/require.php?metodo=1";
-        String urlDoRequest = "http://192.168.2.102/autella.com/api/require.php?metodo=1";
+        String urlDoRequest = "http://127.0.0.1/autella.com/api/require.php?metodo=1";
         System.out.println("BugPoint 1");
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, urlDoRequest, null,
                 new Response.Listener<JSONObject>() {
