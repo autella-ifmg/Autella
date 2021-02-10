@@ -10,10 +10,22 @@ switch ($_GET['metodo']) {
             require_once $_SERVER['DOCUMENT_ROOT'] . '/autella.com/database/dbConnect.php';
             $sql = "SELECT name FROM tests";
             $result = mysqli_query($connection, $sql);
-            $nomes = [];
+            
+            $resultado = '{
+                            "provas":[
+                                
+                            
+                ';
+
             while ($row = mysqli_fetch_row($result)) {
-                array_push($nomes, $row[0]);
+                $resultado .= '{';
+                $resultado .= '"name": ' . $row[0];
+                $resultado .= '},';
             }
-            echo json_encode($nomes);
+            
+            $resultado .= "]}";
+            $resultado = str_replace(',]', ']', $resultado);
+
+            echo $resultado;
         }
 }

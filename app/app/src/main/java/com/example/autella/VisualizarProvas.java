@@ -17,6 +17,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -51,36 +52,46 @@ public class VisualizarProvas extends AppCompatActivity {
 //        nomes.add("provffaw 2");
 //        nomes.add("proaawfvsdas 3");
 //        nomes.add("awoindawndáw prvoa 4");
-        System.out.println("BugPoint 0");
 
+        System.out.println("BugPoint 0");
         mQueue = Volley.newRequestQueue(this);
 //        String urlDoRequest = "http://autella.com/api/require.php?metodo=1";
-        String urlDoRequest = "http://127.0.0.1/autella.com/api/require.php?metodo=1";
+        String urlDoRequest = "http://192.168.2.102/autella.com/api/require.php?metodo=1";
         System.out.println("BugPoint 1");
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, urlDoRequest, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        System.out.println("BugPoint 2");
-                        System.out.println(response.toString());
+//                        System.out.println(response.toString());
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("provas");
+                            System.out.println("BugPoint 2");
+                            for(int i = 0; i < jsonArray.length(); i++){
+                                JSONObject prova = jsonArray.getJSONObject(i);
+                                String nomeDaProva = prova.getString("name");
 
+                                System.out.println("Nome adicionado no vetor");
+                                nomes.add(nomeDaProva);
+                            }
+
+                            System.out.println("Criando o adapter");
+                            adapter = new ItemListaProvas(getApplicationContext(), nomes);
+                            System.out.println("Setando o adapter");
+                            listaProvas.setAdapter(adapter);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            System.out.println("BugPoint 3");
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("BugPoint 3");
                 error.printStackTrace();
+                System.out.println("BugPoint 4");
             }
         });
         mQueue.add(request);
-        System.out.println("BugPoint 4");
-
-
-
-
-
-        adapter = new ItemListaProvas(getApplicationContext(), nomes);
-        listaProvas.setAdapter(adapter);
         System.out.println("BugPoint 5");
     }
 }
