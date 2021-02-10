@@ -12,24 +12,25 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-public class ItemListaProvas extends ArrayAdapter<String> {
+public class ItemListaProvas extends ArrayAdapter<Prova> {
     private Context contextoPai;
-    private ArrayList<String> nomesDasProvas;
+    private ArrayList<Prova> provas;
 
     private static class ViewHolder{
         private TextView nomeItemListaProvas;
+        private TextView idItemListaProvas;
     }
 
-    public ItemListaProvas(Context contexto, ArrayList<String> dados){
-        super(contexto, R.layout.item_lista_provas, dados);
+    public ItemListaProvas(Context contexto, ArrayList<Prova> provas){
+        super(contexto, R.layout.item_lista_provas, provas);
         this.contextoPai = contexto;
-        this.nomesDasProvas = dados;
+        this.provas = provas;
     }
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         //return super.getView(position, convertView, parent);
-        String nomeAtual = nomesDasProvas.get(position);
+        Prova provaAtual = this.provas.get(position);
         ViewHolder novaView;
         final View resultado;
 
@@ -40,6 +41,7 @@ public class ItemListaProvas extends ArrayAdapter<String> {
             convertView = inflater.inflate(R.layout.item_lista_provas, parent, false);
 
             novaView.nomeItemListaProvas = (TextView) convertView.findViewById(R.id.nomeItemListaProvas);
+            novaView.idItemListaProvas = (TextView) convertView.findViewById(R.id.idItemListaProvas);
 
             resultado = convertView;
             convertView.setTag(novaView);
@@ -49,7 +51,8 @@ public class ItemListaProvas extends ArrayAdapter<String> {
         }
 
         // Setar os valores dos campos
-        novaView.nomeItemListaProvas.setText(nomeAtual);
+        novaView.nomeItemListaProvas.setText(provaAtual.getNome());
+        novaView.idItemListaProvas.setText(String.valueOf(provaAtual.getId()));
 
         return resultado;
     }

@@ -37,6 +37,7 @@
                     android:text="Data de liberação: "/>
 
                 <TextView
+                    android:id="@+id/dataItemListaProvas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
@@ -59,6 +60,7 @@
                     android:text="Código de identificação: "/>
 
                 <TextView
+                    android:id="@+id/idItemListaProvas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"

@@ -19,7 +19,7 @@ switch ($_GET['metodo']) {
 
             while ($row = mysqli_fetch_row($result)) {
                 $resultado .= '{';
-                $resultado .= '"name": ' . $row[0] . ', ';
+                $resultado .= '"name": "' . $row[0] . '", ';
                 $resultado .= '"id": ' . $row[1];
                 $resultado .= '},';
             }

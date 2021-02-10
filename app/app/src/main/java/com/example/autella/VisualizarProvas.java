@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class VisualizarProvas extends AppCompatActivity {
     private ListView listaProvas;
-    private ArrayList<String> nomes;
+    private ArrayList<Prova> provas;
     private ItemListaProvas adapter;
 
     private RequestQueue mQueue;
@@ -46,12 +46,7 @@ public class VisualizarProvas extends AppCompatActivity {
     }
 
     private void carregaEventosLista(){
-        nomes = new ArrayList<>();
-
-//        nomes.add("Provawrd 1");
-//        nomes.add("provffaw 2");
-//        nomes.add("proaawfvsdas 3");
-//        nomes.add("awoindawndáw prvoa 4");
+        provas = new ArrayList<>();
 
         mQueue = Volley.newRequestQueue(this);
 //        String urlDoRequest = "http://autella.com/api/require.php?metodo=1";
@@ -66,9 +61,10 @@ public class VisualizarProvas extends AppCompatActivity {
                             for(int i = 0; i < jsonArray.length(); i++){
                                 JSONObject prova = jsonArray.getJSONObject(i);
                                 String nomeDaProva = prova.getString("name");
-                                nomes.add(nomeDaProva);
+                                int idDaProva = prova.getInt("id");
+                                provas.add(new Prova(nomeDaProva, idDaProva));
                             }
-                            adapter = new ItemListaProvas(getApplicationContext(), nomes);
+                            adapter = new ItemListaProvas(getApplicationContext(), provas);
                             listaProvas.setAdapter(adapter);
 
                         } catch (JSONException e) {
