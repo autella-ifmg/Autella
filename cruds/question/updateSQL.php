@@ -109,10 +109,10 @@ if (isset($_POST["data"])) {
     $array = $_POST["data"];
 
     $location = $array[0];
-    $template_status = $array[1];
+    $status_list_answers = $array[1];
     $id_test = $array[2];
 
-    $sql = "UPDATE " . $location . " SET template_status = '$template_status' WHERE id = '$id_test'";
+    $sql = "UPDATE " . $location . " SET status_list_answers = '$status_list_answers' WHERE id = '$id_test'";
 
     if ($connection->query($sql) === TRUE) {
         //array_push($_SESSION['debug'], "Gabarito disponível!");

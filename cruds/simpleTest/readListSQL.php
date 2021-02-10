@@ -21,7 +21,7 @@ function dateTratamentChange($date)
     return $date = "Ultima modificação em: " . date("d/m/Y", $date);
 }
 
-function verifyTemplateStatus($id_test)
+function verifyStatusOfListAnswers($id_test)
 {
     $array = SimpleTestes();
 
@@ -52,7 +52,7 @@ function data()
                     $nameTeacher = selectUserName($array[$i][1]);
                     $id_test = $array[$i][0];
 
-                    $template_status = verifyTemplateStatus($id_test);
+                    $status_list_answers = verifyStatusOfListAnswers($id_test);
                 
                     echo ' <div>
                 <tr>
@@ -62,7 +62,7 @@ function data()
                 <td>' . $nameTeacher . ' </td>
                 <td>
                     <div class="custom-control custom-switch">
-                            <input id="customSwitch' . $id_test . '" type="checkbox" class="custom-control-input" value="tests" onchange="setTemplateStatus(' . $id_test . ', \'' . $nameTest . '\')"' . $template_status . '>
+                            <input id="customSwitch' . $id_test . '" type="checkbox" class="custom-control-input" value="tests" onchange="setStatusOfListAnswers(' . $id_test . ', \'' . $nameTest . '\')"' . $status_list_answers . '>
                             <label for="customSwitch' . $id_test . '" class="custom-control-label"></label>
                     </div>
                 </td>

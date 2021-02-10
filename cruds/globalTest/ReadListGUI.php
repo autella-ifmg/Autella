@@ -90,7 +90,7 @@
 
         }
 
-        function setTemplateStatus(id_test, name_test) {
+        function setStatusOfListAnswers(id_test, name_test) {
             var icon, header, message;
             var customSwitch = document.getElementById(`customSwitch${id_test}`);
 
