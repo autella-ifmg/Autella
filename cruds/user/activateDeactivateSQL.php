@@ -24,7 +24,7 @@ if ($oldPassword == $_SESSION['userData']['password'] || getAccountRole($_SESSIO
         // Logout
         //require_once $_SERVER['DOCUMENT_ROOT'] . '/authentication/logout.php';
     } else {
-        array_push($_SESSION['debug'], "Erro ao ativar conta!");
+        array_push($_SESSION['debug'], "Erro ao mudar status da conta!");
     }
 } else {
     array_push($_SESSION['debug'], "Senha atual incorreta!");

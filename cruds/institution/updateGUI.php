@@ -16,6 +16,7 @@
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/formValidator.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/institution.php';
     ?>
 </head>
 
@@ -82,6 +83,14 @@
 
             <div class="d-flex justify-content-between pt-4 pt-sm-0 w-100 mx-3 mb-5">
                 <a class="btn btn-danger btn-lg" href="../../index.php">Cancelar</a>
+                
+                <?php
+                if(getInstitutionStatus($_SESSION['userData']['id_institution']) == 1){
+                    echo '<a class="btn btn-warning btn-lg" href="activateDeactivateGUI.php">Desativar</a>';
+                } else {
+                    echo '<a class="btn btn-warning btn-lg" href="activateDeactivateGUI.php">Ativar</a>';
+                }
+                ?>
                 <input type="submit" class="btn btn-success btn-lg" name="submit" value="Alterar dados">
             </div>
         </form>

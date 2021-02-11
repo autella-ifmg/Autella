@@ -62,10 +62,10 @@
                 <?php
                 if(getAccountStatus($_SESSION['userData']['id']) == 1){
                     // Conta ativa
-                    echo '<a class="btn btn-lg btn-danger" href="activateDeactivateGUI.php">Desativar conta</a>';
+                    echo '<a class="btn btn-lg btn-warning" href="activateDeactivateGUI.php">Desativar conta</a>';
                 } else {
                     // Conta foi desativada
-                    echo '<a class="btn btn-lg btn-danger" href="activateDeactivateGUI.php">Ativar conta</a>';
+                    echo '<a class="btn btn-lg btn-warning" href="activateDeactivateGUI.php">Ativar conta</a>';
                 }
                     
                 ?>
