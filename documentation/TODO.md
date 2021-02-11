@@ -1,3 +1,10 @@
+## Aplicativo
+- [X] Mostrar gabarito
+- [X] Listar provas
+- [ ] Listar somente provas liberadas
+- [ ] Notificação de gabarito liberado
+- [ ] Correção do gabarito
+
 ## User
 - [X] Create
 	- [X] Alterar modal para arquivos próprios
@@ -44,6 +51,8 @@
 
 - [X] Deactivate
 	- [X] Activate
+	- [ ] Exibir modal
+	- [ ] Logout e impedir login
 
 
 ## Institution
@@ -69,8 +78,10 @@
 		- [X] GUI
 		- [X] SQL
 
-- [ ] Desactivate
-	- [ ] Activate
+- [X] Deactivate
+	- [X] Activate
+	- [ ] Exibir modal
+	- [ ] Logout e impedir login de usuários da instituição
 
 ## Question
 - [ ] Geral
