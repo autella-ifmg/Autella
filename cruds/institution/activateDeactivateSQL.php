@@ -27,7 +27,9 @@ if ($connection->query($sql) === TRUE) {
 
 $connection->close();
 
-if ($_SERVER['HTTP_REFERER'] == "http://autella.com/cruds/user/activateDeactivateGUI.php" || $_SERVER['HTTP_REFERER'] == "http://autella.com/cruds/institution/activateDeactivateGUI.php") {
+if ($_SERVER['HTTP_REFERER'] == "http://autella.com/cruds/institution/activateDeactivateGUI.php") {
+    session_unset();
+    session_destroy();
     header("Location: ../../index.php");
 } else {
     header('Location: ' . $_SERVER['HTTP_REFERER']);

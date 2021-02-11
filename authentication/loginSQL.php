@@ -2,6 +2,9 @@
 if (isset($_POST['submit'])) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/security.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/user.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/institution.php';
+
 
     $email = secure($_POST['email']);
     $password = secure($_POST['password']);
@@ -41,6 +44,12 @@ if (isset($_POST['submit'])) {
     }
 
     $connection->close();
-    
-    header('Location: ..');
+
+    if (getAccountStatus($_SESSION['userData']['id']) == 2 || getInstitutionStatus($_SESSION['userData']['id_institution']) == 2) {
+        session_unset();
+        session_destroy();
+        header('Location: innactiveAccount.php');
+    } else {
+        header('Location: ..');
+    }
 }

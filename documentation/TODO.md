@@ -51,9 +51,7 @@
 
 - [X] Deactivate
 	- [X] Activate
-	- [ ] Exibir modal
-	- [ ] Logout e impedir login
-
+	- [X] Logout e impedir login
 
 ## Institution
 - [X] Create
@@ -80,8 +78,7 @@
 
 - [X] Deactivate
 	- [X] Activate
-	- [ ] Exibir modal
-	- [ ] Logout e impedir login de usuários da instituição
+	- [X] Logout e impedir login de usuários da instituição
 
 ## Question
 - [ ] Geral
