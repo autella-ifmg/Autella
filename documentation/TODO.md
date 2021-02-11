@@ -5,6 +5,63 @@
 - [ ] Notificação de gabarito liberado
 - [ ] Correção do gabarito
 
+## Question
+- [ ] Geral
+	- [X] Configurar ações do coordenador
+	- [X] Deixar valores dos dropdowns pré-selecionados
+	- [X] Remover selectAlternativesQuant
+	- [X] Tratamento para inserção de apóstrofo
+	- [X] Otimização de códigos
+	- [X] Otimização de importações
+	- [ ] Tratamento para inserção de imagens
+	- [ ] Responsividade
+	- [X] CKEditor Custom
+	
+- [ ] Create
+	- [X] Configurar o toast de criação de questão
+	- [ ] Permitir que os campos de alternativas também sejam formatados
+
+- [X] Read
+	- [X] Adicionar paginação
+	- [X] Adicionar filtros de pesquisa
+	- [X] Adicionar opção "Escolha..." no selectDiscipline
+	- [X] Exibir em quais provas simples a questão está presente
+	- [X] Só mostrar paginação caso necessário
+	- [X] Exibir quem criou a questão
+	- [X] Mostrar quais filtros foram aplicados
+ 	
+- [X] Update
+	- [X] Configurar o toast de alteração de questão
+
+- [X] Archive
+	- [X] Arquivar questão
+	- [X] Listar quetões arquivadas
+	- [X] Desarquivar questão
+	- [X] Configurar o toast de arquivamento de questão
+
+- [X] Delete
+	- [X] Deletar questão
+	- [X] Listar quetões deletadas
+	- [X] Restaurar questão
+	- [X] Configurar o toast de exclusão de questão
+
+- [ ] Help
+
+## Painel de controle do coordenador
+- [X] Tabela de visualização dos dados
+- [X] Botão de visualizar funcionando
+- [X] User activate/deactivate
+	- [X] Transformar cruds/user/deactivate para pegar "$_GET" e não "$_SESSION['userData']['id']"
+- [X] Criação de usuários
+- [X] Página de edição detalhada, para editar qualquer atributo de um usuário
+	- [X] GUI
+	- [X] SQLs
+	
+
+## Painel de controle do gerenciador do sistema
+- [ ] Coisas do painel de controle do coordenador
+- [ ] Coisas do painel de controle do coordenador, mas adaptadas para instituições
+
 ## User
 - [X] Create
 	- [X] Alterar modal para arquivos próprios
@@ -79,63 +136,6 @@
 - [X] Deactivate
 	- [X] Activate
 	- [X] Logout e impedir login de usuários da instituição
-
-## Question
-- [ ] Geral
-	- [X] Configurar ações do coordenador
-	- [X] Deixar valores dos dropdowns pré-selecionados
-	- [X] Remover selectAlternativesQuant
-	- [X] Tratamento para inserção de apóstrofo
-	- [X] Otimização de códigos
-	- [X] Otimização de importações
-	- [ ] Tratamento para inserção de imagens
-	- [ ] Responsividade
-	- [X] CKEditor Custom
-	
-- [ ] Create
-	- [X] Configurar o toast de criação de questão
-	- [ ] Permitir que os campos de alternativas também sejam formatados
-
-- [X] Read
-	- [X] Adicionar paginação
-	- [X] Adicionar filtros de pesquisa
-	- [X] Adicionar opção "Escolha..." no selectDiscipline
-	- [X] Exibir em quais provas simples a questão está presente
-	- [X] Só mostrar paginação caso necessário
-	- [X] Exibir quem criou a questão
-	- [X] Mostrar quais filtros foram aplicados
- 	
-- [X] Update
-	- [X] Configurar o toast de alteração de questão
-
-- [X] Archive
-	- [X] Arquivar questão
-	- [X] Listar quetões arquivadas
-	- [X] Desarquivar questão
-	- [X] Configurar o toast de arquivamento de questão
-
-- [X] Delete
-	- [X] Deletar questão
-	- [X] Listar quetões deletadas
-	- [X] Restaurar questão
-	- [X] Configurar o toast de exclusão de questão
-
-- [ ] Help
-
-## Painel de controle do coordenador
-- [X] Tabela de visualização dos dados
-- [X] Botão de visualizar funcionando
-- [X] User activate/deactivate
-	- [X] Transformar cruds/user/deactivate para pegar "$_GET" e não "$_SESSION['userData']['id']"
-- [X] Criação de usuários
-- [X] Página de edição detalhada, para editar qualquer atributo de um usuário
-	- [X] GUI
-	- [X] SQL
-	
-
-## Painel de controle do gerenciador do sistema
-- [ ] Coisas do painel de controle do coordenador
-- [ ] Coisas do painel de controle do coordenador, mas adaptadas para instituições
 
 ## Database
 
