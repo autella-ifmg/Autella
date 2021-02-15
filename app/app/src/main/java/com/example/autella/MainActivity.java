@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         cadastrarEventos();
     }
 
-    private void cadastrarEventos(){
+    private void cadastrarEventos() {
         botaoVisualizarGabaritos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -29,11 +29,12 @@ public class ItemListaProvas extends ArrayAdapter<Prova> {
 
     }
 
-    public ItemListaProvas(Context contexto, ArrayList<Prova> provas){
+    public ItemListaProvas(Context contexto, ArrayList<Prova> provas) {
         super(contexto, R.layout.item_lista_provas, provas);
         this.contextoPai = contexto;
         this.provas = provas;
     }
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -42,8 +43,8 @@ public class ItemListaProvas extends ArrayAdapter<Prova> {
         ViewHolder novaView;
         final View resultado;
 
-        if(convertView == null){
-             // View sendo criada pela primeira vez
+        if (convertView == null) {
+            // View sendo criada pela primeira vez
             novaView = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_lista_provas, parent, false);

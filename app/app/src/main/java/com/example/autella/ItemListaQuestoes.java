@@ -27,11 +27,12 @@ public class ItemListaQuestoes extends ArrayAdapter<Questao> {
         private TextView alternativaCorreta;
     }
 
-    public ItemListaQuestoes(Context contexto, ArrayList<Questao> questoes){
+    public ItemListaQuestoes(Context contexto, ArrayList<Questao> questoes) {
         super(contexto, R.layout.item_lista_questoes, questoes);
         this.contextoPai = contexto;
         this.questoes = questoes;
     }
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -40,7 +41,7 @@ public class ItemListaQuestoes extends ArrayAdapter<Questao> {
         ViewHolder novaView;
         final View resultado;
 
-        if(convertView == null){
+        if (convertView == null) {
             // View sendo criada pela primeira vez
             novaView = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());

@@ -49,12 +49,12 @@ public class VisualizarGabarito extends AppCompatActivity {
     }
 
 
-    private void carregaQuestoesLista(){
+    private void carregaQuestoesLista() {
         questoes = new ArrayList<>();
 
         mQueue = Volley.newRequestQueue(this);
 //        String urlDoRequest = "http://autella.com/api/require.php?metodo=2";
-        String urlDoRequest = "http://10.0.2.2/autella.com/api/require.php?metodo=2&idDaProva=" + this.idDaProva ;
+        String urlDoRequest = "http://10.0.2.2/autella.com/api/require.php?metodo=2&idDaProva=" + this.idDaProva;
         System.out.println(urlDoRequest);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, urlDoRequest, null,
@@ -63,7 +63,7 @@ public class VisualizarGabarito extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray jsonArray = response.getJSONArray("gabarito");
-                            for(int i = 0; i < jsonArray.length(); i++){
+                            for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject prova = jsonArray.getJSONObject(i);
                                 String alternativaCorreta = prova.getString("alternativaCorreta");
                                 questoes.add(new Questao(alternativaCorreta));

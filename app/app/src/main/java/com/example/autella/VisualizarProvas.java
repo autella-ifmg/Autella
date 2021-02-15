@@ -47,7 +47,7 @@ public class VisualizarProvas extends AppCompatActivity {
         carregaProvasLista();
     }
 
-    private void carregaProvasLista(){
+    private void carregaProvasLista() {
         System.out.println("Início da função");
         provas = new ArrayList<>();
 
@@ -62,7 +62,7 @@ public class VisualizarProvas extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray jsonArray = response.getJSONArray("provas");
-                            for(int i = 0; i < jsonArray.length(); i++){
+                            for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject prova = jsonArray.getJSONObject(i);
                                 String nomeDaProva = prova.getString("name");
                                 int idDaProva = prova.getInt("id");
