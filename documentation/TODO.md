@@ -4,7 +4,6 @@
 - [ ] Listar somente provas liberadas
 - [ ] Notificação de gabarito liberado
 - [ ] Correção do gabarito
-
 ## Question
 - [ ] Geral
 	- [X] Configurar ações do coordenador
@@ -45,8 +44,6 @@
 	- [X] Restaurar questão
 	- [X] Configurar o toast de exclusão de questão
 
-- [ ] Help
-
 ## Painel de controle do coordenador
 - [X] Tabela de visualização dos dados
 - [X] Botão de visualizar funcionando
@@ -56,12 +53,9 @@
 - [X] Página de edição detalhada, para editar qualquer atributo de um usuário
 	- [X] GUI
 	- [X] SQLs
-	
-
 ## Painel de controle do gerenciador do sistema
 - [ ] Coisas do painel de controle do coordenador
 - [ ] Coisas do painel de controle do coordenador, mas adaptadas para instituições
-
 ## User
 - [X] Create
 	- [X] Alterar modal para arquivos próprios
@@ -105,11 +99,9 @@
 		- [X] Fazer função que pega o id do usuário e retorna o 'status' da conta
 		- [X] Fazer função que retorna o id do coordenador da instituição do usuário
 
-
 - [X] Deactivate
 	- [X] Activate
 	- [X] Logout e impedir login
-
 ## Institution
 - [X] Create
 	- [X] Ao criar instituição, inserir imagem padrão
@@ -136,9 +128,7 @@
 - [X] Deactivate
 	- [X] Activate
 	- [X] Logout e impedir login de usuários da instituição
-
 ## Database
-
 - [X] Criar tabela "Área" no banco de dados
 - [X] Criar tabela "Disciplina" no banco de dados
 - [X] Mudar de "professor" para "user"
@@ -148,7 +138,6 @@
 - [X] Remover coluna de id_discipline e correctAnswerEnunciate na tabela question
 - [X] user -> coluna de status ("conta ativa", "conta inativa")
 - [X] institution -> coluna de status ("instituição ativa", "instituição inativa")
-
 ## Geral
 - [X] Redirecionar da homepage para outras páginas quando cadastrado
 - [X] Inserir imagem e opções de usuário na navbar
@@ -158,21 +147,17 @@
 - [ ] Carousel de opiniões (mexe sozinho)
 - [ ] Sobre nós
 - [ ] Toasts de mensagens
-
 ## Segurança
 - [ ] Tirar senha do $_SESSION['userData'] -> implicações no professor/updateSQL.php
 - [ ] Criptografia de senhas
 - [ ] Desativar tags "<script>" e "<?php" do que o CkEditor retorna
 - [ ] Segurança das demais abas (para implementar no "utilities/security.php". Exemplo demonstrado no "cruds/user/readGUI.php");
-
 ## Observações
 	1 coordenador por escola
 	professores dessa escola são subordinados a esse coordenador
 	coordenadores tem página de gerenciamento dos professores
 	somente programadores podem criar instituições e coordenadores
 	somente coordenadores podem criar professores
-
-
 ## Dicas
 * Use die() se não achou $_GET
 * Quando as imagens não estiverem atualizando, pode ser que o navegador esteja guardando-as em cache.
@@ -180,8 +165,6 @@ Para evitar isso, faça o seguinte: adicione "?1222259157.415" no final do src d
 A função de tempo no php é "time()", então ficaria <img src="/images/users/2.jpeg<?php echo '?' . time() ?>" />
 * <script> be included between the <head> tags in your HTML document.
 * $connection->close();		após		require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/...';
-
-
 ## Possíveis novas funções
 * Sistema de mensagens (tipo do moddle)
 * Email de verificação de criação de contas

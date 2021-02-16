@@ -37,11 +37,16 @@ function addFilterInList(selected_filter) {
             break;
     }
 
-    applySelectedFilters();
+    applySelectedFilters("common_action");
 }
 
-function applySelectedFilters() {
-    filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&`;
+function applySelectedFilters(action) {
+    if (action == "common_action") {
+        filters_url = `${url}filter=true&id_institution=${id_institution}&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&`;
+    } else {
+        status = 1;
+        filters_url = `http://autella.com/cruds/question/readGUI.php?filter=true&id_institution=${id_institution}&status=${status}&`;
+    }
 
     window.history.pushState({}, "Autella | Visualizar questões", filters_url);
     window.location.reload(1);
@@ -127,5 +132,5 @@ function removeFilterFromList(selected_filter) {
 
     filtersSystemData[removalIndicator] = "false";
 
-    applySelectedFilters();
+    applySelectedFilters("common_action");
 }

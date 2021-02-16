@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/cruds/question/readGUI.php?">Visualizar questões</a>
+                <a class="nav-link" href="<?php echo $_SESSION['userData']['id_role'] == 5 ? "/cruds/question/managerAuthorization.php?" : "/cruds/question/readGUI.php?" ?>">Visualizar questões</a>
             </li>
             <li>
                 <a class="nav-link" href="/cruds/simpleTest/createGUI.php">Criar provas simples</a>
@@ -15,7 +15,7 @@
             <li>
                 <a class="nav-link" href="/cruds/simpleTest/readListGUI.php">Visualizar provas simples</a>
             </li>
-            
+
 
 
 
@@ -47,7 +47,7 @@
                     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/user.php';
                     echo idRoleToRoleName($_SESSION['userData']['id_role']);
 
-                    if(getAccountStatus($_SESSION['userData']['id']) == 2){
+                    if (getAccountStatus($_SESSION['userData']['id']) == 2) {
                         echo ' [Conta desativada]';
                     }
                     ?>
