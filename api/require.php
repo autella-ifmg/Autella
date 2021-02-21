@@ -8,7 +8,7 @@ switch ($_GET['metodo']) {
     case 1: {
             // require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
             require_once $_SERVER['DOCUMENT_ROOT'] . '/autella.com/database/dbConnect.php';
-            $sql = "SELECT name, id FROM tests";
+            $sql = "SELECT name, id, list_release_date FROM tests";
             $result = mysqli_query($connection, $sql);
 
             $resultado = '{
@@ -20,7 +20,8 @@ switch ($_GET['metodo']) {
             while ($row = mysqli_fetch_row($result)) {
                 $resultado .= '{';
                 $resultado .= '"name": "' . $row[0] . '", ';
-                $resultado .= '"id": ' . $row[1];
+                $resultado .= '"id": ' . $row[1] . ', ';
+                $resultado .= '"release_date": "' . $row[2] . '"';
                 $resultado .= '},';
             }
 

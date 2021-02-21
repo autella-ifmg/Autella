@@ -26,6 +26,7 @@ public class ItemListaProvas extends ArrayAdapter<Prova> {
     private static class ViewHolder {
         private TextView nomeItemListaProvas;
         private TextView idItemListaProvas;
+        private TextView dataItemListaProvas;
 
     }
 
@@ -51,6 +52,7 @@ public class ItemListaProvas extends ArrayAdapter<Prova> {
 
             novaView.nomeItemListaProvas = (TextView) convertView.findViewById(R.id.nomeItemListaProvas);
             novaView.idItemListaProvas = (TextView) convertView.findViewById(R.id.idItemListaProvas);
+            novaView.dataItemListaProvas = (TextView) convertView.findViewById(R.id.dataItemListaProvas);
 
             resultado = convertView;
             convertView.setTag(novaView);
@@ -62,6 +64,7 @@ public class ItemListaProvas extends ArrayAdapter<Prova> {
         // Setar os valores dos campos
         novaView.nomeItemListaProvas.setText(provaAtual.getNome());
         novaView.idItemListaProvas.setText(String.valueOf(provaAtual.getId()));
+        novaView.dataItemListaProvas.setText(provaAtual.getDataDeLiberacao());
 
         return resultado;
     }

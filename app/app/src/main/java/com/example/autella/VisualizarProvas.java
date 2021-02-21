@@ -28,6 +28,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class VisualizarProvas extends AppCompatActivity {
@@ -64,9 +65,18 @@ public class VisualizarProvas extends AppCompatActivity {
                             JSONArray jsonArray = response.getJSONArray("provas");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject prova = jsonArray.getJSONObject(i);
+
                                 String nomeDaProva = prova.getString("name");
                                 int idDaProva = prova.getInt("id");
-                                provas.add(new Prova(nomeDaProva, idDaProva));
+                                String dataDeLiberacao = prova.getString("release_date");
+                                
+                                dataDeLiberacao = dataDeLiberacao.replace("-", "/");
+                                String[] s = dataDeLiberacao.split("/");
+                                dataDeLiberacao = s[2] + "/" + s[1] + "/" + s[0];
+                                //System.out.println(dataDeLiberacao);
+
+                                provas.add(new Prova(nomeDaProva, idDaProva, dataDeLiberacao));
+
                                 System.out.println("Prova " + nomeDaProva + " adicionada na lista.");
                             }
                             System.out.println("Criando adapter");

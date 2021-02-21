@@ -3,10 +3,12 @@ package com.example.autella;
 public class Prova {
     String nome;
     int id;
+    String dataDeLiberacao;
 
-    public Prova(String nome, int id) {
+    public Prova(String nome, int id, String dataDeLiberacao) {
         this.nome = nome;
         this.id = id;
+        this.dataDeLiberacao = dataDeLiberacao;
     }
 
     public String getNome() {
@@ -16,4 +18,6 @@ public class Prova {
     public int getId() {
         return id;
     }
+
+    public String getDataDeLiberacao() { return dataDeLiberacao; }
 }

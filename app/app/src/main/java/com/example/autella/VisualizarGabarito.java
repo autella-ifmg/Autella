@@ -22,7 +22,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class VisualizarGabarito extends AppCompatActivity {
     private ListView listaGabarito;
@@ -38,13 +40,14 @@ public class VisualizarGabarito extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizar_gabarito);
+
         listaGabarito = (ListView) findViewById(R.id.listaGabarito);
         nomeDaProvaTxt = (TextView) findViewById(R.id.nomeDaProva);
-
 
         Intent intencao = getIntent();
         nomeDaProvaTxt.setText(intencao.getStringExtra("nomeDaProva"));
         idDaProva = intencao.getIntExtra("idDaProva", -1);
+
         carregaQuestoesLista();
     }
 

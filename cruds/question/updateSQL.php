@@ -103,6 +103,7 @@ if (isset($_POST['easter_egg'])) {
     echo $message;
 }
 
+//Controle de gabaritos.
 if (isset($_POST["data"])) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
@@ -112,7 +113,10 @@ if (isset($_POST["data"])) {
     $status_list_answers = $array[1];
     $id_test = $array[2];
 
-    $sql = "UPDATE " . $location . " SET status_list_answers = '$status_list_answers' WHERE id = '$id_test'";
+    date_default_timezone_set("America/Sao_Paulo");
+    $release_date = date("Y-m-d"); 
+
+    $sql = "UPDATE " . $location . " SET status_list_answers = '$status_list_answers', list_release_date = '$release_date' WHERE id = '$id_test'";
 
     if ($connection->query($sql) === TRUE) {
         //array_push($_SESSION['debug'], "Gabarito disponível!");

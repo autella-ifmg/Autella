@@ -71,6 +71,7 @@ CREATE TABLE `autella`.`global`(
 	`name` varchar(256),
 	`status` int,
   `status_list_answers` int,
+  `list_release_date` DATE,
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`id_user`) REFERENCES `user`(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -106,6 +107,7 @@ CREATE TABLE `autella`.`tests`(
 	`name` varchar(256),
 	`status` int,
   `status_list_answers` int,
+  `list_release_date` DATE,
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`id_user`) REFERENCES `user`(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
