@@ -31,7 +31,7 @@ switch ($_GET['metodo']) {
             echo $resultado;
             break;
         }
-        case 2: {
+    case 2: {
             // require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
             require_once $_SERVER['DOCUMENT_ROOT'] . '/autella.com/database/dbConnect.php';
             $sql = "SELECT question.correctAnswer FROM question JOIN question_test ON question.id = question_test.id_question JOIN tests ON tests.id = question_test.id_tests WHERE tests.id = " . $_GET['idDaProva'];

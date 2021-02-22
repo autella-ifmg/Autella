@@ -11,13 +11,9 @@ public class Prova {
         this.dataDeLiberacao = dataDeLiberacao;
     }
 
-    public String getNome() {
-        return nome;
-    }
+    public String getNome() { return nome; }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
 
     public String getDataDeLiberacao() { return dataDeLiberacao; }
 }

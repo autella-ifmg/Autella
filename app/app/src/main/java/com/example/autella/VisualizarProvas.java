@@ -6,7 +6,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.content.Intent;
 
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,21 +41,25 @@ public class VisualizarProvas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizar_provas);
+
         listaProvas = (ListView) findViewById(R.id.listaProvas);
 
         Intent intencao = getIntent();
+
         carregaProvasLista();
     }
 
     private void carregaProvasLista() {
         System.out.println("Início da função");
+
         provas = new ArrayList<>();
 
         mQueue = Volley.newRequestQueue(this);
-//        String urlDoRequest = "http://autella.com/api/require.php?metodo=1";
+        //String urlDoRequest = "http://autella.com/api/require.php?metodo=1";
         String urlDoRequest = "http://10.0.2.2/autella.com/api/require.php?metodo=1";
 
         System.out.println("Inicializando request");
+
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, urlDoRequest, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -79,6 +82,7 @@ public class VisualizarProvas extends AppCompatActivity {
 
                                 System.out.println("Prova " + nomeDaProva + " adicionada na lista.");
                             }
+
                             System.out.println("Criando adapter");
                             adapter = new ItemListaProvas(getApplicationContext(), provas);
                             System.out.println("Setando adapter");
@@ -91,8 +95,10 @@ public class VisualizarProvas extends AppCompatActivity {
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     Intent troca = new Intent(VisualizarProvas.this, VisualizarGabarito.class);
                                     Prova temp = provas.get(position);
+
                                     troca.putExtra("nomeDaProva", temp.getNome());
                                     troca.putExtra("idDaProva", temp.getId());
+
                                     startActivityForResult(troca, 0);
                                 }
                             });

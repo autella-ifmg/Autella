@@ -22,9 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class VisualizarGabarito extends AppCompatActivity {
     private ListView listaGabarito;
@@ -51,12 +49,11 @@ public class VisualizarGabarito extends AppCompatActivity {
         carregaQuestoesLista();
     }
 
-
     private void carregaQuestoesLista() {
         questoes = new ArrayList<>();
 
         mQueue = Volley.newRequestQueue(this);
-//        String urlDoRequest = "http://autella.com/api/require.php?metodo=2";
+        //String urlDoRequest = "http://autella.com/api/require.php?metodo=2";
         String urlDoRequest = "http://10.0.2.2/autella.com/api/require.php?metodo=2&idDaProva=" + this.idDaProva;
         System.out.println(urlDoRequest);
 
@@ -66,14 +63,16 @@ public class VisualizarGabarito extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray jsonArray = response.getJSONArray("gabarito");
+
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject prova = jsonArray.getJSONObject(i);
                                 String alternativaCorreta = prova.getString("alternativaCorreta");
                                 questoes.add(new Questao(alternativaCorreta));
                             }
-                            adapter = new ItemListaQuestoes(getApplicationContext(), questoes);
-                            listaGabarito.setAdapter(adapter);
 
+                            adapter = new ItemListaQuestoes(getApplicationContext(), questoes);
+
+                            listaGabarito.setAdapter(adapter);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

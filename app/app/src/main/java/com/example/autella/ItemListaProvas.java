@@ -27,7 +27,6 @@ public class ItemListaProvas extends ArrayAdapter<Prova> {
         private TextView nomeItemListaProvas;
         private TextView idItemListaProvas;
         private TextView dataItemListaProvas;
-
     }
 
     public ItemListaProvas(Context contexto, ArrayList<Prova> provas) {
@@ -45,7 +44,7 @@ public class ItemListaProvas extends ArrayAdapter<Prova> {
         final View resultado;
 
         if (convertView == null) {
-            // View sendo criada pela primeira vez
+            //View sendo criada pela primeira vez.
             novaView = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_lista_provas, parent, false);
@@ -61,7 +60,7 @@ public class ItemListaProvas extends ArrayAdapter<Prova> {
             resultado = convertView;
         }
 
-        // Setar os valores dos campos
+        //Setar os valores dos campos.
         novaView.nomeItemListaProvas.setText(provaAtual.getNome());
         novaView.idItemListaProvas.setText(String.valueOf(provaAtual.getId()));
         novaView.dataItemListaProvas.setText(provaAtual.getDataDeLiberacao());
@@ -69,21 +68,3 @@ public class ItemListaProvas extends ArrayAdapter<Prova> {
         return resultado;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

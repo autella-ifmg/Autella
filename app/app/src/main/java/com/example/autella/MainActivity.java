@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent troca = new Intent(MainActivity.this, VisualizarProvas.class);
+                
                 startActivityForResult(troca, 0);
             }
         });

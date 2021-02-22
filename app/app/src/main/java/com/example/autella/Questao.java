@@ -7,7 +7,5 @@ public class Questao {
         this.alternativaCorreta = alternativaCorreta;
     }
 
-    public String getAlternativaCorreta() {
-        return alternativaCorreta;
-    }
+    public String getAlternativaCorreta() { return alternativaCorreta; }
 }

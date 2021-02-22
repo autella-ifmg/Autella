@@ -42,7 +42,7 @@ public class ItemListaQuestoes extends ArrayAdapter<Questao> {
         final View resultado;
 
         if (convertView == null) {
-            // View sendo criada pela primeira vez
+            //View sendo criada pela primeira vez.
             novaView = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_lista_questoes, parent, false);
@@ -56,26 +56,8 @@ public class ItemListaQuestoes extends ArrayAdapter<Questao> {
             resultado = convertView;
         }
 
-        // Setar os valores dos campos
+        //Setar os valores dos campos.
         novaView.alternativaCorreta.setText("Questão " + (position + 1) + ": " + questaoAtual.getAlternativaCorreta());
         return resultado;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
