@@ -9,7 +9,7 @@ Professor orientador: Carlos Eduardo Paulino Silva (carlos.paulino@ifmg.edu.br)
 
 Aluno 1: João Gabriel Alves Júnior (GabrielJunior42566@gmail.com)
 
-Aluno 2: José Roberto Martins Costa Júnior (juserobertu@gmail.com)
+Aluno 2 (Scrum Master): José Roberto Martins Costa Júnior (jose.r.martins.costa.junior@gmail.com)
 
 Aluno 3: Nicholas Gabriel Rocha Ferreira (nigarofe@gmail.com)
 
