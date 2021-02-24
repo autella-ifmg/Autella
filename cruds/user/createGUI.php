@@ -66,7 +66,7 @@
                 <div class="col-12 mt-3 col-sm-8 mt-sm-0  row">
                     <label class="col-12 pl-0">Instituição</label>
                     <select class="dropdown-toggle btn border col-12" name="institutionId">
-                        <?php institutionNamesToDropdownItems() ?>
+                        <?php institutionNamesToDropdownItems(0) ?>
                     </select>
                 </div>
 

@@ -6,8 +6,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
 
 $id_role = $_SESSION["userData"]["id_role"];
 //var_dump($id_role);
-$id_institution = $_SESSION["userData"]["id_institution"];
-//var_dump($id_role);
 $id_discipline = $_SESSION["userData"]["id_discipline"];
 //var_dump($id_discipline);
 
@@ -28,19 +26,17 @@ if ($id_role != 1 && !($id_role == 5)) {
 $filter = [];
 //Verifica quais filtros foram setados.
 if (isset($_GET["filter"])) {
-    $filter[0] = (isset($_GET["id_institution"]) ? $_GET["id_institution"] : null);
-    $filter[1] = (isset($_GET["id_discipline"]) ? $_GET["id_discipline"] : null);
-    $filter[2] = (isset($_GET["id_subject"]) ? $_GET["id_subject"] : null);
-    $filter[3] = (isset($_GET["dificulty"]) ? $_GET["dificulty"] : null);
-    $filter[4] = (isset($_GET["date"]) ? $_GET["date"] : null);
-    $filter[5] = (isset($_GET["status"]) ? $_GET["status"] : null);
-} else if ($id_role != 1) {
-    $filter[0] = $id_institution;
-    $filter[1] = $id_discipline;
+    $filter[0] = (isset($_GET["id_discipline"]) ? $_GET["id_discipline"] : null);
+    $filter[1] = (isset($_GET["id_subject"]) ? $_GET["id_subject"] : null);
+    $filter[2] = (isset($_GET["dificulty"]) ? $_GET["dificulty"] : null);
+    $filter[3] = (isset($_GET["date"]) ? $_GET["date"] : null);
+    $filter[4] = (isset($_GET["status"]) ? $_GET["status"] : null);
+} else if ($id_role != 1  && !($id_role == 5)) {
+    $filter[0] = $id_discipline;
+    $filter[1] = null;
     $filter[2] = null;
     $filter[3] = null;
-    $filter[4] = null;
-    $filter[5] = (isset($_GET["status"]) ? $_GET["status"] : null);
+    $filter[4] = (isset($_GET["status"]) ? $_GET["status"] : null);
 }
 //var_dump($filter);
 
@@ -73,7 +69,7 @@ function gatheringInfoForFiltersSystem()
                         $php_array[3] = [$_GET[$filter_names[$i]], "date"];
                         break;
                 }
-            } else if ($id_role != 1) {
+            } else if ($id_role != 1  && !($id_role == 5)) {
                 $php_array[0] = ["disciplines", $id_discipline];
             }
         }
@@ -175,7 +171,7 @@ function questionBlocks($questions, $id_role)
 
                 $icons = "";
 
-                if ($id_role == 1 || $questions[$i]["id_user"] == $id_user) {
+                if ($id_role == 1 || $id_role == 5 || $questions[$i]["id_user"] == $id_user) {
                     if ($status == 0) {
                         $icons = '
                         <div class="p-2 w-auto border border-dark border-left-0"><img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive.svg" alt="Arquivar" height="25" onclick="defineModalAction(2, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#unarchiveModal" data-toggle="tooltip" data-placement="bottom" title="Arquivar questão"/></div>

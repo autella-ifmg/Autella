@@ -1,6 +1,6 @@
 <?php
 
-function institutionNamesToDropdownItems()
+function institutionNamesToDropdownItems($action)
 {
     require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
@@ -18,10 +18,18 @@ function institutionNamesToDropdownItems()
     }
 
     for ($i = 0; $i < count($array); $i++) {
-        if ($i == 0) {
-            echo '<option selected="selected" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
+        if ($action == 0) {
+            if ($i == 0) {
+                echo '<option selected="selected" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
+            } else {
+                echo '<option value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
+            }
         } else {
-            echo '<option value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
+            if (($i - 1) == -1) {
+                echo '<option name="null" id="null" value="null" class="dropdown-item" selected="selected">Escolha uma instituição...</option>';
+            }
+
+            echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][1] . '</option>';
         }
     }
 
@@ -47,7 +55,8 @@ function getInstitutionStatus($id_institution)
     $connection->close();
 }
 
-function institutionsToRows(){
+function institutionsToRows()
+{
     require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
     $sql = "SELECT id, full_name, phone, email, status FROM institution";
@@ -72,10 +81,10 @@ function institutionsToRows(){
                             <input type="checkbox" class="custom-control-input" id="customSwitch' . $row[0] . '" onChange="changeInstitutionStatus(' . $row[0] . ')"';
 
             // Se a conta estiver ativada, colocar atributo "checked"
-            if($row[4] == 1){
+            if ($row[4] == 1) {
                 echo 'checked';
             }
-        
+
             echo '>
                             <label style="cursor: pointer;" class="custom-control-label" for="customSwitch' . $row[0] . '"></label>
                         </div>

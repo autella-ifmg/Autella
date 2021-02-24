@@ -123,7 +123,7 @@
                 data: {
                     data
                 },
-                success: function(result) {
+                success: function() {
                     $("#img_toast").attr({
                         src: `../../../libraries/bootstrap/bootstrap-icons-1.0.0/${icon}`,
                         alt: "Disponibilizar gabarito"

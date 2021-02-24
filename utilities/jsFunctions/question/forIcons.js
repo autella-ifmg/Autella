@@ -171,7 +171,7 @@ function archiveQuestion(questionNumber) {
         type: "POST",
         url: "updateSQL.php",
         data: {
-            question_archive_unarchive,
+            question_archive_unarchive
         },
         success: function (success) {
             $("#img_toast").attr({
@@ -195,7 +195,7 @@ function archiveQuestion(questionNumber) {
             $("#result").html(error).fadeIn();
             $("#toast").toast("show");
             //console.log(error);
-        },
+        }
     });
 }
 
@@ -210,7 +210,7 @@ function unarchiveQuestion(questionNumber) {
         type: "POST",
         url: "updateSQL.php",
         data: {
-            question_archive_unarchive,
+            question_archive_unarchive
         },
         success: function (success) {
             $("#img_toast").attr({
@@ -234,7 +234,7 @@ function unarchiveQuestion(questionNumber) {
             $("#result").html(error).fadeIn();
             $("#toast").toast("show");
             //console.log(error);
-        },
+        }
     });
 }
 
@@ -248,7 +248,7 @@ function deleteQuestion(questionNumber) {
         type: "POST",
         url: "updateSQL.php",
         data: {
-            question_delete,
+            question_delete
         },
         success: function (success) {
             $("#img_toast").attr({
@@ -272,6 +272,6 @@ function deleteQuestion(questionNumber) {
             $("#result").html(error).fadeIn();
             $("#toast").toast("show");
             //console.log(error);
-        },
+        }
     });
 }

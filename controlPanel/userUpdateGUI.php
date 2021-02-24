@@ -106,7 +106,7 @@ if (isset($_GET['id'])) {
 
                     <!-- Desabilitar caso não seja o gerenciador do sistema -->
                     <select class="dropdown-toggle btn border col-12" name="institutionId">
-                        <?php institutionNamesToDropdownItems() ?>
+                        <?php institutionNamesToDropdownItems(0) ?>
                     </select>
                 </div>
 

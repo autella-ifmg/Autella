@@ -29,7 +29,7 @@
 
             <!--Botões-->
             <div class="d-flex flex-row justify-content-between mb-3">
-                <a id="button_back" href="../../views/home.php" type="button" class="btn btn-primary w-25 mr-5">Voltar</a>
+                <a href="../../views/home.php" type="button" class="btn btn-primary w-25 mr-5">Voltar</a>
                 <a id="archive" type="button" class="btn btn-info w-25 mr-5">Visualizar questões arquivadas</a>
                 <a href="createGUI.php" type="button" class="btn btn-primary w-25">Criar questão</a>
             </div>
@@ -65,16 +65,6 @@
         //Variável global com o id_role do usário atual.
         $js_var = json_encode($id_role);
         echo "id_role = Number(" . $js_var . ");\n";
-
-        if ($id_role != 5) {
-            //Variável global com o id_institution do usário atual.
-            $js_var = json_encode($id_institution);
-            echo "id_institution = Number(" . $js_var . ");\n";
-        } else {
-            //Variável global com o id_institution do usário atual.
-            $js_var = json_encode($questions[0][6]);
-            echo "id_institution = Number(" . $js_var . ");\n";
-        }
 
         //Variável global com o id_discipline do usário atual.
         $js_var = json_encode($id_discipline);
