@@ -46,7 +46,7 @@ function selectQuestions($limit, $start, $end, $filter)
             $dificulty . $creation_date .
             " ORDER BY discipline.name, subject.name " . $sql_limit;
     }
-    echo $sql;
+    //echo $sql;
     $result = mysqli_query($connection, $sql);
     $array = [];
 
