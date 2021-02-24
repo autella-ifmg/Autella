@@ -19,7 +19,7 @@
         <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/navbar.php'; ?>
     </header>
 
-    <h3 class="text-center font-weight-bold text-secondary mt-3 mb-2">Selecione a instituição que você deseja explorar:</h3>
+    <h4 class="text-center font-weight-bold text-dark mt-3 mb-2">Selecione a instituição que você deseja explorar:</h4>
 
     <div class="d-flex align-items-center mx-4">
         <select name="institutions" id="institutions" class="form-control" onchange="selectInstitution()">
@@ -66,7 +66,7 @@
         function selectInstitution() {
             var selectInstitution = document.getElementById("institutions");
             var id_institution = selectInstitution.value;
-
+            
             var option = document.getElementById(id_institution);
             var institution_name = option.textContent;
 
