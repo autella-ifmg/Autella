@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
 
     $connection->close();
 
-    if (getAccountStatus($_SESSION['userData']['id']) == 2 || getInstitutionStatus($_SESSION['userData']['id_institution']) == 2) {
+    if ((getAccountStatus($_SESSION['userData']['id']) == 2 || getInstitutionStatus($_SESSION['userData']['id_institution']) == 2) && $_SESSION['userData']['id_role'] != 5) {
         session_unset();
         session_destroy();
         header('Location: innactiveAccount.php');
