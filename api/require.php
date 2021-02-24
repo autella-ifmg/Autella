@@ -8,7 +8,7 @@ switch ($_GET['metodo']) {
     case 1: {
             // require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
             require_once $_SERVER['DOCUMENT_ROOT'] . '/autella.com/database/dbConnect.php';
-            $sql = "SELECT name, id, list_release_date FROM tests";
+            $sql = "SELECT name, id, list_release_date FROM tests WHERE status_list_answers = 1";
             $result = mysqli_query($connection, $sql);
 
             $resultado = '{

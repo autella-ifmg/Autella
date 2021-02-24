@@ -1,7 +1,7 @@
 ## Aplicativo
 - [X] Mostrar gabarito
 - [X] Listar provas
-- [ ] Listar somente provas liberadas
+- [X] Listar somente provas liberadas
 - [ ] Notificação de gabarito liberado
 - [ ] Correção do gabarito
 ## Question
