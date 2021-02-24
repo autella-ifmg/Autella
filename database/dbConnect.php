@@ -1,16 +1,17 @@
 <?php
 
+/*
 $host = "200.18.128.52";
 $username = "autella";
 $password = "autella2020";
 $dbname = "autella";
+*/
 
-/*
 $host = "localhost";
 $username = "root";
 $password = "";
 $dbname = "autella";
-*/
+
 
 $connection = new mysqli($host, $username, $password, $dbname);
 

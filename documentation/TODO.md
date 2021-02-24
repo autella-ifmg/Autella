@@ -53,9 +53,13 @@
 - [X] Página de edição detalhada, para editar qualquer atributo de um usuário
 	- [X] GUI
 	- [X] SQLs
+
 ## Painel de controle do gerenciador do sistema
-- [ ] Coisas do painel de controle do coordenador
-- [ ] Coisas do painel de controle do coordenador, mas adaptadas para instituições
+- [X] Tabela de visualização dos dados
+- [X] Botão de visualizar funcionando
+- [X] Institution activate/deactivate
+- [X] Criação de instituições
+
 ## User
 - [X] Create
 	- [X] Alterar modal para arquivos próprios

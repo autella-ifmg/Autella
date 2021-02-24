@@ -30,11 +30,24 @@
                 <li>
                 <a class="nav-link" href="/cruds/globalTest/readListGUI.php">Visualizar Provas Globais</a>
                 </li>
-                <li>
-                    <a class="nav-link" href="/controlPanel/allUsersReadGUI.php">Painel de controle</a>
-                </li>';
+                ';
             }
-            ?>
+            if ($_SESSION['userData']['id_role'] == 1){
+                echo '
+                <li>
+                <a class="nav-link" href="/controlPanel/allUsersReadGUI.php">Painel de controle</a>
+                </li>
+                ';
+            }
+            if ($_SESSION['userData']['id_role'] == 5){
+                echo '
+                <li>
+                <a class="nav-link" href="/controlPanel/allInstitutionsReadGUI.php">Painel de controle</a>
+                </li>
+                ';
+            }   
+            ?>   
+                
         </ul>
 
 

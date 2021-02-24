@@ -46,3 +46,46 @@ function getInstitutionStatus($id_institution)
     }
     $connection->close();
 }
+
+function institutionsToRows(){
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
+
+    $sql = "SELECT id, full_name, phone, email, status FROM institution";
+
+    $result = mysqli_query($connection, $sql);
+
+    if (mysqli_num_rows($result) != 0) {
+        while ($row = mysqli_fetch_array($result)) {
+            echo '
+                <tr>
+                    <td style="vertical-align: middle;"> 
+                        <a class="mt-2" href="/cruds/institution/readGUI.php?id=' . $row[0] . '">
+                            <img style="width: 32px" src="../../libraries/bootstrap/bootstrap-icons-1.0.0/eye.svg">
+                        </a> 
+                    </td>
+                    <td style="vertical-align: middle;">' . $row[1] . '</td>
+                    <td style="vertical-align: middle;">' . $row[2] . '</td>
+                    <td style="vertical-align: middle;">' . $row[3] . '</td>
+
+                    <td style="vertical-align: middle;">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch' . $row[0] . '" onChange="changeInstitutionStatus(' . $row[0] . ')"';
+
+            // Se a conta estiver ativada, colocar atributo "checked"
+            if($row[4] == 1){
+                echo 'checked';
+            }
+        
+            echo '>
+                            <label style="cursor: pointer;" class="custom-control-label" for="customSwitch' . $row[0] . '"></label>
+                        </div>
+                    </td>
+                </tr>
+            ';
+        }
+        // array_push($_SESSION['debug'], 'Usuários selecionados com sucesso!');
+    } else {
+        array_push($_SESSION['debug'], 'Erro ao selecionar usuários!');
+    }
+    $connection->close();
+}
