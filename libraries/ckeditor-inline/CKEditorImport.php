@@ -10,6 +10,11 @@ function forCreate()
     echo "\n";
 
     for ($i = 0; $i < 6; $i++) {
+        if ($i == 0) {
+            $placeholder = 'placeholder: "Insira aqui o enunciado da questão...",';
+        } else {
+            $placeholder = 'placeholder: "Insira aqui o enunciado da alternativa...",';
+        }
         echo '         
     watchdog.setCreator((element' . $i . ', config' . $i . ') => {
         return CKSource.Editor
@@ -26,9 +31,9 @@ function forCreate()
     watchdog.on("error' . $i . '", handleError);
 
     watchdog
-        .create(document.querySelector("#editor' . $i . '"), {
-            placeholder: "Insira aqui o enunciado da questão...",
-            toolbar: {
+        .create(document.querySelector("#editor' . $i . '"), {' .
+             $placeholder .
+            'toolbar: {
                 items: [
                     "heading",
                     "|",

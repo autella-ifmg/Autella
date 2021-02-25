@@ -18,16 +18,6 @@ if (isset($_POST["submit"])) {
     $correctAnswer = $_POST["correctAnswer"];
     $status = 1;
 
-    //Obtém cada uma das alternativas e agrega elas no enunciado da questão.
-    $answersEnunciate = "";
-    $letters = ["A", "B", "C", "D", "E"];
-
-    for ($i = 0; $i < 5; $i++) {
-        $answersEnunciate .= "<br>" . "$letters[$i]) " . addslashes($_POST["question$i"]);
-    }
-
-    $enunciate .= "\n" . $answersEnunciate;
-
     $sql = "INSERT INTO question (creation_date, id_user, id_subject, dificulty, enunciate, correctAnswer, status) VALUES ('$creation_date', '$id_user', '$id_subject', '$dificulty', '$enunciate', '$correctAnswer', '$status');";
 
     if ($connection->query($sql) === TRUE) {

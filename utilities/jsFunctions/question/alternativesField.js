@@ -16,7 +16,7 @@ function alternativesField() {
     div_container.appendChild(img);
 
     let div_editor = document.createElement("div");
-    div_editor.setAttribute("name", `question${i}`);
+    div_editor.setAttribute("name", `editor${i+1}`);
     div_editor.setAttribute("id", `editor${i+1}`);
     div_editor.setAttribute("class", "ml-1 mb-3 rounded");
     div_editor.setAttribute("style", "min-width: 48rem; max-width: 48rem; min-height: 5rem; max-height: 5rem; border: 1px solid gray;");

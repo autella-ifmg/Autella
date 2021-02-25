@@ -1,12 +1,26 @@
 //Função que cria a ponte CKEditor-PHP.
 document.querySelector("#submit").addEventListener("click", () => {
-  var editorData = document.querySelector("#editor0").children;
-
   var data = "";
-  for (let i = 0; i < editorData.length; i++) {
-    data += editorData[i].outerHTML;
-    data += "\n";
+  var letters = ["A", "B", "C", "D", "E"];
+
+  for (let i = 0; i < 6; i++) {
+    var editorData = document.querySelector(`#editor${i}`).children;
+
+    for (let aux = 0; aux < editorData.length; aux++) {
+      if (i == 0) {
+        data += editorData[aux].outerHTML;
+        data += "\n";
+      }
+
+      if (i != 0) {
+        data += `${letters[i-1]}) ${editorData[aux].outerHTML}\n`;
+      } else {
+        data += "\n";
+      }
+    }
   }
+
+  //console.log(data);
 
   var invisibleInput = document.createElement("input");
   invisibleInput.setAttribute("name", "enunciate");
