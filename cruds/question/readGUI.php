@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
-    <script src="../../libraries/ckeditor/build/ckeditor.js"></script>
+    <script src="../../libraries/ckeditor-inline/build/ckeditor.js"></script>
     <?php
     require_once "readSQL.php";
-    require_once "../../libraries/ckeditor/CKEditorImport.php";
+    require_once "../../libraries/ckeditor-inline/CKEditorImport.php";
     ?>
 </head>
 

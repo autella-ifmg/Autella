@@ -1,6 +1,6 @@
 //Função que cria a ponte CKEditor-PHP.
 document.querySelector("#submit").addEventListener("click", () => {
-  var editorData = document.querySelector("#editor").children;
+  var editorData = document.querySelector("#editor0").children;
 
   var data = "";
   for (let i = 0; i < editorData.length; i++) {

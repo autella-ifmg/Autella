@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
-    <script src="../../libraries/ckeditor/build/ckeditor.js"></script>
+    <script src="../../libraries/ckeditor-inline/build/ckeditor.js"></script>
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/discipline.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/subject.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
-    require_once "../../libraries/ckeditor/CKEditorImport.php";
+    require_once "../../libraries/ckeditor-inline/CKEditorImport.php";
 
     $id_role = $_SESSION["userData"]["id_role"];
     //var_dump($id_role);
@@ -91,8 +91,7 @@
 
                 <!--Enunciado da questão-->
                 <div class="mb-3">
-                    <div id="toolbar" style="min-width: 72rem; max-width: 72rem;"></div>
-                    <div name="editor" id="editor" style="min-width: 72rem; max-width: 72rem; min-height: 20rem; max-height: 20rem; border: 1px solid gray;"><?php echo $questionForUpdate["enunciate"]; ?></div>
+                    <div id="editor" style="min-width: 72rem; max-width: 72rem; min-height: 20rem; max-height: 20rem; border: 1px solid gray;"><?php echo $questionForUpdate["enunciate"]; ?></div>
                 </div>
 
                 <hr>
@@ -150,7 +149,7 @@
     </script>
 
     <!--CKEditor-->
-    <?php forEditing() ?>
+    <?php forUpdate() ?>
 </body>
 
 </html>

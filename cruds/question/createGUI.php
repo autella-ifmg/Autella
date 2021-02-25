@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
-    <script src="../../libraries/ckeditor/build/ckeditor.js"></script>
+    <script src="../../libraries/ckeditor-inline/build/ckeditor.js"></script>
     <?php
     require_once "createSQL.php";
-    require_once "../../libraries/ckeditor/CKEditorImport.php";
+    require_once "../../libraries/ckeditor-inline/CKEditorImport.php";
     ?>
 </head>
 
@@ -19,7 +19,7 @@
     <!--NavBar-->
     <?php require_once '../../views/navbar.php'; ?>
 
-    <section class="d-flex justify-content-center mt-4">
+    <section class="d-flex justify-content-center mt-2">
         <div class="d-flex flex-column">
             <form id="questionForm" action="createSQL.php" method="post">
                 <div class="d-flex flex-row mb-2 justify-content-between">
@@ -64,10 +64,7 @@
                 <hr>
 
                 <!--Enunciado da questão-->
-                <div>
-                    <div id="toolbar" style="min-width: 72rem; max-width: 72rem;"></div>
-                    <div name="editor" id="editor" style="min-width: 72rem; max-width: 72rem; min-height: 20rem; max-height: 20rem; border: 1px solid gray;"></div>
-                </div>
+                <div id="editor0" style="min-width: 72rem; max-width: 72rem; min-height: 20rem; max-height: 20rem; border: 1px solid gray;"></div>
 
                 <!--Alternativas-->
                 <div class="d-flex justify-content-center">
@@ -117,7 +114,8 @@
     </script>
 
     <!--CKEditor-->
-    <?php forEditing() ?>
+    <?php forCreate() ?>
+
 </body>
 
 </html>

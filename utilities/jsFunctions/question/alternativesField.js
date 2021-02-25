@@ -4,29 +4,22 @@ function alternativesField() {
   letters = ["A", "B", "C", "D", "E"];
 
   for (let i = 0; i < 5; i++) {
-    let div = document.createElement("div");
-    div.setAttribute("id", "div_container");
-    div.setAttribute("class", "d-flex flex-row");
-    alternatives_container.appendChild(div);
+    let div_container = document.createElement("div");
+    div_container.setAttribute("id", "div_container");
+    div_container.setAttribute("class", "d-flex flex-row");
+    alternatives_container.appendChild(div_container);
 
     let img = document.createElement("img");
     img.setAttribute("src", `../../images/alternatives/${letters[i]}.png`);
     img.setAttribute("alt", letters[i]);
     img.setAttribute("class", "bg-info rounded-circle mr-1 mb-3");
-    div.appendChild(img);
+    div_container.appendChild(img);
 
-    let textarea = document.createElement("textarea");
-    textarea.setAttribute("name", `question${i}`);
-    textarea.setAttribute("id", `question${i}`);
-    textarea.setAttribute("cols", "125");
-    textarea.setAttribute("rows", "3");
-    textarea.setAttribute("class", "ml-1 mb-3 rounded");
-    textarea.setAttribute("style", "resize: none;");
-    textarea.setAttribute(
-      "placeholder",
-      "Insira o enunciado da alternativa..."
-    );
-    textarea.setAttribute("required", "required");
-    div.appendChild(textarea);
+    let div_editor = document.createElement("div");
+    div_editor.setAttribute("name", `question${i}`);
+    div_editor.setAttribute("id", `editor${i+1}`);
+    div_editor.setAttribute("class", "ml-1 mb-3 rounded");
+    div_editor.setAttribute("style", "min-width: 48rem; max-width: 48rem; min-height: 5rem; max-height: 5rem; border: 1px solid gray;");
+    div_container.appendChild(div_editor);
   }
 }

@@ -12,13 +12,13 @@
 	- [X] Tratamento para inserção de apóstrofo
 	- [X] Otimização de códigos
 	- [X] Otimização de importações
+	- [X] CKEditor Custom
 	- [ ] Tratamento para inserção de imagens
 	- [ ] Responsividade
-	- [X] CKEditor Custom
 	
-- [ ] Create
+- [X] Create
 	- [X] Configurar o toast de criação de questão
-	- [ ] Permitir que os campos de alternativas também sejam formatados
+	- [X] Permitir que os campos de alternativas também sejam formatados
 
 - [X] Read
 	- [X] Adicionar paginação
