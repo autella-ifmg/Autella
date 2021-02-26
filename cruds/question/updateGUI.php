@@ -91,7 +91,7 @@
 
                 <!--Enunciado da questão-->
                 <div class="mb-3">
-                    <div id="editor" style="min-width: 72rem; max-width: 72rem; min-height: 20rem; max-height: 20rem; border: 1px solid gray;"><?php echo $questionForUpdate["enunciate"]; ?></div>
+                    <div id="editor0" style="min-width: 72rem; max-width: 72rem; min-height: 20rem; max-height: 20rem; border: 1px solid gray;"><?php echo $questionForUpdate["enunciate"]; ?></div>
                 </div>
 
                 <hr>

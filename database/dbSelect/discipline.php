@@ -4,7 +4,7 @@ function selectDisciplines()
 {
     require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
-    $sql = "SELECT * FROM discipline;";
+    $sql = "SELECT * FROM discipline ORDER BY name";
     $result = mysqli_query($connection, $sql);
     $array = [];
 

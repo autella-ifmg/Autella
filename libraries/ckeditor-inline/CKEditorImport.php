@@ -32,7 +32,7 @@ function forCreate()
 
     watchdog
         .create(document.querySelector("#editor' . $i . '"), {' .
-             $placeholder .
+            $placeholder .
             'toolbar: {
                 items: [
                     "heading",
@@ -166,22 +166,22 @@ function forUpdate()
 
     window.watchdog = watchdog;
 
-    watchdog.setCreator((element, config) => {
+    watchdog.setCreator((element0, config0) => {
         return CKSource.Editor
-            .create(element, config)
-            .then(editor => {
-                return editor;
+            .create(element0, config0)
+            .then(editor0 => {
+                return editor0;
             })
     });
 
-    watchdog.setDestructor(editor => {
-        return editor.destroy();
+    watchdog.setDestructor(editor0 => {
+        return editor0.destroy();
     });
 
-    watchdog.on("error", handleError);
+    watchdog.on("error0", handleError);
 
     watchdog
-        .create(document.querySelector("#editor"), {
+        .create(document.querySelector("#editor0"), {
             toolbar: {
                 items: [
                     "heading",

@@ -4,18 +4,20 @@ document.querySelector("#submit").addEventListener("click", () => {
   var letters = ["A", "B", "C", "D", "E"];
 
   for (let i = 0; i < 6; i++) {
-    var editorData = document.querySelector(`#editor${i}`).children;
+    var editorData = document.querySelector(page_action == 2 ? `#editor${i}` : "#editor0").children;
 
     for (let aux = 0; aux < editorData.length; aux++) {
       if (i == 0) {
         data += editorData[aux].outerHTML;
-        data += "\n";
+        data += "<br>";
       }
 
-      if (i != 0) {
-        data += `${letters[i-1]}) ${editorData[aux].outerHTML}\n`;
-      } else {
-        data += "\n";
+      if (page_action == 2) {
+        if (i != 0) {
+          data += `${letters[i-1]}) ${editorData[aux].outerHTML} <br>`;
+        } else {
+          data += "<br>";
+        }
       }
     }
   }
