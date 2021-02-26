@@ -19,7 +19,7 @@ function forCreate()
     watchdog.setCreator((element' . $i . ', config' . $i . ') => {
         return CKSource.Editor
             .create(element' . $i . ', config' . $i . ')
-            .then(editor' . $i . ' => {
+            .then(editor' . $i . ' => { 
                 return editor' . $i . ';
             })
     });

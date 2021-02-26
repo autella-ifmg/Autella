@@ -8,8 +8,8 @@
 - [ ] Geral
 	- [X] Configurar ações do coordenador
 	- [X] Deixar valores dos dropdowns pré-selecionados
-	- [X] Remover selectAlternativesQuant
 	- [X] Tratamento para inserção de apóstrofo
+	- [X] Barrar create e update quando houver algum campo vazio
 	- [X] Otimização de códigos
 	- [X] Otimização de importações
 	- [X] CKEditor Custom

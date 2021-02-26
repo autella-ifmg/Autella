@@ -21,13 +21,13 @@ echo "
                     }
                     
                     form.classList.add('was-validated');
-                }   
+                } 
             }, false);
         });
     }, false);
 })();
 
-// Verify if inputPassword and inputConfirmPassword match
+//Verify if inputPassword and inputConfirmPassword match
 function checarSenhas() {
     let p1 = document.querySelector('#password');
     let p2 = document.querySelector('#confirmPassword');
@@ -40,23 +40,5 @@ function checarSenhas() {
         return false;
     }
 }
-
-/* Verify if CKEditor is empty
-function ckeditorIsEmpty() {
-    let invisibleInput = document.getElementById('enunciate');
-    invisibleInput = invisibleInput.value;
-
-    if(invisibleInput){
-        return true;
-    } else {
-        invisibleInput.classList.add('is-invalid');
-        return false;
-    }
-}
-else if (ckeditorIsEmpty() === false) {
-    event.preventDefault();
-    event.stopPropagation();
-} 
-*/
 </script>
 ";
