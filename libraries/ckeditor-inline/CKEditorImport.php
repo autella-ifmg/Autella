@@ -2,6 +2,8 @@
 
 function forCreate()
 {
+    $letters = ["A", "B", "C", "D", "E"];
+
     echo '<script>
     const watchdog = new CKSource.Watchdog();
 
@@ -11,9 +13,9 @@ function forCreate()
 
     for ($i = 0; $i < 6; $i++) {
         if ($i == 0) {
-            $placeholder = 'placeholder: "Insira aqui o enunciado da questão...",';
+            $placeholder = 'placeholder: "Enunciado da questão...",';
         } else {
-            $placeholder = 'placeholder: "Insira aqui o enunciado da alternativa...",';
+            $placeholder = 'placeholder: "Insira aqui a alternativa ' . $letters[$i-1] . '...",';
         }
         echo '         
     watchdog.setCreator((element' . $i . ', config' . $i . ') => {

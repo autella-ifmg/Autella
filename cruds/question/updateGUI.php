@@ -119,20 +119,19 @@
 
             for (let i = 0; i < 6; i++) {
                 var editorData = document.querySelector(page_action == 2 ? `#editor${i}` : "#editor0").children;
-
                 for (let aux = 0; aux < editorData.length; aux++) {
                     if (page_action == 2) {
-                        if (i == 0 && editorData[aux].outerHTML != '<p class="ck-placeholder" data-placeholder="Insira aqui o enunciado da questão..."><br data-cke-filler="true"></p>' && editorData[aux].outerHTML != '<p data-placeholder="Insira aqui o enunciado da questão..." class="ck-placeholder"><br data-cke-filler="true"></p>') {
+                        if (i == 0 && editorData[aux].outerHTML != '<p class="ck-placeholder" data-placeholder="Enunciado da questão..."><br data-cke-filler="true"></p>' && editorData[aux].outerHTML != '<p data-placeholder="Enunciado da questão..." class="ck-placeholder"><br data-cke-filler="true"></p>') {
                             data += editorData[aux].outerHTML;
-                            data = data.replace(' data-placeholder="Insira aqui o enunciado da questão..."', "");
+                            data = data.replace(' data-placeholder="Enunciado da questão..."', "");
                         } else if (i == 0) {
                             alert(`Por favor, insira o enunciado da questão!`);
                         }
 
                         if (data) {
-                            if (i != 0 && editorData[aux].outerHTML != '<p class="ck-placeholder" data-placeholder="Insira aqui o enunciado da alternativa..."><br data-cke-filler="true"></p>' && editorData[aux].outerHTML != '<p data-placeholder="Insira aqui o enunciado da alternativa..." class="ck-placeholder"><br data-cke-filler="true"></p>') {
+                            if (i != 0 && editorData[aux].outerHTML != `<p class="ck-placeholder" data-placeholder="Insira aqui a alternativa ${letters[i-1]}..."><br data-cke-filler="true"></p>` && editorData[aux].outerHTML != `<p data-placeholder="Insira aqui a alternativa ${letters[i-1]}..." class="ck-placeholder"><br data-cke-filler="true"></p>`) {
                                 data += `${letters[i-1]}) ${editorData[aux].outerHTML}`;
-                                data = data.replace(' data-placeholder="Insira aqui o enunciado da alternativa..."', "");
+                                data = data.replace(` data-placeholder="Alternativa ${letters[i-1]}"`, "");
 
                                 console.log(editorData[aux].outerHTML);
                                 console.log("here!")
@@ -142,9 +141,9 @@
                             }
                         }
                     } else {
-                        if (i == 0 && editorData[aux].outerHTML != '<p class="ck-placeholder" data-placeholder="Insira aqui o enunciado da questão..."><br data-cke-filler="true"></p>' && editorData[aux].outerHTML != '<p data-placeholder="Insira aqui o enunciado da questão..." class="ck-placeholder"><br data-cke-filler="true"></p>' && editorData[aux].outerHTML != '<p><br data-cke-filler="true"></p>') {
+                        if (i == 0 && editorData[aux].outerHTML != '<p class="ck-placeholder" data-placeholder="Enunciado da questão..."><br data-cke-filler="true"></p>' && editorData[aux].outerHTML != '<p data-placeholder="Enunciado da questão..." class="ck-placeholder"><br data-cke-filler="true"></p>' && editorData[aux].outerHTML != '<p><br data-cke-filler="true"></p>') {
                             data += editorData[aux].outerHTML;
-                            data = data.replace(' data-placeholder="Insira aqui o enunciado da questão..."', "");
+                            data = data.replace(' data-placeholder="Enunciado da questão..."', "");
                         } else if (i == 0) {
                             alert(`Ops, você não pode retirar o enunciado de uma questão.`);
                         }
