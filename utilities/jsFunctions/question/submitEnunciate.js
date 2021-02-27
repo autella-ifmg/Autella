@@ -12,19 +12,21 @@ document.querySelector("#submit").addEventListener("click", (event) => {
           data += editorData[aux].outerHTML;
           data = data.replace(' data-placeholder="Enunciado da questão..."', "");
         } else if (i == 0) {
-          alert(`Por favor, insira o enunciado da questão!`);
+          $('#enunciate_popover').popover('show');
+          //alert('Insira o enunciado da questão.');
         }
 
         if (data) {
           if (i != 0 && editorData[aux].outerHTML != `<p class="ck-placeholder" data-placeholder="Insira aqui a alternativa ${letters[i-1]}..."><br data-cke-filler="true"></p>` && editorData[aux].outerHTML != `<p data-placeholder="Insira aqui a alternativa ${letters[i-1]}..." class="ck-placeholder"><br data-cke-filler="true"></p>`) {
             data += `${letters[i-1]}) ${editorData[aux].outerHTML}`;
-            data = data.replace(` data-placeholder="Alternativa ${letters[i-1]}"`, "");
+            data = data.replace(` data-placeholder="Insira aqui a alternativa ${letters[i-1]}..."`, "");
 
-            console.log(editorData[aux].outerHTML);
-            console.log("here!")
+            //console.log('here!')
           } else if (i != 0) {
-            alert(`Por favor, preencha o campo da alternativa ${letters[i-1]}!`);
             data = "";
+
+            $(`#alternative_popover${i}`).popover('show');
+            //alert('Preencha este campo.');
           }
         }
       } else {
@@ -32,7 +34,8 @@ document.querySelector("#submit").addEventListener("click", (event) => {
           data += editorData[aux].outerHTML;
           data = data.replace(' data-placeholder="Enunciado da questão..."', "");
         } else if (i == 0) {
-          alert(`Ops, você não pode retirar o enunciado de uma questão.`);
+          $('#enunciate_popover').popover('show');
+          //alert('Este campo não pode ficar vazio.');
         }
       }
     }
@@ -56,3 +59,7 @@ document.querySelector("#submit").addEventListener("click", (event) => {
   }
 
 });
+
+function disablePopover(location) {
+  $(`${location}`).popover('dispose');
+}

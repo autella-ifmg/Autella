@@ -4,22 +4,27 @@ function alternativesField() {
   letters = ["A", "B", "C", "D", "E"];
 
   for (let i = 0; i < 5; i++) {
-    let div_container = document.createElement("div");
-    div_container.setAttribute("id", "div_container");
-    div_container.setAttribute("class", "d-flex flex-row");
-    alternatives_container.appendChild(div_container);
+    let span_container = document.createElement("span");
+    span_container.setAttribute("id", `alternative_popover${i+1}`);
+    span_container.setAttribute("class", "d-flex flex-row");
+    span_container.setAttribute("data-toggle", "popover");
+    span_container.setAttribute("data-placement", "top");
+    span_container.setAttribute("data-html", "true");
+    span_container.setAttribute("data-content", '<img class="p-1 w-auto h-auto" src="../../images/question/warning.png" alt="Atenção!"> Preencha este campo.')
+    alternatives_container.appendChild(span_container);
 
     let img = document.createElement("img");
-    img.setAttribute("src", `../../images/alternatives/${letters[i]}.png`);
+    img.setAttribute("src", `../../images/question/alternatives/${letters[i]}.png`);
     img.setAttribute("alt", letters[i]);
     img.setAttribute("class", "bg-info rounded-circle mr-1 mb-3");
-    div_container.appendChild(img);
+    span_container.appendChild(img);
 
     let div_editor = document.createElement("div");
     div_editor.setAttribute("name", `editor${i+1}`);
     div_editor.setAttribute("id", `editor${i+1}`);
     div_editor.setAttribute("class", "ml-1 mb-3 rounded");
     div_editor.setAttribute("style", "min-width: 48rem; max-width: 48rem; min-height: 5rem; max-height: 5rem; border: 1px solid gray;");
-    div_container.appendChild(div_editor);
+    div_editor.setAttribute("onclick", `disablePopover('#alternative_popover${i+1}')`);
+    span_container.appendChild(div_editor);
   }
 }
