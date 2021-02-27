@@ -1,5 +1,5 @@
 <?php
-if(!empty($questions) && (count($questions) > 1)) {
+if (!empty($questions)  && !(count($questions) == 0)) {
     echo '
     <div class="d-flex justify-content-around">
         <ul class="pagination">
@@ -8,16 +8,16 @@ if(!empty($questions) && (count($questions) > 1)) {
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>';
-            for ($i = 1; $i <= $totalPages; $i++) {
-                $style = "";
+    for ($i = 1; $i <= $totalPages; $i++) {
+        $style = "";
 
-                if ($current == $i) {
-                    $style = " active";
-                }
-            
-                echo '<li class="page-item' . $style . '"><a class="page-link" href="readGUI.php?pag=' . $i . '">' . $i . '</a></li>';
-            } 
-            echo '<li class="page-item">
+        if ($current == $i) {
+            $style = " active";
+        }
+
+        echo '<li class="page-item' . $style . '"><a class="page-link" href="' . $url . 'pag=' . $i . '&">' . $i . '</a></li>';
+    }
+    echo '<li class="page-item">
                 <a class="page-link" href="' . $url . 'pag=' . ($current < $totalPages ? $current + 1 : $totalPages) . '&" aria-label="Próximo">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
