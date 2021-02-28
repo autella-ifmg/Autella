@@ -5,6 +5,8 @@
 - [ ] Notificação de gabarito liberado
 - [ ] Correção do gabarito
 ## Question
+- [ ] Revisar todos os códigos
+  
 - [ ] Geral
 	- [X] Configurar ações do coordenador
 	- [X] Deixar valores dos dropdowns pré-selecionados
