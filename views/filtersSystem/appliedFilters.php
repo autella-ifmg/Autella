@@ -3,7 +3,7 @@ echo '
     <div class="border border-muted rounded mb-3">
         <div id="container_filters" class="d-flex flex-row mt-2">
             <div class="w-auto mt-1 ml-2 mr-4 mb-1 text-primary">
-                <h6 style="width: 69px; font-size: 0.80em; text-align: left;">Filtro(s) selecionado(s):</h6>
+                <h6 style="width: 72px; font-size: 0.80em; text-align: left;">Filtro(s) selecionado(s):</h6>
             </div>';
 //style="width: 69px; font-size: 0.84em; text-align: left;"
 if (isset($_GET["filter"])) {

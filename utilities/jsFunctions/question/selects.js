@@ -1,8 +1,7 @@
 //Função para inserir as matérias no selectSubjects.
 function updateSubjects() {
   if (id_role == 1 || id_role == 5 || page_action == 2) {
-    var selectDiscipline = document.getElementById("disciplines");
-    selectDiscipline = selectDiscipline.value;
+    selectDiscipline = appliedFilters[0];
   } else {
     var selectDiscipline = id_discipline;
   }

@@ -54,42 +54,24 @@ function blockFilterSelects() {
 
     if (filtersSystemData != null) {
         for (let i = 0; i < 4; i++) {
+            //console.log(`i: ${i}`)
             //console.log(`filtersSystemData[i]: ${filtersSystemData[i]}`);
             if (filtersSystemData[i] != "false") {
+                appliedFilters[i] = filtersSystemData[i][0];
+
                 //console.log(`id_role: ${id_role}`);
-                //console.log(`i: ${i}`);
-                if ((id_role == 1 || id_role == 5) || i > 0) {
-                    appliedFilters[i] = filtersSystemData[i][0];
-
-                    if (i < 3) {
-                        var value = filtersSystemData[i][0];
-                        //console.log(`value: ${value}`);
-                        //console.log(`filtersSystemData[i][1]: ${filtersSystemData[i][1]}`);
-                        //console.log(`document.querySelector('#${filtersSystemData[i][1]} [value="${value}"]').selected = true;`);
-                        document.querySelector(`#${filtersSystemData[i][1]} [value="${value}"]`).selected = true;
-
-                        if (id_role == 1 || id_role == 5) {
-                            if (i != 0) {
-                                document.querySelector(`#${filtersSystemData[i][1]} [value="${value}"]`).selected = true;
-                            } else {
-                                document.querySelector(`#${filtersSystemData[0][1]} [value="${filtersSystemData[0][0]}"]`).selected = true;
-                                updateSubjects();
-                            }
-
-                        }
-                    } else {
-                        var date_picker = document.getElementById(filtersSystemData[i][1]);
-                        date_picker.setAttribute("value", filtersSystemData[i][0]);
-                    }
-
-                    $(`#${filtersSystemData[i][1]}`).attr('disabled', 'disabled');
+                if (id_role == 1 || id_role == 5) {
+                    updateSubjects();
                 }
+
+                $(`#${filtersSystemData[i][1]}`).attr('disabled', 'disabled');
             }
         }
-
-        //window.history.pushState({}, "Autella | Visualizar questões", `${url}`);
     }
+
+    //window.history.pushState({}, "Autella | Visualizar questões", `${url}`);
 }
+
 
 function removeFilterFromList(selected_filter) {
     container_filter = document.getElementById(selected_filter);

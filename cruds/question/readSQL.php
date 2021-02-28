@@ -69,8 +69,8 @@ function gatheringInfoForFiltersSystem()
                         $php_array[3] = [$_GET[$filter_names[$i]], "date"];
                         break;
                 }
-            } else if ($id_role != 1  && !($id_role == 5)) {
-                $php_array[0] = ["disciplines", $id_discipline];
+            } else if ($id_role != 1 && $id_role != 5) {
+                $php_array[0] = [$id_discipline, "disciplines"];
             }
         }
 
@@ -238,7 +238,6 @@ function questionBlocks($questions, $id_role)
                     <div class="d-flex flex-row">
                         <div class="p-2 w-25 border border-dark">Nº:</div>
                         <div class="p-2 w-25 border border-dark border-left-0">Criada por:</div>
-
                         <div class="p-2 flex-fill border border-dark border-left-0">Criada em:</div>
                     </div>
 
