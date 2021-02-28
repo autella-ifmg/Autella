@@ -31,7 +31,7 @@ if (isset($_GET["filter"])) {
     $filter[2] = (isset($_GET["dificulty"]) ? $_GET["dificulty"] : null);
     $filter[3] = (isset($_GET["date"]) ? $_GET["date"] : null);
     $filter[4] = (isset($_GET["status"]) ? $_GET["status"] : null);
-} else if ($id_role != 1  && !($id_role == 5)) {
+} else if ($id_role != 1  && $id_role != 5) {
     $filter[0] = $id_discipline;
     $filter[1] = null;
     $filter[2] = null;

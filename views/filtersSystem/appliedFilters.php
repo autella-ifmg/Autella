@@ -10,38 +10,55 @@ if (isset($_GET["filter"])) {
     for ($i = 0; $i < $structuresQuantity; $i++) {
         if ($i != ($structuresQuantity - 1)) {
             echo '
-            <div id="' . $select_names[$i] . '" class="d-flex justify-content-between ' . $class_div . ' form-control">';
+            <div id="' . $select_names[$i] . '" class="' . $class_div . ' form-control">';
         } else {
             echo '
-            <div id="' . $select_names[$i] . '" class="d-flex justify-content-between ' . $mr_exception . ' form-control">';
+            <div id="' . $select_names[$i] . '" class="' . $mr_exception . ' form-control">';
         }
 
         if (!empty($_GET[$filter_names[$i]])) {
             switch ($filter_names[$i]) {
                 case 'id_discipline':
-                    $content = selectDisciplineName($_GET[("id_discipline")]);
+                    $label_content = selectDisciplineName($_GET[("id_discipline")]);
                     break;
                 case 'id_subject':
-                    $content = selectSubjectName($_GET[("id_subject")]);
+                    $label_content = selectSubjectName($_GET[("id_subject")]);
                     break;
                 case 'dificulty':
-                    $content = dificultyTratament($_GET[("dificulty")]);
+                    $label_content = dificultyTratament($_GET[("dificulty")]);
                     break;
                 case 'date':
-                    $content = dateTratament($_GET[("date")]);
+                    $label_content = dateTratament($_GET[("date")]);
                     break;
             }
 
+            $string_array = str_split($label_content);
+
+            if (count($string_array) >= 25) {
+                $label_content = "";
+
+                for ($aux = 0; $aux < 22; $aux++) {
+                    if ($string_array[21] == " ") {
+                        $string_array[21] = "";
+                    }
+
+                    $label_content .= $string_array[$aux];
+                }
+
+                $label_content .= "...";
+                //$aux_array = str_split($label_content);
+            }
+
             echo '
-                <label>' . $content . '</label>
-                <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/x-circle-fill.svg" alt="Remover filtro" onclick="removeFilterFromList(\'' . $select_names[$i] . '\')">
+                <label class="float-left">' . $label_content . '</label>
+                <img class="float-right mt-1"src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/x-circle-fill.svg" alt="Remover filtro" onclick="removeFilterFromList(\'' . $select_names[$i] . '\')">
             </div>
             ';
         } else {
-            $content = 'Nenhum';
+            $label_content = 'Nenhum';
 
             echo '
-                <label class="text-muted">' . $content . '</label>
+                <label class="text-muted">' . $label_content . '</label>
             </div>
             ';
         }
@@ -62,3 +79,5 @@ echo '
         </div>
     </div>
 ';
+
+//var_dump($aux_array);

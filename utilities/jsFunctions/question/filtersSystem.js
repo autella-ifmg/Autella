@@ -48,28 +48,34 @@ function applySelectedFilters() {
 }
 
 function blockFilterSelects() {
-    if (id_role != 1) {
+    if (id_role != 1 && id_role != 5) {
         appliedFilters[0] = id_discipline;
     }
 
     if (filtersSystemData != null) {
         for (let i = 0; i < 4; i++) {
+            //console.log(`filtersSystemData[i]: ${filtersSystemData[i]}`);
             if (filtersSystemData[i] != "false") {
-                if (id_role == 1 || i > 0) {
+                //console.log(`id_role: ${id_role}`);
+                //console.log(`i: ${i}`);
+                if ((id_role == 1 || id_role == 5) || i > 0) {
                     appliedFilters[i] = filtersSystemData[i][0];
 
                     if (i < 3) {
                         var value = filtersSystemData[i][0];
+                        //console.log(`value: ${value}`);
+                        //console.log(`filtersSystemData[i][1]: ${filtersSystemData[i][1]}`);
+                        //console.log(`document.querySelector('#${filtersSystemData[i][1]} [value="${value}"]').selected = true;`);
                         document.querySelector(`#${filtersSystemData[i][1]} [value="${value}"]`).selected = true;
 
-                        if (id_role == 1) {
-                            updateSubjects();
-                            if (i == 0) {
+                        if (id_role == 1 || id_role == 5) {
+                            if (i != 0) {
                                 document.querySelector(`#${filtersSystemData[i][1]} [value="${value}"]`).selected = true;
                             } else {
-                                document.querySelector(`#${filtersSystemData[1][1]} [value="${filtersSystemData[1][0]}"]`).selected = true;
-
+                                document.querySelector(`#${filtersSystemData[0][1]} [value="${filtersSystemData[0][0]}"]`).selected = true;
+                                updateSubjects();
                             }
+
                         }
                     } else {
                         var date_picker = document.getElementById(filtersSystemData[i][1]);
@@ -105,7 +111,6 @@ function removeFilterFromList(selected_filter) {
         appliedFilters[1] = "";
 
         filtersSystemData[1] = "false";
-
     }
 
     switch (selected_filter) {
