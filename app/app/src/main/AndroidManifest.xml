@@ -22,5 +22,4 @@
         <activity android:name=".VisualizarProvas"></activity>
         <activity android:name=".VisualizarGabarito"></activity>
     </application>
-
 </manifest>
