@@ -2,7 +2,7 @@
 - [X] Mostrar gabarito
 - [X] Listar provas
 - [X] Listar somente provas liberadas
-- [ ] Notificação de gabarito liberado
+- [X] Notificação de gabarito liberado
 - [ ] Correção do gabarito
 ## Question
 - [ ] Revisar todos os códigos

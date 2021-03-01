@@ -133,7 +133,7 @@
                     setTimeout(5000);
                     //console.log(message);
                     if(header == "Disponível!"){
-                        window.location.href = "notificacao.php";
+                        window.location.href = 'notificacao.php?nomeDaProva="' + name_test + '"';
                     }
                 }
             });
