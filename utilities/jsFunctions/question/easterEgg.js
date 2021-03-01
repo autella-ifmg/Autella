@@ -1,5 +1,5 @@
 function easterEgg() {
-    var easter_egg = 1;
+    var easter_egg = "sYmboic_value";
 
     $.ajax({
         type: "POST",

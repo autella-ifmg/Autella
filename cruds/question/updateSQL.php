@@ -84,13 +84,22 @@ if (isset($_POST['question_delete'])) {
 if (isset($_POST['easter_egg'])) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
-    $sql = "SELECT enunciate FROM question WHERE id = '0'";
+    $id_user = $_SESSION["userData"]["id"];
+    $counter = [];
+
+    $sql = "SELECT counter FROM easter_egg WHERE id_user = '$id_user'";
 
     $result = mysqli_query($connection, $sql);
 
-    $result = intval(mysqli_fetch_array($result)[0]) + $_POST['easter_egg'];
-
-    $sql = "UPDATE question SET enunciate = '$result' WHERE id = '0'";
+    if (mysqli_num_rows($result) == 0) {
+        $sql = "INSERT INTO easter_egg (`counter`, `id_user`) VALUES ('1', '$id_user')";
+    } else {
+        $counter = mysqli_fetch_row($result);
+        $counter[0] += 1;
+        //var_dump($counter);
+      
+        $sql = "UPDATE easter_egg SET counter = '$counter[0]' WHERE id_user = '$id_user'";
+    }
 
     $message = "É normal imaginar que esse ícone é um botão...";
 
@@ -114,7 +123,7 @@ if (isset($_POST["data"])) {
     $id_test = $array[2];
 
     date_default_timezone_set("America/Sao_Paulo");
-    $release_date = date("Y-m-d"); 
+    $release_date = date("Y-m-d");
 
     $sql = "UPDATE " . $location . " SET status_list_answers = '$status_list_answers', list_release_date = '$release_date' WHERE id = '$id_test'";
 
