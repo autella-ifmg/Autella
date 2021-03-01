@@ -108,7 +108,6 @@
                 icon = "clipboard-check";
                 header = "Disponível!";
                 message = `Pronto! Agora o gabarito da prova <strong>${name_test}</strong> está <strong>disponível!</strong>`;
-
             } else {
                 icon = "clipboard-x";
                 header = "Indisponível!";
@@ -117,7 +116,7 @@
 
             //console.log(data);
 
-            $.ajax({
+            $.ajax({    
                 type: "POST",
                 url: "../question/updateSQL.php",
                 data: {
@@ -133,6 +132,9 @@
                     $("#toast").toast("show");
                     setTimeout(5000);
                     //console.log(message);
+                    if(header == "Disponível!"){
+                        window.location.href = "notificacao.php";
+                    }
                 }
             });
         }
