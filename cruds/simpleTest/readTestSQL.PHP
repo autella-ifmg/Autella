@@ -38,6 +38,7 @@ if (isset($_GET["filter"])) {
     $filter[3] = null;
     $filter[4] = (isset($_GET["status"]) ? $_GET["status"] : null);
 }
+
 //var_dump($filter);
 
 //Paginação
@@ -50,13 +51,14 @@ $end = 5;
 
 //Início da exibicação.
 $start = ($end * $current) - $end;
+global $id_test ;
 $id_test = $_GET['id'];
 //echo $id_test;
-$questions = selectTestQuestions($id_test);
+$questions = selectTestQuestions(true, $start, $end, $filter, $id_test);
 //var_dump($questions);
 
 //Total de linhas da tabela.
-$totalRows = count($aux = selectQuestions(false, 0, 0, $filter));
+$totalRows = count($aux = selectTestQuestions(false, 0 ,0 , $filter, $id_test));
 //var_dump($totalRows);
 
 //Total de páginas.
@@ -241,8 +243,8 @@ function gatheringInfoForFiltersSystem()
                         $php_array[3] = [$_GET[$filter_names[$i]], "date"];
                         break;
                 }
-            } else if ($id_role != 1) {
-                $php_array[0] = ["disciplines", $id_discipline];
+            } else if ($id_role != 1 && $id_role != 5) {
+                $php_array[0] = [$id_discipline, "disciplines"];
             }
         }
 

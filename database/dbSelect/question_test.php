@@ -1,61 +1,96 @@
 <?php
 
-function selectTestQuestions($id_test)
-{
+function selectTestQuestions($limit, $start, $end, $filter, $id_test)
+{   
+    //Pegando todas as questões que estão no id da prova
     require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
+    $sql = "SELECT id_question from autella.question_test where id_tests = $id_test ;";
+    $resultIdTest = mysqli_query($connection, $sql);
+    $arrayIdTest = [];
 
-    //$id_discipline = $filter[0] == null ? "null" : $filter[0];
-    //$id_subject = $filter[1] == null ? "question.id_subject" : $filter[1];
-
-    $sql = "SELECT id_question from question_test WHERE id_tests = " . $id_test;
-    //echo $sql;
-    $result = mysqli_query($connection, $sql);
-    $arrayIDS = [];
-    if (mysqli_num_rows($result) != 0) {
-        while ($row = mysqli_fetch_array($result)) {
-            array_push($arrayIDS, $row);
+    if (mysqli_num_rows($resultIdTest) != 0) {
+        while ($row = mysqli_fetch_array($resultIdTest)) {
+            array_push($arrayIdTest, $row);
         }
+    }
+
+    $sql_limit = "";
+
+    if ($limit) {
+        $sql_limit = " LIMIT $start, $end;";
+    }
+
+    if (empty($filter)) {
+        $id_discipline = "null";
+        $id_subject = "question.id_subject";
+        $dificulty = "";
+        $creation_date = "";
+        $status = " AND question.status = 1";
+    } else {
+        $id_discipline = $filter[0] == null ? "null" : $filter[0];
+        $id_subject = $filter[1] == null ? "question.id_subject" : $filter[1];
+        $dificulty = $filter[2] == null ? "" : " AND question.dificulty = $filter[2]";
+        $creation_date = $filter[3] == null ? "" : " AND question.creation_date = '$filter[3]'";
+        $status = $filter[4] == null ? " AND question.status = 1" : " AND question.status = $filter[4]";
+    }
+    $array = [];
+    if ($id_discipline == "null") {
+        
+        for($i = 0; $i != count($arrayIdTest); $i ++){
+        $idQuestion = $arrayIdTest[$i][0];
+        $sql = "SELECT question.id, question.status, question.creation_date, question.dificulty, question.enunciate, question.correctAnswer, 
+            user.id_institution, question.id_user, discipline.id, discipline.name, subject.name FROM question 
+            JOIN user ON user.id = question.id_user 
+            JOIN discipline 
+            JOIN subject ON subject.id = question.id_subject 
+            WHERE question.id = $idQuestion AND user.id_institution = " . $_SESSION["userData"]["id_institution"] . "
+            AND discipline.id = subject.id_discipline" . $status .
+            $dificulty . $creation_date . "
+            ORDER BY discipline.name, subject.name " . $sql_limit;
+           //echo $sql;
+            $result = mysqli_query($connection, $sql);
+            
+        
+            if (mysqli_num_rows($result) != 0) {
+                while ($row = mysqli_fetch_array($result)) {
+                    array_push($array, $row);
+                }
+                // array_push($_SESSION['debug'], "Questões selecionadas com sucesso!");
+            } else {
+                array_push($_SESSION['debug'], "Erro ao selecionar questões!");
+            }
+        
+        }
+    } else {
+        for($i = 0; $i != count($arrayIdTest); $i ++){
+            $idQuestion = $arrayIdTest[$i][0];
+        $sql = "SELECT question.id, question.status, question.creation_date, question.dificulty, question.enunciate, question.correctAnswer, 
+            user.id_institution, question.id_user, discipline.id, discipline.name, subject.name FROM question 
+            JOIN user ON user.id = question.id_user 
+            JOIN discipline ON discipline.id = " . $id_discipline .
+            " JOIN subject ON subject.id = " . $id_subject .
+            " WHERE question.id = $idQuestion AND user.id_institution = " . $_SESSION["userData"]["id_institution"] .
+            " AND discipline.id = subject.id_discipline AND subject.id = question.id_subject"
+            . $status .
+            $dificulty . $creation_date .
+            " ORDER BY discipline.name, subject.name " . $sql_limit;
+            //echo $sql;
+            $result = mysqli_query($connection, $sql);
+            $array = [];
+        
+            if (mysqli_num_rows($result) != 0) {
+                while ($row = mysqli_fetch_array($result)) {
+                    array_push($array, $row);
+                }
+                // array_push($_SESSION['debug'], "Questões selecionadas com sucesso!");
+            } else {
+                array_push($_SESSION['debug'], "Erro ao selecionar questões!");
+            }
+        }
+        
     }
     
-    $array = [];
-    for ($i = 0; $i < count($arrayIDS); $i++) {
-        $sql = "SELECT id_subject from question WHERE id = " . $arrayIDS[$i][0];
-        $result = mysqli_query($connection, $sql);
-        $arraySubject = [];
-        if (mysqli_num_rows($result) != 0) {
-            while ($row = mysqli_fetch_array($result)) {
-                array_push($arraySubject, $row);
-            }
-        }
-
-        $sql = "SELECT id_discipline from subject WHERE id = " . $arraySubject[0][0];
-        $result = mysqli_query($connection, $sql);
-        $arrayDiscipline = [];
-        if (mysqli_num_rows($result) != 0) {
-            while ($row = mysqli_fetch_array($result)) {
-                array_push($arrayDiscipline, $row);
-            }
-        }
-
-
-        $sql = "SELECT question.id, question.status, question.creation_date, question.dificulty, question.enunciate, question.correctAnswer, 
-        user.id_institution, question.id_user, discipline.id, discipline.name, subject.name FROM question 
-        JOIN user ON user.id = question.id_user 
-        JOIN discipline ON discipline.id = " . $arrayDiscipline[0][0] .
-            " JOIN subject ON subject.id = " . $arraySubject[0][0] .
-            " WHERE question.id = " . $arrayIDS[$i][0];
-        " ORDER BY discipline.name";
-        //echo $sql;
-        $result = mysqli_query($connection, $sql);
-        if (mysqli_num_rows($result) != 0) {
-            while ($row = mysqli_fetch_array($result)) {
-                array_push($array, $row);
-            }
-        }
-    }
-    //echo $sql;
-
-
+   
     $connection->close();
     return $array;
 }

@@ -16,6 +16,12 @@ function verifyPageAction() {
         url = "http://autella.com/cruds/question/readGUI.php?";
         status = 1;
     }
+    if (page_action == 4) {
+       
+
+        url = "http://autella.com/cruds/simpleTest/readTestGui.php?";
+        status = 4;
+    }
 }
 
 function addFilterInList(selected_filter) {
@@ -41,7 +47,7 @@ function addFilterInList(selected_filter) {
 }
 
 function applySelectedFilters() {
-    filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&`;
+    filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&id=${id_test}`;
 
     window.history.pushState({}, "Autella | Visualizar questões", filters_url);
     window.location.reload(1);
