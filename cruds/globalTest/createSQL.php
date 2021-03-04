@@ -31,7 +31,7 @@ function data()
                     $datamaking = "" . dateTratament($array[$i][2]);
                     $datachanging = "" . dateTratamentChange($array[$i][3]);
                     $nameTest = $array[$i][4];
-                    $nameTeacher = $array[$i][6];
+                    $nameTeacher = $array[$i][8];
                     $id_test = $array[$i][0];
                     echo '<table class ="table" id = "simpleTest' . $id_test . '"> 
                 <div>

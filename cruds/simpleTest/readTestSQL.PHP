@@ -51,14 +51,19 @@ $end = 5;
 
 //Início da exibicação.
 $start = ($end * $current) - $end;
-global $id_test ;
+
 $id_test = $_GET['id'];
-//echo $id_test;
-$questions = selectTestQuestions(true, $start, $end, $filter, $id_test);
-//var_dump($questions);
+
 
 //Total de linhas da tabela.
 $totalRows = count($aux = selectTestQuestions(false, 0 ,0 , $filter, $id_test));
+
+
+$questions = selectTestQuestions(true, $start, $end, $filter, $id_test);
+//var_dump($questions);
+
+
+
 //var_dump($totalRows);
 
 //Total de páginas.

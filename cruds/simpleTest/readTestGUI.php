@@ -12,11 +12,13 @@
     <?php
     require_once "readTestSQL.php";
     require_once "../../libraries/ckeditor-inline/CKEditorImport.php";
+    
     ?>
 </head>
 
 <body>
     <!--Navbar-->
+    
     <?php require_once '../../views/navbar.php'; ?>
 
     <section class="d-flex justify-content-center mt-3">
@@ -65,6 +67,10 @@
         //Variável global com o id_role do usário atual.
         $js_var = json_encode($id_role);
         echo "id_role = Number(" . $js_var . ");\n";
+
+        //Variavel que mostra id de prova global
+        $js_var = json_encode($id_test);
+        echo "id_test = Number(" . $js_var . ");\n";
 
         //Variável global com o id_discipline do usário atual.
         $js_var = json_encode($id_discipline);

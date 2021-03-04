@@ -17,10 +17,14 @@ function verifyPageAction() {
         status = 1;
     }
     if (page_action == 4) {
-       
-
+        //Redirecionando para read de provas simples
         url = "http://autella.com/cruds/simpleTest/readTestGui.php?";
-        status = 4;
+        status = 1;
+    }
+    if (page_action == 5) {
+        //Redirecionando para read de provas globais
+        url = "http://autella.com/cruds/globalTest/readTestGui.php?";
+        status = 1;
     }
 }
 
@@ -47,8 +51,15 @@ function addFilterInList(selected_filter) {
 }
 
 function applySelectedFilters() {
-    filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&id=${id_test}`;
-
+    if(page_action == 5){
+        filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&id=${id_global}`;
+    }else{
+    if(page_action==4){
+        filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&id=${id_test}`;
+    }else{
+    filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}`;
+    }
+    }
     window.history.pushState({}, "Autella | Visualizar questões", filters_url);
     window.location.reload(1);
 }

@@ -1,19 +1,34 @@
 <?php
 
-function selectTestQuestions($limit, $start, $end, $filter, $id_test)
+function selectGlobalQuestions($limit, $start, $end, $filter, $id_global)
 {   
-    //Pegando todas as questões que estão no id da prova
-    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
-    $sql = "SELECT id_question from autella.question_test where id_tests = $id_test ;";
-    $resultIdTest = mysqli_query($connection, $sql);
-    $arrayIdTest = [];
 
+    //Pegando todos os ids dos tests
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
+    $sql = "SELECT id_tests from autella.test_global where id_global = $id_global;";
+    $resultIdGlobal = mysqli_query($connection, $sql);
+    $arrayIdGlobal = [];
+    //echo $sql;
+    if (mysqli_num_rows($resultIdGlobal) != 0) {
+        while ($row = mysqli_fetch_array($resultIdGlobal)) {
+            array_push($arrayIdGlobal, $row);
+        }
+    }
+
+
+    //Pegando todas as questões que estão no id da prova
+    $arrayIdTest = [];
+    for($i = 0; $i != count($arrayIdGlobal); $i ++){
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
+    $sql = 'SELECT id_question from autella.question_test where id_tests = '.$arrayIdGlobal[$i][0].';';
+    $resultIdTest = mysqli_query($connection, $sql);
+    //echo $sql;
     if (mysqli_num_rows($resultIdTest) != 0) {
         while ($row = mysqli_fetch_array($resultIdTest)) {
             array_push($arrayIdTest, $row);
         }
     }
-
+    }
     $sql_limit = "";
 
     if ($limit) {
@@ -96,43 +111,4 @@ function selectTestQuestions($limit, $start, $end, $filter, $id_test)
     $connection->close();
     return $array;
 }
-
-function selectTestNames($question_id)
-{
-    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
-
-    $sql = "SELECT tests.id, tests.name FROM question_test
-            JOIN tests ON tests.id = question_test.id_tests
-            WHERE question_test.id_question = " . $question_id;
-    $result = mysqli_query($connection, $sql);
-    $array = [];
-
-    if (mysqli_num_rows($result) != 0) {
-        while ($row = mysqli_fetch_row($result)) {
-            array_push($array, $row);
-        }
-        //array_push($_SESSION['debug'], "Nome das provas selecionados com sucesso!");
-    } 
-    
-    $connection->close();
-
-    return $array;
-}
-
-function selectAllFromQuestionTest() {
-    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
-
-    $sql = "SELECT * FROM question_test";
-    $result = mysqli_query($connection, $sql);
-    $array = [];
-
-    if (mysqli_num_rows($result) != 0) {
-        while ($row = mysqli_fetch_row($result)) {
-            array_push($array, $row);
-        }
-    }
-
-    $connection->close();
-
-    return $array;
-}
+?>
