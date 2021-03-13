@@ -23,7 +23,7 @@ function data()
 {
     $array = SimpleTestes();
     echo '    <div class="split left " style="width:44%;right:0%;left:2%"> <table class="table"> <thead class="thead-dark"> <tr> <th style="width:20%;"> NOME DA PROVA </th> <th style="width:20%;"> DATA EM QUE FOI FEITA </th> <th style="width:20%;"> DATA DE ULTIMA MODIFICAÇÃO </th> <th style="width:20%;"> PROFESSOR QUE CRIOU </th> <th style="width:20%;"> SELECIONAR PARA PROVA GLOBAL </th> </thead>';
-    //var_dump($array);
+    //  var_dump($array);
     if (!empty($array)) {
         if (count($array) > 0) {
             for ($i = 0; $i < count($array); $i++) {
