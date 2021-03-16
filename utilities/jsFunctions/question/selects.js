@@ -1,9 +1,14 @@
 //Função para inserir as matérias no selectSubjects.
 function updateSubjects() {
-  if (id_role == 1 || id_role == 5 || page_action == 2) {
+  var selectDiscipline;
+  
+  if ((id_role == 1 || id_role == 5) && page_action != 2) {
     selectDiscipline = appliedFilters[0];
+  } else if (page_action == 2) {
+    selectDiscipline = document.getElementById("disciplines");
+    selectDiscipline = selectDiscipline.value;
   } else {
-    var selectDiscipline = id_discipline;
+    selectDiscipline = id_discipline;
   }
 
   var selectSubjects = document.getElementById("subjects");
@@ -13,14 +18,13 @@ function updateSubjects() {
   option.setAttribute("disabled", "disabled");
   option.setAttribute("selected", "selected");
 
-  if (selectDiscipline == "null") {
+  if (selectDiscipline.length == 0) {
     var text = "Selecione uma disciplina";
   } else {
     var text = "Escolha...";
   }
 
   option.setAttribute("label", text);
-
   selectSubjects.appendChild(option);
 
   for (let i = 0; i < subjects.length; i++) {
@@ -33,7 +37,7 @@ function updateSubjects() {
   }
 }
 
-//Função para inserir os dados da questão selecionado nos selects.
+//Função para inserir os dados da questão selecionada nos selects.
 function updateSelects() {
   //Discipline
   var disciplineOption = document.getElementById(disciplineSelected);

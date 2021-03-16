@@ -33,8 +33,8 @@ function forCreate()
     watchdog.on("error' . $i . '", handleError);
 
     watchdog
-        .create(document.querySelector("#editor' . $i . '"), {' .
-            $placeholder .
+        .create(document.querySelector("#editor' . $i . '"), {' . "\n" .
+            $placeholder . "\n" .
             'toolbar: {
                 items: [
                     "heading",
@@ -91,7 +91,7 @@ function forCreate()
             },
             licenseKey: "",
         })
-        .catch(handleError);';
+        .catch(handleError);' . "\n";
     }
 
     echo "\n";
