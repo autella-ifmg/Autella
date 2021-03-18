@@ -47,6 +47,15 @@ function defineModalAction(action, questionNumber) {
             "archiveQuestion("
         ],
         [
+            "archiveModal",
+            "archiveWarningLabel",
+            `Impossível arquivar a <strong>Questão ${questionNumber}</strong>!`,
+            "Essa questão já está inclusa em uma ou mais provas, logo, você não pode arquivá-la!",
+            "Por favor, antes de tentar arquivá-la, remova-a de onde ela estiver inclusa.",
+            "",
+            ""
+        ],
+        [
             "unarchiveModal",
             "unarchiveModalLabel",
             `Desarquivar a <strong>Questão ${questionNumber}</strong>?`,
@@ -66,7 +75,7 @@ function defineModalAction(action, questionNumber) {
         ],
         [
             "deleteModal",
-            "deleteModalLabel",
+            "deleteWarningLabel",
             `Impossível deletar a <strong>Questão ${questionNumber}</strong>!`,
             "Essa questão já está inclusa em uma ou mais provas, logo, você não pode excluí-la!",
             "Por favor, antes de tentar excluí-la, remova-a de onde ela estiver inclusa.",
@@ -99,7 +108,7 @@ function defineModalAction(action, questionNumber) {
     cancel_button = document.getElementById("cancel");
     var footer = document.getElementById("footer");
 
-    if (action != 4) {
+    if (action != 2 && action != 5) {
         cancel_button.setAttribute("class", "btn btn-secondary");
 
         confirm_button.removeAttribute("hidden");
