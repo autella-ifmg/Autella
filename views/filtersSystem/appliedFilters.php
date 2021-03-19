@@ -1,4 +1,19 @@
 <?php
+
+if ($id_role != 1 && !($id_role == 5)) {
+    $filter_names = ['id_subject', 'dificulty', 'date'];
+    $select_names = ['container_subjects', 'container_dificulty', 'container_date'];
+    $structuresQuantity = 3;
+    $class_div = "w-50 mr-3";
+    $mr_exception = "w-50 mr-1";
+} else {
+    $filter_names = ['id_discipline', 'id_subject', 'dificulty', 'date'];
+    $select_names = ['container_disciplines', 'container_subjects', 'container_dificulty', 'container_date'];
+    $structuresQuantity = 4;
+    $class_div = "w-25 mr-3";
+    $mr_exception = "w-25 mr-1";
+}
+
 echo '
     <div class="border border-muted rounded mb-3">
         <div id="container_filters" class="d-flex flex-row mt-2">

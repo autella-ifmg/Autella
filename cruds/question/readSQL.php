@@ -1,4 +1,5 @@
 <?php
+require_once 'filterSystem.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question_test.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/user.php';
@@ -9,77 +10,8 @@ $id_role = $_SESSION["userData"]["id_role"];
 $id_discipline = $_SESSION["userData"]["id_discipline"];
 //var_dump($id_discipline);
 
-if ($id_role != 1 && !($id_role == 5)) {
-    $filter_names = ['id_subject', 'dificulty', 'date'];
-    $select_names = ['container_subjects', 'container_dificulty', 'container_date'];
-    $structuresQuantity = 3;
-    $class_div = "w-50 mr-3";
-    $mr_exception = "w-50 mr-1";
-} else {
-    $filter_names = ['id_discipline', 'id_subject', 'dificulty', 'date'];
-    $select_names = ['container_disciplines', 'container_subjects', 'container_dificulty', 'container_date'];
-    $structuresQuantity = 4;
-    $class_div = "w-25 mr-3";
-    $mr_exception = "w-25 mr-1";
-}
-
-$filter = [];
-//Verifica quais filtros foram setados.
-if (isset($_GET["filter"])) {
-    $filter[0] = (isset($_GET["id_discipline"]) ? $_GET["id_discipline"] : null);
-    $filter[1] = (isset($_GET["id_subject"]) ? $_GET["id_subject"] : null);
-    $filter[2] = (isset($_GET["dificulty"]) ? $_GET["dificulty"] : null);
-    $filter[3] = (isset($_GET["date"]) ? $_GET["date"] : null);
-    $filter[4] = (isset($_GET["status"]) ? $_GET["status"] : null);
-} else if ($id_role != 1  && $id_role != 5) {
-    $filter[0] = $id_discipline;
-    $filter[1] = null;
-    $filter[2] = null;
-    $filter[3] = null;
-    $filter[4] = (isset($_GET["status"]) ? $_GET["status"] : null);
-}
-//var_dump($filter);
-
-function gatheringInfoForFiltersSystem()
-{
-    global $filter_names, $structuresQuantity, $id_role, $id_discipline;
-    $php_array = [
-        0 => ["false"],
-        1 => ["false"],
-        2 => ["false"],
-        3 => ["false"]
-    ];
-    $js_array = [];
-    $result = "filtersSystemData = null;\n";
-
-    if (isset($_GET['filter'])) {
-        for ($i = 0; $i < $structuresQuantity; $i++) {
-            if (!empty($_GET[$filter_names[$i]])) {
-                switch ($filter_names[$i]) {
-                    case 'id_discipline':
-                        $php_array[0] = [$_GET[$filter_names[$i]], "disciplines"];
-                        break;
-                    case 'id_subject':
-                        $php_array[1] = [$_GET[$filter_names[$i]], "subjects"];
-                        break;
-                    case 'dificulty':
-                        $php_array[2] = [$_GET[$filter_names[$i]], "dificulty"];
-                        break;
-                    case 'date':
-                        $php_array[3] = [$_GET[$filter_names[$i]], "date"];
-                        break;
-                }
-            } else if ($id_role != 1 && $id_role != 5) {
-                $php_array[0] = [$id_discipline, "disciplines"];
-            }
-        }
-
-        $js_array = json_encode($php_array);
-        $result = "filtersSystemData = " . $js_array . ";\n";
-    }
-
-    return $result;
-}
+//Array que contém o filtros escolhidos.
+$filter = filterArray($id_role, $id_discipline);
 
 //Paginação
 //Número da página atual
@@ -107,6 +39,7 @@ $totalPages = ceil($totalRows / $end);
 $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'] . '?' . $_SERVER['QUERY_STRING'];
 //echo $url;
 
+//Funções de tratamento para a exibição.
 function dificultyTratament($dificulty)
 {
     switch ($dificulty) {
@@ -128,7 +61,9 @@ function dateTratament($creation_date)
     return $creation_date = date("d/m/Y", $creation_date);
 }
 
-function verifyHistoricOfQuestion($question_id) {
+//Função que verifica se a questão está inclusa em alguma prova.
+function verifySituationOfQuestion($question_id)
+{
     $question_ids = selectAllFromQuestionTest();
 
     for ($i = 0; $i < count($question_ids); $i++) {
@@ -139,6 +74,7 @@ function verifyHistoricOfQuestion($question_id) {
     }
 }
 
+//Função que gera os blocos de questões.
 function questionBlocks($questions, $id_role)
 {
     global $start;
@@ -161,9 +97,9 @@ function questionBlocks($questions, $id_role)
 
                 $test_names = selectTestNames($question_id);
 
-                $historic_of_question = verifyHistoricOfQuestion($question_id);
-         
-                if($historic_of_question == true) {
+                $situation_of_question = verifySituationOfQuestion($question_id);
+
+                if ($situation_of_question == true) {
                     $action_delete = 5;
                     $action_archive = 2;
                 } else {

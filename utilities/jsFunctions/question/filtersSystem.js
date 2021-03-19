@@ -11,7 +11,7 @@ function verifyPageAction() {
         status = 0;
     } else {
         var archive_btn = document.getElementById("archive");
-        archive_btn.setAttribute("href", "http://autella.com/cruds/question/archiveGUI.php?filter=true&status=0");
+        archive_btn.setAttribute("href", "http://autella.com/cruds/question/archiveGUI.php?filter=true&status=0&");
 
         url = "http://autella.com/cruds/question/readGUI.php?";
         status = 1;
@@ -51,15 +51,16 @@ function addFilterInList(selected_filter) {
 }
 
 function applySelectedFilters() {
-    if(page_action == 5){
+    if (page_action == 5) {
         filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&id=${id_global}`;
-    }else{
-    if(page_action==4){
-        filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&id=${id_test}`;
-    }else{
-    filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}`;
+    } else {
+        if (page_action == 4) {
+            filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&id=${id_test}`;
+        } else {
+            filters_url = `${url}filter=true&id_discipline=${appliedFilters[0]}&id_subject=${appliedFilters[1]}&dificulty=${appliedFilters[2]}&date=${appliedFilters[3]}&status=${status}&`;
+        }
     }
-    }
+
     window.history.pushState({}, "Autella | Visualizar questões", filters_url);
     window.location.reload(1);
 }

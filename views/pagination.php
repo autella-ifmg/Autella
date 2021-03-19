@@ -1,5 +1,10 @@
 <?php
-if (!empty($questions)  && !(count($questions) == 0)) {
+
+if ($totalPages > 1) {
+    if (substr($url, -1) != "?" && substr($url, -9) != "status=1&") {
+        $url = substr($url, 0, -6);
+    }
+
     echo '
     <div class="d-flex justify-content-around">
         <ul class="pagination">
