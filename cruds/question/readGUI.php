@@ -111,16 +111,17 @@
         document.addEventListener("DOMContentLoaded", blockFilterSelects(), false);
 
         <?php
-        if (isset($_GET['action_performed'])) {
+        if (!empty($_SESSION['action_performed'])) {
             //Variável global que informa se alguma questão foi criada/editada e armazena o resultado da respectiva ação.
             $php_var = empty($_SESSION['debug']) ? "" : $_SESSION['debug'][count($_SESSION['debug']) - 1];
             $js_var = json_encode($php_var, JSON_UNESCAPED_UNICODE);
             echo "result = " . $js_var . ";\n";
 
             //Variável global que informa qual foi a última ação (criação/edição) do usuário.
-            $php_var =  $_GET['action_performed'];
+            $php_var =  $_SESSION['action_performed'];
             $js_var = json_encode($php_var);
             echo "action_performed = Number(" . $js_var . ");\n";
+            $_SESSION['action_performed'] = 0;
 
             //Quando o documento estiver carregado, executa o método toastForCreationAndEditing().
             $js_var = 'document.addEventListener("DOMContentLoaded", toastForCreationAndEditing(), false);';

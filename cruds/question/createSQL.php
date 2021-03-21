@@ -28,5 +28,6 @@ if (isset($_POST["submit"])) {
 
     $connection->close();
 
-    header('Location: readGUI.php?action_performed=1');
+    header('Location: readGUI.php?');
+    $_SESSION["action_performed"] = 1;
 }

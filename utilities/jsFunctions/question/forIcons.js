@@ -152,7 +152,6 @@ function toastForCreationAndEditing() {
     $("#result").html(result).fadeIn();
     $("#toast").toast("show");
 
-    window.history.pushState({}, "Autella | Visualizar questões", "/cruds/question/readGUI.php?");
     //console.log(result);
 }
 
