@@ -29,6 +29,10 @@
 
     <?php require_once '../../views/navbar.php'; ?>
     <br>
+    <main class="d-flex flex-column align-items-center flex-grow-1 mb-3">
+    <a href="createGUI.php" type="button" class="btn btn-primary w-auto">Criar prova global</a>
+    
+    </main>
     <div style="text-align: center; margin-right: 3%;margin-left: 3%;"><?php data(); ?></div>
     <!--Modal genérico-->
     <div name="container" id="none" class="modal fade" tabindex="-1" aria-hidden="true">

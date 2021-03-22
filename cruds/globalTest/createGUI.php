@@ -92,6 +92,7 @@
 
   <?php require_once '../../views/navbar.php'; ?>
   <br>
+  
   <div style="text-align: center; margin-right: 3%;margin-left: 3%;"><?php data(); ?></div>
 
   <!-- NOME DA PROVA GLOBAL FORM-->

@@ -129,6 +129,7 @@ function IDquestions(id) {
 
  </div>
     <?php require_once '../../views/navbar.php'; ?>
+    <br>
     <div id='sidebar' class="split rigth a" style="width:35%;right:0;">
     <div style="text-align: center; ">
         <script type="text/javascript">
