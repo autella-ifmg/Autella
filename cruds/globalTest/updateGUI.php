@@ -118,7 +118,7 @@
       <input name="globalList" id="globalList1" type="hidden" value="Lista Global" />
 
       <label class="form-label" style="font-family: Georgia, 'Times New Roman', Times, serif; ">Nome da prova Global</label>
-      <input name="globalName" class="form-control" id="globalName" aria-describedby="emailHelp" value="">
+      <input name="globalName" class="form-control" id="globalName" aria-describedby="emailHelp" value="" required>
       <button style="margin: 130px;" type="submit" class="btn btn-primary" onclick="convert()" name="BTN">SALVAR PROVA</button>
     </form>
   </div>

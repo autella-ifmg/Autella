@@ -9,7 +9,7 @@
     //var_dump($questions);
     //Declaração de informações usadas na capa
     $title = globalName($id_global);
-    $capa = "                                         PROVA GLOBAL : {$title[0][0]}<br><br><br>                                               INSTRUÇÕES<br><br><br> Para cada uma das questões objetivas, são apresentadas 4 opções, identificadas com as letras (A), (B), (C) e (D). Apenas uma opção responde corretamente à questão. Você deve, portanto, assinalar apenas uma opção em cada questão. A marcação em mais de uma opção anula a questão, mesmo que uma das respostas esteja correta<br><br> Você somente poderá deixar o local de prova após decorridas DUAS HORAS do início da sua aplicação.<br>
+    $capa = "                                         PROVA GLOBAL : {$title[0][0]}<br><br><br>                                               INSTRUÇÕES<br><br><br> Para cada uma das questões objetivas, são apresentadas 5 opções, identificadas com as letras (A), (B), (C), (D) e (E). Apenas uma opção responde corretamente à questão. Você deve, portanto, assinalar apenas uma opção em cada questão. A marcação em mais de uma opção anula a questão, mesmo que uma das respostas esteja correta<br><br> Você somente poderá deixar o local de prova após decorridas DUAS HORAS do início da sua aplicação.<br>
     <br>Será atribuída a nota zero à sua avaliação, caso você:<br><br><br>
     1. Utilize, durante a realização da prova, máquinas e/ou relógios de calcular, bem como rádios, gravadores, headphones, telefones
     celulares ou fontes de consulta de qualquer espécie;<br><br>
