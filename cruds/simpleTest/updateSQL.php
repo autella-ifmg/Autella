@@ -166,7 +166,7 @@ function insertInDatabase($ids, $array, $testName)
 
     global $connection;
 
-    $sql = "DELETE From question_tests where id_tests = $id_test";
+    $sql = "DELETE From question_test where id_tests = $id_test";
     mysqli_query($connection, $sql);
     //echo $sql;
     $sql = "UPDATE Test set changing_date = '$date', name = $testName Where id = $id_test";

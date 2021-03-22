@@ -62,7 +62,7 @@ function data()
                 <td>' . $nameTeacher . ' </td>
                 <td>
                     <div class="custom-control custom-switch">
-                            <input id="customSwitch' . $id_test . '" type="checkbox" class="custom-control-input" value="tests" onchange="setStatusOfListAnswers(' . $id_test . ', \'' . $nameTest . '\')"' . $status_list_answers . '>
+                            <input id="customSwitch' . $id_test . '" type="checkbox" class="custom-control-input" value="test" onchange="setStatusOfListAnswers(' . $id_test . ', \'' . $nameTest . '\')"' . $status_list_answers . '>
                             <label for="customSwitch' . $id_test . '" class="custom-control-label"></label>
                     </div>
                 </td>
