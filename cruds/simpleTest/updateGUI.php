@@ -222,9 +222,8 @@
 
             <!--CKEditor-->
             <script>
-                <?php forRead($array); ?>
+            <?php forRead($array); ?>
             </script>
-      
             <script>
                 <?php
                 $questions = json_encode($array);

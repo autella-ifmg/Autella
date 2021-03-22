@@ -40,7 +40,7 @@ document.querySelector("#submit").addEventListener("click", (event) => {
     }
   }
 
-  //console.log(data);
+  //console.log(data); 
 
   if (!data || /^\s*$/.test(data)) {
     event.preventDefault();
