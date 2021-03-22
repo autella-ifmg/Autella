@@ -150,7 +150,7 @@
             <form method="get">
                 <input name="ids" id="ids" type="hidden" value="aaa" />
                 <label style="font-size: 20px ;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" for="testName">Nome da prova simples:</label><br>
-                <input aria-label="Prova 1" id="testName" name="testName" type="text" required/>
+                <input aria-label="Prova 1" id="testName" name="testName" type="text" />
                 <input class="btn btn-success" onclick="convert();" name="BTN" type="submit" value="FINALIZAR" />
             </form>
             <div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
@@ -187,7 +187,10 @@
                 <section class="d-flex justify-content-center mt-3">
                     <div class="d-flex flex-column">
 
+
+
                         <!--Blocos de questões-->
+
                         <?php data($array, $id_role); ?>
                     </div>
             </div>
@@ -220,10 +223,6 @@
                 </div>
             </div>
 
-            <!--CKEditor-->
-            <script>
-            <?php forRead($array); ?>
-            </script>
             <script>
                 <?php
                 $questions = json_encode($array);
@@ -403,7 +402,10 @@
                 ?>
             </script>
 
-
+            <!--CKEditor-->
+            
+                <?php forRead($array); ?>
+            
 </body>
 
 </html>

@@ -143,7 +143,7 @@
             <form method="get">
                 <input name="ids" id="ids" type="hidden" value="aaa" />
                 <label style="font-size: 20px ;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" for="testName">Nome da prova simples:</label><br>
-                <input aria-label="Prova 1" id="testName" name="testName" type="text" required/>
+                <input aria-label="Prova 1" id="testName" name="testName" type="text" />
                 <input class="btn btn-success" onclick="convert();" name="BTN" type="submit" value="FINALIZAR" />
             </form>
             <div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
@@ -188,7 +188,30 @@
                     </div>
             </div>
 
-            
+            <!--Paginação - HTML e PHP-->
+            <div class="d-flex justify-content-center">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="<?php echo $url . "pag=" . ($current >= 1 ? 1 : $current - 1); ?>&" aria-label="Anterior">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <?php for ($i = 1; $i <= $totalPages; $i++) {
+                        $style = "";
+
+                        if ($current == $i) {
+                            $style = " active";
+                        }
+                    ?>
+                        <li class="page-item<?php echo $style; ?>"><a class="page-link" href="readGUI.php?pag=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                    <?php } ?>
+                    <li class="page-item">
+                        <a class="page-link" href="<?php echo $url . "pag=" . ($current < $totalPages ? $current + 1 : $totalPages); ?>&" aria-label="Próximo">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
         </section>
 

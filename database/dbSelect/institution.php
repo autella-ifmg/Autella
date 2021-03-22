@@ -98,3 +98,13 @@ function institutionsToRows()
     }
     $connection->close();
 }
+
+function getInstitutionName($id_institution){
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
+    
+    $sql = "SELECT full_name from institution where id= $id_institution";
+    $result = mysqli_query($connection, $sql);
+    $name = mysqli_fetch_array($result);
+    return $name;
+
+}
