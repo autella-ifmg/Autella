@@ -4,7 +4,7 @@
     $serverKey = 'AAAAZ5Vo2h0:APA91bFJ1gJSfJ9SpvG4kCey--oN4l80C2jLmKaNm5oGH__kXNN11hmwBFkARRSRdJaSYYj1iDaRdVpiAtT9WI-7E_0Zl74Nr_EZUm_nrXPGAf3KBIu-Jpl1B5oSLjrKnwoaaSrOTmek';
     $title = "Notification title";
     $body = "Hello I am from Your php server";
-    $notification = array('title' =>$title , 'text' => $body, 'sound' => 'default', 'badge' => '1');
+    $notification = array('title' =>$title , 'body' => $body, 'sound' => 'default', 'badge' => '1');
     $arrayToSend = array('to' => $token, 'notification' => $notification,'priority'=>'high');
     $json = json_encode($arrayToSend);
     $headers = array();
