@@ -134,6 +134,47 @@
 - [X] Deactivate
 	- [X] Activate
 	- [X] Logout e impedir login de usuários da instituição
+
+## SimpleTest
+- [] Create
+	- [X] Visualização de questões previamente no banco 
+	- [X] Adicionar "arrow" na questão
+	- [] Filtrar questões
+	- [X] Passar questões selecionadas para um BD
+
+- []readList
+	- [X] Exibir teste de acordo com a area do usuario	
+	- [X] Sistema de edicão de testes (delete, update)
+
+- [X] readTest
+	- [X] Ler questões apenas dos testes
+	
+
+- [] update
+	- [X] Ler questões apenas dos testes
+	- [] Filtrar questões
+
+## globalTest
+- [] Create
+	- [X] Visualização de testes previamente no banco 
+	- [X] Passar testes selecionadas para um BD
+
+- []readList
+	- [X] Sistema de edicão de testes (delete, update)
+
+- [X] readTest
+	- [X] Ler questões apenas dos testes selecionados na prova Global
+	
+
+- [X] update
+	- [X] Ler provas apenas dos testes
+
+- [] Pdf
+	- [X] Criação da prova
+	- [] Poder modificar o template atual(informações como a fonte, tamanho)
+
+
+
 ## Database
 - [X] Criar tabela "Área" no banco de dados
 - [X] Criar tabela "Disciplina" no banco de dados
@@ -178,3 +219,4 @@ A função de tempo no php é "time()", então ficaria <img src="/images/users/2
 * Versionamento de provas e questões (tipo o do GitHub)
 * Comentário das questões
 * Log (Ex.: Usuário tal fez tal coisa em tal data; Tal questão foi alterada; Tal prova foi criada)
+* Edição do template de PDF
