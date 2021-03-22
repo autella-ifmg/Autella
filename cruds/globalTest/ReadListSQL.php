@@ -66,7 +66,7 @@ function data()
                             <label for="customSwitch' . $id_test . '" class="custom-control-label"></label>
                     </div>
                 </td>
-                <td><a href="http://autella.com/cruds/simpleTest/updateGUI.php?id=' . $id_test . '">
+                <td><a href="http://autella.com/cruds/globalTest/updateGUI.php?id=' . $id_test . '">
                 <img  src=../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil.svg alt=Editar height=25 />
                 </a> </td>
                 <td>

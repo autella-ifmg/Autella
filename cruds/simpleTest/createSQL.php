@@ -33,7 +33,7 @@ $current = intval(isset($_GET["pag"]) ? $_GET["pag"] : 1);
 //var_dump($current);
 
 //Total de itens por página.
-$end = 5;
+$end = 500;
 
 //Início da exibicação.
 $start = ($end * $current) - $end;
@@ -165,7 +165,7 @@ function insertInDatabase($ids,$array,$testName)
     
     global $connection;
     $id_user = $_SESSION["userData"]["id"];
-    $sql = "INSERT into Tests(id_user, making_date, changing_date, name) VALUES ('$id_user','$date','$date','$testName');";  
+    $sql = "INSERT into Test(id_user, making_date, changing_date, name) VALUES ('$id_user','$date','$date','$testName');";  
     mysqli_query($connection, $sql);
     $id_test =  mysqli_insert_id($connection);
     if (!empty($ids)) {

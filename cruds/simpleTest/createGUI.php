@@ -88,10 +88,10 @@ function dateTratament(date){
 function IDquestions(id) {
                 for (var i in js_array) 
                 {
-                    console.log("row " + i);
+                    //console.log("row " + i);
                      for (var j in js_array[i]) 
                      {
-                            console.log(" "+ j +"--- "+ js_array[i][j]);
+                            //console.log(" "+ j +"--- "+ js_array[i][j]);
                     }
                  }           
             $DataDeCriação = "Criada em :"+ dateTratament(js_array[id][2]);
@@ -104,8 +104,11 @@ function IDquestions(id) {
             $NumeroDaQuestão = js_array[id][0];
             QuestaoCorreta = js_array[id][5];
             document.getElementById('questaoSQL'+id).style.display = 'none';
-            //console.log();
+            
+            var GlobalName = document.getElementById("testName").value;
+          
             document.getElementById('sidebar').innerHTML += "    <div id='prova"+id+"' style=\"margin: 20px;\"> <div class=\"d-flex flex-row bd-highlight\"><div class=\"p-2 w-25 border border-dark\">Questão - " + (id+1) +"</div> <div class=\"p-2 w-25 border border-dark border-left-0\">"+ $Disciplina +"</div>  <div class=\"p-2 flex-fill border border-dark border-left-0\">"+ $Materia +"</div>  </div>  <div class=\"d-flex flex-row bd-highlight\">  <div class=\"p-2 w-25 border border-dark border-top-0\">"+ $DataDeCriação +".</div> <div class=\"p-2 w-25 border border-dark border-left-0  border-top-0\">"+ $Dificuldade +"</div> <div class=\"p-2 flex-fill border border-dark border-left-0  border-top-0\">Alternativa Correta :"+ QuestaoCorreta  +"</div></div> <div '\" class=\" p-2 flex-fill  border border-dark border-top-0 \" style=\"overflow: auto;\">"+ Enunciado +"</div> <img  src=../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash.svg alt=Editar height=25 onclick = 'delet("+id+")'/> </div>";
+            document.getElementById("testName").value = GlobalName;
         }
      
         function delet(id){
@@ -177,48 +180,7 @@ function IDquestions(id) {
         <!--Filtros-->
         <section class="d-flex justify-content-center mt-3">
             <div class="d-flex flex-column">
-                <div class="d-flex flex-row mb-3">
-                    <!--Filtro disciplina-->
-                    <div id="container_selectDiscipline" class="w-25 mt-1 mr-3" hidden>
-                        <label for="disciplines">Disciplina:</label>
-                        <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
-                            <?php selectDisciplineNamesToDropdowns(1); ?>
-                        </select>
-                    </div>
-                    <!--Filtro matéria-->
-                    <div name="container_select" class="w-25 mt-1 mr-3">
-                        <label for="subjects">Matéria:</label>
-                        <select name="subjects" id="subjects" class="form-control">
-                            <!--updateSubjects()-->
-                        </select>
-                    </div>
-                    <!--Filtro dificuldade-->
-                    <div name="container_select" class="w-25 mt-1 mr-3">
-                        <label for="dificulty">Dificuldade:</label>
-                        <select name="dificulty" id="dificulty" class="form-control">
-                            <option value="" disabled selected>Escolha...</option>
-                            <option value="1">Fácil</option>
-                            <option value="2">Média</option>
-                            <option value="3">Difícil</option>
-                        </select>
-                    </div>
-                    <!--Filtro data-->
-                    <div name="container_select" class="w-25 mt-1 mr-3">
-                        <label for="date">Data de criação:</label>
-                        <input id="date" type="date" class="form-control">
-                    </div>
-                    <!--Questões arquivadas-->
-                    <div class="w-auto mt-1">
-                        <a id="archive" onclick="filter(0)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Questões arquivadas" height="75"> </a>
-                    </div>
-                </div>
-
-                <!--Botões-->
-                <div class="d-flex flex-row justify-content-center mb-3">
-                    <a href="../../views/home.php" type="button" class="btn btn-primary w-25 mr-5">Voltar</a>
-                    <a id="filter" type="button" class="btn btn-info w-25 mr-5" onclick="filter(1)">Filtrar</a>
-                    <a href="createGUI.php" type="button" class="btn btn-primary w-25">Criar questão</a>
-                </div>
+            
 
                 <!--Blocos de questões-->
               

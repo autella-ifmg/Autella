@@ -20,7 +20,7 @@
             deletTest($testID);
         }
         ?>
-    </script>
+     </script>
 </head>
 
 <body>

@@ -1,6 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question.php';
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 global $connection;
 if (!isset($_SESSION)) {
     session_start();
@@ -34,7 +33,7 @@ $current = intval(isset($_GET["pag"]) ? $_GET["pag"] : 1);
 //var_dump($current);
 
 //Total de itens por página.
-$end = 5;
+$end = 500;
 
 //Início da exibicação.
 $start = ($end * $current) - $end;
@@ -79,7 +78,7 @@ function data($array, $id_role)
 {
     global $start;
     global $array1;
-    $array1 = $array;
+    $array1 = $array; 
     $id_user = $_SESSION["userData"]["id"];
 
     if (!empty($array)) {
@@ -94,23 +93,13 @@ function data($array, $id_role)
                 $enunciate =  $array[$i]["enunciate"];
 
                 echo '
+                <div id = "questaoSQL'.$i.'">
                     <div class="d-flex flex-row bd-highlight">
                         <div class="p-2 w-25 border border-dark">Questão - ' . $questionNumber . '</div>
                         <div class="p-2 w-25 border border-dark border-left-0">' . $discipline . '</div>
                         <div class="p-2 flex-fill border border-dark border-left-0">' . $subject . '</div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/arrow-right-circle-fill.svg" alt="Mover" height="25" onclick="send(' . $i . ')"; /></div>';
-                if ($id_role == 1) {
-                    echo '
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" alt="Editar" height="25" onclick="chooseAction(0, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#editModal"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Arquivar" height="25" onclick="chooseAction(1, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#archiveModal"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="chooseAction(2, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/arrow-right-circle-fill.svg" alt="Mover" height="25" onclick="send(' . $i . ')"; /></div>';
-                } elseif ($array[$i]["id_user"] == $id_user) {
-                    echo '
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/pencil-square.svg" alt="Editar" height="25" onclick="chooseAction(0, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#editModal"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Arquivar" height="25" onclick="chooseAction(1, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#archiveModal"/></div>
-                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash-fill.svg" alt="Deletar" height="25" onclick="chooseAction(2, ' . ($questionNumber) . ')" data-toggle="modal" data-target="#deleteModal"/></div>';
-                }
+                        <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/arrow-right-circle-fill.svg" alt="Mover" height="25" onclick="IDquestions(' . $i . ')"; /></div>';
+                
                 echo '    
                     </div>
 
@@ -123,7 +112,7 @@ function data($array, $id_role)
 
                     <div name="toolbar' . $i . '" id="toolbar-container' . $i . '" class="border border-dark border-top-0 border-bottom-0" disabled></div>
                     <div name="editor' . $i . '" id="editor' . $i . '" class="border border-dark border-top-0 mb-4" style="min-width: 64rem; max-width: 64rem; min-height: 20rem; max-height: 20rem;">' . $enunciate . '</div>
-                    
+                    </div>
                     ';
             }
         }
@@ -142,7 +131,7 @@ function data($array, $id_role)
                         <div class="p-2 flex-fill bd-highlight border border-dark border-left-0 border-top-0">Alternativa correta: </div>
                     </div>
 
-                    <div name="editor" id="editor" class="border border-dark border-top-0 mb-3" style="min-width: 65rem; max-width: 65rem; min-height: 20rem; max-height: 20rem;"><p class="font-weight-bold text-center">Ainda não há questões correspondentes ao filtro utilizado. :/<p></div>';
+                    <div name="editor" id="editor" class="border border-dark border-top-0 mb-3" style="min-width: 65rem; max-width: 65rem; min-height: 20rem; max-height: 20rem;"><p class="font-weight-bold text-center">Ainda não há questões . :/<p></div>';
     }
 }
 
@@ -169,29 +158,28 @@ function imports($array)
     }
 }
 
-function insertInDatabaseTestQuestion($ids, $array, $id_test)
+function insertInDatabase($ids,$array,$testName)
 {
+      $id_test = $ids[count($ids) - 1];
     date_default_timezone_set("America/Sao_Paulo");
     $date = date("Y-m-d");
-    echo $id_test;
-
+    
     global $connection;
-
-    $sql = "DELETE from question_test where id_tests = " . $id_test;
-    echo $sql;
+    
+    $sql = "DELETE From question_tests where id_tests = $id_test";  
     mysqli_query($connection, $sql);
-    $sql = " UPDATE Tests set changing_date = '$date' WHERE id = '$id_test';";
-    echo $sql;
+    //echo $sql;
+    $sql = "UPDATE Test set changing_date = '$date', name = $testName Where id = $id_test";  
     mysqli_query($connection, $sql);
-
+    //echo $sql;
     if (!empty($ids)) {
         if (count($ids) > 0) {
-            for ($i = 0; $i < count($ids); $i++) {
-                $id_question = $ids[$i];
-                $sql = "INSERT into question_test(id_question, id_tests) VALUES ('" . $id_question . "','" . $id_test . "');";
+            for ($i = 0; $i < count($ids) - 1; $i++) {
+                $id_question = $array[$ids[$i]][0];    
+                $sql = "INSERT into question_test(id_question, id_tests) VALUES ('$id_question','$id_test');";
                 //echo $i .'+ '.$sql ;
                 mysqli_query($connection, $sql);
             }
-        }
+        }       
     }
 }

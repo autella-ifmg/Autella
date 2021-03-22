@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/tests.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/test.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/user.php';
 
 global $connection;
@@ -88,7 +88,7 @@ function deletTest($id_test)
     global $connection;
 
 
-    $sql = "UPDATE autella.tests set status = -1 WHERE id = '$id_test';";
+    $sql = "UPDATE autella.test set status = -1 WHERE id = '$id_test';";
     echo $sql;
     $connection->query($sql);
 }

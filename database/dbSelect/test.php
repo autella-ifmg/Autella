@@ -5,7 +5,7 @@ function SimpleTestes()
     $array = [];
     require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
     if($_SESSION['userData'][5] == 1){
-    $sql = "SELECT * from Tests;";
+    $sql = "SELECT * from Test;";
     $array = [];
     $result = mysqli_query($connection, $sql);
 
@@ -17,7 +17,7 @@ function SimpleTestes()
     }
     }
     else{
-        $sql = "SELECT id_user,id from Tests;";
+        $sql = "SELECT id_user,id from Test;";
         $result = mysqli_query($connection, $sql);
 
         $arrayIdUser = [];
@@ -39,7 +39,7 @@ function SimpleTestes()
         //var_dump($arrayIdUser);
         for($i = 0; $i <count($arrayDisciplineUser); $i++){
             if($_SESSION['userData'][4] == $arrayDisciplineUser[$i][0]){
-            $sql = "SELECT * from Tests where id = " . $arrayIdUser[$i][1];
+            $sql = "SELECT * from Test where id = " . $arrayIdUser[$i][1];
             $result = mysqli_query($connection, $sql);
             $row = mysqli_fetch_array($result);
             array_push($array, $row);

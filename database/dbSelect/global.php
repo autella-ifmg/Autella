@@ -29,4 +29,17 @@ return $array;
 }
 
 
+function globalName($id){
+    require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
+    $sql = "SELECT name from global where id = $id";
+    $array =[];
+    $result = mysqli_query($connection, $sql);
+    if (mysqli_num_rows($result) != 0) {
+        while ($row = mysqli_fetch_array($result)) {
+            array_push($array, $row);
+        }
+    }
+    return $array;
+}
+
 ?>

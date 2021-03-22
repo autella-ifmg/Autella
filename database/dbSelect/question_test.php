@@ -101,8 +101,8 @@ function selectTestNames($question_id)
 {
     require $_SERVER['DOCUMENT_ROOT'] . '/database/dbConnect.php';
 
-    $sql = "SELECT tests.id, tests.name FROM question_test
-            JOIN tests ON tests.id = question_test.id_tests
+    $sql = "SELECT test.id, test.name FROM question_test
+            JOIN test ON test.id = question_test.id_tests
             WHERE question_test.id_question = " . $question_id;
     $result = mysqli_query($connection, $sql);
     $array = [];

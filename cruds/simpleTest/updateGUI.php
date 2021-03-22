@@ -2,111 +2,174 @@
 <html lang="en">
 
 <head>
+    oi
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autella | Editar prova</title>
+    <title>Autella | Visualizar questão</title>
     <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
     <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
     <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
-    <script src="../../libraries/ckeditor5/ckeditor.js"></script>
+    <script src="../../libraries/ckeditor/ckeditor.js"></script>
+    <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    
+    <script>
+    <?php  $testID = null;
+    $testID = $_GET['id'];?>
+    </script>
     <?php
+   
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/discipline.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question_test.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/subject.php';
     require_once "updateSQL.php";
-    $id_test_update = $_GET['id'];
     ?>
     <style>
         .a{
            border-style: solid;
         }
+         /* Split the screen in half */
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 200px;
+   
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+ 
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+} 
     </style>
-    <script>
-        
-        function TestQuestions() {                
-            for(var i = 0; i != js_array_test.length;i ++){               
-            id = js_array_test[i][0];
-            document.getElementById('sidebar').innerHTML += " <div  id = 'question"+id+"' class = a> <div  class= a>" + js_array_test[i][4] + "</div> Disciplina :"+js_array_test[i][9]+"//"+js_array_test[i][10]+"//<img  src=../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash.svg alt=Editar height=25 onclick = 'delet("+id+")'/> </div> <br><br>";
-            }
-        
+    <script> 
+        function dificultyTratament($dificulty)
+{
+    console.log($dificulty);
+    switch ($dificulty) {
+        case '1':
+            return "Dificuldade: Fácil";
+            break;
+        case '2' :
+            return "Dificuldade: Média";
+            break;
+        default:
+            return "Dificuldade: Difícil";
+            break;
+    }
+}
+
+function dateTratament(date){
+    date1 = date.split("-");
+    date1 = date1[0] +"/"+ date1[1]+"/"+date[2];
+    return date1;
+}
+
+
+function IDquestions(id) {
+                for (var i in js_array) 
+                {
+                    console.log("row " + i);
+                     for (var j in js_array[i]) 
+                     {
+                            console.log(" "+ j +"--- "+ js_array[i][j]);
+                    }
+                 }           
+            $DataDeCriação = "Criada em :"+ dateTratament(js_array[id][2]);
+            $Dificuldade = dificultyTratament(js_array[id][3]);
+            testQuestion[testQuestion.length] = id;
+            IdentidadeDaQuestão = js_array[id][1];
+            Enunciado = js_array[id][4];
+            $Disciplina = js_array[id][9];
+            $Materia = js_array[id][10];
+            $NumeroDaQuestão = js_array[id][0];
+            QuestaoCorreta = js_array[id][5];
+            document.getElementById('questaoSQL'+id).style.display = 'none';
+            //console.log();
+            var GlobalName = document.getElementById("testName").value;
+            document.getElementById('sidebar').innerHTML += "    <div id='prova"+id+"' style=\"margin: 20px;\"> <div class=\"d-flex flex-row bd-highlight\"><div class=\"p-2 w-25 border border-dark\">Questão - " + (id+1) +"</div> <div class=\"p-2 w-25 border border-dark border-left-0\">"+ $Disciplina +"</div>  <div class=\"p-2 flex-fill border border-dark border-left-0\">"+ $Materia +"</div>  </div>  <div class=\"d-flex flex-row bd-highlight\">  <div class=\"p-2 w-25 border border-dark border-top-0\">"+ $DataDeCriação +".</div> <div class=\"p-2 w-25 border border-dark border-left-0  border-top-0\">"+ $Dificuldade +"</div> <div class=\"p-2 flex-fill border border-dark border-left-0  border-top-0\">Alternativa Correta :"+ QuestaoCorreta  +"</div></div> <div '\" class=\" p-2 flex-fill  border border-dark border-top-0 \" style=\"overflow: auto;\">"+ Enunciado +"</div> <img  src=../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash.svg alt=Editar height=25 onclick = 'delet("+id+")'/> </div>";
+            document.getElementById("testName").value = GlobalName;
         }
+     
         function delet(id){
-              for(i = 0; i != js_array_test.length;i++){
-                if(js_array_test[i][0] == id){
-                    document.getElementById('question'+id).remove();
-                    js_array_test.splice(i,1);
+              for(i = 0; i <= testQuestion.length;i++){
+                if(testQuestion[i] == id){
+                    document.getElementById('questaoSQL'+id).style.display = 'block';
+                    document.getElementById('prova'+id).remove();
+                    testQuestion.splice(i,1);                
                 }
+                
               }
         }
-       function send(id){
-        for(i = 0; i != js_array_test.length;i++){
-        if(js_array[id][0] == js_array_test[i][0]){
-            return;
-        }
-        }
-        js_array_test = js_array_test.concat(js_array[id]);
-        i = js_array_test.length - 1;
-        document.getElementById('sidebar').innerHTML += " <div  id = 'question"+js_array_test[i][0]+"' class = a> <div  class= a>" + js_array_test[i][4] + "</div> Disciplina :"+js_array_test[i][9]+"//"+js_array_test[i][10]+"//<img  src=../../../libraries/bootstrap/bootstrap-icons-1.0.0/trash.svg alt=Editar height=25 onclick = 'delet("+js_array_test[i][0]+")'/> </div> <br><br>";
-        
-       }
+        <?php
+        $js_var = json_encode($testID);
+    echo "id_global= Number(" . $js_var . ");\n"; ?>
     </script>
 </head>
 
 <body>
+
+ </div>
     <?php require_once '../../views/navbar.php'; ?>
-    <div id='sidebar' class="w3-sidebar w3-bar-block w3-card" style="width:25%;right:0;">
-    
+    <div id='sidebar' class="split rigth a" style="width:35%;right:0;">
+    <div style="text-align: center; ">
         <script type="text/javascript">
-            
+          
             function convert() {
                 var ids = document.getElementById("ids");
-                var id_test = document.getElementById("id_test");
-                var idQuestion = [];
-                for(var i = 0; i != js_array_test.length;i ++){
-                    idQuestion[i] = js_array_test[i][0];
-                }
-                NEWstring = idQuestion.toString();
+                var testName = document.getElementById("name")
+                NEWstring = testQuestion.toString();
+                NEWstring += ","+id_global;
                 ids.value = NEWstring;
-                NEWstring = id_test1.toString();
-                id_test.value = NEWstring;
+                
                 Insert();
             }
         </script>
-    
         <form method="get">
             <input name="ids" id="ids" type="hidden" value="aaa" />
-            <input name="id" id="id_test" type="hidden" value="aaa" />
+            <label style="font-size: 20px ;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" for="testName">Nome da prova simples:</label><br>
+            <input aria-label = "Prova 1"  id = "testName" name="testName" type="text" />
             <input class="btn btn-success" onclick="convert();" name="BTN" type="submit" value="FINALIZAR" />
         </form>
-            <div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><H2>QUESTÕES:</H1></div>
+            <div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><H2>QUESTÕES:</H2></div>
         <?php
         if (isset($_GET['BTN'])) {
-            $oi = $id_test_update;
             $testQuestion = explode(',', $_GET['ids']);
-            $id_test_update = explode(',', $_GET['id']);
-            //var_dump($id_test_update);  
-            insertInDatabaseTestQuestion($testQuestion,$array,$id_test_update[0]);
+            $testName = explode(',', $_GET['testName']);
+            insertInDatabase($testQuestion,$array,$testName[0]);
         }   
         ?>
+    </div>
     </div>
     <script>
         var testQuestion = [];
         <?php $js_array = json_encode($array);
         echo "var js_array = " . $js_array . ";\n"; ?>
     </script>
-
-<script>
-        <?php 
-        $arrayTest =  selectTestQuestions($filter,$id_test_update);
-        $js_array = json_encode($arrayTest);
-        echo "var js_array_test = " . $js_array . ";\n"; 
-        echo "var id_test1 = " . $id_test_update. ";\n"; 
-        
-        ?>
-        TestQuestions(js_array_test);
-        </script>
     <!-- Page Content -->
     <div style="margin-right:25%">
         <!--
@@ -119,82 +182,22 @@
             <div id="result" class="toast-body"></div>
         </div>
     -->
-
-        <!--Filtros-->
-        <section class="d-flex justify-content-center mt-3">
+          <div class="split left" style="width: 60%;">
+                <div >
+                <section class="d-flex justify-content-center mt-3">
             <div class="d-flex flex-column">
-                <div class="d-flex flex-row mb-3">
-                    <!--Filtro disciplina-->
-                    <div id="container_selectDiscipline" class="w-25 mt-1 mr-3" hidden>
-                        <label for="disciplines">Disciplina:</label>
-                        <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects()">
-                            <?php selectDisciplineNamesToDropdowns(1); ?>
-                        </select>
-                    </div>
-                    <!--Filtro matéria-->
-                    <div name="container_select" class="w-25 mt-1 mr-3">
-                        <label for="subjects">Matéria:</label>
-                        <select name="subjects" id="subjects" class="form-control">
-                            <!--updateSubjects()-->
-                        </select>
-                    </div>
-                    <!--Filtro dificuldade-->
-                    <div name="container_select" class="w-25 mt-1 mr-3">
-                        <label for="dificulty">Dificuldade:</label>
-                        <select name="dificulty" id="dificulty" class="form-control">
-                            <option value="" disabled selected>Escolha...</option>
-                            <option value="1">Fácil</option>
-                            <option value="2">Média</option>
-                            <option value="3">Difícil</option>
-                        </select>
-                    </div>
-                    <!--Filtro data-->
-                    <div name="container_select" class="w-25 mt-1 mr-3">
-                        <label for="date">Data de criação:</label>
-                        <input id="date" type="date" class="form-control">
-                    </div>
-                    <!--Questões arquivadas-->
-                    <div class="w-auto mt-1">
-                        <a id="archive" onclick="filter(0)"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/archive-fill.svg" alt="Questões arquivadas" height="75"> </a>
-                    </div>
-                </div>
-
-                <!--Botões-->
-                <div class="d-flex flex-row justify-content-center mb-3">
-                    <a href="../../views/home.php" type="button" class="btn btn-primary w-25 mr-5">Voltar</a>
-                    <a id="filter" type="button" class="btn btn-info w-25 mr-5" onclick="flter(1)">Filtrar</a>
-                    <a href="createGUI.php" type="button" class="btn btn-primary w-25">Criar questão</a>
-                </div>
+            
+       
 
                 <!--Blocos de questões-->
-                <div>
+              
                     <?php data($array, $id_role); ?>
+                    </div>
                 </div>
 
                 <!--Paginação - HTML e PHP-->
                 <div class="d-flex justify-content-center">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="<?php echo $url . "pag=" . ($current >= 1 ? 1 : $current - 1); ?>&" aria-label="Anterior">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <?php for ($i = 1; $i <= $totalPages; $i++) {
-                            $style = "";
-
-                            if ($current == $i) {
-                                $style = " active";
-                            }
-                        ?>
-                            <li class="page-item<?php echo $style; ?>"><a class="page-link" href="readGUI.php?pag=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-                        <?php } ?>
-                        <li class="page-item">
-                            <a class="page-link" href="<?php echo $url . "pag=" . ($current < $totalPages ? $current + 1 : $totalPages); ?>&" aria-label="Próximo">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+               
             </div>
         </section>
 
@@ -401,7 +404,12 @@
 
         <!--CKEditor-->
         <script>
-            <?php imports($array); ?>
+                  
+
+
+
+
+              <?php forRead($questions); ?>
         </script>
 </body>
 

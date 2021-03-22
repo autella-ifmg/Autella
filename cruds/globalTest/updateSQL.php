@@ -51,7 +51,10 @@ function data()
         }
     }
     echo '</div></table>';
+    
 }
+
+
 
 function deletTest($id_test)
 {
@@ -69,17 +72,24 @@ function deletTest($id_test)
 
 function insertInDatabase($globalList, $GlobalName)
 {
-    date_default_timezone_set("America/Sao_Paulo");
-    $date = date("Y-m-d");
+    //Na primeira casa de GlobalList o id da prova global é passado
+    $id_global = $globalList[count($globalList) - 2 ];
     //var_dump($globalList);
     global $connection;
-    $id_user = $_SESSION["userData"]["id"];
-    $sql = "INSERT into Global(id_user, making_date, changing_date, name) VALUES ('$id_user','$date','$date','$GlobalName');";
+    //Deletando as questões que estavam no banco anteriormente
+    $sql = "DELETE FROM test_global WHERE id_global = $id_global";
     mysqli_query($connection, $sql);
-    $id_global =  mysqli_insert_id($connection);
+    //echo $sql;
+    
+    date_default_timezone_set("America/Sao_Paulo");
+    $date = date("Y-m-d");
+    $sql = "UPDATE global set name = '$GlobalName', changing_date = '$date' WHERE id = $id_global";
+    mysqli_query($connection, $sql);
+    //echo $sql;
+  
     if (!empty($globalList)) {
         if (count($globalList) > 0) {
-            for ($i = 0; $i != count($globalList); $i++) {
+            for ($i = 0; $i != count($globalList) - 2; $i++) {
                 $id_test = $globalList[$i];
                 $sql = "INSERT into test_Global(id_global, id_tests) VALUES ('$id_global','$id_test');";
                 //echo $sql;

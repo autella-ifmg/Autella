@@ -3,6 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/question_test.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/user.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/utilities/sessionDebug.php';
+require_once "../../libraries/ckeditor-inline/CKEditorImport.php";
 
 $id_role = $_SESSION["userData"]["id_role"];
 //var_dump($id_role);
