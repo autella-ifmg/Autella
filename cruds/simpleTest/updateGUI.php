@@ -221,7 +221,9 @@
             </div>
 
             <!--CKEditor-->
-            <?php forRead($array); ?>
+            <script>
+                <?php forRead($array); ?>
+            </script>
       
             <script>
                 <?php

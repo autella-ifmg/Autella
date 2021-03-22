@@ -10,9 +10,7 @@ document.querySelector("#submit").addEventListener("click", (event) => {
       if (page_action == 2) {
         if (i == 0 && editorData[aux].outerHTML != '<p class="ck-placeholder" data-placeholder="Enunciado da questão..."><br data-cke-filler="true"></p>' && editorData[aux].outerHTML != '<p data-placeholder="Enunciado da questão..." class="ck-placeholder"><br data-cke-filler="true"></p>') {
           data += editorData[aux].outerHTML;
-          data = data.replace('<p data-placeholder="Enunciado da questão...">', "");
-          data = data.replace('</p>', "");
-          data += "<br>";
+          data = data.replace(' data-placeholder="Enunciado da questão..."', "");
         } else if (i == 0) {
           $('#enunciate_popover').popover('show');
           //alert('Insira o enunciado da questão.');
@@ -20,9 +18,8 @@ document.querySelector("#submit").addEventListener("click", (event) => {
 
         if (data) {
           if (i != 0 && editorData[aux].outerHTML != `<p class="ck-placeholder" data-placeholder="Insira aqui a alternativa ${letters[i-1]}..."><br data-cke-filler="true"></p>` && editorData[aux].outerHTML != `<p data-placeholder="Insira aqui a alternativa ${letters[i-1]}..." class="ck-placeholder"><br data-cke-filler="true"></p>`) {
-            data += `<br> ${letters[i-1]}) ${editorData[aux].outerHTML}`;
-            data = data.replace(`<p data-placeholder="Insira aqui a alternativa ${letters[i-1]}...">`, "");
-            data = data.replace('</p>', "");
+            ata += `${letters[i-1]}) ${editorData[aux].outerHTML}`;
+            data = data.replace(` data-placeholder="Insira aqui a alternativa ${letters[i-1]}..."`, "");
             //console.log('here!')
           } else if (i != 0) {
             data = "";
