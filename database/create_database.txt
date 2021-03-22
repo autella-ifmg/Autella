@@ -99,7 +99,7 @@ CREATE TABLE `autella`.`question`(
   FOREIGN KEY (`id_subject`) REFERENCES `subject`(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE `autella`.`tests`(
+CREATE TABLE `autella`.`test`(
 	`id` int NOT NULL AUTO_INCREMENT,
 	`id_user` int NOT NULL,
 	`making_date` DATE,
@@ -115,13 +115,13 @@ CREATE TABLE `autella`.`tests`(
 CREATE TABLE `autella`.`question_test`(
 	`id_tests` int NOT NULL ,
 	`id_question` int NOT NULL,
-	FOREIGN KEY (`id_tests`) REFERENCES `tests`(`id`),
+	FOREIGN KEY (`id_tests`) REFERENCES `test`(`id`),
 	FOREIGN KEY (`id_question`) REFERENCES `question`(`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `autella`.`test_global`(
 	`id_global` int NOT NULL ,
 	`id_tests` int NOT NULL,
-	FOREIGN KEY (`id_tests`) REFERENCES `tests`(`id`),
+	FOREIGN KEY (`id_tests`) REFERENCES `test`(`id`),
 	FOREIGN KEY (`id_global`) REFERENCES `global`(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
