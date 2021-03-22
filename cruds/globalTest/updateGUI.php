@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../../libraries/bootstrap/bootstrap.css">
   <script src="../../libraries/bootstrap/jquery-3.5.1.js"></script>
   <script src="../../libraries/bootstrap/bootstrap.bundle.js"></script>
-  <script src="../../libraries/ckeditor5/ckeditor.js"></script>
+
   <style>
     .split {
       height: 100%;
@@ -100,23 +100,23 @@
     <form method="get" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
 
       <script>
-           <?php 
-         $js_var = json_encode($testID);
-         echo "id_global= Number(" . $js_var . ");\n";
-         ?>
+        <?php
+        $js_var = json_encode($testID);
+        echo "id_global= Number(" . $js_var . ");\n";
+        ?>
+
         function convert() {
           var globalListID = document.getElementById("globalList1");
-          
+
           NEWstring = globalListTest.toString();
-          NEWstring += ","+id_global;
+          NEWstring += "," + id_global;
           globalListID.value = NEWstring;
 
         }
-      
       </script>
       <!-- Input PARA PASSAR Js para PHP -->
       <input name="globalList" id="globalList1" type="hidden" value="Lista Global" />
-      
+
       <label class="form-label" style="font-family: Georgia, 'Times New Roman', Times, serif; ">Nome da prova Global</label>
       <input name="globalName" class="form-control" id="globalName" aria-describedby="emailHelp" value="">
       <button style="margin: 130px;" type="submit" class="btn btn-primary" onclick="convert()" name="BTN">SALVAR PROVA</button>

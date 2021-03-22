@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-   
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=dev ice-width, initial-scale=1.0">
     <title>Autella | Visualizar Testes</title>
@@ -30,8 +30,8 @@
     <?php require_once '../../views/navbar.php'; ?>
     <br>
     <main class="d-flex flex-column align-items-center flex-grow-1 mb-3">
-    <a href="createGUI.php" type="button" class="btn btn-primary w-auto">Criar prova global</a>
-    
+        <a href="createGUI.php" type="button" class="btn btn-primary w-auto">Criar prova global</a>
+
     </main>
     <div style="text-align: center; margin-right: 3%;margin-left: 3%;"><?php data(); ?></div>
     <!--Modal genérico-->

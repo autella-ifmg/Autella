@@ -53,7 +53,7 @@ function data()
                     $id_test = $array[$i][0];
 
                     $status_list_answers = verifyStatusOfListAnswers($id_test);
-                
+
                     echo ' <div>
                 <tr>
                 <td>  <a href="http://autella.com/cruds/globalTest/readTestGUI.php?id=' . $id_test . '">' . $nameTest . ' </a></td>

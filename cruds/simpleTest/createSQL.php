@@ -78,7 +78,7 @@ function data($array, $id_role)
 {
     global $start;
     global $array1;
-    $array1 = $array; 
+    $array1 = $array;
     $id_user = $_SESSION["userData"]["id"];
 
     if (!empty($array)) {
@@ -93,13 +93,13 @@ function data($array, $id_role)
                 $enunciate =  $array[$i]["enunciate"];
 
                 echo '
-                <div id = "questaoSQL'.$i.'">
+                <div id = "questaoSQL' . $i . '">
                     <div class="d-flex flex-row bd-highlight">
                         <div class="p-2 w-25 border border-dark">Questão - ' . $questionNumber . '</div>
                         <div class="p-2 w-25 border border-dark border-left-0">' . $discipline . '</div>
                         <div class="p-2 flex-fill border border-dark border-left-0">' . $subject . '</div>
                         <div class="p-2 w-auto border border-dark border-left-0"> <img src="../../../libraries/bootstrap/bootstrap-icons-1.0.0/arrow-right-circle-fill.svg" alt="Mover" height="25" onclick="IDquestions(' . $i . ')"; /></div>';
-                
+
                 echo '    
                     </div>
 
@@ -158,24 +158,24 @@ function imports($array)
     }
 }
 
-function insertInDatabase($ids,$array,$testName)
+function insertInDatabase($ids, $array, $testName)
 {
     date_default_timezone_set("America/Sao_Paulo");
     $date = date("Y-m-d");
-    
+
     global $connection;
     $id_user = $_SESSION["userData"]["id"];
-    $sql = "INSERT into Test(id_user, making_date, changing_date, name) VALUES ('$id_user','$date','$date','$testName');";  
+    $sql = "INSERT into Test(id_user, making_date, changing_date, name) VALUES ('$id_user','$date','$date','$testName');";
     mysqli_query($connection, $sql);
     $id_test =  mysqli_insert_id($connection);
     if (!empty($ids)) {
         if (count($ids) > 0) {
             for ($i = 0; $i < count($ids); $i++) {
-                $id_question = $array[$ids[$i]][0];    
+                $id_question = $array[$ids[$i]][0];
                 $sql = "INSERT into question_test(id_question, id_tests) VALUES ('$id_question','$id_test');";
                 //echo $i .'+ '.$sql ;
                 mysqli_query($connection, $sql);
             }
-        }       
+        }
     }
 }

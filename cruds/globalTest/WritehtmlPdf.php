@@ -193,4 +193,3 @@ function PutLink($URL, $txt)
 }
 
 }//end of class
-?>

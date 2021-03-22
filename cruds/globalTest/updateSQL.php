@@ -51,7 +51,6 @@ function data()
         }
     }
     echo '</div></table>';
-    
 }
 
 
@@ -73,20 +72,20 @@ function deletTest($id_test)
 function insertInDatabase($globalList, $GlobalName)
 {
     //Na primeira casa de GlobalList o id da prova global é passado
-    $id_global = $globalList[count($globalList) - 2 ];
+    $id_global = $globalList[count($globalList) - 2];
     //var_dump($globalList);
     global $connection;
     //Deletando as questões que estavam no banco anteriormente
     $sql = "DELETE FROM test_global WHERE id_global = $id_global";
     mysqli_query($connection, $sql);
     //echo $sql;
-    
+
     date_default_timezone_set("America/Sao_Paulo");
     $date = date("Y-m-d");
     $sql = "UPDATE global set name = '$GlobalName', changing_date = '$date' WHERE id = $id_global";
     mysqli_query($connection, $sql);
     //echo $sql;
-  
+
     if (!empty($globalList)) {
         if (count($globalList) > 0) {
             for ($i = 0; $i != count($globalList) - 2; $i++) {

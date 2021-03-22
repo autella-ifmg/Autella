@@ -12,13 +12,13 @@
     <?php
     require_once "readTestSQL.php";
     require_once "../../libraries/ckeditor-inline/CKEditorImport.php";
-    
+
     ?>
 </head>
 
 <body>
     <!--Navbar-->
-    
+
     <?php require_once '../../views/navbar.php'; ?>
 
     <section class="d-flex justify-content-center mt-3">
@@ -31,11 +31,11 @@
 
             <!--Botões-->
             <div class="d-flex flex-row justify-content-between mb-3">
-                
-                <a id="archive" type="button" style = "visibility: hidden;"class="btn btn-info w-25 mr-5"></a>
-               
+
+                <a id="archive" type="button" style="visibility: hidden;" class="btn btn-info w-25 mr-5"></a>
+
             </div>
-           
+
             <!--Blocos de questões-->
             <div> <?php questionBlocks($questions, $id_role); ?> </div>
 

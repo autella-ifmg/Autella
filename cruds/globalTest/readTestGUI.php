@@ -12,32 +12,32 @@
     <?php
     require_once "readTestSQL.php";
     require_once "../../libraries/ckeditor-inline/CKEditorImport.php";
-    
+
     ?>
 </head>
 
 <body>
     <!--Navbar-->
-    
+
     <?php require_once '../../views/navbar.php'; ?>
 
     <section class="d-flex justify-content-center mt-3">
-    <div id ='pdf'></div>   
+        <div id='pdf'></div>
         <div class="d-flex flex-column">
-      
+
             <!--Estrutura para selecionar filtros-->
             <?php require_once '../../views/filtersSystem/choosingFilters.php'; ?>
-            
+
             <!--Filtros aplicados-->
             <?php require_once '../../views/filtersSystem/appliedFilters.php'; ?>
-            
+
             <!--Botões-->
             <div class="d-flex flex-row justify-content-between mb-3">
-                
-                <a id="archive" type="button" style = "visibility: hidden;"class="btn btn-info w-25 mr-5"></a>
-             
+
+                <a id="archive" type="button" style="visibility: hidden;" class="btn btn-info w-25 mr-5"></a>
+
             </div>
-           
+
             <!--Blocos de questões-->
             <div> <?php questionBlocks($questions, $id_role); ?> </div>
 
@@ -60,14 +60,14 @@
     <script src="../../utilities/jsFunctions/question/easterEgg.js"></script>
 
     <script>
-    <?php
-    //Variavel que mostra id de prova global
-    $js_var = json_encode($id_global);
-    echo "id_global= Number(" . $js_var . ");\n";
-    ?> 
-   
-        document.getElementById('pdf').innerHTML += "<a href=\"Pdf.php?id="+id_global+"\"> <img src=\"../../images/global/pdf.png\" alt=\"PDF DOWNLOAD\" width=\"80px\" height=\"80px\"></a>"
-    
+        <?php
+        //Variavel que mostra id de prova global
+        $js_var = json_encode($id_global);
+        echo "id_global= Number(" . $js_var . ");\n";
+        ?>
+
+        document.getElementById('pdf').innerHTML += "<a href=\"Pdf.php?id=" + id_global + "\"> <img src=\"../../images/global/pdf.png\" alt=\"PDF DOWNLOAD\" width=\"80px\" height=\"80px\"></a>"
+
         //Sequência de instanciação de variáveis globais oriundas do php que são utilizadas por funções '.js'.
         <?php
         //Array global com as questões que estão sendo exibidas.

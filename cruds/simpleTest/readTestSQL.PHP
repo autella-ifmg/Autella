@@ -57,7 +57,7 @@ $id_test = $_GET['id'];
 
 
 //Total de linhas da tabela.
-$totalRows = count($aux = selectTestQuestions(false, 0 ,0 , $filter, $id_test));
+$totalRows = count($aux = selectTestQuestions(false, 0, 0, $filter, $id_test));
 
 
 $questions = selectTestQuestions(true, $start, $end, $filter, $id_test);

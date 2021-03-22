@@ -57,7 +57,7 @@ $id_global = $_GET['id'];
 
 
 //Total de linhas da tabela.
-$totalRows = count($aux = selectGlobalQuestions(false, 0 ,0 , $filter, $id_global));
+$totalRows = count($aux = selectGlobalQuestions(false, 0, 0, $filter, $id_global));
 
 
 $questions = selectGlobalQuestions(true, $start, $end, $filter, $id_global);
