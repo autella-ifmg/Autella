@@ -10,7 +10,7 @@ function alternativesField() {
     span_container.setAttribute("data-toggle", "popover");
     span_container.setAttribute("data-placement", "top");
     span_container.setAttribute("data-html", "true");
-    span_container.setAttribute("data-content", '<img class="p-1 w-auto h-auto" src="../../images/question/warning.png" alt="Atenção!"> Preencha este campo.')
+    span_container.setAttribute("data-content", '<img class="p-1 w-auto h-auto" src="../../images/question/ckeditor-warning-icon/warning.png" alt="Atenção!"> Preencha este campo.')
     alternatives_container.appendChild(span_container);
 
     let img = document.createElement("img");

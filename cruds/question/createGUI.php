@@ -64,7 +64,7 @@
                 <hr>
 
                 <!--Enunciado da questão-->
-                <span id="enunciate_popover" class="d-flex flex-row" data-toggle="popover" data-placement="top" data-html="true" data-content='<img class="p-1 w-auto h-auto" src="../../images/question/warning.png" alt="Atenção!"> Insira o enunciado da questão.'>
+                <span id="enunciate_popover" class="d-flex flex-row" data-toggle="popover" data-placement="top" data-html="true" data-content='<img class="p-1 w-auto h-auto" src="../../images/question/ckeditor-warning-icon/warning.png" alt="Atenção!"> Insira o enunciado da questão.'>
                     <div id="editor0" style="min-width: 72rem; max-width: 72rem; min-height: 20rem; max-height: 20rem; border: 1px solid gray;" onclick="disablePopover('#enunciate_popover')"></div>
                 </span>
 
