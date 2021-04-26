@@ -29,21 +29,27 @@ function selectDisciplineNamesToDropdowns($action)
     for ($i = 0; $i < count($array); $i++) {
         switch ($action) {
             case 0:
+                //Create question
                 if ($array[$i][0] == $_SESSION["userData"]["id_discipline"]) {
                     echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item" selected="selected">' . $array[$i][2] . '</option>';
                 } else {
                     echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
                 }
+
                 break;
             case 1:
+                //Update question
+                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
+
+                break;
+            case 2:
+                //FilterSystem
                 if (($i - 1) == -1) {
                     echo '<option name="null" id="null" value="null" class="dropdown-item" selected="selected">Escolha...</option>';
                 }
 
                 echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
-                break;
-            case 2:
-                echo '<option name="' . $array[$i][0] . '" id="' . $array[$i][0] . '" value="' . $array[$i][0] . '" class="dropdown-item">' . $array[$i][2] . '</option>';
+
                 break;
         }
     }

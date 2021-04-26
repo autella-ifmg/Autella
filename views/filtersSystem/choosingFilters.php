@@ -9,7 +9,7 @@
         <select name="disciplines" id="disciplines" class="form-control" onchange="updateSubjects(), addFilterInList('disciplines')">
             <?php
             require_once $_SERVER['DOCUMENT_ROOT'] . '/database/dbSelect/discipline.php';
-            selectDisciplineNamesToDropdowns(1);
+            selectDisciplineNamesToDropdowns(2);
             ?>
         </select>
     </div>
