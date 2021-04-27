@@ -38,7 +38,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "testSQL.php",
+                url: "prototypeSQL.php",
                 data: {
                     id_discipline
                 },
