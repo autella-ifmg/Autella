@@ -30,38 +30,41 @@
             <div id="subjectNames"></div>
         </div>
     </section>
-</body>
 
-<script src="../../utilities/jsFunctions/question/selects.js"></script>
+    <script>
+        function showSubjectNames() {
+            var id_discipline = document.getElementById("test");
+            id_discipline = id_discipline.value;
 
-<script>
-    function showSubjectNames() {
-        var id_discipline = document.getElementById("test");
-        id_discipline = id_discipline.value;
+            $.ajax({
+                type: "POST",
+                url: "testSQL.php",
+                data: {
+                    id_discipline
+                },
+                success: function(array) {
+                    var subjectNames = JSON.parse(array);
+                    //console.log(subjectNames);
 
-        $.ajax({
-            type: "POST",
-            url: "testSQL.php",
-            data: {
-                id_discipline
-            },
-            success: function(subjectNames) {
-                console.log(subjectNames);
+                    var message = "";
+                    for (let i = 0; i < subjectNames.length; i++) {
+                        message += subjectNames[i];
 
-                var message = "Sem correspondência";
-                for (let i = 0; i < subjectNames.length; i++) {
-                    message += " " + subjectNames[i];
+                        if (i < (subjectNames.length - 1)) {
+                            message += ", ";
+                        } else {
+                            message += ".";
+                        }
+                    }
 
-
+                    $("#subjectNames").html(message).fadeIn;
+                },
+                error: function(error) {
+                    console.log(error);
                 }
-
-                $("#subjectNames").html(message).fadeIn;
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
-    }
-</script>
+            });
+        }
+    </script>
+</body>
 
 </html>
